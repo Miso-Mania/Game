@@ -27,6 +27,12 @@ int main(int argc, char* argv[]) {
 
     // Initial position of the square
     int x = 320, y = 240;
+    //A wrap up dans une classe
+    //ON définit les couleurs du carré
+    int sqR=255;
+    int sqG=0;
+    int sqB=0;
+
 
     bool quit = false;
     SDL_Event event;
@@ -39,15 +45,23 @@ int main(int argc, char* argv[]) {
                 switch (event.key.keysym.sym) {
                     case SDLK_UP:
                         y -= 10;
+                        sqB = 145;
+                        sqR = 0;
                         break;
                     case SDLK_DOWN:
                         y += 10;
+                        sqB = 0;
+                        sqR = 255;
                         break;
                     case SDLK_LEFT:
                         x -= 10;
+                        sqB = 0;
+                        sqR = 255;
                         break;
                     case SDLK_RIGHT:
                         x += 10;
+                        sqB = 0;
+                        sqR = 255;
                         break;
                 }
             }
@@ -62,7 +76,7 @@ int main(int argc, char* argv[]) {
         rect.w = 50;
         rect.h = 50;
 
-        SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+        SDL_SetRenderDrawColor(renderer, sqR, sqG, sqB, 255);
         SDL_RenderFillRect(renderer, &rect);
         SDL_RenderPresent(renderer);
     }
