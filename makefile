@@ -1,18 +1,12 @@
+#OBJS specifies which files to compile as part of the project
+OBJS = main.cpp
 CC = g++
-CFLAGS = $(shell sdl2-config --cflags)
-LIBS = $(shell sdl2-config --libs) -lSDL2_image
+CFLAGS = -w
+LINKER_FLAGS = -lSDL2 
 
-square.o: square.cpp square.h
-	$(CC) $(CFLAGS) -c square.cpp
+#OBJ_NAME specifies the name of our exectuable
+OBJ_NAME = Luncher
 
-main.o: main.cpp square.h
-	$(CC) $(CFLAGS) -c main.cpp
-
-all: main
-
-main: main.o square.o 
-	$(CC) $(CFLAGS) main.o square.o -o main $(LIBS)
-
-clean:
-	rm -f main
-
+#This is the target that compiles our executable
+all : $(OBJS)
+	$(CC) $(OBJS) $(CFLAGS) $(LINKER_FLAGS) -o $(OBJ_NAME)
