@@ -13,3 +13,5 @@ public:
 private:
     SDL_Rect rect;
 };
+
+#endif // PLATFORM_H

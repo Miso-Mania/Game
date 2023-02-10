@@ -16,3 +16,5 @@ private:
     SDL_Rect rect;
     int speed_x, speed_y;
 };
+
+#endif // PLAYER_H
