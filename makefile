@@ -7,6 +7,10 @@ Include_Dir_SDL2 = -I/usr/include/SDL2
 
 all : dir bin/jeu bin/test
 
+dir:
+	mkdir obj
+	mkdir bin
+
 bin/jeu : $(OBJS)
 	$(cc) $(Include_Dir_SDL2) objj/main.o objj/game.o objj/player.o objj/plateform.o -o bin/jeu $(LIBS)
 
@@ -22,4 +26,5 @@ player.o : src/player.cpp
 plateform.o : src/plateform.cpp
 	$(cc) $(CFLAGS) $(Include_Dir_SDL2) src/plateform.cpp -o objj/plateform.o $(LIBS)
 
-	
+clean:
+	rm obj/ bin/ -rf
