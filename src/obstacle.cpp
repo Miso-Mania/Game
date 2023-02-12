@@ -18,6 +18,9 @@ void Obstacle::render(SDL_Renderer *renderer) {
     SDL_RenderFillRect(renderer, &m_rect);
 }
 
+void Obstacle::push_back(Obstacle* obstacle) {
+}
+
 SDL_Rect Obstacle::getRect() {
     return m_rect;
 }

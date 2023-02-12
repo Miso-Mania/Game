@@ -11,6 +11,7 @@ public:
     void update(double delta);
     void render(SDL_Renderer *renderer);
     SDL_Rect getRect();
+    void push_back(Obstacle* obstacle);
 
 private:
     SDL_Rect m_rect;
