@@ -1,63 +1,41 @@
 #include "player.h"
 
-Player::Player(int x, int y, int w, int h) :
-    mPosX(x), mPosY(y), WIDTH(w), HEIGHT(h), mVelX(0), mVelY(0) {
-    rect = {x, y, w, h};
+Player::Player(): m_rect({0, 0, 32, 32}), m_yVelocity(0) {
 }
 
 Player::~Player() {
 }
 
-void Player::handleEvent(SDL_Event& e) {
-    if (e.type == SDL_KEYDOWN && e.key.repeat == 0) {
-        switch (e.key.keysym.sym) {
-            case SDLK_UP: mVelY -= 10; break;
-            case SDLK_DOWN: mVelY += 10; break;
-            case SDLK_LEFT: mVelX -= 10; break;
-            case SDLK_RIGHT: mVelX += 10; break;
-        }
-    } else if (e.type == SDL_KEYUP && e.key.repeat == 0) {
-        switch (e.key.keysym.sym) {
-            case SDLK_UP: mVelY += 10; break;
-            case SDLK_DOWN: mVelY -= 10; break;
-            case SDLK_LEFT: mVelX += 10; break;
-            case SDLK_RIGHT: mVelX -= 10; break;
-        }
+void Player::update(double delta) {
+    m_rect.y += (int)(m_yVelocity * delta);
+    //gravité
+    m_yVelocity += 500 * delta;
+    // Clamp velocity
+    if (m_yVelocity > 500) {
+        m_yVelocity = 500;
     }
 }
 
-void Player::move() {
-    mPosX += mVelX;
-    mPosY += mVelY;
-    rect = {mPosX, mPosY, WIDTH, HEIGHT};
+void Player::render(SDL_Renderer *renderer) {
+    SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+    SDL_RenderFillRect(renderer, &m_rect);
 }
 
-void Player::render(SDL_Renderer* renderer) {
-    SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
-    SDL_RenderFillRect(renderer, &rect);
-}
-
-SDL_Rect Player::getRect() {
-    return rect;
-}
-
-void Player::onCollision(SDL_Rect platformRect) {
-    if (mPosY + HEIGHT >= platformRect.y && mPosY <= platformRect.y + platformRect.h) {
-        if (mPosX + WIDTH >= platformRect.x && mPosX <= platformRect.x + platformRect.w) {
-            if (mPosY + HEIGHT - mVelY <= platformRect.y) {
-                mPosY = platformRect.y - HEIGHT;
-                mVelY = 0;
+void Player::handleEvents(SDL_Event &event) {
+    switch (event.type) {
+        case SDL_KEYDOWN:
+            if (event.key.keysym.sym == SDLK_SPACE) {
+                jump();
             }
-        }
+            break;
+        default:
+            break;
     }
 }
 
-void Player::update() {
-    if (mPosY + HEIGHT < 600) {
-        mVelY += 1;
-    }
+void Player::jump() {
+    m_yVelocity = -500;
 }
-
 
 
 

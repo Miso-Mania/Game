@@ -5,22 +5,16 @@
 
 class Player {
 public:
-    Player (int x, int y, int w, int h);
+    Player ();
     ~Player();
-    void handleEvent(SDL_Event& e);
-    void move();
-    void render(SDL_Renderer* renderer);
-    SDL_Rect getRect();
-    void onCollision(SDL_Rect platformRect);
-    void update();
+    void update(double delta);
+    void render(SDL_Renderer *renderer);
+    void handleEvents(SDL_Event &event);
+    void jump();
+
 private:
-    int mVelX, mVelY;
-    int mPosX, mPosY;
-    int WIDTH, HEIGHT;
-    SDL_Rect rect;
-    bool isJumping;
-    int jumpHeight;
-    int jumpSpeed;
+    SDL_Rect m_rect;
+    double m_yVelocity;
 };
 
 #endif // PLAYER_H
