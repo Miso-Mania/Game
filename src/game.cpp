@@ -23,12 +23,8 @@ void Game::init(const char *title, int xpos, int ypos, int width, int height, bo
                 SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
             }
         }
-        isRunning = true;
     }
-    player = Player(0, 0, 50, 50);
-    platforms.push_back(Platform(0, 500, 800, 100));
-    platforms.push_back(Platform(0, 400, 200, 100));
-    platforms.push_back(Platform(600, 400, 200, 100));
+    isRunning = true;
 }
 
 void Game::handleEvents() {
@@ -44,19 +40,14 @@ void Game::handleEvents() {
 }
 
 void Game::update() {
-    player.update();
-    for (int i = 0; i < platforms.size(); i++) {
-        if (platforms[i].isColliding(player)) {
-            player.onCollision(platforms[i]);
-        }
-    }
+    player.move();
 }
 
 void Game::render() {
     SDL_RenderClear(renderer);
     player.render(renderer);
-    for (int i = 0; i < platforms.size(); i++) {
-        platforms[i].draw(renderer);
+    for (Platform &platform : platforms) {
+        platform.draw(renderer);
     }
     SDL_RenderPresent(renderer);
 }
@@ -70,6 +61,8 @@ void Game::clean() {
 bool Game::running() {
     return isRunning;
 }
+
+
 
 
 
