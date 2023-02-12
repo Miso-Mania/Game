@@ -37,6 +37,18 @@ void Player::jump() {
     m_yVelocity = -500;
 }
 
+bool Player::collidesWith(Obstacle *obstacle) {
+    return SDL_HasIntersection(&m_rect, &obstacle->getRect());
+}
+
+void Player::setDirection(PlayerDirection direction) {
+    m_direction = direction;
+}
+
+
+
+
+
 
 
 

@@ -1,31 +1,32 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include <vector>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
-#include "plateform.h"
+#include <vector>
+#include "level.h"
 #include "player.h"
+#include "screen.h"
 using namespace std;
 
 class Game {
 public:
     Game();
     ~Game();
-    void init(const char *title, int xpos, int ypos, int width, int height, bool fullscreen);
-    void handleEvents();
-    void update();
+    void run();
+    void handleEvents(SDL_Event& event);
+    void update(double delta);
     void render();
-    void clean();
-    bool running();
 
 private:
-    bool isRunning;
-    SDL_Window *window;
-    SDL_Renderer *renderer;
-    Player player;
-    vector<Platform> platforms;
+    SDL_Window *m_window;
+    SDL_Renderer *m_renderer;
+    Player m_player;
+    vector<Level*> m_levels;
+    int m_currentLevel;
+
 };
+
 
 #endif // GAME_H
 
