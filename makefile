@@ -12,19 +12,19 @@ dir:
 	mkdir bin
 
 bin/jeu : $(OBJS)
-	$(cc) $(Include_Dir_SDL2) objj/main.o objj/game.o objj/player.o objj/plateform.o -o bin/jeu $(LIBS)
-
-main.o : src/main.cpp
-	$(cc) $(CFLAGS) $(Include_Dir_SDL2) src/main.cpp -o objj/main.o $(LIBS)
-
-game.o : src/game.cpp
-	$(cc) $(CFLAGS) $(Include_Dir_SDL2) src/game.cpp -o objj/game.o $(LIBS)
+	$(cc) $(Include_Dir_SDL2) obj/main.o obj/game.o obj/player.o obj/plateform.o -o bin/jeu $(LIBS)
 
 player.o : src/player.cpp
-	$(cc) $(CFLAGS) $(Include_Dir_SDL2) src/player.cpp -o objj/player.o $(LIBS)
+	$(cc) $(CFLAGS) $(Include_Dir_SDL2) src/player.cpp -o obj/player.o $(LIBS)
 
 plateform.o : src/plateform.cpp
-	$(cc) $(CFLAGS) $(Include_Dir_SDL2) src/plateform.cpp -o objj/plateform.o $(LIBS)
+	$(cc) $(CFLAGS) $(Include_Dir_SDL2) src/plateform.cpp -o obj/plateform.o $(LIBS)
+
+game.o : src/game.cpp
+	$(cc) $(CFLAGS) $(Include_Dir_SDL2) src/game.cpp -o obj/game.o $(LIBS)
+
+main.o : src/main.cpp
+	$(cc) $(CFLAGS) $(Include_Dir_SDL2) src/main.cpp -o obj/main.o $(LIBS)
 
 clean:
 	rm obj/ bin/ -rf

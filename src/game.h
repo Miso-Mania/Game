@@ -1,11 +1,11 @@
 #ifndef GAME_H
 #define GAME_H
+
+#include <vector>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
-#include <iostream>
-#include "player.h"
 #include "plateform.h"
-#include <vector>
+#include "player.h"
 using namespace std;
 
 class Game {
@@ -17,7 +17,8 @@ public:
     void update();
     void render();
     void clean();
-    bool running() { return isRunning; }
+    bool running();
+
 private:
     bool isRunning;
     SDL_Window *window;
@@ -27,3 +28,4 @@ private:
 };
 
 #endif // GAME_H
+

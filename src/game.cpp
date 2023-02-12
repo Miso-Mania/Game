@@ -1,14 +1,13 @@
-#include 'game.h'
+#include "game.h"
 using namespace std;
 
-Game::Game() {
-    isRunning = false;
-}
+Game::Game() :
+    window(NULL), renderer(NULL), isRunning(true), player(0, 0, 20, 20) {
+    platforms.push_back(Platform(0, 500, 800, 100));
+    }
 
 Game::~Game() {
-    SDL_DestroyRenderer(renderer);
-    SDL_DestroyWindow(window);
-    SDL_Quit();
+    clean();
 }
 
 void Game::init(const char *title, int xpos, int ypos, int width, int height, bool fullscreen) {
@@ -26,10 +25,10 @@ void Game::init(const char *title, int xpos, int ypos, int width, int height, bo
         }
         isRunning = true;
     }
-    player = Player();
-    platforms.push_back(Platform(0, 400, 800, 32));
-    platforms.push_back(Platform(0, 300, 32, 32));
-    platforms.push_back(Platform(768, 300, 32, 32));
+    player = Player(0, 0, 50, 50);
+    platforms.push_back(Platform(0, 500, 800, 100));
+    platforms.push_back(Platform(0, 400, 200, 100));
+    platforms.push_back(Platform(600, 400, 200, 100));
 }
 
 void Game::handleEvents() {
@@ -39,38 +38,23 @@ void Game::handleEvents() {
         case SDL_QUIT:
             isRunning = false;
             break;
-        case SDL_KEYDOWN:
-            switch (event.key.keysym.sym) {
-                case SDLK_LEFT:
-                    player.moveLeft();
-                    break;
-                case SDLK_RIGHT:
-                    player.moveRight();
-                    break;
-                case SDLK_SPACE:
-                    player.jump();
-                    break;
-                default:
-                    break;
-            }
-            break;
         default:
             break;
     }
 }
 
 void Game::update() {
-    player.updatePosition();
+    player.update();
     for (int i = 0; i < platforms.size(); i++) {
         if (platforms[i].isColliding(player)) {
-            player.updatePosition();
+            player.onCollision(platforms[i]);
         }
     }
 }
 
 void Game::render() {
     SDL_RenderClear(renderer);
-    player.draw(renderer);
+    player.render(renderer);
     for (int i = 0; i < platforms.size(); i++) {
         platforms[i].draw(renderer);
     }
@@ -81,5 +65,12 @@ void Game::clean() {
     SDL_DestroyWindow(window);
     SDL_DestroyRenderer(renderer);
     SDL_Quit();
-    std::cout << "Game cleaned" << std::endl;
 }
+
+bool Game::running() {
+    return isRunning;
+}
+
+
+
+

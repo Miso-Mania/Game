@@ -1,45 +1,64 @@
-#include 'player.h'
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
-#include <iostream>
+#include "player.h"
 
-Player::Player() {
-    rect.x = 0;
-    rect.y = 0;
-    rect.w = 32;
-    rect.h = 32;
-    speed_x = 0;
-    speed_y = 0;
+Player::Player(int x, int y, int w, int h) :
+    mPosX(x), mPosY(y), WIDTH(w), HEIGHT(h), mVelX(0), mVelY(0) {
+    rect = {x, y, w, h};
 }
 
 Player::~Player() {
 }
 
-void Player::moveLeft() {
-    speed_x = -1;
+void Player::handleEvent(SDL_Event& e) {
+    if (e.type == SDL_KEYDOWN && e.key.repeat == 0) {
+        switch (e.key.keysym.sym) {
+            case SDLK_UP: mVelY -= 10; break;
+            case SDLK_DOWN: mVelY += 10; break;
+            case SDLK_LEFT: mVelX -= 10; break;
+            case SDLK_RIGHT: mVelX += 10; break;
+        }
+    } else if (e.type == SDL_KEYUP && e.key.repeat == 0) {
+        switch (e.key.keysym.sym) {
+            case SDLK_UP: mVelY += 10; break;
+            case SDLK_DOWN: mVelY -= 10; break;
+            case SDLK_LEFT: mVelX += 10; break;
+            case SDLK_RIGHT: mVelX -= 10; break;
+        }
+    }
 }
 
-void Player::moveRight() {
-    speed_x = 1;
+void Player::move() {
+    mPosX += mVelX;
+    mPosY += mVelY;
+    rect = {mPosX, mPosY, WIDTH, HEIGHT};
 }
 
-void Player::jump() {
-    speed_y = -1;
-}
-
-void Player::updatePosition() {
-    rect.x += speed_x;
-    rect.y += speed_y;
-    speed_x = 0;
-    speed_y = 0;
-}
-
-void Player::draw(SDL_Renderer *renderer) {
-    SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+void Player::render(SDL_Renderer* renderer) {
+    SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
     SDL_RenderFillRect(renderer, &rect);
 }
 
 SDL_Rect Player::getRect() {
     return rect;
 }
+
+void Player::onCollision(SDL_Rect platformRect) {
+    if (mPosY + HEIGHT >= platformRect.y && mPosY <= platformRect.y + platformRect.h) {
+        if (mPosX + WIDTH >= platformRect.x && mPosX <= platformRect.x + platformRect.w) {
+            if (mPosY + HEIGHT - mVelY <= platformRect.y) {
+                mPosY = platformRect.y - HEIGHT;
+                mVelY = 0;
+            }
+        }
+    }
+}
+
+void Player::update() {
+    if (mPosY + HEIGHT < 600) {
+        mVelY += 1;
+    }
+}
+
+
+
+
 

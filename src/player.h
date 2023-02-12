@@ -1,20 +1,26 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
 
 class Player {
 public:
-    Player();
+    Player (int x, int y, int w, int h);
     ~Player();
-    void moveLeft();
-    void moveRight();
-    void jump();
-    void uptadePosition();
-    void draw(SDL_Renderer *renderer);
+    void handleEvent(SDL_Event& e);
+    void move();
+    void render(SDL_Renderer* renderer);
     SDL_Rect getRect();
+    void onCollision(SDL_Rect platformRect);
+    void update();
 private:
+    int mVelX, mVelY;
+    int mPosX, mPosY;
+    int WIDTH, HEIGHT;
     SDL_Rect rect;
-    int speed_x, speed_y;
+    bool isJumping;
+    int jumpHeight;
+    int jumpSpeed;
 };
 
 #endif // PLAYER_H
