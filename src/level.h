@@ -12,6 +12,7 @@ public:
     void update(double delta);
     void render(SDL_Renderer *renderer);
     std::vector<Obstacle> getObstacles();
+    
 
 private:
     std::vector<Obstacle> m_obstacles;
