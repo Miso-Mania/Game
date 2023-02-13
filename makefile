@@ -1,4 +1,4 @@
-OBJS = main.o game.o player.o obstacle.o level.o playerdirection.o screen.o
+OBJS = main.o game.o player.o obstacle.o level.o playerdirection.o screen.o score.o
 cc = g++
 CFLAGS = -g -Wall -c
 LIBS = -lSDL2 -lSDL2_image -lSDL2_ttf
@@ -12,7 +12,7 @@ dir:
 	mkdir bin
 
 bin/jeu : $(OBJS)
-	$(cc) $(Include_Dir_SDL2) obj/main.o obj/game.o obj/player.o obj/obstacle.o obj/level.o obj/playerdirection.o obj/screen.o -o bin/jeu $(LIBS)
+	$(cc) $(Include_Dir_SDL2) obj/main.o obj/game.o obj/player.o obj/obstacle.o obj/level.o obj/playerdirection.o obj/screen.o obj/score.o -o bin/jeu $(LIBS)
 
 player.o  : src/player.cpp
 	$(cc) $(CFLAGS) $(Include_Dir_SDL2) src/player.cpp -o obj/player.o $(LIBS)
@@ -34,5 +34,9 @@ screen.o : src/screen.cpp
 
 playerdirection.o : src/player.cpp
 	$(cc) $(CFLAGS) $(Include_Dir_SDL2) src/player.cpp -o obj/playerdirection.o $(LIBS)
+
+score.o : src/score.cpp
+	$(cc) $(CFLAGS) $(Include_Dir_SDL2) src/score.cpp -o obj/score.o $(LIBS)
+
 clean:
 	rm obj/ bin/ -rf
