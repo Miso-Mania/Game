@@ -10,4 +10,5 @@ enum class PlayerDirection
     NONE
 };
 
+
 #endif // PLAYER_DIRECTION_H
