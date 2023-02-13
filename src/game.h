@@ -25,7 +25,6 @@ private:
     Player m_player;
     vector<Level*> m_levels;
     int m_currentLevel;
-
 };
 
 
