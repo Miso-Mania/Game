@@ -46,16 +46,16 @@ void Game::handleEvents(SDL_Event& event) {
     if (event.type == SDL_KEYDOWN) {
         switch (event.key.keysym.sym) {
             case SDLK_UP:
-                m_player.setDirection(Player::UP);
+                m_player.setDirection(PlayerDirection::UP);
                 break;
             case SDLK_DOWN:
-                m_player.setDirection(Player::DOWN);
+                m_player.setDirection(PlayerDirection::DOWN);
                 break;
             case SDLK_LEFT:
-                m_player.setDirection(Player::LEFT);
+                m_player.setDirection(PlayerDirection::LEFT);
                 break;
             case SDLK_RIGHT:
-                m_player.setDirection(Player::RIGHT);
+                m_player.setDirection(PlayerDirection::RIGHT);
                 break;
             default:
                 break;
@@ -71,7 +71,7 @@ void Game::update(double delta) {
     // Vérification des collisions
     for (Obstacle* obstacle : m_levels[m_currentLevel]->getObstacles()) {
         if (m_player.collidesWith(obstacle)) {
-            m_player.setDirection(Player::NONE);
+            m_player.setDirection(PlayerDirection::NONE);
         }
     }
 }
