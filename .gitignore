@@ -1,2 +1,3 @@
 Luncher
-*.o 
+obj
+bin
