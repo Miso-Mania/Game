@@ -6,7 +6,6 @@
 #include <vector>
 #include "level.h"
 #include "player.h"
-#include "screen.h"
 
 using namespace std;
 
