@@ -7,7 +7,7 @@
 #include "level.h"
 #include "player.h"
 #include "screen.h"
-#include "playerdirection.h"
+
 using namespace std;
 
 class Game {

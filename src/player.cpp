@@ -38,11 +38,21 @@ void Player::jump() {
 }
 
 bool Player::collidesWith(Obstacle *obstacle) {
-    return SDL_HasIntersection(&m_rect, &obstacle->getRect());
+    SDL_Rect obstacleRect = obstacle->getRect();
+    if (m_rect.x + m_rect.w >= obstacleRect.x && m_rect.x <= obstacleRect.x + obstacleRect.w) {
+        if (m_rect.y + m_rect.h >= obstacleRect.y && m_rect.y <= obstacleRect.y + obstacleRect.h) {
+            return true;
+        }
+    }
+    return false;
 }
 
 void Player::setDirection(PlayerDirection direction) {
     m_direction = direction;
+}
+
+SDL_Rect Player::getRect() {
+    return m_rect;
 }
 
 

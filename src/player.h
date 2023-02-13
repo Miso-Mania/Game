@@ -15,6 +15,7 @@ public:
     void jump();
     bool collidesWith(Obstacle *obstacle);
     void setDirection(PlayerDirection direction);
+    SDL_Rect getRect();
 
 private:
     SDL_Rect m_rect;
