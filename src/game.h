@@ -6,7 +6,6 @@
 #include <vector>
 #include "level.h"
 #include "player.h"
-#include "plateform.h" 
 
 using namespace std;
 
@@ -25,7 +24,6 @@ private:
     Player m_player;
     vector<Level*> m_levels;
     int m_currentLevel;
-    vector<Platform*> m_platforms;
 };
 
 

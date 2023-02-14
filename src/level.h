@@ -3,17 +3,18 @@
 
 #include <vector>
 #include "obstacle.h"
+using namespace std;
 
 class Level {
 public:
     Level();
     ~Level();
     void addObstacle(int x, int y, int width, int height);
-    std::vector<Obstacle*> getObstacles();
+    vector<Obstacle*> getObstacles();
     void removeObstacle(Obstacle* obstacle);
 
 private:
-    std::vector<Obstacle*> m_obstacles;
+    vector<Obstacle*> m_obstacles;
 };
 
 #endif // LEVEL_HSS

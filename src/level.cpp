@@ -29,3 +29,5 @@ void Level::removeObstacle(Obstacle* obstacle) {
     }
 }
 
+
+
