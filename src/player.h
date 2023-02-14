@@ -4,6 +4,7 @@
 #include <SDL2/SDL_image.h>
 #include "obstacle.h"
 #include "playerdirection.h"
+#include "pic.h"
 
 class Player {
 public:
@@ -13,6 +14,7 @@ public:
     void jump();
     void gravity(double delta);
     bool collidesWith(Obstacle *obstacle);
+    bool collidesWith(Pic *pic);
     void setDirection(PlayerDirection direction);
     void stopGravity();
     PlayerDirection getDirection();

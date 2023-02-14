@@ -33,6 +33,17 @@ bool Player::collidesWith(Obstacle *obstacle) {
     return false;
 }
 
+bool Player::collidesWith(Pic *pic) {
+    SDL_Rect picRect = pic->getRect();
+    if (m_rect.x + m_rect.w >= picRect.x && m_rect.x <= picRect.x + picRect.w) {
+        if (m_rect.y + m_rect.h >= picRect.y && m_rect.y <= picRect.y + picRect.h) {
+            return true;
+        }
+    }
+    return false;
+}
+
+
 void Player::stopGravity() {
     m_yVelocity = 0;
 }

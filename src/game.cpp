@@ -14,6 +14,12 @@ Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0) {
     level->addObstacle(600, 1410, 100, 20);
     // ajout d'un obstacle
     level->addObstacle(1000, 1410, 100, 20);
+    // ajput d'un pic
+    level->addPic(230, 1450);
+    // ajout d'un pic
+    level->addPic(630, 1450);
+    // ajout d'un pic
+    level->addPic(1030, 1450);
     m_levels.push_back(level);
     // Chargement du joueur
     m_player = Player();
@@ -97,6 +103,23 @@ void Game::update(double delta) {
         int height = 20;
         m_levels[m_currentLevel]->addObstacle(x, y, width, height);
     }
+    // Mise à jour de la position des pics
+    for (Pic* pic : m_levels[m_currentLevel]->getPics()) {
+        pic->move(delta);
+    }
+    // Ajout d'un nouveau pic
+    if (m_levels[m_currentLevel]->getPics().size() == 0 || m_levels[m_currentLevel]->getPics().back()->getRect().x < 400) {
+        int x = 640;
+        int y = 440;
+        m_levels[m_currentLevel]->addPic(x, y);
+    }
+    // Collision du joueur avec les pics stop la partie
+    for (Pic* pic : m_levels[m_currentLevel]->getPics()) {
+        if (m_player.collidesWith(pic)) {
+            m_currentLevel = 0;
+            m_player = Player();
+        }
+    }
     // Mise à jour du niveau
     if (m_levels[m_currentLevel]->getObstacles().size() == 0) {
         m_currentLevel++;
@@ -118,6 +141,12 @@ void Game::render() {
     for (Obstacle* obstacle : m_levels[m_currentLevel]->getObstacles()) {
         SDL_Rect obstacleRect = obstacle->getRect();
         SDL_RenderFillRect(m_renderer, &obstacleRect);
+    }
+    // Dessin d'un pic
+    SDL_SetRenderDrawColor(m_renderer, 255, 255, 0, 255);
+    for (Pic* pic : m_levels[m_currentLevel]->getPics()) {
+        SDL_Rect picRect = pic->getRect();
+        SDL_RenderFillRect(m_renderer, &picRect);
     }
     // Affichage
     SDL_RenderPresent(m_renderer);

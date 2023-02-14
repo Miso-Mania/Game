@@ -15,7 +15,7 @@ void Level::addObstacle(int x, int y, int width, int height) {
     m_obstacles.push_back(obstacle);
 }
 
-std::vector<Obstacle*> Level::getObstacles() {
+vector<Obstacle*> Level::getObstacles() {
     return m_obstacles;
 }
 
@@ -28,6 +28,26 @@ void Level::removeObstacle(Obstacle* obstacle) {
         }
     }
 }
+
+void Level::addPic(int x, int y) {
+    Pic* pic = new Pic(x, y);
+    m_pics.push_back(pic);
+}
+
+vector<Pic*> Level::getPics() {
+    return m_pics;
+}
+
+void Level::removePic(Pic* pic) {
+    for ( int i = 0; i < m_pics.size(); i++ ) {
+        if ( m_pics[i] == pic ) {
+            m_pics.erase(m_pics.begin() + i);
+            delete pic;
+            break;
+        }
+    }
+}
+
 
 
 
