@@ -9,12 +9,13 @@ class Player {
 public:
     Player ();
     ~Player();
-    void update(double delta);
-    void render(SDL_Renderer *renderer);
-    void handleEvents(SDL_Event &event);
+    void move(double delta);
     void jump();
+    void gravity(double delta);
     bool collidesWith(Obstacle *obstacle);
     void setDirection(PlayerDirection direction);
+    void stopGravity();
+    PlayerDirection getDirection();
     SDL_Rect getRect();
 
 private:

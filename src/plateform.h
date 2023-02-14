@@ -12,9 +12,9 @@ class Platform {
 public:
     Platform(int x, int y, int w, int h);
     ~Platform();
-    void draw(SDL_Renderer *renderer);
     SDL_Rect getRect();
     bool isColliding(Player player);
+    void push_back(Platform* platform);
 private:
     int x, y, w, h;
     SDL_Rect rect;

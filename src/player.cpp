@@ -6,35 +6,21 @@ Player::Player(): m_rect({0, 0, 32, 32}), m_yVelocity(0) {
 Player::~Player() {
 }
 
-void Player::update(double delta) {
-    m_rect.y += (int)(m_yVelocity * delta);
-    //gravité
-    m_yVelocity += 500 * delta;
-    // Clamp velocity
-    if (m_yVelocity > 500) {
-        m_yVelocity = 500;
-    }
-}
-
-void Player::render(SDL_Renderer *renderer) {
-    SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-    SDL_RenderFillRect(renderer, &m_rect);
-}
-
-void Player::handleEvents(SDL_Event &event) {
-    switch (event.type) {
-        case SDL_KEYDOWN:
-            if (event.key.keysym.sym == SDLK_SPACE) {
-                jump();
-            }
-            break;
-        default:
-            break;
+void Player::move(double delta) {
+    if (m_direction == PlayerDirection::LEFT) {
+        m_rect.x -= 200 * delta;
+    } else if (m_direction == PlayerDirection::RIGHT) {
+        m_rect.x += 200 * delta;
     }
 }
 
 void Player::jump() {
     m_yVelocity = -500;
+}
+
+void Player::gravity(double delta) {
+    m_yVelocity += 1000 * delta;
+    m_rect.y += m_yVelocity * delta;
 }
 
 bool Player::collidesWith(Obstacle *obstacle) {
@@ -47,8 +33,16 @@ bool Player::collidesWith(Obstacle *obstacle) {
     return false;
 }
 
+void Player::stopGravity() {
+    m_yVelocity = 0;
+}
+
 void Player::setDirection(PlayerDirection direction) {
     m_direction = direction;
+}
+
+PlayerDirection Player::getDirection() {
+    return m_direction;
 }
 
 SDL_Rect Player::getRect() {

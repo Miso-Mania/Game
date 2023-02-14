@@ -11,11 +11,6 @@ Platform::Platform(int x, int y, int w, int h) {
 Platform::~Platform() {
 }
 
-void Platform::draw(SDL_Renderer *renderer) {
-    SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-    SDL_RenderFillRect(renderer, &rect);
-}
-
 SDL_Rect Platform::getRect() {
     return rect;
 }
@@ -29,3 +24,7 @@ bool Platform::isColliding(Player player) {
     }
     return false;
 }
+
+void Platform::push_back(Platform* platform) {
+}
+

@@ -1,4 +1,5 @@
 #include "level.h"
+using namespace std;
 
 Level::Level() {
 }
@@ -14,18 +15,17 @@ void Level::addObstacle(int x, int y, int width, int height) {
     m_obstacles.push_back(obstacle);
 }
 
-void Level::update(double delta) {
-    for ( Obstacle* obstacle : m_obstacles ) {
-        obstacle->update(delta);
-    }
-}
-
-void Level::render(SDL_Renderer *renderer) {
-    for ( Obstacle* obstacle : m_obstacles ) {
-        obstacle->render(renderer);
-    }
-}
-
 std::vector<Obstacle*> Level::getObstacles() {
     return m_obstacles;
 }
+
+void Level::removeObstacle(Obstacle* obstacle) {
+    for ( int i = 0; i < m_obstacles.size(); i++ ) {
+        if ( m_obstacles[i] == obstacle ) {
+            m_obstacles.erase(m_obstacles.begin() + i);
+            delete obstacle;
+            break;
+        }
+    }
+}
+

@@ -10,12 +10,7 @@ Obstacle::Obstacle(int x, int y, int width, int height) {
 Obstacle::~Obstacle() {
 }
 
-void Obstacle::update(double delta) {
-}
-
-void Obstacle::render(SDL_Renderer *renderer) {
-    SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255);
-    SDL_RenderFillRect(renderer, &m_rect);
+void Obstacle::move(double delta) {
 }
 
 void Obstacle::push_back(Obstacle* obstacle) {
