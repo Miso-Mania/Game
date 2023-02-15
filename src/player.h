@@ -17,8 +17,10 @@ public:
     bool collidesWith(Pic *pic);
     void setDirection(PlayerDirection direction);
     void stopGravity();
+    void stopMove();
     PlayerDirection getDirection();
     SDL_Rect getRect();
+    void setRectX(int x);
 
 private:
     SDL_Rect m_rect;

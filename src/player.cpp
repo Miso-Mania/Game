@@ -50,6 +50,10 @@ void Player::stopGravity() {
     m_yVelocity = 0;
 }
 
+void Player::stopMove() {
+    m_direction = PlayerDirection::NONE;
+}
+
 void Player::setDirection(PlayerDirection direction) {
     m_direction = direction;
 }
@@ -62,6 +66,9 @@ SDL_Rect Player::getRect() {
     return m_rect;
 }
 
+void Player::setRectX(int x) {
+    m_rect.x = x;
+}
 
 
 

@@ -106,10 +106,11 @@ void Game::update(double delta) {
     m_player.move(delta);
     // Mise à jour de la gravité du joueur
     m_player.gravity(delta);
-    // Collision du joueur avec les obstacles stop la gravité
+    // Collision du joueur avec les obstacles stop la gravité et évite de traverser les obstacles
     for (Obstacle* obstacle : m_levels[m_currentLevel]->getObstacles()) {
         if (m_player.collidesWith(obstacle)) {
             m_player.stopGravity();
+            m_player.stopMove();
         }
     }
     // Mise à jour de la position des obstacles
