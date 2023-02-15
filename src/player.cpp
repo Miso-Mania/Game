@@ -31,11 +31,7 @@ bool Player::collidesWith(Obstacle *obstacle) {
         }
     }
     //on fait la collision verticale avec les obstacles
-    if (m_rect.y + m_rect.h >= obstacleRect.y && m_rect.y <= obstacleRect.y + obstacleRect.h) {
-        if (m_rect.x + m_rect.w >= obstacleRect.x && m_rect.x <= obstacleRect.x + obstacleRect.w) {
-            return true;
-        }
-    }
+    
     return false;
 }
 
