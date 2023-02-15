@@ -26,7 +26,7 @@ void Player::gravity(double delta) {
 bool Player::collidesWith(Obstacle *obstacle) {
     SDL_Rect obstacleRect = obstacle->getRect();
     if (m_rect.x + m_rect.w >= obstacleRect.x && m_rect.x <= obstacleRect.x + obstacleRect.w) {
-        if (m_rect.y + m_rect.h >= obstacleRect.y && m_rect.y <= obstacleRect.y + obstacleRect.h) {
+        if (m_rect.y + m_rect.h >= obstacleRect.y -7  && m_rect.y <= obstacleRect.y + obstacleRect.h) {
             return true;
         }
     }
