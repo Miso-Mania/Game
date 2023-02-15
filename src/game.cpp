@@ -3,17 +3,18 @@
 Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0) {
     // Initialisation de SDL
     SDL_Init(SDL_INIT_VIDEO);
-    m_window= SDL_CreateWindow("Game", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 2500, 1500, SDL_WINDOW_SHOWN);
+    //on créé une fenetre  de 1920*1080, fullscreen et on la rend visible
+    m_window = SDL_CreateWindow("Game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1920, 1080, SDL_WINDOW_FULLSCREEN);
     m_renderer = SDL_CreateRenderer(m_window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
     // Chargement des niveaux
     Level* level = new Level();
-    level->addObstacle(0, 1480, 2500, 20);
+    level->addObstacle(0, 480, 1000, 20);
     // ajout d'un obstacle
-    level->addObstacle(200, 1410, 100, 20);
+    level->addObstacle(200, 410, 100, 20);
     // ajout d'un obstacle
-    level->addObstacle(600, 1410, 100, 20);
+    level->addObstacle(600, 410, 100, 20);
     // ajout d'un obstacle
-    level->addObstacle(1000, 1410, 100, 20);
+    level->addObstacle(1000, 410, 100, 20);
     // ajput d'un pic
     level->addPic(230, 1450);
     // ajout d'un pic

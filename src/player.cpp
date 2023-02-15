@@ -1,6 +1,6 @@
 #include "player.h"
 
-Player::Player(): m_rect({0, 1350, 32, 32}), m_yVelocity(0) {
+Player::Player(): m_rect({0, 350, 32, 32}), m_yVelocity(0) {
 }
 
 Player::~Player() {
