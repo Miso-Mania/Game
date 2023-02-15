@@ -12,16 +12,24 @@ Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0) {
     // Chargement des niveaux
     Level* level = new Level();
     //sol
-    level->addObstacle(0,window_Y_size - 200, 1900, 200);
+
+    level->addObstacle(0,window_Y_size - 50, 1900, 200);
     //mur gauche
     level->addObstacle(0, window_Y_size-400, 300, window_Y_size);
     // ajout d'un obstacle
-    level->addObstacle(600, window_Y_size - 300, 100, 20); //à 300 px du bas de l'écran, et a 200 du bord gauche
+
+
+    level->addObstacle(600, window_Y_size - 150, 100, 20); //à 300 px du bas de l'écran, et a 200 du bord gauche
     // ajout d'un obstacle
-    level->addObstacle(1000, window_Y_size - 300, 100, 20);
+    level->addObstacle(1000, window_Y_size - 150, 100, 20);
     // ajput d'un pic
-    level->addPic(20, window_Y_size - 443);
-     level->addPic(500, window_Y_size - 243);
+
+
+    level->addPic(20, window_Y_size - 443); //bloc à gauche de l'écran
+
+    level->addPic(303, window_Y_size - 88);
+    level->addPic(346, window_Y_size - 88);
+
     // ajout d'un pic
     level->addPic(630, 1450);
     // ajout d'un pic
