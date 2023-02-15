@@ -1,6 +1,6 @@
 #include "player.h"
 
-Player::Player(): m_rect({50, 350, 32, 32}), m_yVelocity(0) {
+Player::Player(): m_rect({200, 500, 32, 32}), m_yVelocity(0) {
 }
 
 Player::~Player() {
@@ -27,6 +27,12 @@ bool Player::collidesWith(Obstacle *obstacle) {
     SDL_Rect obstacleRect = obstacle->getRect();
     if (m_rect.x + m_rect.w >= obstacleRect.x && m_rect.x <= obstacleRect.x + obstacleRect.w) {
         if (m_rect.y + m_rect.h >= obstacleRect.y -7  && m_rect.y <= obstacleRect.y + obstacleRect.h) {
+            return true;
+        }
+    }
+    //on fait la collision verticale avec les obstacles
+    if (m_rect.y + m_rect.h >= obstacleRect.y && m_rect.y <= obstacleRect.y + obstacleRect.h) {
+        if (m_rect.x + m_rect.w >= obstacleRect.x && m_rect.x <= obstacleRect.x + obstacleRect.w) {
             return true;
         }
     }

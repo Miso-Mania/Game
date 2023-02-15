@@ -13,14 +13,14 @@ Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0) {
     Level* level = new Level();
     //sol
     level->addObstacle(0,window_Y_size - 200, 1900, 200);
+    //mur gauche
+    level->addObstacle(0, window_Y_size-200, 20, window_Y_size);
     // ajout d'un obstacle
-    level->addObstacle(200, window_Y_size - 300, 100, 20); //à 300 px du bas de l'écran, et a 200 du bord gauche
-    // ajout d'un obstacle
-    level->addObstacle(600, window_Y_size - 300, 100, 20);
+    level->addObstacle(600, window_Y_size - 300, 100, 20); //à 300 px du bas de l'écran, et a 200 du bord gauche
     // ajout d'un obstacle
     level->addObstacle(1000, window_Y_size - 300, 100, 20);
     // ajput d'un pic
-    level->addPic(230, 1450);
+    level->addPic(500, window_Y_size - 243);
     // ajout d'un pic
     level->addPic(630, 1450);
     // ajout d'un pic
