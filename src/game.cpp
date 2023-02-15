@@ -23,6 +23,13 @@ Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0) {
     // ajout d'un obstacle
     level->addObstacle(1000, window_Y_size - 150, 100, 20);
     // ajput d'un pic
+    level->addPic(1350, window_Y_size - 90);
+    //ajout d'un obstacle
+    level->addObstacle(1400, window_Y_size -90, 40, 40);
+    // ajout d'un pic
+    level->addPic(1450, window_Y_size - 90);
+    // ajout d'un obstacle
+    level->addObstacle(1500, window_Y_size - 130, 40, 80);
 
 
     level->addPic(20, window_Y_size - 443); //bloc à gauche de l'écran
