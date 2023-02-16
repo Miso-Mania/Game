@@ -20,7 +20,8 @@ public:
     void stopMove();
     PlayerDirection getDirection();
     SDL_Rect getRect();
-    void setRectX(int x);
+    void setRect(SDL_Rect rect);
+
 
 private:
     SDL_Rect m_rect;

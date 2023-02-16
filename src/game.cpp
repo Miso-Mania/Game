@@ -107,6 +107,10 @@ void Game::update(double delta) {
             //m_player.stopMove();
         }
     }
+    // perte si le joeur sort de l'écran
+    if (m_player.getRect().y > window_Y_size) {
+        m_player.setRect({200, 500, 32, 32});
+    }
     // Mise à jour de la position des obstacles
     for (Obstacle* obstacle : m_levels[m_currentLevel]->getObstacles()) {
         obstacle->move(delta);

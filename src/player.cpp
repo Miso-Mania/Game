@@ -66,10 +66,9 @@ SDL_Rect Player::getRect() {
     return m_rect;
 }
 
-void Player::setRectX(int x) {
-    m_rect.x = x;
+void Player::setRect(SDL_Rect rect) {
+    m_rect = rect;
 }
-
 
 
 
