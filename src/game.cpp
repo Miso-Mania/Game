@@ -14,27 +14,27 @@ Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0) {
     //sol
     level->addObstacle(0,window_Y_size - 50, 1900, 200);
     //mur gauche
+    level->addPic(20, window_Y_size - 443); //bloc à gauche de l'écran
     level->addObstacle(0, window_Y_size-400, 300, window_Y_size);
+
+    level->addPic(303, window_Y_size - 88);
+    level->addPic(346, window_Y_size - 88);
+
     level->addObstacle(600, window_Y_size - 150, 100, 20); //à 300 px du bas de l'écran, et a 200 du bord gauche
     level->addPic(630, window_Y_size - 90);
-    level->addObstacle(1000, window_Y_size - 150, 100, 20);
-    level->addPic(1030, window_Y_size - 90);
+    level->addPic(850, window_Y_size - 90);
+    level->addObstacle(1050, window_Y_size - 150, 100, 20);
+    level->addPic(1080, window_Y_size - 90);
     level->addPic(1350, window_Y_size - 90);
     level->addObstacle(1400, window_Y_size -90, 40, 40);
     level->addPic(1450, window_Y_size - 90);
     level->addPic(1500, window_Y_size - 90);
     level->addObstacle(1550, window_Y_size - 130, 40, 80);
+    level->addPic(1675, window_Y_size - 90);
+    level->addObstacle(1800, window_Y_size - 150, 100, 20);
+    level->addPic(1830, window_Y_size - 90);
 
 
-    level->addPic(20, window_Y_size - 443); //bloc à gauche de l'écran
-
-    level->addPic(303, window_Y_size - 88);
-    level->addPic(346, window_Y_size - 88);
-
-    // ajout d'un pic
-    level->addPic(630, 1450);
-    // ajout d'un pic
-    level->addPic(1030, 1450);
     m_levels.push_back(level);
     // Chargement du joueur
     m_player = Player();
