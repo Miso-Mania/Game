@@ -12,24 +12,18 @@ Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0) {
     // Chargement des niveaux
     Level* level = new Level();
     //sol
-
     level->addObstacle(0,window_Y_size - 50, 1900, 200);
     //mur gauche
     level->addObstacle(0, window_Y_size-400, 300, window_Y_size);
-    // ajout d'un obstacle
-
-
     level->addObstacle(600, window_Y_size - 150, 100, 20); //à 300 px du bas de l'écran, et a 200 du bord gauche
-    // ajout d'un obstacle
+    level->addPic(630, window_Y_size - 90);
     level->addObstacle(1000, window_Y_size - 150, 100, 20);
-    // ajput d'un pic
+    level->addPic(1030, window_Y_size - 90);
     level->addPic(1350, window_Y_size - 90);
-    //ajout d'un obstacle
     level->addObstacle(1400, window_Y_size -90, 40, 40);
-    // ajout d'un pic
     level->addPic(1450, window_Y_size - 90);
-    // ajout d'un obstacle
-    level->addObstacle(1500, window_Y_size - 130, 40, 80);
+    level->addPic(1500, window_Y_size - 90);
+    level->addObstacle(1550, window_Y_size - 130, 40, 80);
 
 
     level->addPic(20, window_Y_size - 443); //bloc à gauche de l'écran
@@ -110,7 +104,7 @@ void Game::update(double delta) {
     for (Obstacle* obstacle : m_levels[m_currentLevel]->getObstacles()) {
         if (m_player.collidesWith(obstacle)) {
             m_player.stopGravity();
-            m_player.stopMove();
+            //m_player.stopMove();
         }
     }
     // Mise à jour de la position des obstacles
