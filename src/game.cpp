@@ -31,9 +31,21 @@ Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0) {
     level->addPic(1500, window_Y_size - 90);
     level->addObstacle(1550, window_Y_size - 130, 40, 80);
     level->addPic(1675, window_Y_size - 90);
-    level->addObstacle(1800, window_Y_size - 150, 100, 20);
+    level->addObstacle(1800, window_Y_size - 170, 100, 20);
     level->addPic(1830, window_Y_size - 90);
 
+    level->addObstacle(1645, window_Y_size - 300, 100, 20);
+    level->addObstacle(850, window_Y_size - 400, 650, 20);
+    level->addPic(990, window_Y_size - 443);
+    level->addPic(1315, window_Y_size - 443);
+    level->addObstacle(1125, window_Y_size - 500, 100, 20);
+    level->addPic(1155, window_Y_size - 540);
+    level->addObstacle(600, window_Y_size - 500, 100, 20);
+    level->addObstacle(315, window_Y_size - 600, 100, 20);
+    level->addObstacle(150, window_Y_size - 500, 100, 20);
+    level->addPic(150, window_Y_size - 540);
+    level->addPic(210, window_Y_size - 540);
+    level->addObstacle(0, window_Y_size - 600, 100, 20);
 
     m_levels.push_back(level);
     // Chargement du joueur
@@ -109,29 +121,15 @@ void Game::update(double delta) {
     }
     // perte si le joeur sort de l'écran
     if (m_player.getRect().y > window_Y_size) {
-        m_player.setRect({200, 500, 32, 32});
+        m_player.setRect({100, 600, 32, 32});
     }
     // Mise à jour de la position des obstacles
     for (Obstacle* obstacle : m_levels[m_currentLevel]->getObstacles()) {
         obstacle->move(delta);
     }
-    // Ajout d'un nouvel obstacle
-    if (m_levels[m_currentLevel]->getObstacles().size() == 0 || m_levels[m_currentLevel]->getObstacles().back()->getRect().x < 400) {
-        int x = 640;
-        int y = 440;
-        int width = 20 + rand() % 100;
-        int height = 20;
-        m_levels[m_currentLevel]->addObstacle(x, y, width, height);
-    }
     // Mise à jour de la position des pics
     for (Pic* pic : m_levels[m_currentLevel]->getPics()) {
         pic->move(delta);
-    }
-    // Ajout d'un nouveau pic
-    if (m_levels[m_currentLevel]->getPics().size() == 0 || m_levels[m_currentLevel]->getPics().back()->getRect().x < 400) {
-        int x = 640;
-        int y = 440;
-        m_levels[m_currentLevel]->addPic(x, y);
     }
     // Collision du joueur avec les pics stop la partie
     for (Pic* pic : m_levels[m_currentLevel]->getPics()) {
