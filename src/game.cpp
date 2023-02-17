@@ -45,7 +45,24 @@ Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0) {
     level->addObstacle(150, window_Y_size - 500, 100, 20);
     level->addPic(150, window_Y_size - 540);
     level->addPic(210, window_Y_size - 540);
-    level->addObstacle(0, window_Y_size - 600, 100, 20);
+    level->addObstacle(0, window_Y_size - 600, 120, 20);
+
+    level->addObstacle(265, window_Y_size - 730, 340, 20);
+    level->addPic(365, window_Y_size - 770);
+    level->addObstacle(415, window_Y_size - 770, 40, 40);
+    level->addPic(465, window_Y_size - 770);
+    level->addObstacle(670, window_Y_size - 600, 100, 20);
+    level->addPic(700, window_Y_size - 640);
+    level->addObstacle(770, window_Y_size - 730, 100, 20);
+    level->addObstacle(970, window_Y_size - 730, 240, 20);
+    level->addPic(1070, window_Y_size - 770);
+    level->addObstacle(1320, window_Y_size - 730, 100, 20);
+    level->addObstacle(1520, window_Y_size - 730, 380, 20);
+    level->addPic(1560, window_Y_size - 770);
+    level->addObstacle(1620, window_Y_size - 770, 40, 40);
+    level->addPic(1680, window_Y_size - 770);
+    level->addObstacle(1740, window_Y_size - 810, 40, 80);
+    level->addPic(1800, window_Y_size - 770);
 
     m_levels.push_back(level);
     // Chargement du joueur
