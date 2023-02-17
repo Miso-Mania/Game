@@ -15,6 +15,7 @@ public:
     void gravity(double delta);
     bool collidesWith(Obstacle *obstacle);
     bool collidesWith(Pic *pic);
+    void moveOutOf(Obstacle *obstacle);
     void setDirection(PlayerDirection direction);
     void stopGravity();
     void stopMove();

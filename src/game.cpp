@@ -143,7 +143,7 @@ void Game::update(double delta) {
     // Collision du joueur avec les obstacles stop la gravité et évite de traverser les obstacles
     for (Obstacle* obstacle : m_levels[m_currentLevel]->getObstacles()) {
         if (m_player.collidesWith(obstacle)) {
-            m_player.stopGravity();
+            m_player.moveOutOf(obstacle);
             //m_player.stopMove();
         }
     }

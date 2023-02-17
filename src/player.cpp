@@ -39,14 +39,32 @@ bool Player::collidesWith(Obstacle *obstacle) {
 
 bool Player::collidesWith(Pic *pic) {
     SDL_Rect picRect = pic->getRect();
-    if (m_rect.x + m_rect.w >= picRect.x && m_rect.x <= picRect.x + picRect.w) {
-        if (m_rect.y + m_rect.h >= picRect.y && m_rect.y <= picRect.y + picRect.h) {
+    if (m_rect.x + m_rect.w > picRect.x && m_rect.x < picRect.x + picRect.w) {
+        if (m_rect.y + m_rect.h > picRect.y && m_rect.y < picRect.y + picRect.h) {
             return true;
         }
     }
     return false;
 }
 
+void Player::moveOutOf(Obstacle *obstacle){
+    SDL_Rect obstacleRect = obstacle->getRect();
+    int intoTop = m_rect.y + m_rect.h - obstacleRect.y;
+    int intoBottom = obstacleRect.y + obstacleRect.h - m_rect.y;
+    int intoLeft = m_rect.x + m_rect.w - obstacleRect.x;
+    int intoRight = obstacleRect.x + obstacleRect.w - m_rect.x;
+    if (intoTop < intoBottom && intoTop < intoLeft && intoTop < intoRight) {
+        m_rect.y -= intoTop;
+        stopGravity();
+    } else if (intoBottom < intoTop && intoBottom < intoLeft && intoBottom < intoRight) {
+        m_rect.y += intoBottom + 1;
+        stopGravity();
+    } else if (intoLeft < intoTop && intoLeft < intoBottom && intoLeft < intoRight) {
+        m_rect.x -= intoLeft;
+    } else if (intoRight < intoTop && intoRight < intoBottom && intoRight < intoLeft) {
+        m_rect.x += intoRight;
+    }
+}
 
 void Player::stopGravity() {
     m_yVelocity = 0;
