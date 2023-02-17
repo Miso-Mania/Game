@@ -35,6 +35,5 @@ obj/score.o : src/score.cpp src/score.h
 obj/pic.o : src/pic.cpp src/pic.h
 	$(cc) $(CFLAGS) $(Include_Dir_SDL2) src/pic.cpp -o obj/pic.o $(LIBS)
 
-
 clean:
 	rm obj/ bin/ -rf

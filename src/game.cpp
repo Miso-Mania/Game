@@ -9,6 +9,8 @@ Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0) {
     //on créé une fenetre  de 1920*1080, fullscreen et on la rend visible
     m_window = SDL_CreateWindow("Game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, window_X_size, window_Y_size, SDL_WINDOW_FULLSCREEN);
     m_renderer = SDL_CreateRenderer(m_window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+    // Initialisation de SDL_image
+    IMG_Init(IMG_INIT_PNG);
     // Chargement des niveaux
     Level* level = new Level();
     //sol
