@@ -70,8 +70,9 @@ Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0) {
     level->addObstacle(1200, window_Y_size - 970, 40, 40);
     level->addPic(1260, window_Y_size - 970);
     level->addObstacle(850, window_Y_size - 930, 100, 20);
-    level->addObstacle(200, window_Y_size - 930, 140, 20);
-    level->addPic(250, window_Y_size - 970);
+    level->addObstacle(600, window_Y_size - 930, 100, 20);
+    level->addObstacle(200, window_Y_size - 930, 190, 20);
+    level->addPic(275, window_Y_size - 970);
     level->addObstacle(0, window_Y_size - 930, 100, 20);
 
     m_levels.push_back(level);
@@ -150,6 +151,12 @@ void Game::update(double delta) {
     if (m_player.getRect().y > window_Y_size) {
         m_player.setRect({100, 600, 32, 32});
     }
+
+    // le joueur gagne si il arrive entre y=0 et y=138 et x<0 
+    if (m_player.getRect().y < 138 && m_player.getRect().x < 0) {
+        m_currentLevel++;
+        m_player.setRect({100, 600, 32, 32});
+    }
     // Mise à jour de la position des obstacles
     for (Obstacle* obstacle : m_levels[m_currentLevel]->getObstacles()) {
         obstacle->move(delta);
@@ -195,4 +202,12 @@ void Game::render() {
     }
     // Affichage
     SDL_RenderPresent(m_renderer);
+
+    // Affichage du message de victoire si le joueur a gagné
+    if (m_levels[m_currentLevel]->getObstacles().size() == 0) {
+        SDL_SetRenderDrawColor(m_renderer, 0, 0, 0, 255);
+        SDL_RenderClear(m_renderer);
+        SDL_SetRenderDrawColor(m_renderer, 255, 255, 255, 255);
+        SDL_RenderPresent(m_renderer);
+    }
 }

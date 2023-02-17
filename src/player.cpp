@@ -15,7 +15,9 @@ void Player::move(double delta) {
 }
 
 void Player::jump() {
-    m_yVelocity = -500;
+    if (m_yVelocity == 0) {
+        m_yVelocity = -500;
+    }
 }
 
 void Player::gravity(double delta) {
