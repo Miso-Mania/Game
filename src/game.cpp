@@ -49,10 +49,10 @@ Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0) {
     level->addPic(210, window_Y_size - 540);
     level->addObstacle(0, window_Y_size - 600, 120, 20);
 
-    level->addObstacle(265, window_Y_size - 730, 340, 20);
-    level->addPic(355, window_Y_size - 770);
-    level->addObstacle(415, window_Y_size - 770, 40, 40);
-    level->addPic(475, window_Y_size - 770);
+    level->addObstacle(280, window_Y_size - 730, 340, 20);
+    level->addPic(370, window_Y_size - 770);
+    level->addObstacle(430, window_Y_size - 770, 40, 40);
+    level->addPic(490, window_Y_size - 770);
     level->addObstacle(670, window_Y_size - 600, 100, 20);
     level->addPic(700, window_Y_size - 640);
     level->addObstacle(770, window_Y_size - 730, 100, 20);
@@ -66,7 +66,7 @@ Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0) {
     level->addObstacle(1740, window_Y_size - 810, 40, 80);
     level->addPic(1800, window_Y_size - 770);
 
-    level->addObstacle(1540, window_Y_size - 930, 100, 20);
+    level->addObstacle(1537, window_Y_size - 930, 100, 20);
     level->addObstacle(1050, window_Y_size - 930, 340, 20);
     level->addPic(1140, window_Y_size - 970);
     level->addObstacle(1200, window_Y_size - 970, 40, 40);
