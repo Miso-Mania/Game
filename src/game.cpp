@@ -13,6 +13,9 @@ Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0) {
     IMG_Init(IMG_INIT_PNG);
     // Chargement des niveaux
     Level* level = new Level();
+//index des hauteurs:
+//ligne la plus haute: window_Y_size - 1000
+
     //sol
     level->addObstacle(0,window_Y_size - 50, 1900, 200);
     //mur gauche
@@ -77,7 +80,7 @@ Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0) {
     level->addPic(275, window_Y_size - 970);
     level->addObstacle(0, window_Y_size - 930, 100, 20);
 
-    level->addBoxFinish(856, window_Y_size - 1000);
+    level->addBoxFinish(16, window_Y_size - 1000);
 
     m_levels.push_back(level);
     // Chargement du joueur
@@ -204,6 +207,13 @@ void Game::render() {
         SDL_Rect picRect = pic->getRect();
         SDL_RenderFillRect(m_renderer, &picRect);
     }
+    // Dessin de la fin du niveau
+    SDL_SetRenderDrawColor(m_renderer, 125, 255, 66, 255);
+    for (BoxFinish* box : m_levels[m_currentLevel]->getBoxFinish()) {
+        SDL_Rect boxFinishRect = box->getRect();
+        SDL_RenderFillRect(m_renderer, &boxFinishRect);
+    }
+   
     // Affichage
     SDL_RenderPresent(m_renderer);
 
