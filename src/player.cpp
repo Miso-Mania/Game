@@ -33,7 +33,7 @@ bool Player::collidesWith(Obstacle *obstacle) {
         }
     }
     //on fait la collision verticale avec les obstacles
-    
+        
     return false;
 }
 
