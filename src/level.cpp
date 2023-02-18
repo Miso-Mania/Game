@@ -28,6 +28,15 @@ vector<Pic*> Level::getPics() {
     return m_pics;
 }
 
+void Level::addBoxFinish(int x, int y) {
+    BoxFinish* box = new BoxFinish(x, y);
+    m_BoxFinish.push_back(box);
+}
+
+vector<BoxFinish*> Level::getBoxFinish() {
+    return m_BoxFinish;
+}
+
 
 
 

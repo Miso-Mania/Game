@@ -77,6 +77,8 @@ Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0) {
     level->addPic(275, window_Y_size - 970);
     level->addObstacle(0, window_Y_size - 930, 100, 20);
 
+    level->addBoxFinish(856, window_Y_size - 1000);
+
     m_levels.push_back(level);
     // Chargement du joueur
     m_player = Player();

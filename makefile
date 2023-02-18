@@ -1,4 +1,4 @@
-OBJS = obj/main.o obj/game.o obj/player.o obj/obstacle.o obj/level.o obj/score.o obj/pic.o
+OBJS = obj/main.o obj/game.o obj/player.o obj/obstacle.o obj/level.o obj/score.o obj/pic.o obj/BoxFinish.o
 cc = g++
 CFLAGS = -g -Wall -c
 LIBS = -lSDL2 -lSDL2_image -lSDL2_ttf
@@ -12,28 +12,31 @@ dir:
 	mkdir -p bin
 
 bin/jeu : $(OBJS)
-	$(cc) $(Include_Dir_SDL2) obj/main.o obj/game.o obj/player.o obj/obstacle.o obj/level.o obj/score.o obj/pic.o -o bin/jeu $(LIBS)
+	$(cc) $(Include_Dir_SDL2) obj/main.o obj/game.o obj/player.o obj/obstacle.o obj/level.o obj/score.o obj/pic.o -o bin/jeu obj/BoxFinish.o $(LIBS)
 
-obj/player.o  : src/player.cpp src/player.h src/obstacle.h src/playerdirection.h src/pic.h
+obj/player.o  : src/player.cpp src/player.h src/objets/obstacle.h src/playerdirection.h src/objets/pic.h
 	$(cc) $(CFLAGS) $(Include_Dir_SDL2) src/player.cpp -o obj/player.o $(LIBS)
 
-obj/obstacle.o : src/obstacle.cpp src/obstacle.h
-	$(cc) $(CFLAGS) $(Include_Dir_SDL2) src/obstacle.cpp -o obj/obstacle.o $(LIBS)
+obj/obstacle.o : src/objets/ src/objets/obstacle.h
+	$(cc) $(CFLAGS) $(Include_Dir_SDL2) src/objets/obstacle.cpp -o obj/obstacle.o $(LIBS)
 
-obj/game.o : src/game.cpp src/game.h src/level.h src/player.h src/obstacle.h src/playerdirection.h src/pic.h
+obj/game.o : src/game.cpp src/game.h src/level.h src/player.h src/objets/obstacle.h src/playerdirection.h src/objets/pic.h
 	$(cc) $(CFLAGS) $(Include_Dir_SDL2) src/game.cpp -o obj/game.o $(LIBS)
 
-obj/main.o : src/main.cpp src/game.h src/level.h src/player.h src/obstacle.h src/playerdirection.h src/pic.h
+obj/main.o : src/main.cpp src/game.h src/level.h src/player.h src/objets/obstacle.h src/playerdirection.h src/objets/pic.h
 	$(cc) $(CFLAGS) $(Include_Dir_SDL2) src/main.cpp -o obj/main.o $(LIBS)
 
-obj/level.o : src/level.cpp src/level.h src/obstacle.h src/pic.h
+obj/level.o : src/level.cpp src/level.h src/objets/obstacle.h src/objets/pic.h
 	$(cc) $(CFLAGS) $(Include_Dir_SDL2) src/level.cpp -o obj/level.o $(LIBS)
 
 obj/score.o : src/score.cpp src/score.h
 	$(cc) $(CFLAGS) $(Include_Dir_SDL2) src/score.cpp -o obj/score.o $(LIBS)
 
-obj/pic.o : src/pic.cpp src/pic.h
-	$(cc) $(CFLAGS) $(Include_Dir_SDL2) src/pic.cpp -o obj/pic.o $(LIBS)
+obj/pic.o : src/objets/pic.cpp src/objets/pic.h
+	$(cc) $(CFLAGS) $(Include_Dir_SDL2) src/objets/pic.cpp -o obj/pic.o $(LIBS)
+
+obj/BoxFinish.o : src/objets/BoxFinish.cpp src/objets/BoxFinish.h
+	$(cc) $(CFLAGS) $(Include_Dir_SDL2) src/objets/BoxFinish.cpp -o obj/BoxFinish.o $(LIBS)
 
 clean:
 	rm obj/ bin/ -rf

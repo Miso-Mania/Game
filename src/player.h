@@ -2,9 +2,11 @@
 #define PLAYER_H
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
-#include "obstacle.h"
+#include "objets/obstacle.h"
 #include "playerdirection.h"
-#include "pic.h"
+#include "objets/pic.h"
+#include "objets/BoxFinish.h"
+
 
 class Player {
 public:
