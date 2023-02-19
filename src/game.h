@@ -25,8 +25,12 @@ private:
 
     SDL_Texture *m_texture_player;
     SDL_Surface *m_surface_player;
+
     SDL_Texture *m_texture_pic;
     SDL_Surface *m_surface_pic;
+
+    SDL_Texture *m_texture_obstacle;
+    SDL_Surface *m_surface_obstacle;
 
     Player m_player;
     vector<Level*> m_levels;

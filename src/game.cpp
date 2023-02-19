@@ -1,4 +1,4 @@
-#include "game.h"
+#include "game.h"           //TODO: CREATE A DIFFERENT CLASS FOR OBSTACLES AND PLATTFORMS
 #include <iostream>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
@@ -17,8 +17,12 @@ Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0)
 
     m_surface_player = IMG_Load("../assets/textures/icon.png");
     m_texture_player = SDL_CreateTextureFromSurface(m_renderer, m_surface_player);
+
     m_surface_pic = IMG_Load("../assets/textures/spikes.png");
     m_texture_pic = SDL_CreateTextureFromSurface(m_renderer, m_surface_pic);
+
+    m_surface_obstacle = IMG_Load("../assets/textures/big-crate.png");
+    m_texture_obstacle = SDL_CreateTextureFromSurface(m_renderer, m_surface_obstacle);
 
     // Chargement des niveaux
     Level *level = new Level();
@@ -104,8 +108,13 @@ Game::~Game()
     IMG_Quit();
     SDL_FreeSurface(m_surface_player);
     SDL_DestroyTexture(m_texture_player);
+
     SDL_FreeSurface(m_surface_pic);
     SDL_DestroyTexture(m_texture_pic);
+    
+    SDL_FreeSurface(m_surface_obstacle);
+    SDL_DestroyTexture(m_texture_obstacle);
+
     SDL_Quit();
 }
 
@@ -236,20 +245,13 @@ void Game::render()
     SDL_Rect playerRect = m_player.getRect();
     SDL_RenderCopy(m_renderer, m_texture_player, NULL, &playerRect);
 
-    
-              
-
-    std::cout << m_player.getRect().x << std::endl;
-    std::cout << m_texture_player << std::endl;
     // Dessin des obstacles
-    SDL_SetRenderDrawColor(m_renderer, 255, 0, 0, 255);
     for (Obstacle *obstacle : m_levels[m_currentLevel]->getObstacles())
     {
         SDL_Rect obstacleRect = obstacle->getRect();
-        SDL_RenderFillRect(m_renderer, &obstacleRect);
+        SDL_RenderCopy(m_renderer, m_texture_obstacle, NULL, &obstacleRect);
     }
-    // Dessin d'un pic
-    SDL_SetRenderDrawColor(m_renderer, 255, 255, 0, 255);
+    // Dessin des pic
     for (Pic *pic : m_levels[m_currentLevel]->getPics())
     {
         SDL_Rect picRect = pic->getRect();

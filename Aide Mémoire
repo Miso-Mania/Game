@@ -31,3 +31,4 @@ for (TOTO *toto : m_levels[m_currentLevel]->getPics())
         SDL_RenderCopy(m_renderer, m_texture_TOTO, NULL, &totoRect);
     }
 
+MAde by Claquettes https://github.com/claquettes ALL RIGHTS RESERVED
