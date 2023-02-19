@@ -1,0 +1,31 @@
+*commandes nécessaires pour utiliser sdl2*
+sudo apt-get update
+sudo apt-get upgrade
+
+sudo apt-get instal g++
+sudo apt-get install libsdl2-2.0
+sudo apt-get install libsdl2-dev
+sudo apt-get install libsdl2-image-dev
+
+-----------------------
+Recette pour mettre une texture sur un objet TOTO:
+
+créér dans game.h:
+SDL_Texture *m_texture_TOTO;
+SDL_Surface *m_surface_TOTO;
+
+dans game.cpp:
+
+	dans le constructeur
+m_surface_TOTO = IMG_Load("../assets/textures/TOTO.png");
+m_texture_TOTO = SDL_CreateTextureFromSurface(m_renderer, m_surface_TOTO); 
+
+	dans le destroyeur (sinon fuite mémoire) ! 
+SDL_FreeSurface(m_surface_TOTO);
+SDL_DestroyTexture(m_texture_TOTO);
+
+	dans le render
+SDL_Rect TOTORect = m_TOTO.getRect();
+SDL_RenderCopy(m_renderer, m_texture_TOTO, NULL, &TOTORect);
+
+

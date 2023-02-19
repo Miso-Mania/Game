@@ -17,6 +17,8 @@ Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0)
 
     m_surface_player = IMG_Load("../assets/textures/icon.png");
     m_texture_player = SDL_CreateTextureFromSurface(m_renderer, m_surface_player);
+    m_surface_pic = IMG_Load("../assets/textures/spikes.png");
+    m_texture_pic = SDL_CreateTextureFromSurface(m_renderer, m_surface_pic);
 
     // Chargement des niveaux
     Level *level = new Level();
