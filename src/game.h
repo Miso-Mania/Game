@@ -23,7 +23,7 @@ private:
     SDL_Renderer *m_renderer;
     SDL_Texture *m_texture;
     SDL_Rect m_rect;
-    SDL_Surface *m_surface;
+    SDL_Surface *m_surface_player;
 
     Player m_player;
     vector<Level*> m_levels;
