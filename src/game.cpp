@@ -236,8 +236,8 @@ void Game::render()
     SDL_Rect playerRect = m_player.getRect();
     SDL_RenderCopy(m_renderer, m_texture_player, NULL, &playerRect);
 
-    SDL_Rect picRect = m_pic.getRect();                             //TODO: FIX THIS
-    SDL_RenderCopy(m_renderer, m_texture_pic, NULL, &picRect);          
+    
+              
 
     std::cout << m_player.getRect().x << std::endl;
     std::cout << m_texture_player << std::endl;
@@ -253,7 +253,7 @@ void Game::render()
     for (Pic *pic : m_levels[m_currentLevel]->getPics())
     {
         SDL_Rect picRect = pic->getRect();
-        SDL_RenderFillRect(m_renderer, &picRect);
+        SDL_RenderCopy(m_renderer, m_texture_pic, NULL, &picRect);
     }
     // Dessin de la fin du niveau
     SDL_SetRenderDrawColor(m_renderer, 125, 255, 66, 255);
