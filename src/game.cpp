@@ -235,6 +235,10 @@ void Game::render()
     SDL_RenderFillRect(m_renderer, &playerRect); */
     SDL_Rect playerRect = m_player.getRect();
     SDL_RenderCopy(m_renderer, m_texture_player, NULL, &playerRect);
+
+    SDL_Rect picRect = m_pic.getRect();                             //TODO: FIX THIS
+    SDL_RenderCopy(m_renderer, m_texture_pic, NULL, &picRect);          
+
     std::cout << m_player.getRect().x << std::endl;
     std::cout << m_texture_player << std::endl;
     // Dessin des obstacles
