@@ -16,7 +16,7 @@ Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0)
     m_renderer = SDL_CreateRenderer(m_window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 
     m_surface_player = IMG_Load("../assets/textures/icon.png");
-    m_texture = SDL_CreateTextureFromSurface(m_renderer, m_surface_player);
+    m_texture_player = SDL_CreateTextureFromSurface(m_renderer, m_surface_player);
 
     // Chargement des niveaux
     Level *level = new Level();
@@ -101,7 +101,7 @@ Game::~Game()
     SDL_DestroyWindow(m_window);
     IMG_Quit();
     SDL_FreeSurface(m_surface_player);
-    SDL_DestroyTexture(m_texture);
+    SDL_DestroyTexture(m_texture_player);
     SDL_Quit();
 }
 
@@ -230,9 +230,9 @@ void Game::render()
     SDL_Rect playerRect = m_player.getRect();
     SDL_RenderFillRect(m_renderer, &playerRect); */
     SDL_Rect playerRect = m_player.getRect();
-    SDL_RenderCopy(m_renderer, m_texture, NULL, &playerRect);
+    SDL_RenderCopy(m_renderer, m_texture_player, NULL, &playerRect);
     std::cout << m_player.getRect().x << std::endl;
-    std::cout << m_texture << std::endl;
+    std::cout << m_texture_player << std::endl;
     // Dessin des obstacles
     SDL_SetRenderDrawColor(m_renderer, 255, 0, 0, 255);
     for (Obstacle *obstacle : m_levels[m_currentLevel]->getObstacles())
