@@ -1,16 +1,24 @@
 #include "game.h"
+#include <iostream>
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
 const int FPS = 60;
 const int window_X_size = 1900;
 const int window_Y_size = 1068;
 
+
+
 Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0) {
     // Initialisation de SDL
     SDL_Init(SDL_INIT_VIDEO);
+    IMG_Init(IMG_INIT_PNG);
     //on créé une fenetre  de 1920*1080, fullscreen et on la rend visible
     m_window = SDL_CreateWindow("Game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, window_X_size, window_Y_size, SDL_WINDOW_FULLSCREEN);
     m_renderer = SDL_CreateRenderer(m_window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
-    // Initialisation de SDL_image
-    IMG_Init(IMG_INIT_PNG);
+
+    m_surface = IMG_Load("../assets/textures/icon.png");
+    m_texture = SDL_CreateTextureFromSurface(m_renderer, m_surface);
+
     // Chargement des niveaux
     Level* level = new Level();
 //index des hauteurs:
@@ -91,6 +99,9 @@ Game:: ~Game() {
     // Nettoyage de SDL
     SDL_DestroyRenderer(m_renderer);
     SDL_DestroyWindow(m_window);
+    IMG_Quit();
+    SDL_FreeSurface(m_surface);
+    SDL_DestroyTexture(m_texture);
     SDL_Quit();
 }
 
@@ -183,6 +194,7 @@ void Game::update(double delta) {
     if (m_levels[m_currentLevel]->getObstacles().size() == 0) {
         m_currentLevel++;
     }
+    
 }
 
 void Game::render() {
@@ -192,9 +204,14 @@ void Game::render() {
     // Dessin du niveau
     SDL_SetRenderDrawColor(m_renderer, 0, 255, 0, 255);
     // Dessin du joueur
-    SDL_SetRenderDrawColor(m_renderer, 0, 255, 255, 255);
+
+    /* SDL_SetRenderDrawColor(m_renderer, 0, 255, 255, 255);
     SDL_Rect playerRect = m_player.getRect();
-    SDL_RenderFillRect(m_renderer, &playerRect);
+    SDL_RenderFillRect(m_renderer, &playerRect); */
+    SDL_Rect playerRect = m_player.getRect();
+    SDL_RenderCopy(m_renderer, m_texture, NULL, &playerRect);
+    std::cout << m_player.getRect().x << std::endl;
+    std::cout << m_texture << std::endl;
     // Dessin des obstacles
     SDL_SetRenderDrawColor(m_renderer, 255, 0, 0, 255);
     for (Obstacle* obstacle : m_levels[m_currentLevel]->getObstacles()) {

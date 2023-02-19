@@ -1,4 +1,6 @@
 #include "obstacle.h"
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
 
 Obstacle::Obstacle(int x, int y, int width, int height) {
     m_rect.x = x;
