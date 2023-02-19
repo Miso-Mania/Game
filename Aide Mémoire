@@ -25,7 +25,9 @@ SDL_FreeSurface(m_surface_TOTO);
 SDL_DestroyTexture(m_texture_TOTO);
 
 	dans le render
-SDL_Rect TOTORect = m_TOTO.getRect();
-SDL_RenderCopy(m_renderer, m_texture_TOTO, NULL, &TOTORect);
-
+for (TOTO *toto : m_levels[m_currentLevel]->getPics())
+    {
+        SDL_Rect totoRect = toto->getRect();
+        SDL_RenderCopy(m_renderer, m_texture_TOTO, NULL, &totoRect);
+    }
 
