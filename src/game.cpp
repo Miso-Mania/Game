@@ -104,6 +104,8 @@ Game::~Game()
     IMG_Quit();
     SDL_FreeSurface(m_surface_player);
     SDL_DestroyTexture(m_texture_player);
+    SDL_FreeSurface(m_surface_pic);
+    SDL_DestroyTexture(m_texture_pic);
     SDL_Quit();
 }
 
