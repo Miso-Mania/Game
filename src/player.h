@@ -24,12 +24,17 @@ public:
     PlayerDirection getDirection();
     SDL_Rect getRect();
     void setRect(SDL_Rect rect);
+    void incTimeSinceTouchGround(double delta);
+    void decJumpBuffer(double delta);
 
 
 private:
     SDL_Rect m_rect;
     double m_yVelocity;
     PlayerDirection m_direction;
+    double timeSinceTouchGround;
+    double jumpBuffer;
+    bool canJump;
 };
 
 #endif // PLAYER_H

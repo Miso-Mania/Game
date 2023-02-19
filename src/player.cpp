@@ -15,8 +15,11 @@ void Player::move(double delta) {
 }
 
 void Player::jump() {
-    if (m_yVelocity == 0) {
+    if (canJump && timeSinceTouchGround < 0.2) {
         m_yVelocity = -500;
+        canJump = false;
+    } else {
+        jumpBuffer = 0.2;
     }
 }
 
@@ -56,6 +59,12 @@ void Player::moveOutOf(Obstacle *obstacle){
     if (intoTop < intoBottom && intoTop < intoLeft && intoTop < intoRight) {
         m_rect.y -= intoTop;
         stopGravity();
+        canJump = true;
+        timeSinceTouchGround = 0;
+        if (jumpBuffer > 0) {
+            jump();
+            jumpBuffer = 0;
+        }
     } else if (intoBottom < intoTop && intoBottom < intoLeft && intoBottom < intoRight) {
         m_rect.y += intoBottom + 1;
         stopGravity();
@@ -64,6 +73,14 @@ void Player::moveOutOf(Obstacle *obstacle){
     } else if (intoRight < intoTop && intoRight < intoBottom && intoRight < intoLeft) {
         m_rect.x += intoRight;
     }
+}
+
+void Player::incTimeSinceTouchGround(double delta) {
+    timeSinceTouchGround += delta;
+}
+
+void Player::decJumpBuffer(double delta) {
+    if (jumpBuffer > 0) jumpBuffer -= delta;
 }
 
 void Player::stopGravity() {
