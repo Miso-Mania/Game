@@ -2,6 +2,7 @@
 #define LEVEL_H
 
 #include <vector>
+#include <string.h>
 #include "objets/obstacle.h"
 #include "objets/BoxFinish.h"
 #include "objets/pic.h"
@@ -17,7 +18,7 @@ public:
     vector<Pic*> getPics();
     void addBoxFinish(int x, int y);
     vector<BoxFinish*> getBoxFinish();
-    Level* loadFromLevel(string filename);
+    Level* loadFromJSON(string filePATHandname);
     
 
 private:

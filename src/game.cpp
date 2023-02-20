@@ -27,8 +27,8 @@ Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0)
     Level *level = new Level();
 
     //we create the level 1, as described in the /niveaux/level1.json file
-    level->loadFromFile("../niveaux/level1.json");
-    
+    level->loadFromJSON("../niveaux/level1.json");
+
     
    
 
