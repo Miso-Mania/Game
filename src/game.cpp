@@ -24,84 +24,15 @@ Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0)
     m_surface_obstacle = IMG_Load("../assets/textures/big-crate.png");
     m_texture_obstacle = SDL_CreateTextureFromSurface(m_renderer, m_surface_obstacle);
 
-    // Chargement des niveaux
     Level *level = new Level();
-    // index des hauteurs:
-    // ligne la plus haute: window_Y_size - 1000
 
-    // instead of declaring all of the obstacles and pics here, we could create a function that takes the x and y coordinates of the obstacle and the width and height of the obstacle, and then creates the obstacle and the pic at the same time
-    for (int i = 0; i < 10; i++) {
-        level->addObstacle(0, window_Y_size - 1000 + i * 100, 500, 20);
-        level->addPic(20, window_Y_size - 1000 + i * 100 - 43);
-    }
-    /* *   
-     level->addObstacle(0, window_Y_size - 50, 1900, 200);
+    //we create the level 1, as described in the /niveaux/level1.json file
+    level->loadFromFile("../niveaux/level1.json");
     
-
-    level->addPic(20, window_Y_size - 443); // bloc à gauche de l'écran
-    level->addObstacle(0, window_Y_size - 400, 300, window_Y_size);
-
-    level->addPic(303, window_Y_size - 88);
-    level->addPic(346, window_Y_size - 88);
-
-    level->addObstacle(600, window_Y_size - 150, 100, 20); // à 300 px du bas de l'écran, et a 200 du bord gauche
-    level->addPic(630, window_Y_size - 90);
-    level->addPic(850, window_Y_size - 90);
-    level->addObstacle(1050, window_Y_size - 150, 100, 20);
-    level->addPic(1080, window_Y_size - 90);
-    level->addPic(1350, window_Y_size - 90);
-    level->addObstacle(1400, window_Y_size - 90, 40, 40);
-    level->addPic(1450, window_Y_size - 90);
-    level->addPic(1500, window_Y_size - 90);
-    level->addObstacle(1550, window_Y_size - 130, 40, 80);
-    level->addPic(1675, window_Y_size - 90);
-    level->addObstacle(1800, window_Y_size - 170, 100, 20);
-    level->addPic(1830, window_Y_size - 90);
-
-    level->addObstacle(1645, window_Y_size - 300, 100, 20);
-    level->addObstacle(850, window_Y_size - 400, 650, 20);
-    level->addPic(990, window_Y_size - 443);
-    level->addPic(1315, window_Y_size - 443);
-    level->addObstacle(1125, window_Y_size - 500, 100, 20);
-    level->addPic(1155, window_Y_size - 540);
-    level->addObstacle(600, window_Y_size - 500, 100, 20);
-    level->addObstacle(315, window_Y_size - 600, 100, 20);
-    level->addObstacle(150, window_Y_size - 500, 100, 20);
-    level->addPic(150, window_Y_size - 540);
-    level->addPic(210, window_Y_size - 540);
-    level->addObstacle(0, window_Y_size - 600, 120, 20);
-
-    level->addObstacle(280, window_Y_size - 730, 340, 20);
-    level->addPic(370, window_Y_size - 770);
-    level->addObstacle(430, window_Y_size - 770, 40, 40);
-    level->addPic(490, window_Y_size - 770);
-    level->addObstacle(670, window_Y_size - 600, 100, 20);
-    level->addPic(700, window_Y_size - 640);
-    level->addObstacle(770, window_Y_size - 730, 100, 20);
-    level->addObstacle(970, window_Y_size - 730, 240, 20);
-    level->addPic(1070, window_Y_size - 770);
-    level->addObstacle(1320, window_Y_size - 730, 100, 20);
-    level->addObstacle(1520, window_Y_size - 730, 380, 20);
-    level->addPic(1560, window_Y_size - 770);
-    level->addObstacle(1620, window_Y_size - 770, 40, 40);
-    level->addPic(1680, window_Y_size - 770);
-    level->addObstacle(1740, window_Y_size - 810, 40, 80);
-    level->addPic(1800, window_Y_size - 770);
-
-    level->addObstacle(1537, window_Y_size - 930, 100, 20);
-    level->addObstacle(1050, window_Y_size - 930, 340, 20);
-    level->addPic(1140, window_Y_size - 970);
-    level->addObstacle(1200, window_Y_size - 970, 40, 40);
-    level->addPic(1260, window_Y_size - 970);
-    level->addObstacle(850, window_Y_size - 930, 100, 20);
-    level->addObstacle(600, window_Y_size - 930, 100, 20);
-    level->addObstacle(200, window_Y_size - 930, 190, 20);
-    level->addPic(275, window_Y_size - 970);
-    level->addObstacle(0, window_Y_size - 930, 100, 20);
-
-    level->addBoxFinish(16, window_Y_size - 1000);
     
-*/ 
+   
+
+    
     m_levels.push_back(level);
     // Chargement du joueur
     m_player = Player();
