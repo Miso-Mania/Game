@@ -8,10 +8,6 @@
 #include "objets/pic.h"
 #include "json.hpp"
 
-
-
-using namespace std;
-
 class Level {
 public:
     Level();
