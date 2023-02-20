@@ -26,8 +26,11 @@ Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0)
 
     Level *level = new Level();
 
-    //we create the level 1, as described in the /niveaux/level1.json file
-    level->loadFromJSON("../niveaux/level1.json");
+    //we create the level 1, using a simple loop:
+    for (int i = 0; i < 10; i++) {
+        level->addObstacle(i * 100, 1000, 100, 100);
+    }
+    
 
     
    

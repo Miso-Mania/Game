@@ -45,6 +45,8 @@ vector<BoxFinish*> Level::getBoxFinish() {
     return m_BoxFinish;
 }
 
+
+/*
 //we need to add a new method to load the level from a file, the file is a json file, an exemple of the file that we want to load is: /niveaux/level1.json
 //we add this method to the level class:
 Level* Level::loadFromJSON(string filePATHandname) {
@@ -98,5 +100,6 @@ Level* Level::loadFromJSON(string filePATHandname) {
     //we return the level
     return level;
 }
+*/
 
 
