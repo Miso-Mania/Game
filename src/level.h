@@ -6,6 +6,7 @@
 #include "objets/obstacle.h"
 #include "objets/BoxFinish.h"
 #include "objets/pic.h"
+#include "nlohmann/json.hpp"
 using namespace std;
 
 class Level {
