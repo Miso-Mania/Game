@@ -5,14 +5,16 @@
     "objets": [{
         "pics": [
             {
-                "x": 0,
-                "y": 0
+                "x": 1,
+                "y": 2
             }
         ],
-        "plateformes": [
+        "obstacle": [
             {
                 "x": 0,
-                "y": 0
+                "y": 0,
+                "width": 100,
+                "height": 100
             }
         ],
         "BoxFinish": [
