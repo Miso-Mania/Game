@@ -29,9 +29,15 @@ Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0)
     // index des hauteurs:
     // ligne la plus haute: window_Y_size - 1000
 
-    // sol
-    level->addObstacle(0, window_Y_size - 50, 1900, 200);
-    // mur gauche
+    // instead of declaring all of the obstacles and pics here, we could create a function that takes the x and y coordinates of the obstacle and the width and height of the obstacle, and then creates the obstacle and the pic at the same time
+    for (int i = 0; i < 10; i++) {
+        level->addObstacle(0, window_Y_size - 1000 + i * 100, 500, 20);
+        level->addPic(20, window_Y_size - 1000 + i * 100 - 43);
+    }
+    /* *   
+     level->addObstacle(0, window_Y_size - 50, 1900, 200);
+    
+
     level->addPic(20, window_Y_size - 443); // bloc à gauche de l'écran
     level->addObstacle(0, window_Y_size - 400, 300, window_Y_size);
 
@@ -94,7 +100,8 @@ Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0)
     level->addObstacle(0, window_Y_size - 930, 100, 20);
 
     level->addBoxFinish(16, window_Y_size - 1000);
-
+    
+*/ 
     m_levels.push_back(level);
     // Chargement du joueur
     m_player = Player();
