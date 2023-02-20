@@ -17,7 +17,7 @@ public:
     vector<Pic*> getPics();
     void addBoxFinish(int x, int y);
     vector<BoxFinish*> getBoxFinish();
-    Level* loadFromLevel(int level);
+    Level* loadFromLevel(string filename);
     
 
 private:
