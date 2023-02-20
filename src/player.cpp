@@ -13,13 +13,15 @@ void Player::move(double delta) {
         m_rect.x += 200 * delta;
     }
 }
-
+// saute
+// le joeur ne peut pas faire de double saut
+// le joeur ne peut pas sauter si il n'est pas sur le sol
 void Player::jump() {
-    if (canJump && timeSinceTouchGround < 0.2) {
+    if (canJump) {
         m_yVelocity = -500;
         canJump = false;
     } else {
-        jumpBuffer = 0.2;
+        jumpBuffer = 0.1;
     }
 }
 
