@@ -21,7 +21,7 @@ public:
     vector<Pic*> getPics();
     void addBoxFinish(int x, int y);
     vector<BoxFinish*> getBoxFinish();
-    Level* loadFromJSON(string filePATHandname);
+    void loadFromJSON(string filePATHandname);
     
 
 private:
