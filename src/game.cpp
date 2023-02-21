@@ -28,77 +28,73 @@ Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0)
     //we load the level from the json file
     std::cout << "entering loadFromJSON" << std::endl;
     level->loadFromJSON("../niveaux/level1.json");
+
+    level->addObstacle(0, 668, 300, window_Y_size);
+
+    level->addPic(303, 980);
+    level->addPic(346, 980);
+
+    level->addObstacle(600, 918, 100, 20); // à 300 px du bas de l'écran, et a 200 du bord gauche
+    level->addPic(630, 978);
+    level->addPic(850, 978);
+    level->addObstacle(1050, 918, 100, 20);
+    level->addPic(1080, 978);
+    level->addPic(1350, 978);
+    level->addObstacle(1400, 978, 40, 40);
+    level->addPic(1450, 978);
+    level->addPic(1500, 978);
+    level->addObstacle(1550, 938, 40, 80);
+    level->addPic(1675, 978);
+    level->addObstacle(1800, 898, 100, 20);
+    level->addPic(1830, 978);
+
+    level->addObstacle(1645, 768, 100, 20);
+    level->addObstacle(850, 668, 650, 20);
+    level->addPic(990, 625);
+    level->addPic(1315, 625);
+    level->addObstacle(1125, 568, 100, 20);
+    level->addPic(1155, 528);
+    level->addObstacle(600, 568, 100, 20);
+    level->addObstacle(315, 468, 100, 20);
+    level->addObstacle(150, 568, 100, 20);
+    level->addPic(150, 528);
+    level->addPic(210, 528);
+    level->addObstacle(0, 468, 120, 20);
+
+    level->addObstacle(280, 338, 340, 20);
+    level->addPic(370, 298);
+    level->addObstacle(430, 298, 40, 40);
+    level->addPic(490, 298);
+    level->addObstacle(670, 468, 100, 20);
+    level->addPic(700, 428);
+    level->addObstacle(770, 338, 100, 20);
+    level->addObstacle(970, 338, 240, 20);
+    level->addPic(1070, 298);
+    level->addObstacle(1320, 338, 100, 20);
+    level->addObstacle(1520, 338, 380, 20);
+    level->addPic(1560, 298);
+    level->addObstacle(1620, 298, 40, 40);
+    level->addPic(1680, 298);
+    level->addObstacle(1740, 258, 40, 80);
+    level->addPic(1800, 298);
+
+    level->addObstacle(1537, 138, 100, 20);
+    level->addObstacle(1050, 138, 340, 20);
+    level->addPic(1140, 98);
+    level->addObstacle(1200, 98, 40, 40);
+    level->addPic(1260, 98);
+    level->addObstacle(850, 138, 100, 20);
+    level->addObstacle(600, 138, 100, 20);
+    level->addObstacle(200, 138, 190, 20);
+    level->addPic(275, 98);
+    level->addObstacle(0, 138, 100, 20);
+
+    level->addBoxFinish(16, 68);
     
-     // sol
-    /*level->addObstacle(0, window_Y_size - 50, 1900, 200);
-    // mur gauche
-    level->addPic(20, window_Y_size - 443); // bloc à gauche de l'écran
-    level->addObstacle(0, window_Y_size - 400, 300, window_Y_size);
-
-    level->addPic(303, window_Y_size - 88);
-    level->addPic(346, window_Y_size - 88);
-
-    level->addObstacle(600, window_Y_size - 150, 100, 20); // à 300 px du bas de l'écran, et a 200 du bord gauche
-    level->addPic(630, window_Y_size - 90);
-    level->addPic(850, window_Y_size - 90);
-    level->addObstacle(1050, window_Y_size - 150, 100, 20);
-    level->addPic(1080, window_Y_size - 90);
-    level->addPic(1350, window_Y_size - 90);
-    level->addObstacle(1400, window_Y_size - 90, 40, 40);
-    level->addPic(1450, window_Y_size - 90);
-    level->addPic(1500, window_Y_size - 90);
-    level->addObstacle(1550, window_Y_size - 130, 40, 80);
-    level->addPic(1675, window_Y_size - 90);
-    level->addObstacle(1800, window_Y_size - 170, 100, 20);
-    level->addPic(1830, window_Y_size - 90);
-
-    level->addObstacle(1645, window_Y_size - 300, 100, 20);
-    level->addObstacle(850, window_Y_size - 400, 650, 20);
-    level->addPic(990, window_Y_size - 443);
-    level->addPic(1315, window_Y_size - 443);
-    level->addObstacle(1125, window_Y_size - 500, 100, 20);
-    level->addPic(1155, window_Y_size - 540);
-    level->addObstacle(600, window_Y_size - 500, 100, 20);
-    level->addObstacle(315, window_Y_size - 600, 100, 20);
-    level->addObstacle(150, window_Y_size - 500, 100, 20);
-    level->addPic(150, window_Y_size - 540);
-    level->addPic(210, window_Y_size - 540);
-    level->addObstacle(0, window_Y_size - 600, 120, 20);
-
-    level->addObstacle(280, window_Y_size - 730, 340, 20);
-    level->addPic(370, window_Y_size - 770);
-    level->addObstacle(430, window_Y_size - 770, 40, 40);
-    level->addPic(490, window_Y_size - 770);
-    level->addObstacle(670, window_Y_size - 600, 100, 20);
-    level->addPic(700, window_Y_size - 640);
-    level->addObstacle(770, window_Y_size - 730, 100, 20);
-    level->addObstacle(970, window_Y_size - 730, 240, 20);
-    level->addPic(1070, window_Y_size - 770);
-    level->addObstacle(1320, window_Y_size - 730, 100, 20);
-    level->addObstacle(1520, window_Y_size - 730, 380, 20);
-    level->addPic(1560, window_Y_size - 770);
-    level->addObstacle(1620, window_Y_size - 770, 40, 40);
-    level->addPic(1680, window_Y_size - 770);
-    level->addObstacle(1740, window_Y_size - 810, 40, 80);
-    level->addPic(1800, window_Y_size - 770);
-
-    level->addObstacle(1537, window_Y_size - 930, 100, 20);
-    level->addObstacle(1050, window_Y_size - 930, 340, 20);
-    level->addPic(1140, window_Y_size - 970);
-    level->addObstacle(1200, window_Y_size - 970, 40, 40);
-    level->addPic(1260, window_Y_size - 970);
-    level->addObstacle(850, window_Y_size - 930, 100, 20);
-    level->addObstacle(600, window_Y_size - 930, 100, 20);
-    level->addObstacle(200, window_Y_size - 930, 190, 20);
-    level->addPic(275, window_Y_size - 970);
-    level->addObstacle(0, window_Y_size - 930, 100, 20);
-
-    level->addBoxFinish(16, window_Y_size - 1000);
     
-    */
 
-   level->addPic(20, window_Y_size - 443); // bloc à gauche de l'écran
-    level->addObstacle(0, window_Y_size - 400, 300, window_Y_size);
+   level->addPic(20, 625); // bloc à gauche de l'écran
+    level->addObstacle(0, 668, 300, window_Y_size);
 
     cout << "pushing back level" << endl;
     
