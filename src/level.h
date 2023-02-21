@@ -13,20 +13,32 @@ using namespace std;
 
 class Level {
 public:
+    //* @brief constructeur de la classe Level
     Level();
+    //* @brief destructeur de la classe Level
     ~Level();
+    //* @brief fonction qui permet d'ajouter un obstacle
     void addObstacle(int x, int y, int width, int height);
+    //* @brief fonction qui permet de récupérer les obstacles
     vector<Obstacle*> getObstacles();
+    //* @brief fonction qui permet d'ajouter une pic
     void addPic(int x, int y);
+    //* @brief fonction qui permet de récupérer les pics
     vector<Pic*> getPics();
+    //* @brief fonction qui permet d'ajouter une box de fin
     void addBoxFinish(int x, int y);
+    //* @brief fonction qui permet de récupérer les box de fin
     vector<BoxFinish*> getBoxFinish();
+    //* @brief fonction qui permet de charger un niveau, depuis un fichier JSON
     void loadFromJSON(string filePATHandname);
     
 
 private:
+    //* @brief vecteur d'obstacles
     vector<Obstacle*> m_obstacles;
+    //* @brief vecteur de pics
     vector<Pic*> m_pics;
+    //* @brief vecteur de box de fin
     vector<BoxFinish*> m_BoxFinish;
 };
 
