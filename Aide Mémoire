@@ -34,4 +34,7 @@ for (TOTO *toto : m_levels[m_currentLevel]->getPics())
 
 -----------------------
 attention, si vous essayez de lancer le jeu en ayant un niveau complétement vide, il va planter (segmentation fault) car il va essayer de charger une texture qui n'existe pas.
+-----------------------
+En JSON, on ne met pas de virgule après le dernier élément d'un tableau ! 
+-----------------------
 MAde by Claquettes https://github.com/claquettes ALL RIGHTS RESERVED
