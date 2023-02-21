@@ -25,59 +25,11 @@ Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0)
     m_texture_obstacle = SDL_CreateTextureFromSurface(m_renderer, m_surface_obstacle);
 
     Level *level = new Level();
+    //we add the ground
+    level->addObstacle(0, window_Y_size - 50, 1900, 200);
     //we load the level from the json file
     std::cout << "entering loadFromJSON" << std::endl;
     level->loadFromJSON("../niveaux/level1.json");
-
-    level->addObstacle(0, 668, 300, window_Y_size);
-    level->addObstacle(1800, 898, 100, 20);
-    level->addObstacle(1645, 768, 100, 20);
-    level->addObstacle(850, 668, 650, 20);
-    level->addObstacle(1125, 568, 100, 20);
-    level->addObstacle(600, 568, 100, 20);
-    level->addObstacle(315, 468, 100, 20);
-    level->addObstacle(150, 568, 100, 20);
-    level->addObstacle(0, 468, 120, 20);
-    level->addObstacle(280, 338, 340, 20);
-    level->addObstacle(770, 338, 100, 20);
-    level->addObstacle(970, 338, 240, 20);
-    level->addObstacle(1320, 338, 100, 20);
-    level->addObstacle(1520, 338, 380, 20);
-    level->addObstacle(600, 918, 100, 20); // à 300 px du bas de l'écran, et a 200 du bord gauche
-    level->addObstacle(1050, 918, 100, 20);
-    level->addObstacle(670, 468, 100, 20);
-    level->addObstacle(850, 138, 100, 20);
-    level->addObstacle(600, 138, 100, 20);
-    level->addObstacle(200, 138, 190, 20);
-    level->addObstacle(1400, 978, 40, 40);
-    level->addObstacle(1550, 938, 40, 80);
-    level->addObstacle(430, 298, 40, 40);
-    
-    
-    
-    
-    
-    level->addObstacle(1620, 298, 40, 40);
-    
-    level->addObstacle(1740, 258, 40, 80);
-    
-
-    level->addObstacle(1537, 138, 100, 20);
-    level->addObstacle(1050, 138, 340, 20);
-    
-    level->addObstacle(1200, 98, 40, 40);
-    
-    
-    
-    level->addObstacle(0, 138, 100, 20);
-
-    level->addBoxFinish(16, 68);
-    
-    
-
-    // bloc à gauche de l'écran
-    level->addObstacle(0, 668, 300, window_Y_size);
-
     cout << "pushing back level" << endl;
     
     m_levels.push_back(level);

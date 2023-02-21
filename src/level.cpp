@@ -64,7 +64,7 @@ void Level::loadFromJSON(string filename) {
         addPic(x, y);
         cout << "Pic: " << x << ", " << y << endl;
     }
-    for (auto& element : j["boxFinish"]) {
+    for (auto& element : j["BoxFinish"]) {
         int x = element["x"];
         int y = element["y"];
         addBoxFinish(x, y);
