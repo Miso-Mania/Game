@@ -31,4 +31,7 @@ for (TOTO *toto : m_levels[m_currentLevel]->getPics())
         SDL_RenderCopy(m_renderer, m_texture_TOTO, NULL, &totoRect);
     }
 
+
+-----------------------
+attention, si vous essayez de lancer le jeu en ayant un niveau complétement vide, il va planter (segmentation fault) car il va essayer de charger une texture qui n'existe pas.
 MAde by Claquettes https://github.com/claquettes ALL RIGHTS RESERVED

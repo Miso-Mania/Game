@@ -25,9 +25,12 @@ Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0)
     m_texture_obstacle = SDL_CreateTextureFromSurface(m_renderer, m_surface_obstacle);
 
     Level *level = new Level();
+    //we load the level from the json file
+    std::cout << "entering loadFromJSON" << std::endl;
+    level->loadFromJSON("../niveaux/level1.json");
 
      // sol
-    level->addObstacle(0, window_Y_size - 50, 1900, 200);
+    /*level->addObstacle(0, window_Y_size - 50, 1900, 200);
     // mur gauche
     level->addPic(20, window_Y_size - 443); // bloc à gauche de l'écran
     level->addObstacle(0, window_Y_size - 400, 300, window_Y_size);
@@ -92,11 +95,13 @@ Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0)
 
     level->addBoxFinish(16, window_Y_size - 1000);
     
-    
+    */
 
     
-   
+   level->addPic(20, window_Y_size - 443); // bloc à gauche de l'écran
+    level->addObstacle(0, window_Y_size - 400, 300, window_Y_size);
 
+    cout << "pushing back level" << endl;
     
     m_levels.push_back(level);
     // Chargement du joueur
