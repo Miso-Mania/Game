@@ -46,8 +46,19 @@ vector<BoxFinish*> Level::getBoxFinish() {
 }
 
 void Level::loadFromJSON(string filename) {
-    cout << "enterring loadFromJSON "<< endl;
     cout << "Loading level from " << filename << endl;
+    ifstream file(filename);
+    json j;
+    file >> j;
+    for (auto& element : j["obstacle"]) {
+        int x = element["x"];
+        int y = element["y"];
+        int width = element["width"];
+        int height = element["height"];
+        addObstacle(x, y, width, height);
+        cout << "Obstacle: " << x << ", " << y << ", " << width << ", " << height << endl;
+    }
+
 }
 
 
