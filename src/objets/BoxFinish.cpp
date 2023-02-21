@@ -3,7 +3,6 @@
 BoxFinish::BoxFinish(int x, int y) {
     m_triangle.x = x;
     m_triangle.y = y;
-    // definit la taille et la forme du pic
     width = 40;
     height = 70;
 
