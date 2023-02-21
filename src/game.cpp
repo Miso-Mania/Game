@@ -24,12 +24,9 @@ Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0)
     m_surface_obstacle = IMG_Load("../assets/textures/big-crate.png");
     m_texture_obstacle = SDL_CreateTextureFromSurface(m_renderer, m_surface_obstacle);
 
-    // Chargement des niveaux
     Level *level = new Level();
-    // index des hauteurs:
-    // ligne la plus haute: window_Y_size - 1000
 
-    // sol
+     // sol
     level->addObstacle(0, window_Y_size - 50, 1900, 200);
     // mur gauche
     level->addPic(20, window_Y_size - 443); // bloc à gauche de l'écran
@@ -94,7 +91,13 @@ Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0)
     level->addObstacle(0, window_Y_size - 930, 100, 20);
 
     level->addBoxFinish(16, window_Y_size - 1000);
+    
+    
 
+    
+   
+
+    
     m_levels.push_back(level);
     // Chargement du joueur
     m_player = Player();

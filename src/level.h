@@ -2,9 +2,13 @@
 #define LEVEL_H
 
 #include <vector>
+#include <string.h>
 #include "objets/obstacle.h"
 #include "objets/BoxFinish.h"
 #include "objets/pic.h"
+#include "json.hpp"
+
+using json = nlohmann::json;
 using namespace std;
 
 class Level {
@@ -17,6 +21,7 @@ public:
     vector<Pic*> getPics();
     void addBoxFinish(int x, int y);
     vector<BoxFinish*> getBoxFinish();
+    Level* loadFromJSON(string filePATHandname);
     
 
 private:
