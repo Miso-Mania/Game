@@ -31,7 +31,7 @@ public:
     //* @brief fonction qui permet de récupérer les box de fin
     vector<BoxFinish*> getBoxFinish();
     //* @brief fonction qui permet d'ajouter un tree
-    void addTree(int x, int y);
+    void addTree(int x, int y, int width, int height);
     //* @brief fonction qui permet de récupérer les trees
     vector<Tree*> getTrees();
     //* @brief fonction qui permet de charger un niveau, depuis un fichier JSON
