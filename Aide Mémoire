@@ -37,4 +37,10 @@ attention, si vous essayez de lancer le jeu en ayant un niveau complétement vid
 -----------------------
 En JSON, on ne met pas de virgule après le dernier élément d'un tableau ! 
 -----------------------
-MAde by Claquettes https://github.com/claquettes ALL RIGHTS RESERVED
+Pour pousser sur github, il faut faire:
+``git push origin master``
+-----------------------
+Pour pousser sur la forge, il faut faire:
+``git push forge master``
+-----------------------
+Made by Claquettes https://github.com/claquettes ALL RIGHTS RESERVED
