@@ -53,6 +53,10 @@ private:
     //* @brief Surface du background
     SDL_Surface *m_surface_background;
 
+    //* @brief Texture des arbres
+    SDL_Texture *m_texture_Trees;
+    SDL_Surface *m_surface_Trees;
+
     //* @brief Texture de la box de fin
     Player m_player;
 

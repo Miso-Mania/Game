@@ -57,6 +57,9 @@ Game::~Game()
     SDL_FreeSurface(m_surface_obstacle);
     SDL_DestroyTexture(m_texture_obstacle);
 
+    SDL_FreeSurface(m_surface_background);
+    SDL_DestroyTexture(m_texture_background);
+
     SDL_Quit();
 }
 
