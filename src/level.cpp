@@ -58,6 +58,7 @@ void Level::loadFromJSON(string filename) {
         addObstacle(x, y, width, height);
         cout << "Obstacle: " << x << ", " << y << ", " << width << ", " << height << endl;
     }
+    
     for (auto& element : j["pics"]) {
         int x = element["x"];
         int y = element["y"];
