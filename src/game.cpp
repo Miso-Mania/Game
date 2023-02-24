@@ -36,7 +36,6 @@ Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0)
     //we add the ground
     level->addObstacle(0, window_Y_size - 50, 1900, 200);
     //we load the level from the json file
-    std::cout << "entering loadFromJSON" << std::endl;
     level->loadFromJSON("../niveaux/level1.json");
     cout << "pushing back level" << endl;
     
@@ -190,26 +189,26 @@ void Game::render()
     SDL_SetRenderDrawColor(m_renderer, 0, 0, 0, 255);
     SDL_RenderClear(m_renderer);
 
-
-
     SDL_RenderCopy(m_renderer, m_texture_background, NULL, NULL); // Dessin du background
 
 
     SDL_Rect playerRect = m_player.getRect(); // Dessin du joueur
     SDL_RenderCopy(m_renderer, m_texture_player, NULL, &playerRect);
+     
 
-    // Dessin des arbres
-    for (Tree *tree : m_levels[m_currentLevel]->getTrees())
-    {
-        SDL_Rect treeRect = tree->getRect();
-        SDL_RenderCopy(m_renderer, m_texture_Trees, NULL, &treeRect);
-    }
 
     // Dessin des obstacles
     for (Obstacle *obstacle : m_levels[m_currentLevel]->getObstacles())
     {
         SDL_Rect obstacleRect = obstacle->getRect();
         SDL_RenderCopy(m_renderer, m_texture_obstacle, NULL, &obstacleRect);
+    }
+
+    // Dessin des arbres
+    for (Tree *tree : m_levels[m_currentLevel]->getTrees())
+    {
+        SDL_Rect treeRect = tree->getRect();
+        SDL_RenderCopy(m_renderer, m_texture_Trees, NULL, &treeRect);
     }
     // Dessin des pic
     for (Pic *pic : m_levels[m_currentLevel]->getPics())

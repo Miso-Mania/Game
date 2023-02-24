@@ -11,7 +11,7 @@ dir:
 	mkdir -p bin
 
 bin/jeu : $(OBJS)
-	$(cc) $(Include_Dir_SDL2)  obj/main.o obj/game.o obj/player.o obj/obstacle.o obj/level.o obj/score.o obj/pic.o -o bin/jeu obj/BoxFinish.o $(LIBS)
+	$(cc) $(Include_Dir_SDL2)  obj/main.o obj/game.o obj/player.o obj/obstacle.o obj/level.o obj/score.o obj/pic.o obj/BoxFinish.o obj/tree.o -o bin/jeu   $(LIBS)
 
 obj/player.o  : src/player.cpp src/player.h src/objets/obstacle.h src/playerdirection.h src/objets/pic.h
 	$(cc) $(CFLAGS) $(Include_Dir_SDL2) src/player.cpp -o obj/player.o $(LIBS)
