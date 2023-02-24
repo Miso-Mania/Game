@@ -7,6 +7,7 @@
 #include "level.h"
 #include "player.h"
 
+
 using namespace std;
 
 //* @brief classe Game
@@ -55,6 +56,7 @@ private:
 
     //* @brief Texture des arbres
     SDL_Texture *m_texture_Trees;
+    //* @brief Surface des arbres
     SDL_Surface *m_surface_Trees;
 
     //* @brief Texture de la box de fin

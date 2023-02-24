@@ -27,6 +27,9 @@ Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0)
     m_surface_background = IMG_Load("../assets/textures/back.png");
     m_texture_background = SDL_CreateTextureFromSurface(m_renderer, m_surface_background);
 
+    m_surface_Trees = IMG_Load("../assets/textures/tree.png");
+    m_texture_Trees = SDL_CreateTextureFromSurface(m_renderer, m_surface_Trees);
+
     
 
     Level *level = new Level();
@@ -186,16 +189,21 @@ void Game::render()
     // Effacement de l'écran
     SDL_SetRenderDrawColor(m_renderer, 0, 0, 0, 255);
     SDL_RenderClear(m_renderer);
-    // Dessin du niveau
-    SDL_SetRenderDrawColor(m_renderer, 0, 255, 0, 255);
-    // Dessin du joueur
 
-    /* SDL_SetRenderDrawColor(m_renderer, 0, 255, 255, 255);
-    SDL_Rect playerRect = m_player.getRect();
-    SDL_RenderFillRect(m_renderer, &playerRect); */
-    SDL_RenderCopy(m_renderer, m_texture_background, NULL, NULL);
-    SDL_Rect playerRect = m_player.getRect();
+
+
+    SDL_RenderCopy(m_renderer, m_texture_background, NULL, NULL); // Dessin du background
+
+
+    SDL_Rect playerRect = m_player.getRect(); // Dessin du joueur
     SDL_RenderCopy(m_renderer, m_texture_player, NULL, &playerRect);
+
+    // Dessin des arbres
+    for (Tree *tree : m_levels[m_currentLevel]->getTrees())
+    {
+        SDL_Rect treeRect = tree->getRect();
+        SDL_RenderCopy(m_renderer, m_texture_Trees, NULL, &treeRect);
+    }
 
     // Dessin des obstacles
     for (Obstacle *obstacle : m_levels[m_currentLevel]->getObstacles())

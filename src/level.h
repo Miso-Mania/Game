@@ -6,6 +6,7 @@
 #include "objets/obstacle.h"
 #include "objets/BoxFinish.h"
 #include "objets/pic.h"
+#include "objets/tree.h"
 #include "json.hpp"
 
 using json = nlohmann::json;
@@ -29,6 +30,10 @@ public:
     void addBoxFinish(int x, int y);
     //* @brief fonction qui permet de récupérer les box de fin
     vector<BoxFinish*> getBoxFinish();
+    //* @brief fonction qui permet d'ajouter un tree
+    void addTree(int x, int y);
+    //* @brief fonction qui permet de récupérer les trees
+    vector<Tree*> getTrees();
     //* @brief fonction qui permet de charger un niveau, depuis un fichier JSON
     void loadFromJSON(string filePATHandname);
     
@@ -40,6 +45,8 @@ private:
     vector<Pic*> m_pics;
     //* @brief vecteur de box de fin
     vector<BoxFinish*> m_BoxFinish;
+    //* @brief vecteur de trees
+    vector<Tree*> m_trees;
 };
 
 #endif // LEVEL_H

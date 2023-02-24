@@ -1,4 +1,4 @@
-OBJS = obj/main.o obj/game.o obj/player.o obj/obstacle.o obj/level.o obj/score.o obj/pic.o obj/BoxFinish.o 
+OBJS = obj/main.o obj/game.o obj/player.o obj/obstacle.o obj/level.o obj/score.o obj/pic.o obj/BoxFinish.o obj/tree.o 
 cc = g++
 CFLAGS = -g -Wall -c
 LIBS = -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer 
@@ -36,6 +36,9 @@ obj/pic.o : src/objets/pic.cpp src/objets/pic.h
 
 obj/BoxFinish.o : src/objets/BoxFinish.cpp src/objets/BoxFinish.h
 	$(cc) $(CFLAGS) $(Include_Dir_SDL2) src/objets/BoxFinish.cpp -o obj/BoxFinish.o $(LIBS)
+
+obj/tree.o : src/objets/tree.cpp src/objets/tree.h
+	$(cc) $(CFLAGS) $(Include_Dir_SDL2) src/objets/tree.cpp -o obj/tree.o $(LIBS)
 
 clean:
 	rm obj/ bin/ -rf

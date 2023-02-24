@@ -45,6 +45,17 @@ vector<BoxFinish*> Level::getBoxFinish() {
     return m_BoxFinish;
 }
 
+void Level::addTree(int x, int y) {
+    Tree* tree = new Tree(x, y);
+    m_trees.push_back(tree);
+}
+
+vector<Tree*> Level::getTrees() {
+    return m_trees;
+}
+
+
+
 void Level::loadFromJSON(string filename) {
     cout << "Loading level from " << filename << endl;
     ifstream file(filename);
@@ -70,6 +81,12 @@ void Level::loadFromJSON(string filename) {
         int y = element["y"];
         addBoxFinish(x, y);
         cout << "BoxFinish: " << x << ", " << y << endl;
+    }
+    for (auto& element : j["trees"]) {
+        int x = element["x"];
+        int y = element["y"];
+        addTree(x, y);
+        cout << "Un arbre de planté ici: " << x << ", " << y << endl;
     }
 }
 
