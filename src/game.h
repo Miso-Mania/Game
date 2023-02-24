@@ -48,6 +48,11 @@ private:
     //* @brief Surface de l'obstacle
     SDL_Surface *m_surface_obstacle;
 
+    //* @brief Texture du background
+    SDL_Texture *m_texture_background;
+    //* @brief Surface du background
+    SDL_Surface *m_surface_background;
+
     //* @brief Texture de la box de fin
     Player m_player;
 
