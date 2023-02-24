@@ -55,8 +55,8 @@ private:
     double timeSinceTouchGround;
     //todo : faire la docu ici
     double jumpBuffer;
-    //* @brief booléen qui permet de savoir si le joueur autorisé à sauter
-    bool canJump;
+    //* @brief booléen qui permet de savoir si le joueur a déja sauté
+    bool haveJumped;
 };
 
 #endif // PLAYER_H
