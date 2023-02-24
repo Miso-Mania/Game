@@ -17,9 +17,9 @@ void Player::move(double delta) {
 // le joeur ne peut pas faire de double saut
 // le joeur ne peut pas sauter si il n'est pas sur le sol
 void Player::jump() {
-    if (canJump) {
+    if (!haveJumped && timeSinceTouchGround < 0.2) {
         m_yVelocity = -500;
-        canJump = false;
+        haveJumped = true;
     } else {
         jumpBuffer = 0.1;
     }
@@ -61,7 +61,7 @@ void Player::moveOutOf(Obstacle *obstacle){
     if (intoTop < intoBottom && intoTop < intoLeft && intoTop < intoRight) {
         m_rect.y -= intoTop;
         stopGravity();
-        canJump = true;
+        haveJumped = false;
         timeSinceTouchGround = 0;
         if (jumpBuffer > 0) {
             jump();
