@@ -60,6 +60,9 @@ Game::~Game()
     SDL_FreeSurface(m_surface_background);
     SDL_DestroyTexture(m_texture_background);
 
+    SDL_FreeSurface(m_surface_Trees);
+    SDL_DestroyTexture(m_texture_Trees);
+
     SDL_Quit();
 }
 
