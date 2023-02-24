@@ -208,6 +208,7 @@ void Game::render()
     for (Tree *tree : m_levels[m_currentLevel]->getTrees())
     {
         SDL_Rect treeRect = tree->getRect();
+        std::cout << "un arbre de planté" << std::endl;
         SDL_RenderCopy(m_renderer, m_texture_Trees, NULL, &treeRect);
     }
     // Dessin des pic
