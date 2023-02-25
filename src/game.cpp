@@ -12,7 +12,7 @@ Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0)
     SDL_Init(SDL_INIT_VIDEO);
     IMG_Init(IMG_INIT_PNG);
     // on créé une fenetre  de 1920*1080, fullscreen et on la rend visible
-    m_window = SDL_CreateWindow("Game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, window_X_size, window_Y_size, SDL_WINDOW_SHOWN);
+    m_window = SDL_CreateWindow("Game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, window_X_size, window_Y_size, SDL_WINDOW_FULLSCREEN_DESKTOP);
     m_renderer = SDL_CreateRenderer(m_window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 
     m_surface_player = IMG_Load("../assets/textures/icon.png");
