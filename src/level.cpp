@@ -61,6 +61,10 @@ void Level::loadFromJSON(string filename) {
     ifstream file(filename);
     json j;
     file >> j;
+
+    id = j["id"];
+    name = j["nom du niveau"];
+    creator = j["createur"];
     for (auto& element : j["obstacles"]) {
         int x = element["x"];
         int y = element["y"];
@@ -92,4 +96,45 @@ void Level::loadFromJSON(string filename) {
     }
 }
 
+void Level::saveToJSON(string filename) {
+    json j;
+
+    j["id"] = id;
+    j["nom du niveau"] = name;
+    j["createur"] = creator;
+    for (Obstacle* obstacle : m_obstacles) {
+        json obstacleJSON;
+        SDL_Rect obstacleRect = obstacle->getRect();
+        obstacleJSON["x"] = obstacleRect.x;
+        obstacleJSON["y"] = obstacleRect.y;
+        obstacleJSON["width"] = obstacleRect.w;
+        obstacleJSON["height"] = obstacleRect.h;
+        j["obstacles"].push_back(obstacleJSON);
+    }
+    for (Pic* pic : m_pics) {
+        json picJSON;
+        SDL_Rect picRect = pic->getRect();
+        picJSON["x"] = picRect.x;
+        picJSON["y"] = picRect.y;
+        j["pics"].push_back(picJSON);
+    }
+    for (BoxFinish* box : m_BoxFinish) {
+        json boxJSON;
+        SDL_Rect boxRect = box->getRect();
+        boxJSON["x"] = boxRect.x;
+        boxJSON["y"] = boxRect.y;
+        j["BoxFinish"].push_back(boxJSON);
+    }
+    for (Tree* tree : m_trees) {
+        json treeJSON;
+        SDL_Rect treeRect = tree->getRect();
+        treeJSON["x"] = treeRect.x;
+        treeJSON["y"] = treeRect.y;
+        treeJSON["width"] = treeRect.w;
+        treeJSON["height"] = treeRect.h;
+        j["trees"].push_back(treeJSON);
+    }
+    ofstream file(filename);
+    file << j;
+}
 
