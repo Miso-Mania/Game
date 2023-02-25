@@ -42,6 +42,7 @@ Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0)
     m_levels.push_back(level);
     // Chargement du joueur
     m_player = Player();
+    timer = 0;
 }
 
 Game::~Game()
@@ -136,6 +137,7 @@ void Game::update(double delta)
 
     m_player.incTimeSinceTouchGround(delta);
     m_player.decJumpBuffer(delta);
+    timer += delta;
     // Collision du joueur avec les obstacles stop la gravité et évite de traverser les obstacles
     for (Obstacle *obstacle : m_levels[m_currentLevel]->getObstacles())
     {
@@ -149,11 +151,13 @@ void Game::update(double delta)
     if (m_player.getRect().y > window_Y_size)
     {
         m_player.setRect({100, 600, 32, 32});
+        timer = 0;
     }
 
     // le joueur gagne si il arrive entre y=0 et y=138 et x<0
     if (m_player.getRect().y < 138 && m_player.getRect().x < 0)
     {
+        cout << "temps : "  << timer << "s" << endl;
         m_currentLevel++;
         m_player.setRect({100, 600, 32, 32});
     }
@@ -174,6 +178,7 @@ void Game::update(double delta)
         {
             m_currentLevel = 0;
             m_player = Player();
+            timer = 0;
         }
     }
     // Mise à jour du niveau

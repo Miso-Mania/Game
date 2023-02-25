@@ -67,6 +67,8 @@ private:
 
     //* @brief niveau actuel
     int m_currentLevel;
+
+    double timer;
 };
 #endif // GAME_H
 
