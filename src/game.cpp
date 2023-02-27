@@ -2,6 +2,7 @@
 #include <iostream>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+
 const int FPS = 60;
 const int window_X_size = 1900;
 const int window_Y_size = 1068;
@@ -36,7 +37,7 @@ Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0)
     //we add the ground
     level->addObstacle(0, window_Y_size - 50, 1900, 200);
     //we load the level from the json file
-    level->loadFromJSON("../niveaux/level1.json");
+    level->loadFromJSON("../niveaux/level2.json");
     cout << "pushing back level" << endl;
     
     m_levels.push_back(level);
