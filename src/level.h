@@ -14,29 +14,29 @@ using namespace std;
 
 class Level {
 public:
-    //* @brief constructeur de la classe Level
+    /// @brief constructeur de la classe Level
     Level();
-    //* @brief destructeur de la classe Level
+    /// @brief destructeur de la classe Level
     ~Level();
-    //* @brief fonction qui permet d'ajouter un obstacle
+    /// @brief fonction qui permet d'ajouter un obstacle
     void addObstacle(int x, int y, int width, int height);
-    //* @brief fonction qui permet de récupérer les obstacles
+    /// @brief fonction qui permet de récupérer les obstacles
     vector<Obstacle*> getObstacles();
-    //* @brief fonction qui permet d'ajouter une pic
+    /// @brief fonction qui permet d'ajouter une pic
     void addPic(int x, int y);
-    //* @brief fonction qui permet de récupérer les pics
+    /// @brief fonction qui permet de récupérer les pics
     vector<Pic*> getPics();
-    //* @brief fonction qui permet d'ajouter une box de fin
+    /// @brief fonction qui permet d'ajouter une box de fin
     void addBoxFinish(int x, int y);
-    //* @brief fonction qui permet de récupérer les box de fin
+    /// @brief fonction qui permet de récupérer les box de fin
     vector<BoxFinish*> getBoxFinish();
-    //* @brief fonction qui permet d'ajouter un tree
+    /// @brief fonction qui permet d'ajouter un tree
     void addTree(int x, int y, int width, int height);
-    //* @brief fonction qui permet de récupérer les trees
+    /// @brief fonction qui permet de récupérer les trees
     vector<Tree*> getTrees();
-    //* @brief fonction qui permet de charger un niveau, depuis un fichier JSON
+    /// @brief fonction qui permet de charger un niveau, depuis un fichier JSON
     void loadFromJSON(string filePATHandname);
-    //* @brief fonction qui permet de sauvegarder un niveau vers un fichier JSON
+    /// @brief fonction qui permet de sauvegarder un niveau vers un fichier JSON
     void saveToJSON(string filePATHandname);
 
     int id;
@@ -44,13 +44,13 @@ public:
     string creator;
 
 private:
-    //* @brief vecteur d'obstacles
+    /// @brief vecteur d'obstacles
     vector<Obstacle*> m_obstacles;
-    //* @brief vecteur de pics
+    /// @brief vecteur de pics
     vector<Pic*> m_pics;
-    //* @brief vecteur de box de fin
+    /// @brief vecteur de box de fin
     vector<BoxFinish*> m_BoxFinish;
-    //* @brief vecteur de trees
+    /// @brief vecteur de trees
     vector<Tree*> m_trees;
 };
 
