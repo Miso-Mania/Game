@@ -9,6 +9,13 @@ const int window_Y_size = 1068;
 
 Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0)
 {
+    std::cout << "Select the level that you want to load" << std::endl;
+    std::cout << "1: level1" << std::endl;
+    std::cout << "2: level2" << std::endl;
+    int levelnumber;
+    std::cin >> levelnumber;
+    std::cout << "You selected level " << levelnumber << std::endl;
+    
     // Initialisation de SDL
     SDL_Init(SDL_INIT_VIDEO);
     IMG_Init(IMG_INIT_PNG);
@@ -16,19 +23,19 @@ Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0)
     m_window = SDL_CreateWindow("Game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, window_X_size, window_Y_size, SDL_WINDOW_FULLSCREEN);
     m_renderer = SDL_CreateRenderer(m_window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 
-    m_surface_player = IMG_Load("../assets/textures/icon.png");
+    m_surface_player = IMG_Load("assets/textures/icon.png");
     m_texture_player = SDL_CreateTextureFromSurface(m_renderer, m_surface_player);
 
-    m_surface_pic = IMG_Load("../assets/textures/spikes.png");
+    m_surface_pic = IMG_Load("assets/textures/spikes.png");
     m_texture_pic = SDL_CreateTextureFromSurface(m_renderer, m_surface_pic);
 
-    m_surface_obstacle = IMG_Load("../assets/textures/big-crate.png");
+    m_surface_obstacle = IMG_Load("assets/textures/big-crate.png");
     m_texture_obstacle = SDL_CreateTextureFromSurface(m_renderer, m_surface_obstacle);
 
-    m_surface_background = IMG_Load("../assets/textures/back.png");
+    m_surface_background = IMG_Load("assets/textures/back.png");
     m_texture_background = SDL_CreateTextureFromSurface(m_renderer, m_surface_background);
 
-    m_surface_Trees = IMG_Load("../assets/textures/tree.png");
+    m_surface_Trees = IMG_Load("assets/textures/tree.png");
     m_texture_Trees = SDL_CreateTextureFromSurface(m_renderer, m_surface_Trees);
 
     
@@ -37,8 +44,8 @@ Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0)
     //we add the ground
     level->addObstacle(0, window_Y_size - 50, 1900, 200);
     //we load the level from the json file
-    level->loadFromJSON("../niveaux/level2.json");
-    cout << "pushing back level" << endl;
+    level->loadFromJSON("niveaux/level" + std::to_string(levelnumber) + ".json");
+    std::cout << "pushing back level" << endl;
     
     m_levels.push_back(level);
     // Chargement du joueur
