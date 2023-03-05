@@ -7,7 +7,7 @@
 class Tree {
 public:
     /// @brief constructeur de la classe Tree, en paramètre les coordonnées du Tree, et sa largeur et sa hauteur
-    Tree(int x, int y, int width, int height);
+    Tree(int x, int y);
     /// @brief destructeur de la classe Tree
     ~Tree();
     /// @brief fonction qui permet de renvoyer le Tree

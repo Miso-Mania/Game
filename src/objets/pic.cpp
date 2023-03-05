@@ -4,8 +4,8 @@ Pic::Pic(int x, int y) {
     m_triangle.x = x;
     m_triangle.y = y;
     // definit la taille et la forme du pic
-    width = 40;
-    height = 40;
+    width = 1;
+    height = 1;
 
     m_triangle={x,y,width,height};
 }

@@ -3,8 +3,8 @@
 BoxFinish::BoxFinish(int x, int y) {
     m_triangle.x = x;
     m_triangle.y = y;
-    width = 40;
-    height = 70;
+    width = 1;
+    height = 2;
 
     m_triangle={x,y,width,height};
 }

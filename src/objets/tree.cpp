@@ -1,10 +1,10 @@
 #include "tree.h"
 
-Tree::Tree(int x, int y, int width, int height) {
+Tree::Tree(int x, int y) {
     m_rect.x = x;
     m_rect.y = y;
-    m_rect.w = width;
-    m_rect.h = height;
+    m_rect.w = 3;
+    m_rect.h = 2;
 }
 
 Tree::~Tree() {
