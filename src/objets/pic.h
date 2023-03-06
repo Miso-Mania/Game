@@ -7,7 +7,7 @@
 class Pic {
 public:
     /// @brief constructeur de la classe Pic, en paramètre les coordonnées de la pic
-    Pic(int x, int y);
+    Pic(int x, int y, int TILE_SIZE);
     /// @brief destructeur de la classe Pic
     ~Pic();
     /// @brief fonction qui permet de renvoyer la pic

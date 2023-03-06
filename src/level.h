@@ -23,7 +23,7 @@ public:
     /// @brief fonction qui permet de récupérer les obstacles
     vector<Obstacle*> getObstacles();
     /// @brief fonction qui permet d'ajouter une pic
-    void addPic(int x, int y);
+    void addPic(int x, int y, int TILE_SIZE);
     /// @brief fonction qui permet de récupérer les pics
     vector<Pic*> getPics();
     /// @brief fonction qui permet d'ajouter une box de fin

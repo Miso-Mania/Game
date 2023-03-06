@@ -27,8 +27,8 @@ vector<Obstacle*> Level::getObstacles() {
     return m_obstacles;
 }
 
-void Level::addPic(int x, int y) {
-    Pic* pic = new Pic(x, y);
+void Level::addPic(int x, int y, int TILE_SIZE) {
+    Pic* pic = new Pic(x, y, TILE_SIZE);
     m_pics.push_back(pic);
 }
 
@@ -70,15 +70,16 @@ void Level::loadFromJSON(string filename, int TILE_SIZE) {
         int y = element["y"];
         int width = element["width"];
         int height = element["height"];
-        addObstacle(x , y, width * (TILE_SIZE / 10), height);
+        addObstacle(x , y, width , height);
         cout << "Obstacle: " << x << ", " << y << ", " << width << ", " << height << endl;
     }
     
     for (auto& element : j["pics"]) {
         int x = element["x"];
         int y = element["y"];
-        addPic(x, y);
+        addPic(x, y, TILE_SIZE);
         cout << "Pic: " << x << ", " << y << endl;
+        
     }
     for (auto& element : j["BoxFinish"]) {
         int x = element["x"];
