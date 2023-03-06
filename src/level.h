@@ -35,7 +35,7 @@ public:
     /// @brief fonction qui permet de récupérer les trees
     vector<Tree*> getTrees();
     /// @brief fonction qui permet de charger un niveau, depuis un fichier JSON
-    void loadFromJSON(string filePATHandname);
+    void loadFromJSON(string filePATHandname, int TILE_SIZE);
     /// @brief fonction qui permet de sauvegarder un niveau vers un fichier JSON
     void saveToJSON(string filePATHandname);
 
@@ -52,6 +52,8 @@ private:
     vector<BoxFinish*> m_BoxFinish;
     /// @brief vecteur de trees
     vector<Tree*> m_trees;
+    int get_Tile_Size();
+
 };
 
 #endif // LEVEL_H

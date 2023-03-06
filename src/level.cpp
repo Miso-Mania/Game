@@ -56,7 +56,7 @@ vector<Tree*> Level::getTrees() {
 
 
 
-void Level::loadFromJSON(string filename) {
+void Level::loadFromJSON(string filename, int TILE_SIZE) {
     cout << "Loading level from " << filename << endl;
     ifstream file(filename);
     json j;
@@ -70,7 +70,7 @@ void Level::loadFromJSON(string filename) {
         int y = element["y"];
         int width = element["width"];
         int height = element["height"];
-        addObstacle(x, y, width, height);
+        addObstacle(x , y, width * (TILE_SIZE / 10), height);
         cout << "Obstacle: " << x << ", " << y << ", " << width << ", " << height << endl;
     }
     
@@ -138,3 +138,6 @@ void Level::saveToJSON(string filename) {
     file << j;
 }
 
+int Level::get_Tile_Size() {
+    return id;
+}
