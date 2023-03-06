@@ -29,7 +29,12 @@ Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0)
     m_renderer = SDL_CreateRenderer(m_window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
     int width, height;
     SDL_GetWindowSize(m_window, &width, &height);
+    const int TILE_SIZE_X = width / NUM_TILES_X;
+    const int TILE_SIZE_Y = height / NUM_TILES_Y;
+
+    
     printf("Window size: %dx%d\n", width, height);
+    printf("les tiles font donc:%dx%d\n", TILE_SIZE_X, TILE_SIZE_Y);
 
     m_surface_player = IMG_Load("assets/textures/icon.png");
     m_texture_player = SDL_CreateTextureFromSurface(m_renderer, m_surface_player);
