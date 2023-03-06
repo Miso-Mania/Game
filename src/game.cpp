@@ -8,7 +8,7 @@ const int window_X_size = 1900;
 const int window_Y_size = 1068;
 const int NUM_TILES_X = 64;
 const int NUM_TILES_Y = 36;
-const int TILE_SIZE = window_X_size / NUM_TILES_X;
+
 
 
 
