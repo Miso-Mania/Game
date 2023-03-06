@@ -57,7 +57,7 @@ Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0)
     //we add the ground
     level->addObstacle(0, window_Y_size - 50, 1900, 200);
     //we load the level from the json file
-    level->loadFromJSON("niveaux/level" + std::to_string(levelnumber) + ".json");
+    Game::loadFromJSON("niveaux/level" + std::to_string(levelnumber) + ".json");
     std::cout << "pushing back level" << endl;
     
     m_levels.push_back(level);
@@ -88,6 +88,81 @@ Game::~Game()
     SDL_DestroyTexture(m_texture_Trees);
 
     SDL_Quit();
+}
+void Game::loadFromJSON(string filename) {
+    cout << "Loading level from " << filename << endl;
+    ifstream file(filename);
+    json j;
+    file >> j;
+
+    id = j["id"];
+    name = j["nom du niveau"];
+    creator = j["createur"];
+
+    for (auto& element : j["pics"]) {
+        int x = element["x"];
+        int y = element["y"];
+        // on ajoute un pic en utilisant la fonction "addpic" depuis level.h
+        level->addPic(x, y);
+       
+        cout << "Pic: " << x << ", " << y << endl;
+    }
+    for (auto& element : j["BoxFinish"]) {
+        int x = element["x"];
+        int y = element["y"];
+        addBoxFinish(x, y);
+        cout << "BoxFinish: " << x << ", " << y << endl;
+    }
+    for (auto& element : j["trees"]) {
+        int x = element["x"];
+        int y = element["y"];
+        int width = element["width"];
+        int height = element["height"];
+        addTree(x, y, width, height);
+        cout << "Un arbre de planté ici: " << x << ", " << y << endl;
+    }
+}
+
+void Game::saveToJSON(string filename) {
+    json j;
+
+    j["id"] = id;
+    j["nom du niveau"] = name;
+    j["createur"] = creator;
+    for (Obstacle* obstacle : m_obstacles) {
+        json obstacleJSON;
+        SDL_Rect obstacleRect = obstacle->getRect();
+        obstacleJSON["x"] = obstacleRect.x;
+        obstacleJSON["y"] = obstacleRect.y;
+        obstacleJSON["width"] = obstacleRect.w;
+        obstacleJSON["height"] = obstacleRect.h;
+        j["obstacles"].push_back(obstacleJSON);
+    }
+    for (Pic* pic : m_pics) {
+        json picJSON;
+        SDL_Rect picRect = pic->getRect();
+        picJSON["x"] = picRect.x;
+        picJSON["y"] = picRect.y;
+        j["pics"].push_back(picJSON);
+    }
+    for (BoxFinish* box : m_BoxFinish) {
+        json boxJSON;
+        SDL_Rect boxRect = box->getRect();
+        boxJSON["x"] = boxRect.x;
+        boxJSON["y"] = boxRect.y;
+        j["BoxFinish"].push_back(boxJSON);
+    }
+    for (Tree* tree : m_trees) {
+        json treeJSON;
+        SDL_Rect treeRect = tree->getRect();
+        treeJSON["x"] = treeRect.x;
+        treeJSON["y"] = treeRect.y;
+        treeJSON["width"] = treeRect.w;
+        treeJSON["height"] = treeRect.h;
+        j["trees"].push_back(treeJSON);
+    }
+    ofstream file(filename);
+    file << j;
 }
 
 void Game::run()

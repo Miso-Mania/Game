@@ -34,14 +34,6 @@ public:
     void addTree(int x, int y, int width, int height);
     /// @brief fonction qui permet de récupérer les trees
     vector<Tree*> getTrees();
-    /// @brief fonction qui permet de charger un niveau, depuis un fichier JSON
-    void loadFromJSON(string filePATHandname);
-    /// @brief fonction qui permet de sauvegarder un niveau vers un fichier JSON
-    void saveToJSON(string filePATHandname);
-
-    int id;
-    string name;
-    string creator;
 
 private:
     /// @brief vecteur d'obstacles
