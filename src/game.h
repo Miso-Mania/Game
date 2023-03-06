@@ -4,13 +4,8 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <vector>
-#include "objets/obstacle.h"
-#include "objets/BoxFinish.h"
-#include "objets/pic.h"
-#include "objets/tree.h"
 #include "level.h"
 #include "player.h"
-#include "json.hpp"
 
 
 using namespace std;
@@ -30,10 +25,6 @@ public:
     void update(double delta);
     /// @brief fonction qui permet de dessiner le jeu
     void render();
-    /// @brief fonction qui permet de charger un niveau, depuis un fichier JSON
-    void loadFromJSON(string filePATHandname);
-    /// @brief fonction qui permet de sauvegarder un niveau vers un fichier JSON
-    void saveToJSON(string filePATHandname);
 
 private:
     /// @brief FENETRE
@@ -75,17 +66,6 @@ private:
 
     /// @brief niveau actuel
     int m_currentLevel;
-    /// @brief vecteur d'obstacles
-    vector<Obstacle*> m_obstacles;
-    /// @brief vecteur de pics
-    vector<Pic*> m_pics;
-    /// @brief vecteur de box de fin
-    vector<BoxFinish*> m_BoxFinish;
-    /// @brief vecteur de trees
-    vector<Tree*> m_trees;
-    int id;
-    string name;
-    string creator;
 
     double timer;
 };
