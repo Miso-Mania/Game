@@ -9,7 +9,7 @@ const int window_Y_size = 1068;
 const int NUM_TILES_X = 64;
 const int NUM_TILES_Y = 36;
 const int TILE_SIZE_X = window_X_size / NUM_TILES_X;
-const int TILE_SIZE_Y = window_Y_size / NUM_TILES_Y;
+
 
 
 Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0)
