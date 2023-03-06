@@ -33,7 +33,7 @@ Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0)
 
     
     printf("Window size: %dx%d\n", width, height);
-    printf("les tiles font donc:%dx%d\n", TILE_SIZE_X, TILE_SIZE_Y);
+    printf("les tiles font donc:%dx%d\n", TILE_SIZE_X);
 
     m_surface_player = IMG_Load("assets/textures/icon.png");
     m_texture_player = SDL_CreateTextureFromSurface(m_renderer, m_surface_player);
