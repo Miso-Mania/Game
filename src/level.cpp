@@ -46,7 +46,7 @@ vector<BoxFinish*> Level::getBoxFinish() {
 }
 
 void Level::addTree(int x, int y, int width, int height) {
-    Tree* tree = new Tree(x, y, width, height);
+    Tree* tree = new Tree(x, y);
     m_trees.push_back(tree);
 }
 
