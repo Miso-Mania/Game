@@ -7,7 +7,7 @@
 class BoxFinish {
 public:
     /// @brief constructeur de la classe BoxFinish, en paramètre les coordonnées de la box de fin
-    BoxFinish(int x, int y);
+    BoxFinish(int x, int y, int TILE_SIZE) ;
     /// @brief destructeur de la classe BoxFinish
     ~BoxFinish();
     /// @brief fonction qui permet de renvoyer la box de fin

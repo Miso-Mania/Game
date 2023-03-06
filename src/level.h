@@ -27,11 +27,11 @@ public:
     /// @brief fonction qui permet de récupérer les pics
     vector<Pic*> getPics();
     /// @brief fonction qui permet d'ajouter une box de fin
-    void addBoxFinish(int x, int y);
+    void addBoxFinish(int x, int y, int TILE_SIZE);
     /// @brief fonction qui permet de récupérer les box de fin
     vector<BoxFinish*> getBoxFinish();
     /// @brief fonction qui permet d'ajouter un tree
-    void addTree(int x, int y, int width, int height);
+    void addTree(int x, int y, int TILE_SIZE);
     /// @brief fonction qui permet de récupérer les trees
     vector<Tree*> getTrees();
     /// @brief fonction qui permet de charger un niveau, depuis un fichier JSON

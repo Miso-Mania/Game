@@ -36,8 +36,8 @@ vector<Pic*> Level::getPics() {
     return m_pics;
 }
 
-void Level::addBoxFinish(int x, int y) {
-    BoxFinish* box = new BoxFinish(x, y);
+void Level::addBoxFinish(int x, int y, int TILE_SIZE) {
+    BoxFinish* box = new BoxFinish(x, y, TILE_SIZE);
     m_BoxFinish.push_back(box);
 }
 
@@ -45,8 +45,8 @@ vector<BoxFinish*> Level::getBoxFinish() {
     return m_BoxFinish;
 }
 
-void Level::addTree(int x, int y, int width, int height) {
-    Tree* tree = new Tree(x, y);
+void Level::addTree(int x, int y, int TILE_SIZE) {
+    Tree* tree = new Tree(x, y, TILE_SIZE );
     m_trees.push_back(tree);
 }
 
@@ -84,15 +84,13 @@ void Level::loadFromJSON(string filename, int TILE_SIZE) {
     for (auto& element : j["BoxFinish"]) {
         int x = element["x"];
         int y = element["y"];
-        addBoxFinish(x, y);
+        addBoxFinish(x, y, TILE_SIZE);
         cout << "BoxFinish: " << x << ", " << y << endl;
     }
     for (auto& element : j["trees"]) {
         int x = element["x"];
         int y = element["y"];
-        int width = element["width"];
-        int height = element["height"];
-        addTree(x, y, width, height);
+        addTree(x, y, TILE_SIZE);
         cout << "Un arbre de planté ici: " << x << ", " << y << endl;
     }
 }
