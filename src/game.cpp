@@ -30,7 +30,6 @@ Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0)
     int width, height;
     SDL_GetWindowSize(m_window, &width, &height);
     const int TILE_SIZE_X = width / NUM_TILES_X;
-    const int TILE_SIZE_Y = height / NUM_TILES_Y;
 
     
     printf("Window size: %dx%d\n", width, height);
