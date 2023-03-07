@@ -1,5 +1,5 @@
 #include "player.h"
-
+#include <iostream>
 Player::Player(): m_coords(3, 15, 0.8, 0.8), m_rect({100, 600, 32, 32}), m_yVelocity(0), m_direction(PlayerDirection::NONE) {
 }
 
@@ -33,7 +33,7 @@ void Player::gravity(double delta) {
 bool Player::collidesWith(Obstacle *obstacle) {
     Coords o_coords = obstacle->getCoords();
     if (m_coords.x + m_coords.w >= o_coords.x && m_coords.x <= o_coords.x + o_coords.w) {
-        if (m_coords.y + m_coords.h >= o_coords.y -7  && m_coords.y <= o_coords.y + o_coords.h) {
+        if (m_coords.y + m_coords.h >= o_coords.y  && m_coords.y <= o_coords.y + o_coords.h) {
             return true;
         }
     }
@@ -43,9 +43,9 @@ bool Player::collidesWith(Obstacle *obstacle) {
 }
 
 bool Player::collidesWith(Pic *pic) {
-    SDL_Rect picRect = pic->getRect();
-    if (m_coords.x + m_coords.w > picRect.x && m_coords.x < picRect.x + picRect.w) {
-        if (m_coords.y + m_coords.h > picRect.y && m_coords.y < picRect.y + picRect.h) {
+    Coords p_coords = pic->getCoords();
+    if (m_coords.x + m_coords.w > p_coords.x && m_coords.x < p_coords.x + p_coords.w) {
+        if (m_coords.y + m_coords.h > p_coords.y && m_coords.y < p_coords.y + p_coords.h) {
             return true;
         }
     }
@@ -54,8 +54,8 @@ bool Player::collidesWith(Pic *pic) {
 
 bool Player::collidesWith(DoubleJumpPort *DoubleJumpPort){
     SDL_Rect DoubleJumpPortRect= DoubleJumpPort->getRect();
-    if (phX + m_rect.w > DoubleJumpPortRect.x && phX < DoubleJumpPortRect.x + DoubleJumpPortRect.w) {
-        if (phY + m_rect.h > DoubleJumpPortRect.y && phY < DoubleJumpPortRect.y + DoubleJumpPortRect.h) {
+    if (m_coords.x + m_coords.w > DoubleJumpPortRect.x && m_coords.x < DoubleJumpPortRect.x + DoubleJumpPortRect.w) {
+        if (m_coords.y + m_coords.h > DoubleJumpPortRect.y && m_coords.y < DoubleJumpPortRect.y + DoubleJumpPortRect.h) {
             return true;
         }
     }
@@ -65,11 +65,11 @@ bool Player::collidesWith(DoubleJumpPort *DoubleJumpPort){
 
 void Player::moveOutOf(Obstacle *obstacle){
     Coords o_coords = obstacle->getCoords();
-    int intoTop = m_coords.y + m_coords.h - o_coords.y;
-    int intoBottom = o_coords.y + o_coords.h - m_coords.y;
-    int intoLeft = m_coords.x + m_coords.w - o_coords.x;
-    int intoRight = o_coords.x + o_coords.w - m_coords.x;
-    if (intoTop < intoBottom && intoTop < intoLeft && intoTop < intoRight && intoTop > 0) {
+    double intoTop = m_coords.y + m_coords.h - o_coords.y;
+    double intoBottom = o_coords.y + o_coords.h - m_coords.y;
+    double intoLeft = m_coords.x + m_coords.w - o_coords.x;
+    double intoRight = o_coords.x + o_coords.w - m_coords.x;
+    if (intoTop < intoBottom && intoTop < intoLeft && intoTop < intoRight) {
         m_coords.y -= intoTop;
         stopGravity();
         haveJumped = false;
@@ -133,8 +133,8 @@ void Player::moveTo(double x, double y){
 }
 
 void Player::updateRect(){
-    m_rect.x = m_coords.x;
-    m_rect.y = m_coords.y;
+    m_rect.x = m_coords.x * 40;
+    m_rect.y = m_coords.y * 40;
 }
 
 
