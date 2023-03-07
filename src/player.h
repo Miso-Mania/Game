@@ -6,6 +6,7 @@
 #include "playerdirection.h"
 #include "objets/pic.h"
 #include "objets/BoxFinish.h"
+#include "objets/DoubleJumpPort.h"
 
 
 class Player {
@@ -24,6 +25,8 @@ public:
     bool collidesWith(Obstacle *obstacle);
     /// @brief fonction qui permet de savoir si le joueur est en collision avec une pic
     bool collidesWith(Pic *pic);
+    /// @brief fonction qui permet de soivoir si le joeur est en collision avec le doublejumpport
+    bool collidesWith(DoubleJumpPort *doubleJumpPort);
     /// @brief fonction qui permet de repousse le joueur si il est en collision avec un obstacle
     void moveOutOf(Obstacle *obstacle);
     /// @brief fonction qui permet de set la direction du joueur
