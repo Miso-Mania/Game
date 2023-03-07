@@ -50,7 +50,8 @@ Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0)
     m_surface_S_Plateform = IMG_Load("assets/textures/nkm.png");
     m_texture_S_Plateform = SDL_CreateTextureFromSurface(m_renderer, m_surface_S_Plateform);
 
-    
+    m_surface_DoubleJumpPort= IMG_Load("assets/textures/rondvert.png");
+    m_texture_DoubleJumpPort= SDL_CreateTextureFromSurface(m_renderer, m_surface_DoubleJumpPort);
 
     Level *level = new Level();
     //we add the ground
@@ -85,6 +86,12 @@ Game::~Game()
 
     SDL_FreeSurface(m_surface_Trees);
     SDL_DestroyTexture(m_texture_Trees);
+
+    SDL_FreeSurface(m_surface_DoubleJumpPort);
+    SDL_DestroyTexture(m_texture_DoubleJumpPort);
+
+    SDL_FreeSurface(m_surface_BoxFinish);
+    SDL_DestroyTexture(m_texture_BoxFinish);
 
     SDL_FreeSurface(m_surface_S_Plateform);
     SDL_DestroyTexture(m_texture_S_Plateform);
@@ -173,7 +180,7 @@ void Game::update(double delta)
     // perte si le joeur sort de l'écran
     if (m_player.getRect().y > window_Y_size)
     {
-        m_player.setRect({100, 600, 32, 32});
+        m_player.moveTo(100, 600);
         timer = 0;
     }
 
@@ -182,7 +189,7 @@ void Game::update(double delta)
     {
         cout << "temps : "  << timer << "s" << endl;
         m_currentLevel++;
-        m_player.setRect({100, 600, 32, 32});
+        m_player.moveTo(100, 600);
     }
     // Mise à jour de la position des obstacles
     for (Obstacle *obstacle : m_levels[m_currentLevel]->getObstacles())
@@ -194,6 +201,11 @@ void Game::update(double delta)
     {
         pic->move(delta);
     }
+    // Mise à jour de la position des doublejumpport
+    for (DoubleJumpPort *doublejumpport : m_levels[m_currentLevel]->getDoubleJumpPort())
+    {
+        doublejumpport->move(delta);
+    }
     // Collision du joueur avec les pics stop la partie
     for (Pic *pic : m_levels[m_currentLevel]->getPics())
     {
@@ -204,11 +216,21 @@ void Game::update(double delta)
             timer = 0;
         }
     }
+    // Collision du joueur avec les doublejumpport fait un double saut
+    for (DoubleJumpPort *doublejumpport : m_levels[m_currentLevel]->getDoubleJumpPort())
+    {
+        if (m_player.collidesWith(doublejumpport))
+        {
+            m_player.doubleJump();
+        }
+    }
     // Mise à jour du niveau
     if (m_levels[m_currentLevel]->getObstacles().size() == 0)
     {
         m_currentLevel++;
     }
+
+    m_player.updateRect();
 }
 
 void Game::render()
@@ -254,6 +276,12 @@ void Game::render()
     {
         SDL_Rect picRect = pic->getRect();
         SDL_RenderCopy(m_renderer, m_texture_pic, NULL, &picRect);
+    }
+    // Dessin des doublejumpport
+    for (DoubleJumpPort *doublejumpport : m_levels[m_currentLevel]->getDoubleJumpPort())
+    {
+        SDL_Rect doublejumpportRect = doublejumpport->getRect();
+        SDL_RenderCopy(m_renderer, m_texture_DoubleJumpPort, NULL, &doublejumpportRect);
     }
     // Dessin de la fin du niveau
     SDL_SetRenderDrawColor(m_renderer, 125, 255, 66, 255);

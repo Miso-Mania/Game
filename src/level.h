@@ -12,6 +12,7 @@
 #include "objets/S_Plateform.h"
 #include "objets/M_Plateform.h"
 #include "objets/L_Plateform.h"
+#include "objets/DoubleJumpPort.h"
 #include "json.hpp"
 
 using json = nlohmann::json;
@@ -39,6 +40,10 @@ public:
     void addTree(int x, int y, int TILE_SIZE);
     /// @brief fonction qui permet de récupérer les trees
     vector<Tree*> getTrees();
+    /// @brief fonction qui permet d'ajouter un doublejumpport
+    void addDoubleJumpPort(int x, int y, int TILE_SIZE);
+    /// @brief fonction qui permet de récupérer les doublejumpport
+    vector<DoubleJumpPort*> getDoubleJumpPort();
     /// @brief fonction qui permet d'ajouter une D_Case
     void addD_Case(int x, int y, int TILE_SIZE);
     /// @brief fonction qui permet de récupérer les D_Case
@@ -80,6 +85,8 @@ private:
     vector<BoxFinish*> m_BoxFinish;
     /// @brief vecteur de trees
     vector<Tree*> m_trees;
+    /// @brief vecteur de doublejumpport
+    vector<DoubleJumpPort*> m_DoubleJumpPort;
     /// @brief vecteur de D_Case
     vector<D_Case*> m_D_Case;
     /// @brief vecteur de Case

@@ -94,7 +94,14 @@ void Level::addL_Plateform(int x, int y, int TILE_SIZE) {
 
 
 
+void Level::addDoubleJumpPort(int x, int y, int TILE_SIZE) {
+    DoubleJumpPort* doublejumpport = new DoubleJumpPort(x, y, TILE_SIZE);
+    m_DoubleJumpPort.push_back(doublejumpport);
+}
 
+vector<DoubleJumpPort*> Level::getDoubleJumpPort() {
+    return m_DoubleJumpPort;
+}
 
 void Level::loadFromJSON(string filename, int TILE_SIZE) {
     cout << "Loading level from " << filename << endl;
@@ -133,6 +140,12 @@ void Level::loadFromJSON(string filename, int TILE_SIZE) {
         addTree(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE);
         cout << "Un arbre de planté ici: " << x << ", " << y << endl;
     }
+    for (auto& element : j["DoubleJumpPort"]) {
+        int x = element["x"];
+        int y = element["y"];
+        addPic(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE);
+        cout << "DoubleJumpPort" << x << ", " << y << endl;
+        }
     for (auto& element : j["Case"]) {
         int x = element["x"];
         int y = element["y"];

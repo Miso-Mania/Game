@@ -6,6 +6,7 @@
 #include "playerdirection.h"
 #include "objets/pic.h"
 #include "objets/BoxFinish.h"
+#include "objets/DoubleJumpPort.h"
 
 
 class Player {
@@ -24,6 +25,8 @@ public:
     bool collidesWith(Obstacle *obstacle);
     /// @brief fonction qui permet de savoir si le joueur est en collision avec une pic
     bool collidesWith(Pic *pic);
+    /// @brief fonction qui permet de soivoir si le joeur est en collision avec le doublejumpport
+    bool collidesWith(DoubleJumpPort *doubleJumpPort);
     /// @brief fonction qui permet de repousse le joueur si il est en collision avec un obstacle
     void moveOutOf(Obstacle *obstacle);
     /// @brief fonction qui permet de set la direction du joueur
@@ -32,6 +35,8 @@ public:
     void stopGravity();
     /// @brief fonction qui permet d'arreter le mouvement du joueur
     void stopMove();
+    /// @brief fonction qui permet au joueur de faire un double saut
+    void doubleJump();
     /// @brief fonction qui permet de connaitre la direction du joueur
     PlayerDirection getDirection();
     /// @brief fonction qui permet de connaitre les coordonnées du joueur
@@ -43,8 +48,13 @@ public:
     //todo : faire la docu ici
     void decJumpBuffer(double delta);
 
+    void moveTo(double x, double y);
+
+    void updateRect();
+
 
 private:
+    double phX, phY;
     /// @brief coordonnées du joueur
     SDL_Rect m_rect;
     /// @brief velocité du joueur
