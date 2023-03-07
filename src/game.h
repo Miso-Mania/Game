@@ -83,6 +83,16 @@ private:
     SDL_Texture *m_texture_L_Plateform;
     /// @brief Surface des L_Plateform
     SDL_Surface *m_surface_L_Plateform;
+
+    /// @brief Texture des cases
+    SDL_Texture *m_texture_Case;
+    /// @brief Surface des cases
+    SDL_Surface *m_surface_Case;
+
+    /// @brief Texture des D_Cases
+    SDL_Texture *m_texture_D_Case;
+    /// @brief Surface des D_Cases
+    SDL_Surface *m_surface_D_Case;
     
 
     Player m_player;
