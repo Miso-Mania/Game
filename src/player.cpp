@@ -93,6 +93,13 @@ void Player::stopMove() {
     m_direction = PlayerDirection::NONE;
 }
 
+void Player::doubleJump() {
+    if (haveJumped) {
+        m_yVelocity = -530;
+        haveJumped = false;
+    }
+}
+
 void Player::setDirection(PlayerDirection direction) {
     m_direction = direction;
 }

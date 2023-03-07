@@ -35,6 +35,8 @@ public:
     void stopGravity();
     /// @brief fonction qui permet d'arreter le mouvement du joueur
     void stopMove();
+    /// @brief fonction qui permet au joueur de faire un double saut
+    void doubleJump();
     /// @brief fonction qui permet de connaitre la direction du joueur
     PlayerDirection getDirection();
     /// @brief fonction qui permet de connaitre les coordonnées du joueur
