@@ -59,6 +59,16 @@ private:
     /// @brief Surface des arbres
     SDL_Surface *m_surface_Trees;
 
+    /// @brief Texture des box
+    SDL_Texture *m_texture_BoxFinish;
+    /// @brief Surface des box
+    SDL_Surface *m_surface_BoxFinish;
+
+    /// @brief Texture des doublejumpport
+    SDL_Texture *m_texture_DoubleJumpPort;
+    /// @brief Surface des doublejumpport
+    SDL_Surface *m_surface_DoubleJumpPort;
+
     Player m_player;
 
     /// @brief vecteur de niveau 
