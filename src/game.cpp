@@ -6,8 +6,8 @@
 const int FPS = 60;
 const int window_X_size = 1900;
 const int window_Y_size = 1068;
-const int NUM_TILES_X = 64;
-const int NUM_TILES_Y = 36;
+const int NUM_TILES_X = 48;
+const int NUM_TILES_Y = 27;
 
 
 
@@ -30,9 +30,8 @@ Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0)
     int width, height;
     SDL_GetWindowSize(m_window, &width, &height);
     cout << "width " << width << endl;
-    const int TILE_SIZE = width / NUM_TILES_Y;
+    const int TILE_SIZE = width / NUM_TILES_X;
     cout << "TILE_SIZE: " << TILE_SIZE << endl;
-
     m_surface_player = IMG_Load("assets/textures/icon.png");
     m_texture_player = SDL_CreateTextureFromSurface(m_renderer, m_surface_player);
 
