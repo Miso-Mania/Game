@@ -56,6 +56,12 @@ Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0)
     m_surface_L_Plateform = IMG_Load("assets/textures/L_Plateform.png");
     m_texture_L_Plateform = SDL_CreateTextureFromSurface(m_renderer, m_surface_L_Plateform);
 
+    m_surface_Case = IMG_Load("assets/textures/Brick_Block.png");
+    m_texture_Case = SDL_CreateTextureFromSurface(m_renderer, m_surface_Case);
+
+    m_surface_D_Case = IMG_Load("assets/textures/kanye.png");
+    m_texture_D_Case = SDL_CreateTextureFromSurface(m_renderer, m_surface_D_Case);
+
 
 
     Level *level = new Level();
@@ -106,6 +112,12 @@ Game::~Game()
 
     SDL_FreeSurface(m_surface_L_Plateform);
     SDL_DestroyTexture(m_texture_L_Plateform);
+
+    SDL_FreeSurface(m_surface_Case);
+    SDL_DestroyTexture(m_texture_Case);
+
+    SDL_FreeSurface(m_surface_D_Case);
+    SDL_DestroyTexture(m_texture_D_Case);
 
 
     SDL_Quit();
@@ -275,6 +287,19 @@ void Game::render()
         SDL_Rect L_PlateformRect = L_Plateform->getRect();
         SDL_RenderCopy(m_renderer, m_texture_L_Plateform, NULL, &L_PlateformRect);
     }
+    //affichage des cases:
+    for (Case *Case : m_levels[m_currentLevel]->getCase())
+    {
+        SDL_Rect CaseRect = Case->getRect();
+        SDL_RenderCopy(m_renderer, m_texture_Case, NULL, &CaseRect);
+    }
+    //affichage des D_case:
+    for (D_Case *D_Case : m_levels[m_currentLevel]->getD_Case())
+    {
+        SDL_Rect D_CaseRect = D_Case->getRect();
+        SDL_RenderCopy(m_renderer, m_texture_D_Case, NULL, &D_CaseRect);
+    }
+
      for (Tree *tree : m_levels[m_currentLevel]->getTrees())
     {
         SDL_Rect treeRect = tree->getRect();
