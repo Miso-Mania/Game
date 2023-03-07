@@ -52,6 +52,17 @@ bool Player::collidesWith(Pic *pic) {
     return false;
 }
 
+bool Player::collidesWith(DoubleJumpPort *DoubleJumpPort){
+    SDL_Rect DoubleJumpPortRect= DoubleJumpPort->getRect();
+    if (phX + m_rect.w > DoubleJumpPortRect.x && phX < DoubleJumpPortRect.x + DoubleJumpPortRect.w) {
+        if (phY + m_rect.h > DoubleJumpPortRect.y && phY < DoubleJumpPortRect.y + DoubleJumpPortRect.h) {
+            return true;
+        }
+    }
+    return false;
+
+    }
+
 void Player::moveOutOf(Obstacle *obstacle){
     Coords o_coords = obstacle->getCoords();
     int intoTop = m_coords.y + m_coords.h - o_coords.y;
