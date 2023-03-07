@@ -47,11 +47,16 @@ Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0)
     m_surface_Trees = IMG_Load("assets/textures/tree.png");
     m_texture_Trees = SDL_CreateTextureFromSurface(m_renderer, m_surface_Trees);
 
-    m_surface_S_Plateform = IMG_Load("assets/textures/nkm.png");
+    m_surface_S_Plateform = IMG_Load("assets/textures/S_Plateform.png");
     m_texture_S_Plateform = SDL_CreateTextureFromSurface(m_renderer, m_surface_S_Plateform);
 
-    m_surface_DoubleJumpPort= IMG_Load("assets/textures/rondvert.png");
-    m_texture_DoubleJumpPort= SDL_CreateTextureFromSurface(m_renderer, m_surface_DoubleJumpPort);
+    m_surface_M_Plateform = IMG_Load("assets/textures/M_Plateform.png");
+    m_texture_M_Plateform = SDL_CreateTextureFromSurface(m_renderer, m_surface_M_Plateform);
+
+    m_surface_L_Plateform = IMG_Load("assets/textures/L_Plateform.png");
+    m_texture_L_Plateform = SDL_CreateTextureFromSurface(m_renderer, m_surface_L_Plateform);
+
+
 
     Level *level = new Level();
     //we add the ground
@@ -95,6 +100,13 @@ Game::~Game()
 
     SDL_FreeSurface(m_surface_S_Plateform);
     SDL_DestroyTexture(m_texture_S_Plateform);
+
+    SDL_FreeSurface(m_surface_M_Plateform);
+    SDL_DestroyTexture(m_texture_M_Plateform);
+
+    SDL_FreeSurface(m_surface_L_Plateform);
+    SDL_DestroyTexture(m_texture_L_Plateform);
+
 
     SDL_Quit();
 }
@@ -253,7 +265,16 @@ void Game::render()
         SDL_Rect S_PlateformRect = S_Plateform->getRect();
         SDL_RenderCopy(m_renderer, m_texture_S_Plateform, NULL, &S_PlateformRect);
     }
-
+    for (M_Plateform *M_Plateform : m_levels[m_currentLevel]->getM_Plateform())
+    {
+        SDL_Rect M_PlateformRect = M_Plateform->getRect();
+        SDL_RenderCopy(m_renderer, m_texture_M_Plateform, NULL, &M_PlateformRect);
+    }
+    for (L_Plateform *L_Plateform : m_levels[m_currentLevel]->getL_Plateform())
+    {
+        SDL_Rect L_PlateformRect = L_Plateform->getRect();
+        SDL_RenderCopy(m_renderer, m_texture_L_Plateform, NULL, &L_PlateformRect);
+    }
      for (Tree *tree : m_levels[m_currentLevel]->getTrees())
     {
         SDL_Rect treeRect = tree->getRect();
