@@ -43,8 +43,13 @@ public:
     //todo : faire la docu ici
     void decJumpBuffer(double delta);
 
+    void moveTo(double x, double y);
+
+    void updateRect();
+
 
 private:
+    double phX, phY;
     /// @brief coordonnées du joueur
     SDL_Rect m_rect;
     /// @brief velocité du joueur

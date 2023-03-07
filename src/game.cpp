@@ -167,7 +167,7 @@ void Game::update(double delta)
     // perte si le joeur sort de l'écran
     if (m_player.getRect().y > window_Y_size)
     {
-        m_player.setRect({100, 600, 32, 32});
+        m_player.moveTo(100, 600);
         timer = 0;
     }
 
@@ -176,7 +176,7 @@ void Game::update(double delta)
     {
         cout << "temps : "  << timer << "s" << endl;
         m_currentLevel++;
-        m_player.setRect({100, 600, 32, 32});
+        m_player.moveTo(100, 600);
     }
     // Mise à jour de la position des obstacles
     for (Obstacle *obstacle : m_levels[m_currentLevel]->getObstacles())
@@ -203,6 +203,8 @@ void Game::update(double delta)
     {
         m_currentLevel++;
     }
+
+    m_player.updateRect();
 }
 
 void Game::render()
