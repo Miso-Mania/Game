@@ -1,0 +1,58 @@
+{
+    "id": 87878787878787878,
+    "nom du niveau": "TOTO",
+    "createur": "JUL",
+    "Conventions : laisser minimum 150 entre chaque pic et 100 entre chaque obstacle": "",
+        "pics": [
+            {
+                "x": 0,
+                "y": 0
+            },
+            {
+                "x": 1,
+                "y": 1
+            },
+            {
+                "x": 5,
+                "y": 7
+            },
+            {
+                "x": 7,
+                "y": 27
+            }, 
+            {
+                "x": 8,
+                "y": 26
+            },
+            {
+                "x": 9,
+                "y": 20
+            }
+
+
+        ],
+        "obstacles": [
+            {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0
+            }
+            
+        ],
+        "BoxFinish": [
+            {
+                "x": 5,
+                "y": 2
+            },
+            {
+                "x": 6,
+                "y": 27
+            },
+            {
+                "x": 7,
+                "y": 26
+            }
+        ]
+}
+    

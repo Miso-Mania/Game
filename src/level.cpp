@@ -77,20 +77,20 @@ void Level::loadFromJSON(string filename, int TILE_SIZE) {
     for (auto& element : j["pics"]) {
         int x = element["x"];
         int y = element["y"];
-        addPic(x, y, TILE_SIZE);
+        addPic(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE);
         cout << "Pic: " << x << ", " << y << endl;
         
     }
     for (auto& element : j["BoxFinish"]) {
         int x = element["x"];
         int y = element["y"];
-        addBoxFinish(x, y, TILE_SIZE);
+        addBoxFinish(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE);
         cout << "BoxFinish: " << x << ", " << y << endl;
     }
     for (auto& element : j["trees"]) {
         int x = element["x"];
         int y = element["y"];
-        addTree(x, y, TILE_SIZE);
+        addTree(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE);
         cout << "Un arbre de planté ici: " << x << ", " << y << endl;
     }
 }

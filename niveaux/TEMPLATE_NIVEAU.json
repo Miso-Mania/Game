@@ -2,7 +2,7 @@
     "id": 87878787878787878,
     "nom du niveau": "TOTO",
     "createur": "JUL",
-    "Conventions : laisser minimum 150 entre chaque pic et 100 entre chaque obstacle": "",
+    "Conventions : laisser minimum 150 entre chaque pic et 100 entre chaque obstacle": "SOL : Y = 26" ,
         "pics": [
             {
                 "x": 0,
