@@ -2,11 +2,11 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 
-D_Case::D_Case(int x, int y) {
+D_Case::D_Case(int x, int y, int TILE_SIZE) {
     m_rect.x = x;
     m_rect.y = y;
-    m_rect.w = 2;
-    m_rect.h = 2;
+    m_rect.w = 2 * TILE_SIZE;
+    m_rect.h = 2 * TILE_SIZE;
 }
 
 D_Case::~D_Case() {

@@ -2,11 +2,11 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 
-M_Plateform::M_Plateform(int x, int y) {
+M_Plateform::M_Plateform(int x, int y, int TILE_SIZE) {
     m_rect.x = x;
     m_rect.y = y;
-    m_rect.w = 5;
-    m_rect.h = 1;
+    m_rect.w = 5 * TILE_SIZE;
+    m_rect.h = TILE_SIZE;
 }
 
 M_Plateform::~M_Plateform() {

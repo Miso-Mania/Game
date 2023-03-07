@@ -6,7 +6,7 @@
 class M_Plateform {
 public:
     /// @brief constructeur de la classe M_Plateform, en paramètre les coordonnées de l'M_Plateform
-    M_Plateform(int x, int y);
+    M_Plateform(int x, int y, int TILE_SIZE);
     /// @brief destructeur de la classe M_Plateform
     ~M_Plateform();
     /// @brief fonction qui permet de renvoyer l'M_Plateform

@@ -7,6 +7,11 @@
 #include "objets/BoxFinish.h"
 #include "objets/pic.h"
 #include "objets/tree.h"
+#include "objets/D_Case.h"
+#include "objets/Case.h"
+#include "objets/S_Plateform.h"
+#include "objets/M_Plateform.h"
+#include "objets/L_Plateform.h"
 #include "json.hpp"
 
 using json = nlohmann::json;
@@ -34,6 +39,29 @@ public:
     void addTree(int x, int y, int TILE_SIZE);
     /// @brief fonction qui permet de récupérer les trees
     vector<Tree*> getTrees();
+    /// @brief fonction qui permet d'ajouter une D_Case
+    void addD_Case(int x, int y, int TILE_SIZE);
+    /// @brief fonction qui permet de récupérer les D_Case
+    vector<D_Case*> getD_Case();
+    /// @brief fonction qui permet d'ajouter une Case
+    void addCase(int x, int y, int TILE_SIZE);
+    /// @brief fonction qui permet de récupérer les Case
+    vector<Case*> getCase();
+    /// @brief fonction qui permet d'ajouter une S_Plateform
+    void addS_Plateform(int x, int y, int TILE_SIZE);
+    /// @brief fonction qui permet de récupérer les S_Plateform
+    vector<S_Plateform*> getS_Plateform();
+    /// @brief fonction qui permet d'ajouter une M_Plateform
+    void addM_Plateform(int x, int y, int TILE_SIZE);
+    /// @brief fonction qui permet de récupérer les M_Plateform
+    vector<M_Plateform*> getM_Plateform();
+    /// @brief fonction qui permet d'ajouter une L_Plateform
+    void addL_Plateform(int x, int y, int TILE_SIZE);
+    /// @brief fonction qui permet de récupérer les L_Plateform
+    vector<L_Plateform*> getL_Plateform();
+
+
+
     /// @brief fonction qui permet de charger un niveau, depuis un fichier JSON
     void loadFromJSON(string filePATHandname, int TILE_SIZE);
     /// @brief fonction qui permet de sauvegarder un niveau vers un fichier JSON
@@ -52,6 +80,16 @@ private:
     vector<BoxFinish*> m_BoxFinish;
     /// @brief vecteur de trees
     vector<Tree*> m_trees;
+    /// @brief vecteur de D_Case
+    vector<D_Case*> m_D_Case;
+    /// @brief vecteur de Case
+    vector<Case*> m_Case;
+    /// @brief vecteur de S_Plateform
+    vector<S_Plateform*> m_S_Plateform;
+    /// @brief vecteur de M_Plateform
+    vector<M_Plateform*> m_M_Plateform;
+    /// @brief vecteur de L_Plateform
+    vector<L_Plateform*> m_L_Plateform;
     int get_Tile_Size();
 
 };

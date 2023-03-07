@@ -59,6 +59,22 @@ private:
     /// @brief Surface des arbres
     SDL_Surface *m_surface_Trees;
 
+    /// @brief Texture des S_Plateform
+    SDL_Texture *m_texture_S_Plateform;
+    /// @brief Surface des S_Plateform
+    SDL_Surface *m_surface_S_Plateform;
+
+    /// @brief Texture des M_Plateform
+    SDL_Texture *m_texture_M_Plateform;
+    /// @brief Surface des M_Plateform
+    SDL_Surface *m_surface_M_Plateform;
+
+    /// @brief Texture des L_Plateform
+    SDL_Texture *m_texture_L_Plateform;
+    /// @brief Surface des L_Plateform
+
+    
+
     Player m_player;
 
     /// @brief vecteur de niveau 
