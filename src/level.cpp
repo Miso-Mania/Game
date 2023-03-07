@@ -54,6 +54,46 @@ vector<Tree*> Level::getTrees() {
     return m_trees;
 }
 
+void Level::addD_Case(int x, int y, int TILE_SIZE) {
+    D_Case* d_case = new D_Case(x, y, TILE_SIZE);
+    m_D_Case.push_back(d_case);
+}
+
+vector<D_Case*> Level::getD_Case() {
+    return m_D_Case;
+}
+
+void Level::addCase(int x, int y, int TILE_SIZE) {
+    Case* case_ = new Case(x, y, TILE_SIZE);
+    m_Case.push_back(case_);
+}
+
+vector<Case*> Level::getCase() {
+    return m_Case;
+}
+
+void Level::addS_Plateform(int x, int y, int TILE_SIZE) {
+    S_Plateform* s_plateform = new S_Plateform(x, y, TILE_SIZE);
+    m_S_Plateform.push_back(s_plateform);
+}
+vector<S_Plateform*> Level::getS_Plateform() {
+    return m_S_Plateform;
+}
+void Level::addM_Plateform(int x, int y, int TILE_SIZE) {
+    M_Plateform* m_plateform = new M_Plateform(x, y, TILE_SIZE);
+    m_M_Plateform.push_back(m_plateform);
+}
+vector<M_Plateform*> Level::getM_Plateform() {
+    return m_M_Plateform;
+}
+void Level::addL_Plateform(int x, int y, int TILE_SIZE) {
+    L_Plateform* l_plateform = new L_Plateform(x, y, TILE_SIZE);
+    m_L_Plateform.push_back(l_plateform);
+}
+
+
+
+
 void Level::addDoubleJumpPort(int x, int y, int TILE_SIZE) {
     DoubleJumpPort* doublejumpport = new DoubleJumpPort(x, y, TILE_SIZE);
     m_DoubleJumpPort.push_back(doublejumpport);
@@ -106,6 +146,36 @@ void Level::loadFromJSON(string filename, int TILE_SIZE) {
         addPic(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE);
         cout << "DoubleJumpPort" << x << ", " << y << endl;
         }
+    for (auto& element : j["Case"]) {
+        int x = element["x"];
+        int y = element["y"];
+        addCase(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE);
+        cout << "Une Case de posée ici: " << x << ", " << y << endl;
+    }
+    for (auto& element : j["D_Case"]) {
+        int x = element["x"];
+        int y = element["y"];
+        addD_Case(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE);
+        cout << "Une D_Case de posée ici: " << x << ", " << y << endl;
+    }
+    for (auto& element : j["S_Plateform"]) {
+        int x = element["x"];
+        int y = element["y"];
+        addS_Plateform(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE);
+        cout << "Une S_Plateform de posée ici: " << x << ", " << y << endl;
+    }
+    for (auto& element : j["M_Plateform"]) {
+        int x = element["x"];
+        int y = element["y"];
+        addM_Plateform(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE);
+        cout << "Une M_Plateform de posée ici: " << x << ", " << y << endl;
+    }
+    for (auto& element : j["L_Plateform"]) {
+        int x = element["x"];
+        int y = element["y"];
+        addL_Plateform(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE);
+        cout << "Une M_Plateform de posée ici: " << x << ", " << y << endl;
+    }
 }
 
 void Level::saveToJSON(string filename) {

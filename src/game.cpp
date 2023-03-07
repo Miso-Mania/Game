@@ -47,6 +47,9 @@ Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0)
     m_surface_Trees = IMG_Load("assets/textures/tree.png");
     m_texture_Trees = SDL_CreateTextureFromSurface(m_renderer, m_surface_Trees);
 
+    m_surface_S_Plateform = IMG_Load("assets/textures/nkm.png");
+    m_texture_S_Plateform = SDL_CreateTextureFromSurface(m_renderer, m_surface_S_Plateform);
+
     m_surface_DoubleJumpPort= IMG_Load("assets/textures/rondvert.png");
     m_texture_DoubleJumpPort= SDL_CreateTextureFromSurface(m_renderer, m_surface_DoubleJumpPort);
 
@@ -89,6 +92,9 @@ Game::~Game()
 
     SDL_FreeSurface(m_surface_BoxFinish);
     SDL_DestroyTexture(m_texture_BoxFinish);
+
+    SDL_FreeSurface(m_surface_S_Plateform);
+    SDL_DestroyTexture(m_texture_S_Plateform);
 
     SDL_Quit();
 }
@@ -237,7 +243,18 @@ void Game::render()
 
     SDL_RenderCopy(m_renderer, m_texture_background, NULL, NULL); // Dessin du background
     // Dessin des arbres
-    for (Tree *tree : m_levels[m_currentLevel]->getTrees())
+    for (Case *Case : m_levels[m_currentLevel]->getCase())
+    {
+        SDL_Rect CaseRect = Case->getRect();
+        SDL_RenderCopy(m_renderer, m_texture_Trees, NULL, &CaseRect); //A CHANGER EN METTANT LA TEXTURE DES CASES
+    }
+     for (S_Plateform *S_Plateform : m_levels[m_currentLevel]->getS_Plateform())
+    {
+        SDL_Rect S_PlateformRect = S_Plateform->getRect();
+        SDL_RenderCopy(m_renderer, m_texture_S_Plateform, NULL, &S_PlateformRect);
+    }
+
+     for (Tree *tree : m_levels[m_currentLevel]->getTrees())
     {
         SDL_Rect treeRect = tree->getRect();
         SDL_RenderCopy(m_renderer, m_texture_Trees, NULL, &treeRect);

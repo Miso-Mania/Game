@@ -6,7 +6,7 @@
 class Case {
 public:
     /// @brief constructeur de la classe Case, en paramètre les coordonnées de l'Case
-    Case(int x, int y);
+    Case(int x, int y, int TILE_SIZE);
     /// @brief destructeur de la classe Case
     ~Case();
     /// @brief fonction qui permet de renvoyer l'Case

@@ -6,7 +6,7 @@
 class D_Case {
 public:
     /// @brief constructeur de la classe D_Case, en paramètre les coordonnées de l'D_Case
-    D_Case(int x, int y);
+    D_Case(int x, int y, int TILE_SIZE);
     /// @brief destructeur de la classe D_Case
     ~D_Case();
     /// @brief fonction qui permet de renvoyer l'D_Case

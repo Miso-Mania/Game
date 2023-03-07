@@ -1,4 +1,4 @@
-OBJS = obj/main.o obj/game.o obj/player.o obj/obstacle.o obj/level.o obj/score.o obj/pic.o obj/BoxFinish.o obj/tree.o obj/DoubleJumpPort.o obj/coords.o
+OBJS = obj/main.o obj/game.o obj/player.o obj/obstacle.o obj/level.o obj/score.o obj/pic.o obj/BoxFinish.o obj/tree.o obj/Case.o obj/D_Case.o obj/S_Plateform.o obj/M_Plateform.o obj/L_Plateform.o obj/DoubleJumpPort.o obj/coords.o
 cc = g++
 CFLAGS = -g -Wall -c
 LIBS = -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer 
@@ -11,7 +11,7 @@ dir:
 	mkdir -p bin
 
 bin/jeu : $(OBJS)
-	$(cc) $(Include_Dir_SDL2)  obj/main.o obj/game.o obj/player.o obj/obstacle.o obj/level.o obj/score.o obj/pic.o obj/BoxFinish.o obj/tree.o obj/DoubleJumpPort.o obj/coords.o -o bin/jeu   $(LIBS)
+	$(cc) $(Include_Dir_SDL2)  obj/main.o obj/game.o obj/player.o obj/obstacle.o obj/level.o obj/score.o obj/pic.o obj/BoxFinish.o obj/tree.o obj/Case.o obj/D_Case.o obj/S_Plateform.o obj/M_Plateform.o obj/L_Plateform.o obj/DoubleJumpPort.o obj/coords.o -o bin/jeu   $(LIBS)
 
 obj/player.o  : src/player.cpp src/player.h src/objets/obstacle.h src/playerdirection.h src/objets/pic.h src/coords.h
 	$(cc) $(CFLAGS) $(Include_Dir_SDL2) src/player.cpp -o obj/player.o $(LIBS)
@@ -46,6 +46,20 @@ obj/BoxFinish.o : src/objets/BoxFinish.cpp src/objets/BoxFinish.h
 obj/tree.o : src/objets/tree.cpp src/objets/tree.h
 	$(cc) $(CFLAGS) $(Include_Dir_SDL2) src/objets/tree.cpp -o obj/tree.o $(LIBS)
 
+obj/Case.o : src/objets/Case.cpp src/objets/Case.h
+	$(cc) $(CFLAGS) $(Include_Dir_SDL2) src/objets/Case.cpp -o obj/Case.o $(LIBS)
+
+obj/D_Case.o : src/objets/D_Case.cpp src/objets/D_Case.h
+	$(cc) $(CFLAGS) $(Include_Dir_SDL2) src/objets/D_Case.cpp -o obj/D_Case.o $(LIBS)
+
+obj/S_Plateform.o : src/objets/S_Plateform.cpp src/objets/S_Plateform.h
+	$(cc) $(CFLAGS) $(Include_Dir_SDL2) src/objets/S_Plateform.cpp -o obj/S_Plateform.o $(LIBS)
+
+obj/M_Plateform.o : src/objets/M_Plateform.cpp src/objets/M_Plateform.h
+	$(cc) $(CFLAGS) $(Include_Dir_SDL2) src/objets/M_Plateform.cpp -o obj/M_Plateform.o $(LIBS)
+
+obj/L_Plateform.o : src/objets/L_Plateform.cpp src/objets/L_Plateform.h
+	$(cc) $(CFLAGS) $(Include_Dir_SDL2) src/objets/L_Plateform.cpp -o obj/L_Plateform.o $(LIBS)
 
 clean:
 	rm obj/ bin/ -rf
