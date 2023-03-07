@@ -1,4 +1,4 @@
-OBJS = obj/main.o obj/game.o obj/player.o obj/obstacle.o obj/level.o obj/score.o obj/pic.o obj/BoxFinish.o obj/tree.o 
+OBJS = obj/main.o obj/game.o obj/player.o obj/obstacle.o obj/level.o obj/score.o obj/pic.o obj/BoxFinish.o obj/tree.o obj/DoubleJumpPort.o
 cc = g++
 CFLAGS = -g -Wall -c
 LIBS = -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer 
@@ -11,13 +11,16 @@ dir:
 	mkdir -p bin
 
 bin/jeu : $(OBJS)
-	$(cc) $(Include_Dir_SDL2)  obj/main.o obj/game.o obj/player.o obj/obstacle.o obj/level.o obj/score.o obj/pic.o obj/BoxFinish.o obj/tree.o -o bin/jeu   $(LIBS)
+	$(cc) $(Include_Dir_SDL2)  obj/main.o obj/game.o obj/player.o obj/obstacle.o obj/level.o obj/score.o obj/pic.o obj/BoxFinish.o obj/tree.o obj/DoubleJumpPort.o -o bin/jeu   $(LIBS)
 
 obj/player.o  : src/player.cpp src/player.h src/objets/obstacle.h src/playerdirection.h src/objets/pic.h
 	$(cc) $(CFLAGS) $(Include_Dir_SDL2) src/player.cpp -o obj/player.o $(LIBS)
 
 obj/obstacle.o : src/objets/obstacle.cpp src/objets/obstacle.h
 	$(cc) $(CFLAGS) $(Include_Dir_SDL2) src/objets/obstacle.cpp -o obj/obstacle.o $(LIBS)
+
+obj/DoubleJumpPort.o: src/objets/DoubleJumpPort.cpp src/objets/DoubleJumpPort.h 
+	$(cc) $(CFLAGS) $(Include_Dir_SDL2) src/objets/DoubleJumpPort.cpp -o obj/DoubleJumpPort.o $(LIBS)
 
 obj/game.o : src/game.cpp src/game.h src/level.h src/player.h src/objets/obstacle.h src/playerdirection.h src/objets/pic.h src/json.hpp
 	$(cc) $(CFLAGS) $(Include_Dir_SDL2)  src/game.cpp -o obj/game.o $(LIBS)
