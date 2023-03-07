@@ -90,7 +90,9 @@ void Level::addL_Plateform(int x, int y, int TILE_SIZE) {
     L_Plateform* l_plateform = new L_Plateform(x, y, TILE_SIZE);
     m_L_Plateform.push_back(l_plateform);
 }
-
+vector<L_Plateform*> Level::getL_Plateform() {
+    return m_L_Plateform;
+}
 
 
 

@@ -82,7 +82,7 @@ private:
     /// @brief Texture des L_Plateform
     SDL_Texture *m_texture_L_Plateform;
     /// @brief Surface des L_Plateform
-
+    SDL_Surface *m_surface_L_Plateform;
     
 
     Player m_player;
