@@ -54,7 +54,14 @@ vector<Tree*> Level::getTrees() {
     return m_trees;
 }
 
+void Level::addDoubleJumpPort(int x, int y, int TILE_SIZE) {
+    DoubleJumpPort* doublejumpport = new DoubleJumpPort(x, y, TILE_SIZE);
+    m_DoubleJumpPort.push_back(doublejumpport);
+}
 
+vector<DoubleJumpPort*> Level::getDoubleJumpPort() {
+    return m_DoubleJumpPort;
+}
 
 void Level::loadFromJSON(string filename, int TILE_SIZE) {
     cout << "Loading level from " << filename << endl;
