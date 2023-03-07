@@ -7,6 +7,7 @@
 #include "objets/BoxFinish.h"
 #include "objets/pic.h"
 #include "objets/tree.h"
+#include "objets/DoubleJumpPort.h"
 #include "json.hpp"
 
 using json = nlohmann::json;
@@ -34,6 +35,10 @@ public:
     void addTree(int x, int y, int TILE_SIZE);
     /// @brief fonction qui permet de récupérer les trees
     vector<Tree*> getTrees();
+    /// @brief fonction qui permet d'ajouter un doublejumpport
+    void addDoubleJumpPort(int x, int y, int TILE_SIZE);
+    /// @brief fonction qui permet de récupérer les doublejumpport
+    vector<DoubleJumpPort*> getDoubleJumpPort();
     /// @brief fonction qui permet de charger un niveau, depuis un fichier JSON
     void loadFromJSON(string filePATHandname, int TILE_SIZE);
     /// @brief fonction qui permet de sauvegarder un niveau vers un fichier JSON
@@ -52,6 +57,8 @@ private:
     vector<BoxFinish*> m_BoxFinish;
     /// @brief vecteur de trees
     vector<Tree*> m_trees;
+    /// @brief vecteur de doublejumpport
+    vector<DoubleJumpPort*> m_DoubleJumpPort;
     int get_Tile_Size();
 
 };
