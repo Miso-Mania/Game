@@ -1,6 +1,6 @@
 #include "player.h"
 
-Player::Player(): phX(100), phY(600), m_rect({100, 600, 32, 32}), m_yVelocity(0), m_direction(PlayerDirection::NONE) {
+Player::Player(): m_coords(3, 15, 0.8, 0.8), m_rect({100, 600, 32, 32}), m_yVelocity(0), m_direction(PlayerDirection::NONE) {
 }
 
 Player::~Player() {
@@ -8,9 +8,9 @@ Player::~Player() {
 
 void Player::move(double delta) {
     if (m_direction == PlayerDirection::LEFT) {
-        phX -= 200 * delta;
+        m_coords.x -= 5 * delta;
     } else if (m_direction == PlayerDirection::RIGHT) {
-        phX += 200 * delta;
+        m_coords.x += 5 * delta;
     }
 }
 // saute
@@ -18,7 +18,7 @@ void Player::move(double delta) {
 // le joeur ne peut pas sauter si il n'est pas sur le sol
 void Player::jump() {
     if (!haveJumped && timeSinceTouchGround < 0.2) {
-        m_yVelocity = -530;
+        m_yVelocity = -13;
         haveJumped = true;
     } else {
         jumpBuffer = 0.1;
@@ -26,14 +26,14 @@ void Player::jump() {
 }
 
 void Player::gravity(double delta) {
-    m_yVelocity += 1000 * delta;
-   phY += m_yVelocity * delta;
+    m_yVelocity += 25 * delta;
+   m_coords.y += m_yVelocity * delta;
 }
 
 bool Player::collidesWith(Obstacle *obstacle) {
-    SDL_Rect obstacleRect = obstacle->getRect();
-    if (phX + m_rect.w >= obstacleRect.x && phX <= obstacleRect.x + obstacleRect.w) {
-        if (phY + m_rect.h >= obstacleRect.y -7  && phY <= obstacleRect.y + obstacleRect.h) {
+    Coords o_coords = obstacle->getCoords();
+    if (m_coords.x + m_coords.w >= o_coords.x && m_coords.x <= o_coords.x + o_coords.w) {
+        if (m_coords.y + m_coords.h >= o_coords.y -7  && m_coords.y <= o_coords.y + o_coords.h) {
             return true;
         }
     }
@@ -44,8 +44,8 @@ bool Player::collidesWith(Obstacle *obstacle) {
 
 bool Player::collidesWith(Pic *pic) {
     SDL_Rect picRect = pic->getRect();
-    if (phX + m_rect.w > picRect.x && phX < picRect.x + picRect.w) {
-        if (phY + m_rect.h > picRect.y && phY < picRect.y + picRect.h) {
+    if (m_coords.x + m_coords.w > picRect.x && m_coords.x < picRect.x + picRect.w) {
+        if (m_coords.y + m_coords.h > picRect.y && m_coords.y < picRect.y + picRect.h) {
             return true;
         }
     }
@@ -53,13 +53,13 @@ bool Player::collidesWith(Pic *pic) {
 }
 
 void Player::moveOutOf(Obstacle *obstacle){
-    SDL_Rect obstacleRect = obstacle->getRect();
-    int intoTop = phY + m_rect.h - obstacleRect.y;
-    int intoBottom = obstacleRect.y + obstacleRect.h - phY;
-    int intoLeft = phX + m_rect.w - obstacleRect.x;
-    int intoRight = obstacleRect.x + obstacleRect.w - phX;
+    Coords o_coords = obstacle->getCoords();
+    int intoTop = m_coords.y + m_coords.h - o_coords.y;
+    int intoBottom = o_coords.y + o_coords.h - m_coords.y;
+    int intoLeft = m_coords.x + m_coords.w - o_coords.x;
+    int intoRight = o_coords.x + o_coords.w - m_coords.x;
     if (intoTop < intoBottom && intoTop < intoLeft && intoTop < intoRight && intoTop > 0) {
-        phY -= intoTop;
+        m_coords.y -= intoTop;
         stopGravity();
         haveJumped = false;
         timeSinceTouchGround = 0;
@@ -68,12 +68,12 @@ void Player::moveOutOf(Obstacle *obstacle){
             jumpBuffer = 0;
         }
     } else if (intoBottom < intoTop && intoBottom < intoLeft && intoBottom < intoRight) {
-        phY += intoBottom + 1;
+        m_coords.y += intoBottom + 1;
         stopGravity();
     } else if (intoLeft < intoTop && intoLeft < intoBottom && intoLeft < intoRight) {
-        phX -= intoLeft;
+        m_coords.x -= intoLeft;
     } else if (intoRight < intoTop && intoRight < intoBottom && intoRight < intoLeft) {
-        phX += intoRight;
+        m_coords.x += intoRight;
     }
 }
 
@@ -117,13 +117,13 @@ void Player::setRect(SDL_Rect rect) {
 }
 
 void Player::moveTo(double x, double y){
-    phX = x;
-    phY = y;
+    m_coords.x = x;
+    m_coords.y = y;
 }
 
 void Player::updateRect(){
-    m_rect.x = phX;
-    m_rect.y = phY;
+    m_rect.x = m_coords.x;
+    m_rect.y = m_coords.y;
 }
 
 
