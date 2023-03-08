@@ -94,8 +94,6 @@ vector<L_Plateform*> Level::getL_Plateform() {
     return m_L_Plateform;
 }
 
-
-
 void Level::addDoubleJumpPort(int x, int y, int TILE_SIZE) {
     DoubleJumpPort* doublejumpport = new DoubleJumpPort(x, y, TILE_SIZE);
     m_DoubleJumpPort.push_back(doublejumpport);
@@ -156,8 +154,8 @@ void Level::loadFromJSON(string filename, int TILE_SIZE) {
     for (auto& element : j["DoubleJumpPort"]) {
         int x = element["x"];
         int y = element["y"];
-        addPic(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE);
-        cout << "DoubleJumpPort" << x << ", " << y << endl;
+        addDoubleJumpPort   (x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE);
+        cout << "DoubleJumpPort posé ici :" << x << ", " << y << endl;
         }
     for (auto& element : j["Case"]) {
         int x = element["x"];
