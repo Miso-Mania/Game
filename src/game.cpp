@@ -17,6 +17,8 @@ Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0)
     std::cout << "Select the level that you want to load" << std::endl;
     std::cout << "1: level1" << std::endl;
     std::cout << "2: level2" << std::endl;
+    std::cout << "3: Debug Level" << std::endl;
+    
     int levelnumber;
     std::cin >> levelnumber;
     std::cout << "You selected level " << levelnumber << std::endl;
@@ -24,9 +26,11 @@ Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0)
     // Initialisation de SDL
     SDL_Init(SDL_INIT_VIDEO);
     IMG_Init(IMG_INIT_PNG);
+    std::cout << "SDL initialized" << std::endl;
     // on créé une fenetre  de 1920*1080, fullscreen et on la rend visible
     m_window = SDL_CreateWindow("Game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, window_X_size, window_Y_size, SDL_WINDOW_FULLSCREEN);
     m_renderer = SDL_CreateRenderer(m_window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+    std::cout << "Window created" << std::endl;
     int width, height;
     SDL_GetWindowSize(m_window, &width, &height);
     cout << "width " << width << endl;
@@ -65,6 +69,8 @@ Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0)
     m_surface_DoubleJumpPort = IMG_Load("assets/textures/nkm.png");
     m_texture_DoubleJumpPort = SDL_CreateTextureFromSurface(m_renderer, m_surface_DoubleJumpPort);
 
+    std::cout << "textures loaded" << endl;
+
 
 
     Level *level = new Level();
@@ -77,7 +83,9 @@ Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0)
     m_levels.push_back(level);
     // Chargement du joueur
     m_player = Player();
+    std::cout << "player created" << endl;
     timer = 0;
+    std::cout << "timer created" << endl;
 }
 
 Game::~Game()
