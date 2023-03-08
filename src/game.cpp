@@ -56,7 +56,7 @@ Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0)
     m_surface_L_Plateform = IMG_Load("assets/textures/L_Plateform.png");
     m_texture_L_Plateform = SDL_CreateTextureFromSurface(m_renderer, m_surface_L_Plateform);
 
-    m_surface_Case = IMG_Load("assets/textures/block-brick.png");
+    m_surface_Case = IMG_Load("assets/textures/block-big.png");
     m_texture_Case = SDL_CreateTextureFromSurface(m_renderer, m_surface_Case);
 
     m_surface_D_Case = IMG_Load("assets/textures/big-crate.png");
@@ -270,7 +270,7 @@ void Game::render()
     for (Case *Case : m_levels[m_currentLevel]->getCase())
     {
         SDL_Rect CaseRect = Case->getRect();
-        SDL_RenderCopy(m_renderer, m_texture_Trees, NULL, &CaseRect); //A CHANGER EN METTANT LA TEXTURE DES CASES
+        SDL_RenderCopy(m_renderer, m_texture_Case, NULL, &CaseRect); //A CHANGER EN METTANT LA TEXTURE DES CASES
     }
      for (S_Plateform *S_Plateform : m_levels[m_currentLevel]->getS_Plateform())
     {
