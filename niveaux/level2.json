@@ -3,17 +3,33 @@
     "nom du niveau": "level2",
     "createur": "JUL",
     "Conventions : laisser minimum 150 entre chaque pic et 100 entre chaque obstacle": "",
-        "pics": [
-            
 
+    
+        "L_Plateform": [
+            {
+                "x": 12,
+                "y": 20
+            }
         ],
-        "obstacles": [
-            
+
+        "M_Plateform": [
+            {
+                "x": 22,
+                "y": 20
+            }
         ],
+
+        "S_Plateform": [
+            {
+                "x": 30,
+                "y": 20
+            }
+        ],
+
         "BoxFinish": [
             {
-                "x": 20,
-                "y": 32
+                "x": 40,
+                "y": 20
             }
         ]
 }

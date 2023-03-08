@@ -31,13 +31,6 @@
 
 
         ],
-        "S_Plateform": [
-            {
-                "x": 12,
-                "y": 26
-            }
-        ],
-        
         "BoxFinish": [
             {
                 "x": 5,
@@ -65,9 +58,24 @@
         "L_Plateform": [
             {
                 "x": 12,
-                "y": 22
+                "y": 20
             }
         ],
+
+        "M_Plateform": [
+            {
+                "x": 22,
+                "y": 20
+            }
+        ],
+
+        "S_Plateform": [
+            {
+                "x": 30,
+                "y": 20
+            }
+        ],
+
         "DoubleJumpPort": [
             {
                 "x": 12,

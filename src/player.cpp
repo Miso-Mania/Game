@@ -44,8 +44,8 @@ bool Player::collidesWith(Obstacle *obstacle) {
 
 bool Player::collidesWith(S_Plateform *S_Plateform) {
     SDL_Rect S_PlateformRect= S_Plateform->getRect();
-    if (m_coords.x + m_coords.w >= S_PlateformRect.x && m_coords.x <= S_PlateformRect.x + S_PlateformRect.w) {
-        if (m_coords.y + m_coords.h >= S_PlateformRect.y && m_coords.y <= S_PlateformRect.y + S_PlateformRect.h) {
+    if (m_coords.x + m_coords.w > S_PlateformRect.x && m_coords.x < S_PlateformRect.x + S_PlateformRect.w) {
+        if (m_coords.y + m_coords.h > S_PlateformRect.y && m_coords.y < S_PlateformRect.y + S_PlateformRect.h) {
             return true;
         }
     }
@@ -54,8 +54,8 @@ bool Player::collidesWith(S_Plateform *S_Plateform) {
 
 bool Player::collidesWith(M_Plateform *M_Plateform) {
     SDL_Rect M_PlateformRect= M_Plateform->getRect();
-    if (m_coords.x + m_coords.w >= M_PlateformRect.x && m_coords.x <= M_PlateformRect.x + M_PlateformRect.w) {
-        if (m_coords.y + m_coords.h >= M_PlateformRect.y && m_coords.y <= M_PlateformRect.y + M_PlateformRect.h) {
+    if (m_coords.x + m_coords.w > M_PlateformRect.x && m_coords.x < M_PlateformRect.x + M_PlateformRect.w) {
+        if (m_coords.y + m_coords.h > M_PlateformRect.y && m_coords.y < M_PlateformRect.y + M_PlateformRect.h) {
             return true;
         }
     }
@@ -64,18 +64,18 @@ bool Player::collidesWith(M_Plateform *M_Plateform) {
 
 bool Player::collidesWith(L_Plateform *L_Plateform) {
     SDL_Rect L_PlateformRect= L_Plateform->getRect();
-    if (m_coords.x + m_coords.w >= L_PlateformRect.x && m_coords.x <= L_PlateformRect.x + L_PlateformRect.w) {
-        if (m_coords.y + m_coords.h >= L_PlateformRect.y && m_coords.y <= L_PlateformRect.y + L_PlateformRect.h) {
+    if (m_coords.x + m_coords.w > L_PlateformRect.x && m_coords.x < L_PlateformRect.x + L_PlateformRect.w) {
+        if (m_coords.y + m_coords.h > L_PlateformRect.y && m_coords.y < L_PlateformRect.y + L_PlateformRect.h) {
             return true;
         }
     }
     return false;
 }
 
-bool Player::collidesWith(Pic *pic) {
-    Coords p_coords = pic->getCoords();
-    if (m_coords.x + m_coords.w > p_coords.x && m_coords.x < p_coords.x + p_coords.w) {
-        if (m_coords.y + m_coords.h > p_coords.y && m_coords.y < p_coords.y + p_coords.h) {
+bool Player::collidesWith(Pic *Pic) {
+    SDL_Rect PicRect= Pic->getRect();
+    if (m_coords.x + m_coords.w > PicRect.x && m_coords.x < PicRect.x + PicRect.w) {
+        if (m_coords.y + m_coords.h > PicRect.y && m_coords.y < PicRect.y + PicRect.h) {
             return true;
         }
     }

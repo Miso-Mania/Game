@@ -215,7 +215,7 @@ void Game::update(double delta)
     // perte si le joeur sort de l'écran
     if (m_player.getRect().y > window_Y_size)
     {
-        m_player.moveTo(100, 600);
+        m_player.moveTo(3, 15);
         timer = 0;
     }
 
@@ -227,8 +227,7 @@ void Game::update(double delta)
             m_player.moveOutOf(s_plateform);
             // m_player.stopMove();
         }
-    }
-
+    }   
     // Collision du joueur avec la M_Plateformes stop la gravité et évite de traverser les obstacles
     for (M_Plateform *m_plateform : m_levels[m_currentLevel]->getM_Plateform())
     {
@@ -238,7 +237,6 @@ void Game::update(double delta)
             // m_player.stopMove();
         }
     }
-
     // Collision du joueur avec la L_Plateformes stop la gravité et évite de traverser les obstacles
     for (L_Plateform *l_plateform : m_levels[m_currentLevel]->getL_Plateform())
     {
@@ -254,7 +252,7 @@ void Game::update(double delta)
     {
         cout << "temps : "  << timer << "s" << endl;
         m_currentLevel++;
-        m_player.moveTo(100, 600);
+        m_player.moveTo(3, 15);
     }
     // Mise à jour de la position des obstacles
     for (Obstacle *obstacle : m_levels[m_currentLevel]->getObstacles())
@@ -291,8 +289,7 @@ void Game::update(double delta)
     {
         if (m_player.collidesWith(pic))
         {
-            m_currentLevel = 0;
-            m_player = Player();
+            m_player.moveTo(3, 15);
             timer = 0;
         }
     }
