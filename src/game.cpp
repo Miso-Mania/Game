@@ -237,7 +237,7 @@ void Game::update(double delta)
             // m_player.stopMove();
         }
     }
-    
+
     // le joueur gagne si il arrive entre y=0 et y=138 et x<0
     if (m_player.getRect().y < 138 && m_player.getRect().x < 0)
     {
@@ -249,6 +249,21 @@ void Game::update(double delta)
     for (Obstacle *obstacle : m_levels[m_currentLevel]->getObstacles())
     {
         obstacle->move(delta);
+    }
+    // Mise à jour de la position des S_Plateform
+    for (S_Plateform *s_plateform : m_levels[m_currentLevel]->getS_Plateform())
+    {
+        s_plateform->move(delta);
+    }
+    // Mise à jour de la position des M_Plateform
+    for (M_Plateform *m_plateform : m_levels[m_currentLevel]->getM_Plateform())
+    {
+        m_plateform->move(delta);
+    }
+    // Mise à jour de la position des L_Plateform
+    for (L_Plateform *l_plateform : m_levels[m_currentLevel]->getL_Plateform())
+    {
+        l_plateform->move(delta);
     }
     // Mise à jour de la position des pics
     for (Pic *pic : m_levels[m_currentLevel]->getPics())
