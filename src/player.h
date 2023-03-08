@@ -7,13 +7,10 @@
 #include "objets/pic.h"
 #include "objets/BoxFinish.h"
 #include "objets/DoubleJumpPort.h"
-<<<<<<< HEAD
 #include "coords.h"
-=======
 #include "objets/S_Plateform.h"
 #include "objets/M_Plateform.h"
 #include "objets/L_Plateform.h"
->>>>>>> fad37ba (bool collition différente plateforme)
 
 
 class Player {
