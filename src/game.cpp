@@ -56,10 +56,10 @@ Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0)
     m_surface_L_Plateform = IMG_Load("assets/textures/L_Plateform.png");
     m_texture_L_Plateform = SDL_CreateTextureFromSurface(m_renderer, m_surface_L_Plateform);
 
-    m_surface_Case = IMG_Load("assets/textures/Brick_Block.png");
+    m_surface_Case = IMG_Load("assets/textures/block-brick.png");
     m_texture_Case = SDL_CreateTextureFromSurface(m_renderer, m_surface_Case);
 
-    m_surface_D_Case = IMG_Load("assets/textures/kanye.png");
+    m_surface_D_Case = IMG_Load("assets/textures/big-crate.png");
     m_texture_D_Case = SDL_CreateTextureFromSurface(m_renderer, m_surface_D_Case);
 
 
