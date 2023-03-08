@@ -2,6 +2,7 @@
 #define OBSTACLE_H
 
 #include <SDL2/SDL.h>
+#include "../coords.h"
 
 /// @brief classe Obstacle
 class Obstacle {
@@ -17,9 +18,13 @@ public:
     /// @brief fonction qui permet de déplacer l'obstacle
     void move(double delta);
 
+    Coords getCoords();
+
 private:
     /// @brief coordonnées de l'obstacle
     SDL_Rect m_rect;
+
+    Coords m_coords;
 };
 
 #endif // OBSTACLE_H

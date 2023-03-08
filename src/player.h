@@ -7,6 +7,7 @@
 #include "objets/pic.h"
 #include "objets/BoxFinish.h"
 #include "objets/DoubleJumpPort.h"
+#include "coords.h"
 
 
 class Player {
@@ -54,7 +55,7 @@ public:
 
 
 private:
-    double phX, phY;
+    Coords m_coords;
     /// @brief coordonnées du joueur
     SDL_Rect m_rect;
     /// @brief velocité du joueur

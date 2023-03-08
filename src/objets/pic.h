@@ -2,6 +2,7 @@
 #define PIC_H
 
 #include <SDL2/SDL.h>
+#include "../coords.h"
 
 /// @brief classe Pic
 class Pic {
@@ -17,8 +18,11 @@ public:
     /// @brief fonction qui permet de déplacer la pic
     void move(double delta);
 
+    Coords getCoords();
+
 private:
-    /// @brief coordonnées de la pic
+    Coords m_coords;
+    /// @brief coordonnées du rectangle du pic
     SDL_Rect m_triangle;
     /// @brief largeur de la pic
     int width;

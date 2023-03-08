@@ -66,7 +66,7 @@ Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0)
 
     Level *level = new Level();
     //we add the ground
-    level->addObstacle(0, window_Y_size - 50, 1900, 200);
+    level->addObstacle(0, 23, 50, 6);
     //we load the level from the json file
     level->loadFromJSON("niveaux/level" + std::to_string(levelnumber) + ".json", TILE_SIZE);
     std::cout << "pushing back level" << endl;

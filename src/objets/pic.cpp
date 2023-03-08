@@ -1,8 +1,9 @@
 #include "pic.h"
 
 Pic::Pic(int x, int y, int TILE_SIZE) {
-    m_triangle.x = x;
-    m_triangle.y = y;
+    m_coords = Coords(x, y, 1, 1);
+    m_triangle.x = x * TILE_SIZE;
+    m_triangle.y = y * TILE_SIZE;
     // definit la taille et la forme du pic
     width = TILE_SIZE;
     height = TILE_SIZE;
@@ -23,3 +24,6 @@ SDL_Rect Pic::getRect() {
     return m_triangle;
 }
 
+Coords Pic::getCoords() {
+    return m_coords;
+}
