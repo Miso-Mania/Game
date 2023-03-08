@@ -43,4 +43,21 @@ Pour pousser sur github, il faut faire:
 Pour pousser sur la forge, il faut faire:
 ``git push forge master``
 -----------------------
+Ajouter un nouvel obstacle:
+-créér le .h et le .cpp
+les ajouter dans le makefile, et compiler leur .o
+les ajouter dans le game.h
+créér leur texture dans le game.cpp
+les ajouter dans la fonction loadLevel
+les ajouter dans la fonction render
+créér le destroyeur dans le game.cpp
+les ajouter dans le game.cpp
+les ajouter dans le level.h
+les ajouter dans le level.cpp
+les ajouter dans le level.json
+
+
+
+
+-----------------------
 Made by Claquettes https://github.com/claquettes ALL RIGHTS RESERVED
