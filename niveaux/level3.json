@@ -31,21 +31,13 @@
 
 
         ],
-        "obstacles": [
-            {
-                "x": 0,
-                "y": 0,
-                "width": 0,
-                "height": 0
-            }
-            
-        ],
         "S_Plateform": [
             {
                 "x": 12,
                 "y": 26
             }
         ],
+        
         "BoxFinish": [
             {
                 "x": 5,
