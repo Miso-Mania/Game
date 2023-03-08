@@ -118,6 +118,81 @@ void Player::moveOutOf(Obstacle *obstacle){
     }
 }
 
+void Player::moveOutOf(S_Plateform *S_Plateform){
+    Coords o_coords = S_Plateform->getCoords();
+    double intoTop = m_coords.y + m_coords.h - o_coords.y;
+    double intoBottom = o_coords.y + o_coords.h - m_coords.y;
+    double intoLeft = m_coords.x + m_coords.w - o_coords.x;
+    double intoRight = o_coords.x + o_coords.w - m_coords.x;
+    if (intoTop < intoBottom && intoTop < intoLeft && intoTop < intoRight) {
+        m_coords.y -= intoTop;
+        stopGravity();
+        haveJumped = false;
+        timeSinceTouchGround = 0;
+        if (jumpBuffer > 0) {
+            jump();
+            jumpBuffer = 0;
+        }
+    } else if (intoBottom < intoTop && intoBottom < intoLeft && intoBottom < intoRight) {
+        m_coords.y += intoBottom + 1;
+        stopGravity();
+    } else if (intoLeft < intoTop && intoLeft < intoBottom && intoLeft < intoRight) {
+        m_coords.x -= intoLeft;
+    } else if (intoRight < intoTop && intoRight < intoBottom && intoRight < intoLeft) {
+        m_coords.x += intoRight;
+    }
+}
+
+void Player::moveOutOf(M_Plateform *M_Plateform){
+    Coords o_coords = M_Plateform->getCoords();
+    double intoTop = m_coords.y + m_coords.h - o_coords.y;
+    double intoBottom = o_coords.y + o_coords.h - m_coords.y;
+    double intoLeft = m_coords.x + m_coords.w - o_coords.x;
+    double intoRight = o_coords.x + o_coords.w - m_coords.x;
+    if (intoTop < intoBottom && intoTop < intoLeft && intoTop < intoRight) {
+        m_coords.y -= intoTop;
+        stopGravity();
+        haveJumped = false;
+        timeSinceTouchGround = 0;
+        if (jumpBuffer > 0) {
+            jump();
+            jumpBuffer = 0;
+        }
+    } else if (intoBottom < intoTop && intoBottom < intoLeft && intoBottom < intoRight) {
+        m_coords.y += intoBottom + 1;
+        stopGravity();
+    } else if (intoLeft < intoTop && intoLeft < intoBottom && intoLeft < intoRight) {
+        m_coords.x -= intoLeft;
+    } else if (intoRight < intoTop && intoRight < intoBottom && intoRight < intoLeft) {
+        m_coords.x += intoRight;
+    }
+}
+
+void Player::moveOutOf(L_Plateform *L_Plateform){
+    Coords o_coords = L_Plateform->getCoords();
+    double intoTop = m_coords.y + m_coords.h - o_coords.y;
+    double intoBottom = o_coords.y + o_coords.h - m_coords.y;
+    double intoLeft = m_coords.x + m_coords.w - o_coords.x;
+    double intoRight = o_coords.x + o_coords.w - m_coords.x;
+    if (intoTop < intoBottom && intoTop < intoLeft && intoTop < intoRight) {
+        m_coords.y -= intoTop;
+        stopGravity();
+        haveJumped = false;
+        timeSinceTouchGround = 0;
+        if (jumpBuffer > 0) {
+            jump();
+            jumpBuffer = 0;
+        }
+    } else if (intoBottom < intoTop && intoBottom < intoLeft && intoBottom < intoRight) {
+        m_coords.y += intoBottom + 1;
+        stopGravity();
+    } else if (intoLeft < intoTop && intoLeft < intoBottom && intoLeft < intoRight) {
+        m_coords.x -= intoLeft;
+    } else if (intoRight < intoTop && intoRight < intoBottom && intoRight < intoLeft) {
+        m_coords.x += intoRight;
+    }
+}
+
 void Player::incTimeSinceTouchGround(double delta) {
     timeSinceTouchGround += delta;
 }

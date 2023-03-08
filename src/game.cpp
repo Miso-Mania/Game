@@ -208,6 +208,36 @@ void Game::update(double delta)
         timer = 0;
     }
 
+    // Collision du joueur avec la S_Plateformes stop la gravité et évite de traverser les obstacles
+    for (S_Plateform *s_plateform : m_levels[m_currentLevel]->getS_Plateform())
+    {
+        if (m_player.collidesWith(s_plateform))
+        {
+            m_player.moveOutOf(s_plateform);
+            // m_player.stopMove();
+        }
+    }
+
+    // Collision du joueur avec la M_Plateformes stop la gravité et évite de traverser les obstacles
+    for (M_Plateform *m_plateform : m_levels[m_currentLevel]->getM_Plateform())
+    {
+        if (m_player.collidesWith(m_plateform))
+        {
+            m_player.moveOutOf(m_plateform);
+            // m_player.stopMove();
+        }
+    }
+
+    // Collision du joueur avec la L_Plateformes stop la gravité et évite de traverser les obstacles
+    for (L_Plateform *l_plateform : m_levels[m_currentLevel]->getL_Plateform())
+    {
+        if (m_player.collidesWith(l_plateform))
+        {
+            m_player.moveOutOf(l_plateform);
+            // m_player.stopMove();
+        }
+    }
+    
     // le joueur gagne si il arrive entre y=0 et y=138 et x<0
     if (m_player.getRect().y < 138 && m_player.getRect().x < 0)
     {

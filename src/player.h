@@ -39,6 +39,12 @@ public:
     bool collidesWith(DoubleJumpPort *doubleJumpPort);
     /// @brief fonction qui permet de repousse le joueur si il est en collision avec un obstacle
     void moveOutOf(Obstacle *obstacle);
+    /// @brief fonction qui permet de repousse le joueur si il est en collision avec une S_Plateform
+    void moveOutOf(S_Plateform *S_Plateform);
+    /// @brief fonction qui permet de repousse le joueur si il est en collision avec une M_Plateform
+    void moveOutOf(M_Plateform *M_Plateform);
+    /// @brief fonction qui permet de repousse le joueur si il est en collision avec une L_Plateform
+    void moveOutOf(L_Plateform *L_Plateform);
     /// @brief fonction qui permet de set la direction du joueur
     void setDirection(PlayerDirection direction);
     /// @brief fonction qui permet d'arreter la gravité

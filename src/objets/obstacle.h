@@ -23,7 +23,7 @@ public:
 private:
     /// @brief coordonnées de l'obstacle
     SDL_Rect m_rect;
-
+    /// @brief coordonnées de l'obstacle
     Coords m_coords;
 };
 

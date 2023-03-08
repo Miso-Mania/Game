@@ -1,6 +1,7 @@
 #ifndef L_Plateform_H
 #define L_Plateform_H
 #include <SDL2/SDL.h>
+#include "../coords.h"
 
 /// @brief classe L_Plateform
 class L_Plateform {
@@ -15,10 +16,14 @@ public:
     SDL_Rect getRect();
     /// @brief fonction qui permet de déplacer l'L_Plateform
     void move(double delta);
+    /// @brief fonction qui permet de récupérer les coordonnées de la L_Plateform
+    Coords getCoords();
 
 private:
     /// @brief coordonnées de l'L_Plateform
     SDL_Rect m_rect;
+    /// @brief coordonnées de l'L_Plateform
+    Coords m_coords;
 };
 
 #endif // L_Plateform

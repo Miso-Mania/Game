@@ -22,3 +22,6 @@ SDL_Rect S_Plateform::getRect() {
     return m_rect;
 }
 
+Coords S_Plateform::getCoords() {
+    return m_coords;
+}
