@@ -7,7 +7,13 @@
 #include "objets/pic.h"
 #include "objets/BoxFinish.h"
 #include "objets/DoubleJumpPort.h"
+<<<<<<< HEAD
 #include "coords.h"
+=======
+#include "objets/S_Plateform.h"
+#include "objets/M_Plateform.h"
+#include "objets/L_Plateform.h"
+>>>>>>> fad37ba (bool collition différente plateforme)
 
 
 class Player {
@@ -24,6 +30,12 @@ public:
     void gravity(double delta);
     /// @brief fonction qui permet de savoir si le joueur est en collision avec un obstacle
     bool collidesWith(Obstacle *obstacle);
+    /// @brief fonction qui permet de savoir si le joeur est en collision avec une S_Plateform
+    bool collidesWith(S_Plateform *S_Plateform);
+    ///@brief fonction qui permet de savoir si le joeur est en collision avec une M_Plateform
+    bool collidesWith(M_Plateform *M_Plateform);
+    ///@brief fonction qui permet de savoir si le joueur est en collision avec une L_Plateform
+    bool collidesWith(L_Plateform *L_Plateform);
     /// @brief fonction qui permet de savoir si le joueur est en collision avec une pic
     bool collidesWith(Pic *pic);
     /// @brief fonction qui permet de soivoir si le joeur est en collision avec le doublejumpport
