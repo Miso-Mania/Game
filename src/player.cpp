@@ -43,38 +43,32 @@ bool Player::collidesWith(Obstacle *obstacle) {
 }
 
 bool Player::collidesWith(S_Plateform *S_Plateform) {
-    SDL_Rect S_PlateformRect = S_Plateform->getRect();
-    if (phX + m_rect.w >= S_PlateformRect.x && phX <= S_PlateformRect.x + S_PlateformRect.w) {
-        if (phY + m_rect.h >= S_PlateformRect.y -7  && phY <= S_PlateformRect.y + S_PlateformRect.h) {
+    SDL_Rect S_PlateformRect= S_Plateform->getRect();
+    if (m_coords.x + m_coords.w >= S_PlateformRect.x && m_coords.x <= S_PlateformRect.x + S_PlateformRect.w) {
+        if (m_coords.y + m_coords.h >= S_PlateformRect.y && m_coords.y <= S_PlateformRect.y + S_PlateformRect.h) {
             return true;
         }
     }
-    //on fait la collision verticale avec les obstacles
-        
     return false;
 }
 
 bool Player::collidesWith(M_Plateform *M_Plateform) {
-    SDL_Rect M_PlateformRect = M_Plateform->getRect();
-    if (phX + m_rect.w >= M_PlateformRect.x && phX <= M_PlateformRect.x + M_PlateformRect.w) {
-        if (phY + m_rect.h >= M_PlateformRect.y -7  && phY <= M_PlateformRect.y + M_PlateformRect.h) {
+    SDL_Rect M_PlateformRect= M_Plateform->getRect();
+    if (m_coords.x + m_coords.w >= M_PlateformRect.x && m_coords.x <= M_PlateformRect.x + M_PlateformRect.w) {
+        if (m_coords.y + m_coords.h >= M_PlateformRect.y && m_coords.y <= M_PlateformRect.y + M_PlateformRect.h) {
             return true;
         }
     }
-    //on fait la collision verticale avec les obstacles
-        
     return false;
 }
 
-bool Player::collidesWith(S_Plateform *L_Plateform) {
-    SDL_Rect L_PlateformRect = L_Plateform->getRect();
-    if (phX + m_rect.w >= L_PlateformRect.x && phX <= L_PlateformRect.x + L_PlateformRect.w) {
-        if (phY + m_rect.h >= L_PlateformRect.y -7  && phY <= L_PlateformRect.y + L_PlateformRect.h) {
+bool Player::collidesWith(L_Plateform *L_Plateform) {
+    SDL_Rect L_PlateformRect= L_Plateform->getRect();
+    if (m_coords.x + m_coords.w >= L_PlateformRect.x && m_coords.x <= L_PlateformRect.x + L_PlateformRect.w) {
+        if (m_coords.y + m_coords.h >= L_PlateformRect.y && m_coords.y <= L_PlateformRect.y + L_PlateformRect.h) {
             return true;
         }
     }
-    //on fait la collision verticale avec les obstacles
-        
     return false;
 }
 
