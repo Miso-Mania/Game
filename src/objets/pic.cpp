@@ -2,13 +2,13 @@
 
 Pic::Pic(int x, int y, int TILE_SIZE) {
     m_coords = Coords(x, y, 1, 1);
+    
     m_triangle.x = x * TILE_SIZE;
     m_triangle.y = y * TILE_SIZE;
     // definit la taille et la forme du pic
-    width = TILE_SIZE;
-    height = TILE_SIZE;
+    m_triangle.w = TILE_SIZE;
+    m_triangle.h = TILE_SIZE;
 
-    m_triangle={x,y,width,height};
 }
 
 Pic::~Pic() {

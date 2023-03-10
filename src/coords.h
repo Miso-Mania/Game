@@ -7,6 +7,7 @@ public:
     Coords(double x, double y, double w, double h);
     ~Coords();
     double x, y, w, h;
+    bool isColliding(Coords other);
 
 };
 

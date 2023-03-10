@@ -35,16 +35,18 @@ public:
     bool collidesWith(L_Plateform *L_Plateform);
     /// @brief fonction qui permet de savoir si le joueur est en collision avec une pic
     bool collidesWith(Pic *pic);
-    /// @brief fonction qui permet de soivoir si le joeur est en collision avec le doublejumpport
+    /// @brief fonction qui permet de savoir si le joeur est en collision avec le doublejumpport
     bool collidesWith(DoubleJumpPort *doubleJumpPort);
-    /// @brief fonction qui permet de repousse le joueur si il est en collision avec un obstacle
+    /// @brief fonction qui permet de repousser le joueur si il est en collision avec un obstacle
     void moveOutOf(Obstacle *obstacle);
-    /// @brief fonction qui permet de repousse le joueur si il est en collision avec une S_Plateform
+    /// @brief fonction qui permet de repousser le joueur si il est en collision avec une S_Plateform
     void moveOutOf(S_Plateform *S_Plateform);
-    /// @brief fonction qui permet de repousse le joueur si il est en collision avec une M_Plateform
+    /// @brief fonction qui permet de repousser le joueur si il est en collision avec une M_Plateform
     void moveOutOf(M_Plateform *M_Plateform);
-    /// @brief fonction qui permet de repousse le joueur si il est en collision avec une L_Plateform
+    /// @brief fonction qui permet de repousser le joueur si il est en collision avec une L_Plateform
     void moveOutOf(L_Plateform *L_Plateform);
+    /// @brief fonction qui permet de repousser le joueur selon les coordonnées
+    void moveOutOfCoords(Coords coords);
     /// @brief fonction qui permet de set la direction du joueur
     void setDirection(PlayerDirection direction);
     /// @brief fonction qui permet d'arreter la gravité

@@ -17,3 +17,10 @@ Coords::Coords(double x, double y, double w, double h) {
 
 Coords::~Coords() {
 }
+
+bool Coords::isColliding(Coords other) {
+    return (x + w > other.x && 
+            x < other.x + other.w &&
+            y + h > other.y &&
+            y < other.y + other.h);
+}

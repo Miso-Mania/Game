@@ -3,9 +3,10 @@
 #include <SDL2/SDL_image.h>
 
 S_Plateform::S_Plateform(int x, int y, int TILE_SIZE) {
-    m_rect.x = x;
-    m_rect.y = y;
-    m_rect.w = 3 * TILE_SIZE    ;
+    m_coords = Coords(x, y, 3, 1);
+    m_rect.x = x * TILE_SIZE;
+    m_rect.y = y * TILE_SIZE;
+    m_rect.w = 3 * TILE_SIZE;
     m_rect.h = TILE_SIZE;
 }
 

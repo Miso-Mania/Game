@@ -123,7 +123,7 @@ void Level::loadFromJSON(string filename, int TILE_SIZE) {
     for (auto& element : j["pics"]) {
         int x = element["x"];
         int y = element["y"];
-        addPic(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE);
+        addPic(x, y, TILE_SIZE);
         cout << "Pic: " << x << ", " << y << endl;
         
     }
@@ -172,19 +172,19 @@ void Level::loadFromJSON(string filename, int TILE_SIZE) {
     for (auto& element : j["S_Plateform"]) {
         int x = element["x"];
         int y = element["y"];
-        addS_Plateform(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE);
+        addS_Plateform(x, y, TILE_SIZE);
         cout << "Une S_Plateform de posée ici: " << x << ", " << y << endl;
     }
     for (auto& element : j["M_Plateform"]) {
         int x = element["x"];
         int y = element["y"];
-        addM_Plateform(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE);
+        addM_Plateform(x, y, TILE_SIZE);
         cout << "Une M_Plateform de posée ici: " << x << ", " << y << endl;
     }
     for (auto& element : j["L_Plateform"]) {
         int x = element["x"];
         int y = element["y"];
-        addL_Plateform(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE);
+        addL_Plateform(x, y, TILE_SIZE);
         cout << "Une M_Plateform de posée ici: " << x << ", " << y << endl;
     }
 }
