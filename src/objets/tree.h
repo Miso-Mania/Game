@@ -2,6 +2,7 @@
 #define TREE_H
 
 #include <SDL2/SDL.h>
+#include "../coords.h"
 
 /// @brief classe Tree
 class Tree {
@@ -16,9 +17,13 @@ public:
     SDL_Rect getRect();
     /// @brief fonction qui permet de déplacer le Tree
     void move(double delta);
+    /// @brief fonction qui permet de récupérer les coordonnées du Tree
+    Coords getCoords();
 
 private:
     /// @brief coordonnées du Tree
+    Coords m_coords;
+    /// @brief rectangle du Tree
     SDL_Rect m_rect;
     
 };

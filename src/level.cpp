@@ -136,7 +136,7 @@ void Level::loadFromJSON(string filename, int TILE_SIZE) {
     for (auto& element : j["trees"]) {
         int x = element["x"];
         int y = element["y"];
-        addTree(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE);
+        addTree(x, y, TILE_SIZE);
         cout << "Un arbre de planté ici: " << x << ", " << y << endl;
     }
     for (auto& element : j["DoubleJumpPort"]) {
