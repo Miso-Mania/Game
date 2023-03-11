@@ -127,18 +127,6 @@ void Level::loadFromJSON(string filename, int TILE_SIZE) {
         cout << "Pic: " << x << ", " << y << endl;
         
     }
-    for (auto& element : j["Case"]) {
-        int x = element["x"];
-        int y = element["y"];
-        addCase(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE);
-        cout << "Case : " << x << ", " << y << endl;
-    }
-    for (auto& element : j["D_Case"]) {
-        int x = element["x"];
-        int y = element["y"];
-        addD_Case(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE);
-        cout << "D_Case : " << x << ", " << y << endl;
-    }
     for (auto& element : j["BoxFinish"]) {
         int x = element["x"];
         int y = element["y"];
