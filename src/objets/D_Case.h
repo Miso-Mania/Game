@@ -26,5 +26,4 @@ private:
     /// @brief rectangle de l'D_Case
     SDL_Rect m_rect;
 };
-
 #endif // D_Case
