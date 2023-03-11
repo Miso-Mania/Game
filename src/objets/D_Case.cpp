@@ -3,8 +3,9 @@
 #include <SDL2/SDL_image.h>
 
 D_Case::D_Case(int x, int y, int TILE_SIZE) {
-    m_rect.x = x;
-    m_rect.y = y;
+    m_coords = Coords(x, y, 2, 2);
+    m_rect.x = x * TILE_SIZE;
+    m_rect.y = y * TILE_SIZE;
     m_rect.w = 2 * TILE_SIZE;
     m_rect.h = 2 * TILE_SIZE;
 }
@@ -22,3 +23,6 @@ SDL_Rect D_Case::getRect() {
     return m_rect;
 }
 
+Coords D_Case::getCoords() {
+    return m_coords;
+}

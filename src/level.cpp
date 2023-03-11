@@ -160,13 +160,13 @@ void Level::loadFromJSON(string filename, int TILE_SIZE) {
     for (auto& element : j["Case"]) {
         int x = element["x"];
         int y = element["y"];
-        addCase(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE);
+        addCase(x, y, TILE_SIZE);
         cout << "Une Case de posée ici: " << x << ", " << y << endl;
     }
     for (auto& element : j["D_Case"]) {
         int x = element["x"];
         int y = element["y"];
-        addD_Case(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE);
+        addD_Case(x, y, TILE_SIZE);
         cout << "Une D_Case de posée ici: " << x << ", " << y << endl;
     }
     for (auto& element : j["S_Plateform"]) {

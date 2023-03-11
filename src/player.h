@@ -11,6 +11,8 @@
 #include "objets/S_Plateform.h"
 #include "objets/M_Plateform.h"
 #include "objets/L_Plateform.h"
+#include "objets/Case.h"
+#include "objets/D_Case.h"
 
 
 class Player {
@@ -37,6 +39,10 @@ public:
     bool collidesWith(Pic *pic);
     /// @brief fonction qui permet de savoir si le joeur est en collision avec le doublejumpport
     bool collidesWith(DoubleJumpPort *doubleJumpPort);
+    /// @brief fonction qui permet de savoir si le joeur est en collision avec une Case
+    bool collidesWith(Case *Case);
+    /// @brief fonction qui permet de savoir si le joeur est en collision avec une D_Case
+    bool collidesWith(D_Case *D_Case);
     /// @brief fonction qui permet de repousser le joueur si il est en collision avec un obstacle
     void moveOutOf(Obstacle *obstacle);
     /// @brief fonction qui permet de repousser le joueur si il est en collision avec une S_Plateform
@@ -45,6 +51,10 @@ public:
     void moveOutOf(M_Plateform *M_Plateform);
     /// @brief fonction qui permet de repousser le joueur si il est en collision avec une L_Plateform
     void moveOutOf(L_Plateform *L_Plateform);
+    /// @brief fonction qui permet de repousser le joueur si il est en collision avec une Case
+    void moveOutOf(Case *Case);
+    /// @brief fonction qui permet de repousser le joueur si il est en collision avec unu D_Case
+    void moveOutOf(D_Case *D_Case);
     /// @brief fonction qui permet de repousser le joueur selon les coordonnées
     void moveOutOfCoords(Coords coords);
     /// @brief fonction qui permet de set la direction du joueur

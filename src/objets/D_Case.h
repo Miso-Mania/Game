@@ -2,6 +2,8 @@
 #define D_Case_H
 #include <SDL2/SDL.h>
 
+#include "../coords.h"
+
 /// @brief classe D_Case
 class D_Case {
 public:
@@ -15,9 +17,13 @@ public:
     SDL_Rect getRect();
     /// @brief fonction qui permet de déplacer l'D_Case
     void move(double delta);
+    /// @brief fonction qui permet de récupérer les coordonnées de l'D_Case
+    Coords getCoords();
 
 private:
     /// @brief coordonnées de l'D_Case
+    Coords m_coords;
+    /// @brief rectangle de l'D_Case
     SDL_Rect m_rect;
 };
 

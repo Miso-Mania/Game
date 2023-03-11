@@ -54,6 +54,14 @@ bool Player::collidesWith(DoubleJumpPort *DoubleJumpPort){
     return m_coords.isColliding(DoubleJumpPort->getCoords());
 }
 
+bool Player::collidesWith(Case *Case) {
+    return m_coords.isColliding(Case->getCoords());
+}
+
+bool Player::collidesWith(D_Case *D_Case) {
+    return m_coords.isColliding(D_Case->getCoords());
+}
+
 void Player::moveOutOfCoords(Coords coords){
     double intoTop = m_coords.y + m_coords.h - coords.y;
     double intoBottom = coords.y + coords.h - m_coords.y;
@@ -92,6 +100,14 @@ void Player::moveOutOf(M_Plateform *M_Plateform){
 
 void Player::moveOutOf(L_Plateform *L_Plateform){
     moveOutOfCoords(L_Plateform->getCoords());
+}
+
+void Player::moveOutOf(Case *Case){
+    moveOutOfCoords(Case->getCoords());
+}
+
+void Player::moveOutOf(D_Case *D_Case){
+    moveOutOfCoords(D_Case->getCoords());
 }
 
 void Player::incTimeSinceTouchGround(double delta) {

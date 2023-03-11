@@ -247,6 +247,24 @@ void Game::update(double delta)
         }
     }
 
+    // Collision du joueur avec la Case stop la gravité et évite de traverser les obstacles
+    for (Case *Case : m_levels[m_currentLevel]->getCase())
+    {
+        if (m_player.collidesWith(Case))
+        {
+            m_player.moveOutOf(Case);
+        }
+    }
+
+    // Collision du joueur avec la D_Case stop la gravité et évite de traverser les obstacles
+    for (D_Case *d_case : m_levels[m_currentLevel]->getD_Case())
+    {
+        if (m_player.collidesWith(d_case))
+        {
+            m_player.moveOutOf(d_case);
+        }
+    }
+
     // le joueur gagne si il arrive entre y=0 et y=138 et x<0
     if (m_player.getRect().y < 138 && m_player.getRect().x < 0)
     {
