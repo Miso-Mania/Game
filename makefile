@@ -1,7 +1,7 @@
 OBJS = obj/main.o obj/game.o obj/player.o obj/obstacle.o obj/level.o obj/score.o obj/pic.o obj/BoxFinish.o obj/tree.o obj/Case.o obj/D_Case.o obj/S_Plateform.o obj/M_Plateform.o obj/L_Plateform.o obj/DoubleJumpPort.o obj/coords.o
 cc = g++
 CFLAGS = -g -Wall -c
-LIBS = -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer 
+LIBS = -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer -lncurses
 Include_Dir_SDL2 = -I/usr/include/SDL2
 
 all : dir bin/jeu
