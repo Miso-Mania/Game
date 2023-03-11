@@ -265,13 +265,17 @@ void Game::update(double delta)
         }
     }
 
-    // le joueur gagne si il arrive entre y=0 et y=138 et x<0
-    if (m_player.getRect().y < 138 && m_player.getRect().x < 0)
+    // Le joueur gagne si il touche la BoxFinish
+    for (BoxFinish *boxFinish : m_levels[m_currentLevel]->getBoxFinish())
     {
-        cout << "temps : "  << timer << "s" << endl;
-        m_currentLevel++;
-        m_player.moveTo(3, 15);
+        if (m_player.collidesWith(boxFinish))
+        {
+            cout << "temps : "  << timer << "s" << endl;
+            m_currentLevel++;
+            m_player.moveTo(3, 15);
+        }
     }
+
     // Mise à jour de la position des obstacles
     for (Obstacle *obstacle : m_levels[m_currentLevel]->getObstacles())
     {

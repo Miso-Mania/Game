@@ -62,6 +62,10 @@ bool Player::collidesWith(D_Case *D_Case) {
     return m_coords.isColliding(D_Case->getCoords());
 }
 
+bool Player::collidesWith(BoxFinish *BoxFinish) {
+    return m_coords.isColliding(BoxFinish->getCoords());
+}
+
 void Player::moveOutOfCoords(Coords coords){
     double intoTop = m_coords.y + m_coords.h - coords.y;
     double intoBottom = coords.y + coords.h - m_coords.y;

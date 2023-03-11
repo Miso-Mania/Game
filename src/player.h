@@ -43,6 +43,8 @@ public:
     bool collidesWith(Case *Case);
     /// @brief fonction qui permet de savoir si le joeur est en collision avec une D_Case
     bool collidesWith(D_Case *D_Case);
+    /// @brief fonction qui permet de savoir si le joeur est en collision avec une BoxFinish
+    bool collidesWith(BoxFinish *boxFinish);
     /// @brief fonction qui permet de repousser le joueur si il est en collision avec un obstacle
     void moveOutOf(Obstacle *obstacle);
     /// @brief fonction qui permet de repousser le joueur si il est en collision avec une S_Plateform

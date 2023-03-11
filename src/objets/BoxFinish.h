@@ -2,6 +2,7 @@
 #define BOXFINISH_H
 
 #include <SDL2/SDL.h>
+#include "../coords.h"
 
 /// @brief classe BoxFinish
 class BoxFinish {
@@ -16,9 +17,13 @@ public:
     SDL_Rect getRect();
     /// @brief fonction qui permet de déplacer la box de fin
     void move(double delta);
+    /// @brief fonction qui permet de récupérer les coordonnées de la box de fin
+    Coords getCoords();
 
 private:
     /// @brief coordonnées de la box de fin
+    Coords m_coords;
+    /// @brief rectangle de la box de fin
     SDL_Rect m_triangle;
     /// @brief largeur de la box de fin
     int width;
