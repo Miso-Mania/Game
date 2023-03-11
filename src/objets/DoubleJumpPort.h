@@ -2,6 +2,7 @@
 #define DOUBLEJUMPPORT_H
 
 #include "SDL2/SDL.h"
+#include "../coords.h"
 
 /// @brief classe DoubleJumpPort
 class DoubleJumpPort {
@@ -16,9 +17,13 @@ public:
     SDL_Rect getRect();
     /// @brief fonction qui permet de déplacer l'objet
     void move(double delta);
+    /// @brief fonction qui permet de récupérer les coordonnées de l'objet
+    Coords getCoords();
 
 private:
     /// @brief coordonnées de l'objet
+    Coords m_coords;
+    /// @brief rectangle de l'objet
     SDL_Rect m_rect;
 };
 

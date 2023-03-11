@@ -51,15 +51,8 @@ bool Player::collidesWith(Pic *Pic) {
 }
 
 bool Player::collidesWith(DoubleJumpPort *DoubleJumpPort){
-    SDL_Rect DoubleJumpPortRect= DoubleJumpPort->getRect();
-    if (m_coords.x + m_coords.w > DoubleJumpPortRect.x && m_coords.x < DoubleJumpPortRect.x + DoubleJumpPortRect.w) {
-        if (m_coords.y + m_coords.h > DoubleJumpPortRect.y && m_coords.y < DoubleJumpPortRect.y + DoubleJumpPortRect.h) {
-            return true;
-        }
-    }
-    return false;
-
-    }
+    return m_coords.isColliding(DoubleJumpPort->getCoords());
+}
 
 void Player::moveOutOfCoords(Coords coords){
     double intoTop = m_coords.y + m_coords.h - coords.y;
@@ -119,7 +112,7 @@ void Player::stopMove() {
 
 void Player::doubleJump() {
     if (haveJumped) {
-        m_yVelocity = -530;
+        m_yVelocity = -13;
         haveJumped = false;
     }
 }

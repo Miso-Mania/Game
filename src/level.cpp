@@ -154,7 +154,7 @@ void Level::loadFromJSON(string filename, int TILE_SIZE) {
     for (auto& element : j["DoubleJumpPort"]) {
         int x = element["x"];
         int y = element["y"];
-        addDoubleJumpPort   (x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE);
+        addDoubleJumpPort   (x, y, TILE_SIZE);
         cout << "DoubleJumpPort posé ici :" << x << ", " << y << endl;
         }
     for (auto& element : j["Case"]) {
