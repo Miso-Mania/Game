@@ -13,6 +13,8 @@ int main() {
   int player_x = 0;
   int player_y = LINES - 2;
   int player_vy = 0;
+  //we store the coordinates of the obstacles in a matrix
+  int obj[10][2]; // 1 if there is an obstacle, 0 if there is a platform, -1 if there is nothing
 
   // Main game loop
   while (true) {
@@ -22,14 +24,23 @@ int main() {
     mvprintw(player_y, player_x, "I");
  
     // want to print the obstacles and the platforms, there coordinates are set in the leveltexte.txt file:
-    // on ouvre le fichier en lecture
-    FILE* fichier = NULL;
-    fichier = fopen("niveaux/leveltexte.txt", "r");
+    // on ouvre le fichierobstacle en lecture
+    FILE* fichierobstacle = NULL;
+    fichierobstacle = fopen("niveaux/texte/1/1.txt", "r");
     //on the first line, the coordinates of the obstacles, separated by a space
     int x, y;
-    while (fscanf(fichier, "%d %d", &y, &x) != EOF) {
+    while (fscanf(fichierobstacle, "%d %d", &y, &x) != EOF) {
         mvprintw(LINES - y, x, "X");
+        obj[y][x]=1;
     } 
+    fclose(fichierobstacle);
+    FILE* fichierplatform = NULL;
+    fichierplatform = fopen("niveaux/texte/1/0.txt", "r");
+    //on the first line, the coordinates of the obstacles, separated by a space
+    while (fscanf(fichierplatform, "%d %d", &y, &x) != EOF) {
+        mvprintw(LINES - y, x, "R");
+        obj[y][x]=0;
+    }
 
     
     refresh();
@@ -60,20 +71,16 @@ int main() {
       player_y = LINES - 2;
       player_vy = 0;
     }
-    //we check if the player is on the obstacle
-    if ((player_y == LINES - 2) && (player_x == 2 || player_x == 6)) {
-        //we print the game over
-        mvprintw(LINES - 2, 2, "GAME OVER");
+    //we check if the player touches the obstacle (if yes its game over)
+    if (obj[player_y][player_x]==1) {
+        mvprintw(LINES - 1, 0, "GAME OVER");
         refresh();
-        //we wait for the player to press a key
-        getch();
-        //we exit the game
         break;
-      }
-      //we check if the player is on the platform
-      if ((player_y == LINES - 2) && (player_x == 5 || player_x == 7 )) {
-        player_y = LINES - 3;
-      }
+    }
+    else if (obj[player_y][player_x]==0) { //si le joueur touche la plateforme, il ne tombe pas
+        player_y = LINES - 2;
+        player_vy = 0;
+    }
   }
 
   // Clean up ncurses
