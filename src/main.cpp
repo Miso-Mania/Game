@@ -13,14 +13,6 @@ int main() {
   int player_x = 0;
   int player_y = LINES - 2;
   int player_vy = 0;
-  //we store the coordinates of the obstacles in a matrix
-  int obstacles[100][2]; // 1 if there is an obstacle, 0 if there is a platform, -1 if there is nothing
-  //we initialize the matrix
-  for (int i=0; i<100; i++) {
-      for (int j=0; j<2; j++) {
-          obstacles[i][j]=0;
-      }
-  }
 
 
   // Main game loop
@@ -30,30 +22,14 @@ int main() {
     mvhline(LINES - 1, 0, '=', COLS);
     mvprintw(player_y, player_x, "I");
  
-    // want to print the obstacles and the platforms, there coordinates are set in the leveltexte.txt file:
-    // on ouvre le fichierobstacle en lecture
     FILE* fichierobstacle = NULL;
     fichierobstacle = fopen("niveaux/texte/1/1.txt", "r");
     //on the first line, the coordinates of the obstacles, separated by a space
     int x, y;
     while (fscanf(fichierobstacle, "%d %d", &y, &x) != EOF) {
-        mvprintw(LINES - y, x, "X");
-        obstacles[y][x]=1;
+      mvprintw(LINES - y, x, "X");
     } 
     fclose(fichierobstacle);
-
-    //on ouvre le fichierplatform en lecture
-    FILE* fichierplatform = NULL;
-    fichierplatform = fopen("niveaux/texte/1/0.txt", "r");
-    while (fscanf(fichierplatform, "%d %d", &y, &x) != EOF) {
-        mvprintw(LINES - y, x, "R");
-        obstacles[LINES - y][x]=0;
-    }
-    fclose(fichierplatform);
-
-    
-    
-
     // Listen for keyboard input to move and jump the player
     int key = getch();
     switch (key) {
@@ -81,11 +57,9 @@ int main() {
       player_vy = 0;
     }
     //we check if the player touches the obstacle (if yes its game over and we close the game and ncurses)
-    if (obstacles[LINES - player_y][player_x]==1) {
-        mvprintw(LINES/2, COLS/2, "GAME OVER");
-        getch();
-        endwin();
-        return 0;
+    if (mvwinch(stdscr, player_y, player_x) == 'X') {
+      endwin();
+      return 0;
     }
     refresh();
   }
