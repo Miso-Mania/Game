@@ -25,6 +25,17 @@ int main() {
     mvprintw(LINES - 2, 5, "N");
     mvprintw(LINES - 2, 6, "X");
     mvprintw(LINES - 2, 7, "N");
+    // want to print the obstacles and the platforms, there coordinates are set in the leveltexte.txt file:
+    // on ouvre le fichier en lecture
+    FILE* fichier = NULL;
+    fichier = fopen("niveaux/leveltexte.txt", "r");
+    //on the first line, the coordinates of the obstacles, separated by a space
+    int x, y;
+    while (fscanf(fichier, "%d %d", &x, &y) != EOF) {
+        mvprintw(LINES - y, x, "X");
+    } 
+
+    
     refresh();
 
     // Listen for keyboard input to move and jump the player
