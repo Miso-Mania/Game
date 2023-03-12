@@ -14,7 +14,14 @@ int main() {
   int player_y = LINES - 2;
   int player_vy = 0;
   //we store the coordinates of the obstacles in a matrix
-  int obj[10][2]; // 1 if there is an obstacle, 0 if there is a platform, -1 if there is nothing
+  int obstacles[100][2]; // 1 if there is an obstacle, 0 if there is a platform, -1 if there is nothing
+  //we initialize the matrix
+  for (int i=0; i<100; i++) {
+      for (int j=0; j<2; j++) {
+          obstacles[i][j]=0;
+      }
+  }
+
 
   // Main game loop
   while (true) {
@@ -31,19 +38,21 @@ int main() {
     int x, y;
     while (fscanf(fichierobstacle, "%d %d", &y, &x) != EOF) {
         mvprintw(LINES - y, x, "X");
-        obj[y][x]=1;
+        obstacles[y][x]=1;
     } 
     fclose(fichierobstacle);
+
+    //on ouvre le fichierplatform en lecture
     FILE* fichierplatform = NULL;
     fichierplatform = fopen("niveaux/texte/1/0.txt", "r");
-    //on the first line, the coordinates of the obstacles, separated by a space
     while (fscanf(fichierplatform, "%d %d", &y, &x) != EOF) {
         mvprintw(LINES - y, x, "R");
-        obj[y][x]=0;
+        obstacles[LINES - y][x]=0;
     }
+    fclose(fichierplatform);
 
     
-    refresh();
+    
 
     // Listen for keyboard input to move and jump the player
     int key = getch();
@@ -72,19 +81,13 @@ int main() {
       player_vy = 0;
     }
     //we check if the player touches the obstacle (if yes its game over and we close the game and ncurses)
-    if (obj[LINES - player_y][player_x]==1) {
-        //we orint game over
+    if (obstacles[LINES - player_y][player_x]==1) {
         mvprintw(LINES/2, COLS/2, "GAME OVER");
-        //we wait for the user to press a key
         getch();
-        //we close ncurses
         endwin();
         return 0;
     }
-    // we check if the player touches the platform (if yes he does not fall)
-    else if (obj[LINES - player_y][player_x]==0) {
-        player_vy = 0;
-    }
+    refresh();
   }
 
   endwin();
