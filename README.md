@@ -1,2 +1,2 @@
-En légende
- sudo apt-get install libncurses5-dev libncursesw5-dev
+Pour lancer le mode Texte:
+g++ src/main.cpp -o jeu.exe -lncurses
