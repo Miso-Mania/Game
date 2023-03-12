@@ -71,19 +71,22 @@ int main() {
       player_y = LINES - 2;
       player_vy = 0;
     }
-    //we check if the player touches the obstacle (if yes its game over)
-    if (obj[player_y][player_x]==1) {
-        mvprintw(LINES - 1, 0, "GAME OVER");
-        refresh();
-        break;
+    //we check if the player touches the obstacle (if yes its game over and we close the game and ncurses)
+    if (obj[LINES - player_y][player_x]==1) {
+        //we orint game over
+        mvprintw(LINES/2, COLS/2, "GAME OVER");
+        //we wait for the user to press a key
+        getch();
+        //we close ncurses
+        endwin();
+        return 0;
     }
-    else if (obj[player_y][player_x]==0) { //si le joueur touche la plateforme, il ne tombe pas
-        player_y = LINES - 2;
+    // we check if the player touches the platform (if yes he does not fall)
+    else if (obj[LINES - player_y][player_x]==0) {
         player_vy = 0;
     }
   }
 
-  // Clean up ncurses
   endwin();
   return 0;
 }
