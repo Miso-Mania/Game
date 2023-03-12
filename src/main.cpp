@@ -29,7 +29,16 @@ int main() {
     while (fscanf(fichierobstacle, "%d %d", &y, &x) != EOF) {
       mvprintw(LINES - y, x, "X");
     } 
-    fclose(fichierobstacle);
+    fclose(fichierobstacle); 
+
+    FILE* fichierplatform = NULL;
+    fichierplatform = fopen("niveaux/texte/1/0.txt", "r");
+    //on the first line, the coordinates of the obstacles, separated by a space;
+    while (fscanf(fichierobstacle, "%d %d", &y, &x) != EOF) {
+      mvprintw(LINES - y, x, "P");
+    } 
+    fclose(fichierplatform);
+
     // Listen for keyboard input to move and jump the player
     int key = getch();
     switch (key) {
@@ -56,11 +65,19 @@ int main() {
       player_y = LINES - 2;
       player_vy = 0;
     }
-    //we check if the player touches the obstacle (if yes its game over and we close the game and ncurses)
+    //we check if the player touches the obstacle (if yes its game over, we print a message on the screen and  and we close the game and ncurses)
     if (mvwinch(stdscr, player_y, player_x) == 'X') {
+      mvprintw(LINES / 2, COLS / 2 - 5, "GAME OVER");
+      getch();
       endwin();
       return 0;
     }
+    else if (mvwinch(stdscr, player_y, player_x) == 'P') { //if the player touches the platform, he doesn't fall and he can jump again
+      player_vy = 0;
+
+    }
+
+    
     refresh();
   }
 
