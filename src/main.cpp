@@ -20,6 +20,11 @@ int main() {
     clear();
     mvhline(LINES - 1, 0, '=', COLS);
     mvprintw(player_y, player_x, "I");
+    //we print the obstacle
+    mvprintw(LINES - 2, 2, "X");
+    mvprintw(LINES - 2, 5, "N");
+    mvprintw(LINES - 2, 6, "X");
+    mvprintw(LINES - 2, 7, "N");
     refresh();
 
     // Listen for keyboard input to move and jump the player
@@ -31,15 +36,12 @@ int main() {
       case 'd':
         player_x++;
         break;
-      case 'z': // space bar
-        if (player_y == LINES - 2) { // only allow jumping if player is on the ground
-          player_vy = -2; // set upward velocity
-        }
+      case 'z': //jump
+        player_vy = -2; // set upward velocity
         break;
       default:
         break;
     }
-
     // Apply gravity to the player velocity
     player_vy += 1;
 
@@ -51,6 +53,20 @@ int main() {
       player_y = LINES - 2;
       player_vy = 0;
     }
+    //we check if the player is on the obstacle
+    if ((player_y == LINES - 2) && (player_x == 2 || player_x == 6)) {
+        //we print the game over
+        mvprintw(LINES - 2, 2, "GAME OVER");
+        refresh();
+        //we wait for the player to press a key
+        getch();
+        //we exit the game
+        break;
+      }
+      //we check if the player is on the platform
+      if ((player_y == LINES - 2) && (player_x == 5 || player_x == 7 )) {
+        player_y = LINES - 3;
+      }
   }
 
   // Clean up ncurses
