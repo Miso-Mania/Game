@@ -2,18 +2,33 @@
 #include <iostream>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include <string>
 
 const int FPS = 60;
 const int window_X_size = 1900;
 const int window_Y_size = 1068;
 const int NUM_TILES_X = 48;
 const int NUM_TILES_Y = 27;
-
+int inputtype = 0;
 
 
 
 Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0)
 {
+    std::cout << "Choose your imput type" << std::endl;
+    std::cout << "1: Arrows" << std::endl;
+    std::cout << "2: ZQSD" << std::endl;
+    std::cin >> inputtype;
+    if (inputtype == 1) {
+        inputtype = 1;
+    } else if (inputtype == 2) {
+        inputtype = 2;
+    } else {
+        std::cout << "You didn't select a valid imput type, the default imput type will be used" << std::endl;
+        inputtype = 1;
+    }
+    std::cout << "You selected imput type " << inputtype << std::endl;
+
     std::cout << "Select the level that you want to load" << std::endl;
     std::cout << "1: level1" << std::endl;
     std::cout << "2: level2" << std::endl;
@@ -158,7 +173,9 @@ void Game::run()
 
 void Game::handleEvents(SDL_Event &event)
 {
-    if (event.type == SDL_KEYDOWN)
+    cout << "inputtype: " << inputtype << endl;
+    if( inputtype == 1) {
+        if (event.type == SDL_KEYDOWN)
     {
         switch (event.key.keysym.sym)
         {
@@ -190,6 +207,41 @@ void Game::handleEvents(SDL_Event &event)
             }
             break;
         }
+    }
+    }else if( inputtype == 2) {
+        if (event.type == SDL_KEYDOWN)
+    {
+        switch (event.key.keysym.sym)
+        {
+        case SDLK_q:
+            m_player.setDirection(PlayerDirection::LEFT);
+            break;
+        case SDLK_d:
+            m_player.setDirection(PlayerDirection::RIGHT);
+            break;
+        case SDLK_z:
+            m_player.jump();
+            break;
+        }
+    }
+    else if (event.type == SDL_KEYUP)
+    {
+        switch (event.key.keysym.sym)
+        {
+        case SDLK_q:
+            if (m_player.getDirection() == PlayerDirection::LEFT)
+            {
+                m_player.setDirection(PlayerDirection::NONE);
+            }
+            break;
+        case SDLK_d:
+            if (m_player.getDirection() == PlayerDirection::RIGHT)
+            {
+                m_player.setDirection(PlayerDirection::NONE);
+            }
+            break;
+        }
+    }
     }
 }
 
