@@ -13,6 +13,7 @@
 #include "objets/L_Plateform.h"
 #include "objets/Case.h"
 #include "objets/D_Case.h"
+#include "objets/BoxCmgtGrav.h"
 
 
 class Player {
@@ -45,6 +46,8 @@ public:
     bool collidesWith(D_Case *D_Case);
     /// @brief fonction qui permet de savoir si le joeur est en collision avec une BoxFinish
     bool collidesWith(BoxFinish *boxFinish);
+    /// @brief fonction qui permet de savoir si le joeur est en collision avec une BoxCmgtGrav
+    bool collidesWith(BoxCmgtGrav *BoxCmgtGrav);
     /// @brief fonction qui permet de repousser le joueur si il est en collision avec un obstacle
     void moveOutOf(Obstacle *obstacle);
     /// @brief fonction qui permet de repousser le joueur si il est en collision avec une S_Plateform
@@ -57,6 +60,8 @@ public:
     void moveOutOf(Case *Case);
     /// @brief fonction qui permet de repousser le joueur si il est en collision avec unu D_Case
     void moveOutOf(D_Case *D_Case);
+    /// @brief fonction qui permet de repousser le joueur si il est en collision avec une BoxCmgtGrav
+    void moveOutOf(BoxCmgtGrav *BoxCmgtGrav);
     /// @brief fonction qui permet de repousser le joueur selon les coordonnées
     void moveOutOfCoords(Coords coords);
     /// @brief fonction qui permet de set la direction du joueur
@@ -71,6 +76,10 @@ public:
     PlayerDirection getDirection();
     /// @brief fonction qui permet de connaitre les coordonnées du joueur
     SDL_Rect getRect();
+    /// @brief fonction qui permet de connaitre la gravité du joueur
+    double getGravity();
+    /// @brief set la gravité du joueur
+    void setGravity(double gravity);
     /// @brief fonction qui permet de déplacer le joueur a des coordonnées précises
     void setRect(SDL_Rect rect);
     /// @brief fonction qui permet de connaitre le temps depuis que le joueur n'est plus au sol

@@ -66,6 +66,10 @@ bool Player::collidesWith(BoxFinish *BoxFinish) {
     return m_coords.isColliding(BoxFinish->getCoords());
 }
 
+bool Player::collidesWith(BoxCmgtGrav *BoxCmgtGrav) {
+    return m_coords.isColliding(BoxCmgtGrav->getCoords());
+}
+
 void Player::moveOutOfCoords(Coords coords){
     double intoTop = m_coords.y + m_coords.h - coords.y;
     double intoBottom = coords.y + coords.h - m_coords.y;
@@ -114,6 +118,10 @@ void Player::moveOutOf(D_Case *D_Case){
     moveOutOfCoords(D_Case->getCoords());
 }
 
+void Player::moveOutOf(BoxCmgtGrav *BoxCmgtGrav){
+    moveOutOfCoords(BoxCmgtGrav->getCoords());
+}
+
 void Player::incTimeSinceTouchGround(double delta) {
     timeSinceTouchGround += delta;
 }
@@ -151,6 +159,14 @@ SDL_Rect Player::getRect() {
 
 void Player::setRect(SDL_Rect rect) {
     m_rect = rect;
+}
+
+double Player::getGravity() {
+    return m_yVelocity;
+}
+
+void Player::setGravity(double gravity) {
+    m_yVelocity = gravity;
 }
 
 void Player::moveTo(double x, double y){

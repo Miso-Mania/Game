@@ -13,6 +13,7 @@
 #include "objets/M_Plateform.h"
 #include "objets/L_Plateform.h"
 #include "objets/DoubleJumpPort.h"
+#include "objets/BoxCmgtGrav.h"
 #include "json.hpp"
 
 using json = nlohmann::json;
@@ -64,6 +65,10 @@ public:
     void addL_Plateform(int x, int y, int TILE_SIZE);
     /// @brief fonction qui permet de récupérer les L_Plateform
     vector<L_Plateform*> getL_Plateform();
+    /// @brief fonction qui permet d'ajouter une box changement de gravité
+    void addBoxCmgtGrav(int x, int y, int TILE_SIZE);
+    /// @brief fonction qui permet de récupérer les box changement de gravité
+    vector<BoxCmgtGrav*> getBoxCmgtGrav();
 
 
 
@@ -97,6 +102,8 @@ private:
     vector<M_Plateform*> m_M_Plateform;
     /// @brief vecteur de L_Plateform
     vector<L_Plateform*> m_L_Plateform;
+    /// @brief vecteur de box changement de gravité
+    vector<BoxCmgtGrav*> m_BoxCmgtGrav;
     int get_Tile_Size();
 
 };
