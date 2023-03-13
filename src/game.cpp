@@ -173,7 +173,6 @@ void Game::run()
 
 void Game::handleEvents(SDL_Event &event)
 {
-    cout << "inputtype: " << inputtype << endl;
     if( inputtype == 1) {
         if (event.type == SDL_KEYDOWN)
     {
