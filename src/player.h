@@ -80,6 +80,10 @@ public:
     double getGravity();
     /// @brief set la gravité du joueur
     void setGravity(double gravity);
+    /// @brief set JumpBuffer
+    void setJumpBuffer(double jumpBuffer);
+    ///@brief set TimeSinceTouchGround
+    void setTimeSinceTouchGround(double timeSinceTouchGround);
     /// @brief fonction qui permet de déplacer le joueur a des coordonnées précises
     void setRect(SDL_Rect rect);
     /// @brief fonction qui permet de connaitre le temps depuis que le joueur n'est plus au sol

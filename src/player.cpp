@@ -169,6 +169,14 @@ void Player::setGravity(double gravity) {
     m_yVelocity = gravity;
 }
 
+void Player::setJumpBuffer(double jumpBuffer) {
+    this->jumpBuffer = jumpBuffer;
+}
+
+void Player::setTimeSinceTouchGround(double timeSinceTouchGround) {
+    this->timeSinceTouchGround = timeSinceTouchGround;
+}
+
 void Player::moveTo(double x, double y){
     m_coords.x = x;
     m_coords.y = y;

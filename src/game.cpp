@@ -322,15 +322,19 @@ void Game::update(double delta)
         }
     }
 
-    // Collision du joeur avec la BoxCmgtGrav la gravité est inversée
+    // Le joeur se retourne et il chute jusqu'à y=0 quand il traverse BoxCmgtGrav
     for (BoxCmgtGrav *boxCmgtGrav : m_levels[m_currentLevel]->getBoxCmgtGrav())
     {
         if (m_player.collidesWith(boxCmgtGrav))
         {
-            m_player.moveOutOf(boxCmgtGrav);
             m_player.setGravity(-m_player.getGravity());
+            m_player.setDirection(PlayerDirection::NONE);
+            m_player.setJumpBuffer(0.1);
+            m_player.setTimeSinceTouchGround(0);
         }
     }
+
+    
 
     // Le joueur gagne si il touche la BoxFinish
     for (BoxFinish *boxFinish : m_levels[m_currentLevel]->getBoxFinish())
