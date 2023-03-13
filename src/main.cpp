@@ -39,9 +39,9 @@ int main() {
     fclose(fichierplatform);
 
     FILE* fichierboxfinish = NULL;
-    fichierplatform = fopen("niveaux/texte/1/2.txt", "r");
+    fichierboxfinish = fopen("niveaux/texte/1/2.txt", "r");
     //on the first line, the coordinates of the obstacles, separated by a space;
-    while (fscanf(fichierobstacle, "%d %d", &y, &x) != EOF) {
+    while (fscanf(fichierboxfinish, "%d %d", &y, &x) != EOF) {
       mvprintw(LINES - y, x, "F");
     } 
     fclose(fichierboxfinish);
