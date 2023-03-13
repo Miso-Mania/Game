@@ -37,17 +37,21 @@ int main() {
       mvprintw(LINES - y, x, "P");
     } 
     fclose(fichierplatform);
-
+    char lastInput = 'o';
     // Listen for keyboard input to move and jump the player
     int key = getch();
     switch (key) {
       case 'q':
         player_x--;
+        lastInput = 'q';
+
         break;
       case 'd':
         player_x++;
+        lastInput = 'd';
         break;
       case 'z': //jump
+        lastInput = 'z';
         player_vy = -2; // set upward velocity
         break;
       default:
@@ -71,10 +75,22 @@ int main() {
       endwin();
       return 0;
     }
-    else if (mvwinch(stdscr, player_y, player_x) == 'P') { //if the player touches the platform, he doesn't fall and he can jump again
-      player_vy = 0;
+     //we check if he his inside the platform (if yes we push him out)
+      if (mvwinch(stdscr, player_y , player_x) == 'P') {
+        if (lastInput == 'q')
+          player_x++;
+        else if (lastInput == 'd'){
+          player_x--;
+        }
+      }//we check if the player is on top of a platform, if yes he will not fall
+      if (mvwinch(stdscr, player_y - 1, player_x) == 'P') {
+        player_y++;
+      }
+    
 
-    }
+
+
+    
 
     
     refresh();
