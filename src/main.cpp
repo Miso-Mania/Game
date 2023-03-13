@@ -37,6 +37,15 @@ int main() {
       mvprintw(LINES - y, x, "P");
     } 
     fclose(fichierplatform);
+
+    FILE* fichierboxfinish = NULL;
+    fichierplatform = fopen("niveaux/texte/1/2.txt", "r");
+    //on the first line, the coordinates of the obstacles, separated by a space;
+    while (fscanf(fichierobstacle, "%d %d", &y, &x) != EOF) {
+      mvprintw(LINES - y, x, "F");
+    } 
+    fclose(fichierboxfinish);
+
     char lastInput = 'o';
     // Listen for keyboard input to move and jump the player
     int key = getch();
@@ -86,7 +95,13 @@ int main() {
       if (mvwinch(stdscr, player_y - 1, player_x) == 'P') {
         player_y++;
       }
-    
+      //we check if the player touches the finish (if yes we print a message on the screen and  and we close the game and ncurses)
+      if (mvwinch(stdscr, player_y, player_x) == 'F') {
+        mvprintw(LINES / 2, COLS / 2 - 5, "YOU WIN");
+        getch();
+        endwin();
+        return 0;
+      }
 
 
 
