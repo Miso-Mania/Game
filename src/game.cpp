@@ -9,6 +9,7 @@ const int window_X_size = 1900;
 const int window_Y_size = 1068;
 const int NUM_TILES_X = 48;
 const int NUM_TILES_Y = 27;
+const int TILE_SIZE = 40;
 int inputtype = 0;
 
 
@@ -173,7 +174,15 @@ void Game::run()
 
 void Game::handleEvents(SDL_Event &event)
 {
-    cout << "inputtype: " << inputtype << endl;
+    if(event.type == SDL_MOUSEBUTTONDOWN) {
+        std::cout << "click :" << event.button.x << " " << event.button.y << std::endl;
+        double x = event.button.x * 1.0 / TILE_SIZE;
+        double y = event.button.y * 1.0 / TILE_SIZE;
+        std::cout << "click x, y :" << x << " " << y << std::endl;
+        m_levels[m_currentLevel]->click(x, y, 40);
+        std::cout << window_X_size / NUM_TILES_X << std::endl;
+    }   
+
     if( inputtype == 1) {
         if (event.type == SDL_KEYDOWN)
     {
@@ -462,6 +471,19 @@ void Game::render()
     {
         SDL_Rect boxFinishRect = box->getRect();
         SDL_RenderFillRect(m_renderer, &boxFinishRect);
+    }
+
+    int x, y;
+    SDL_GetMouseState(&x, &y);
+    SDL_SetRenderDrawBlendMode(m_renderer, SDL_BLENDMODE_BLEND);
+    SDL_SetRenderDrawColor(m_renderer, 255, 255, 255, 150);
+    for (Case *Case : m_levels[m_currentLevel]->getCase())
+    {
+        SDL_Rect CaseRect = Case->getRect();
+        if (x > CaseRect.x && x < CaseRect.x + CaseRect.w && y > CaseRect.y && y < CaseRect.y + CaseRect.h)
+        {
+            SDL_RenderFillRect(m_renderer, &CaseRect);
+        }
     }
 
     // Affichage

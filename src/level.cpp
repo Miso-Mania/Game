@@ -222,3 +222,17 @@ void Level::saveToJSON(string filename) {
 int Level::get_Tile_Size() {
     return id;
 }
+
+void Level::click(double x, double y, int TILE_SIZE){
+    Coords coords(x, y, 0, 0);
+    int i = 0;
+    for (Case* Case : m_Case) {
+        if (coords.isColliding(Case->getCoords())) {
+            m_Case.erase(m_Case.begin() + i);
+            return;
+        }
+        i++;
+    }
+
+    addCase(x, y, TILE_SIZE);
+}

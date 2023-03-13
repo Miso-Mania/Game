@@ -65,6 +65,8 @@ public:
     /// @brief fonction qui permet de récupérer les L_Plateform
     vector<L_Plateform*> getL_Plateform();
 
+    void click(double x, double y, int TILE_SIZE);
+
 
 
     /// @brief fonction qui permet de charger un niveau, depuis un fichier JSON
