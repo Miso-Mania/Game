@@ -81,7 +81,7 @@ Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0)
     m_surface_D_Case = IMG_Load("assets/textures/big-crate.png");
     m_texture_D_Case = SDL_CreateTextureFromSurface(m_renderer, m_surface_D_Case);
 
-    m_surface_DoubleJumpPort = IMG_Load("assets/textures/nkm.png");
+    m_surface_DoubleJumpPort = IMG_Load("assets/textures/rondvert.png");
     m_texture_DoubleJumpPort = SDL_CreateTextureFromSurface(m_renderer, m_surface_DoubleJumpPort);
 
     std::cout << "textures loaded" << endl;
