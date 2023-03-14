@@ -272,8 +272,8 @@ void Player::testRegression () {
     cout<<"Test de la methode getRect de la classe Player:"<<endl;
     assert(player.getRect().x == 100);
     assert(player.getRect().y == 600);
-    assert(player.getRect().w == 32);
-    assert(player.getRect().h == 32);
+    assert(player.getRect().w == 48);
+    assert(player.getRect().h == 48);
     cout<<"Test de la methode getRect de la classe Player reussi"<<endl;
     cout<<"Test de la methode setRect de la classe Player:"<<endl;
     SDL_Rect rect = {0,0,0,0};
