@@ -198,12 +198,12 @@ void Player::testRegression () {
     assert(player.m_yVelocity == 0);
     assert(player.m_rect.x == 100);
     assert(player.m_rect.y == 600);
-    assert(player.m_rect.w == 32);
-    assert(player.m_rect.h == 32);
+    assert(player.m_rect.w == 48);
+    assert(player.m_rect.h == 48);
     assert(player.m_coords.x == 3);
     assert(player.m_coords.y == 15);
-    assert(player.m_coords.w == 0.8);
-    assert(player.m_coords.h == 0.8);
+    assert(player.m_coords.w == 1.2);
+    assert(player.m_coords.h == 1.2);
     cout<<"Test du constructeur de la classe Player reussi"<<endl;
     cout<<"Test du destructeur de la classe Player:"<<endl;
     cout<<"Test du destructeur de la classe Player reussi"<<endl;
