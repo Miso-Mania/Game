@@ -21,92 +21,170 @@ using namespace std;
 
 class Level {
 public:
-    /// @brief constructeur de la classe Level
+/**
+    @brief constructeur de la classe Level
+    @param aucun
+    */
     Level();
-    /// @brief destructeur de la classe Level
+/**
+    @brief destructeur de la classe Level
+    @param aucun
+    */
     ~Level();
-    /// @brief fonction qui permet d'ajouter un obstacle
+/**
+    @brief fonction qui permet d'ajouter un obstacle
+    @param int x, int y, int width, int height
+    */
     void addObstacle(int x, int y, int width, int height);
-    /// @brief fonction qui permet de récupérer les obstacles
+/**
+    @brief fonction qui permet de récupérer les obstacles
+    @param aucun
+    @return vector<Obstacle*>
+    */
     vector<Obstacle*> getObstacles();
-    /// @brief fonction qui permet d'ajouter une pic
+/**
+    @brief fonction qui permet d'ajouter une pic
+    @param int x, int y, int TILE_SIZE
+    */
     void addPic(int x, int y, int TILE_SIZE);
-    /// @brief fonction qui permet de récupérer les pics
+/**
+    @brief fonction qui permet de récupérer les pics
+    @param aucun
+    @return vector<Pic*>
+    */
     vector<Pic*> getPics();
-    /// @brief fonction qui permet d'ajouter une box de fin
+/**
+    @brief fonction qui permet d'ajouter une box de fin
+    @param int x, int y, int TILE_SIZE
+    */
     void addBoxFinish(int x, int y, int TILE_SIZE);
-    /// @brief fonction qui permet de récupérer les box de fin
+/**
+    @brief fonction qui permet de récupérer les box de fin
+    @param aucun
+    @return vector<BoxFinish*>
+    */
     vector<BoxFinish*> getBoxFinish();
-    /// @brief fonction qui permet d'ajouter un tree
+/**
+    @brief fonction qui permet d'ajouter un arbre
+    @param int x, int y, int TILE_SIZE
+    */
     void addTree(int x, int y, int TILE_SIZE);
-    /// @brief fonction qui permet de récupérer les trees
+/**
+    @brief fonction qui permet de récupérer les arbres
+    @param aucun
+    @return vector<Tree*>
+    */
     vector<Tree*> getTrees();
-    /// @brief fonction qui permet d'ajouter un doublejumpport
+/**
+    @brief fonction qui permet d'ajouter un doublejumpport
+    @param int x, int y, int TILE_SIZE
+    */
     void addDoubleJumpPort(int x, int y, int TILE_SIZE);
-    /// @brief fonction qui permet de récupérer les doublejumpport
+/**
+    @brief fonction qui permet de récupérer les doublejumpport
+    @param aucun
+    @return vector<DoubleJumpPort*>
+    */
     vector<DoubleJumpPort*> getDoubleJumpPort();
-    /// @brief fonction qui permet d'ajouter une D_Case
+/**
+    @brief fonction qui permet d'ajouter une D_Case
+    @param int x, int y, int TILE_SIZE
+    */
     void addD_Case(int x, int y, int TILE_SIZE);
-    /// @brief fonction qui permet de récupérer les D_Case
+/**
+    @brief fonction qui permet de récupérer les D_Case
+    @param aucun
+    @return vector<D_Case*>
+    */
     vector<D_Case*> getD_Case();
-    /// @brief fonction qui permet d'ajouter une Case
+/**
+    @brief fonction qui permet d'ajouter une Case
+    @param int x, int y, int TILE_SIZE
+    */
     void addCase(int x, int y, int TILE_SIZE);
-    /// @brief fonction qui permet de récupérer les Case
+/**
+    @brief fonction qui permet de récupérer les Case
+    @param aucun
+    @return vector<Case*>
+    */
     vector<Case*> getCase();
-    /// @brief fonction qui permet d'ajouter une S_Plateform
+/**
+    @brief fonction qui permet d'ajouter une S_Plateform
+    @param int x, int y, int TILE_SIZE
+    */
     void addS_Plateform(int x, int y, int TILE_SIZE);
-    /// @brief fonction qui permet de récupérer les S_Plateform
+/**
+    @brief fonction qui permet de récupérer les S_Plateform
+    @param aucun
+    @return vector<S_Plateform*>
+    */
     vector<S_Plateform*> getS_Plateform();
-    /// @brief fonction qui permet d'ajouter une M_Plateform
+/**
+    @brief fonction qui permet d'ajouter une M_Plateform
+    @param int x, int y, int TILE_SIZE
+    */
     void addM_Plateform(int x, int y, int TILE_SIZE);
-    /// @brief fonction qui permet de récupérer les M_Plateform
+/**
+    @brief fonction qui permet de récupérer les M_Plateform
+    @param aucun
+    @return vector<M_Plateform*>
+    */
     vector<M_Plateform*> getM_Plateform();
-    /// @brief fonction qui permet d'ajouter une L_Plateform
+/**
+    @brief fonction qui permet d'ajouter une L_Plateform
+    @param int x, int y, int TILE_SIZE
+    */
     void addL_Plateform(int x, int y, int TILE_SIZE);
-    /// @brief fonction qui permet de récupérer les L_Plateform
+/**
+    @brief fonction qui permet de récupérer les L_Plateform
+    @param aucun
+    @return vector<L_Plateform*>
+    */
     vector<L_Plateform*> getL_Plateform();
-    /// @brief fonction qui permet d'ajouter une box changement de gravité
+/**
+    @brief fonction qui permet d'ajouter une box changement de gravité
+    @param int x, int y, int TILE_SIZE
+    */
     void addBoxCmgtGrav(int x, int y, int TILE_SIZE);
-    /// @brief fonction qui permet de récupérer les box changement de gravité
+/**
+    @brief fonction qui permet de récupérer les box changement de gravité
+    @param aucun
+    @return vector<BoxCmgtGrav*>
+    */
     vector<BoxCmgtGrav*> getBoxCmgtGrav();
-
-
-
-    /// @brief fonction qui permet de charger un niveau, depuis un fichier JSON
+/**
+    @brief fonction qui permet de charger un niveau, depuis un fichier JSON
+    @param string filePATHandname, int TILE_SIZE
+    */
     void loadFromJSON(string filePATHandname, int TILE_SIZE);
-    /// @brief fonction qui permet de sauvegarder un niveau vers un fichier JSON
+/**
+    @brief fonction qui permet de sauvegarder un niveau vers un fichier JSON
+    @param string filePATHandname
+    */
     void saveToJSON(string filePATHandname);
-    ///@brief fonction qui test les fonctions membres
+/**
+    @brief fonction qui test les fonctions membres
+    @param aucun
+    */
     void testRegression();
 
-    int id;
-    string name;
-    string creator;
+    int id; // id du niveau
+    string name; // nom du niveau
+    string creator; // créateur du niveau
 
 private:
-    /// @brief vecteur d'obstacles
-    vector<Obstacle*> m_obstacles;
-    /// @brief vecteur de pics
-    vector<Pic*> m_pics;
-    /// @brief vecteur de box de fin
-    vector<BoxFinish*> m_BoxFinish;
-    /// @brief vecteur de trees
-    vector<Tree*> m_trees;
-    /// @brief vecteur de doublejumpport
-    vector<DoubleJumpPort*> m_DoubleJumpPort;
-    /// @brief vecteur de D_Case
-    vector<D_Case*> m_D_Case;
-    /// @brief vecteur de Case
-    vector<Case*> m_Case;
-    /// @brief vecteur de S_Plateform
-    vector<S_Plateform*> m_S_Plateform;
-    /// @brief vecteur de M_Plateform
-    vector<M_Plateform*> m_M_Plateform;
-    /// @brief vecteur de L_Plateform
-    vector<L_Plateform*> m_L_Plateform;
-    /// @brief vecteur de box changement de gravité
-    vector<BoxCmgtGrav*> m_BoxCmgtGrav;
-    int get_Tile_Size();
+    vector<Obstacle*> m_obstacles; // liste des obstacles
+    vector<Pic*> m_pics; // liste des pics
+    vector<BoxFinish*> m_BoxFinish; // liste des box de fin
+    vector<Tree*> m_trees; // liste des arbres
+    vector<DoubleJumpPort*> m_DoubleJumpPort; // liste des doublejumpport
+    vector<D_Case*> m_D_Case; // liste des D_Case
+    vector<Case*> m_Case; // liste des Case
+    vector<S_Plateform*> m_S_Plateform; // liste des S_Plateform
+    vector<M_Plateform*> m_M_Plateform; // liste des M_Plateform
+    vector<L_Plateform*> m_L_Plateform; // liste des L_Plateform
+    vector<BoxCmgtGrav*> m_BoxCmgtGrav; // liste des box changement de gravité
+    int get_Tile_Size(); // fonction qui permet de récupérer la taille d'une tile
 
 };
 
