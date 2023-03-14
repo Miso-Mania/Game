@@ -1,6 +1,6 @@
 #include "player.h"
 #include <iostream>
-Player::Player(): m_coords(3, 15, 0.8, 0.8), m_rect({100, 600, 32, 32}), m_yVelocity(0), m_direction(PlayerDirection::NONE) {
+Player::Player(): m_coords(3, 15, 1.2, 1.2), m_rect({100, 600, 48, 48}), m_yVelocity(0), m_direction(PlayerDirection::NONE) {
 }
 
 Player::~Player() {
