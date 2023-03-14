@@ -14,6 +14,7 @@
 #include "objets/Case.h"
 #include "objets/D_Case.h"
 #include "objets/BoxCmgtGrav.h"
+#include <assert.h>
 
 
 class Player {
@@ -94,6 +95,8 @@ public:
     void moveTo(double x, double y);
 
     void updateRect();
+    /// @brief fonction qui fait des test de régréssion sur la classe
+    void testRegression();
 
 
 private:

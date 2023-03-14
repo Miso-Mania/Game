@@ -187,5 +187,14 @@ void Player::updateRect(){
     m_rect.y = m_coords.y * 40;
 }
 
-
+void Player::testRegression () {
+    // test du constructeur de la classe Player
+    Player player = Player();
+    assert(player.getDirection() == PlayerDirection::NONE);
+    assert(player.getGravity() == 0);
+    assert(player.getRect().x == 0);
+    assert(player.getRect().y == 0);
+    assert(player.getRect().w == 40);
+    assert(player.getRect().h == 40);
+}
 
