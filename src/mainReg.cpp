@@ -12,11 +12,11 @@ int main () {
     cout<<endl;
     Level level;
     level.testRegression();
-    return 0;
     cout<<endl;
     cout<<"Changement de Classe"<<endl;
     cout<<endl;
     Coords coords;
     coords.testRegression();
+    return 0;
 
 }
