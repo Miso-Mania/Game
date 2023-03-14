@@ -93,7 +93,11 @@ private:
     SDL_Texture *m_texture_D_Case;
     /// @brief Surface des D_Cases
     SDL_Surface *m_surface_D_Case;
-    
+
+    /// @brief Texture des BoxCmgtGrav
+    SDL_Texture *m_texture_BoxCmgtGrav;
+    /// @brief Surface des BoxCmgtGrav
+    SDL_Surface *m_surface_BoxCmgtGrav;
 
     Player m_player;
 

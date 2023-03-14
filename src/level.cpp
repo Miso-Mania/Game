@@ -103,6 +103,15 @@ vector<DoubleJumpPort*> Level::getDoubleJumpPort() {
     return m_DoubleJumpPort;
 }
 
+void Level::addBoxCmgtGrav(int x, int y, int TILE_SIZE) {
+    BoxCmgtGrav* boxcmgtgrav = new BoxCmgtGrav(x, y, TILE_SIZE);
+    m_BoxCmgtGrav.push_back(boxcmgtgrav);
+}
+
+vector<BoxCmgtGrav*> Level::getBoxCmgtGrav() {
+    return m_BoxCmgtGrav;
+}
+
 void Level::loadFromJSON(string filename, int TILE_SIZE) {
     cout << "Loading level from " << filename << endl;
     ifstream file(filename);
@@ -174,6 +183,12 @@ void Level::loadFromJSON(string filename, int TILE_SIZE) {
         int y = element["y"];
         addL_Plateform(x, y, TILE_SIZE);
         cout << "Une M_Plateform de posée ici: " << x << ", " << y << endl;
+    }
+    for (auto& element : j["BoxCmgtGrav"]) {
+        int x = element["x"];
+        int y = element["y"];
+        addBoxCmgtGrav(x, y, TILE_SIZE);
+        cout << "Une BoxCmgtGrav de posée ici: " << x << ", " << y << endl;
     }
 }
 

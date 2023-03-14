@@ -82,8 +82,11 @@ Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0), editMode(fal
     m_surface_D_Case = IMG_Load("assets/textures/big-crate.png");
     m_texture_D_Case = SDL_CreateTextureFromSurface(m_renderer, m_surface_D_Case);
 
-    m_surface_DoubleJumpPort = IMG_Load("assets/textures/nkm.png");
+    m_surface_DoubleJumpPort = IMG_Load("assets/textures/rondvert.png");
     m_texture_DoubleJumpPort = SDL_CreateTextureFromSurface(m_renderer, m_surface_DoubleJumpPort);
+
+    m_surface_BoxCmgtGrav = IMG_Load("assets/textures/Manu.png");
+    m_texture_BoxCmgtGrav = SDL_CreateTextureFromSurface(m_renderer, m_surface_BoxCmgtGrav);
 
     std::cout << "textures loaded" << endl;
 
@@ -145,6 +148,9 @@ Game::~Game()
 
     SDL_FreeSurface(m_surface_D_Case);
     SDL_DestroyTexture(m_texture_D_Case);
+
+    SDL_FreeSurface(m_surface_BoxCmgtGrav);
+    SDL_DestroyTexture(m_texture_BoxCmgtGrav);
 
 
     SDL_Quit();
@@ -362,6 +368,20 @@ void Game::update()
         }
     }
 
+    // Le joeur se retourne et il chute jusqu'à y=0 quand il traverse BoxCmgtGrav
+    for (BoxCmgtGrav *boxCmgtGrav : m_levels[m_currentLevel]->getBoxCmgtGrav())
+    {
+        if (m_player.collidesWith(boxCmgtGrav))
+        {
+            m_player.setGravity(-m_player.getGravity());
+            m_player.setDirection(PlayerDirection::NONE);
+            m_player.setJumpBuffer(0.1);
+            m_player.setTimeSinceTouchGround(0);
+        }
+    }
+
+    
+
     // Le joueur gagne si il touche la BoxFinish
     for (BoxFinish *boxFinish : m_levels[m_currentLevel]->getBoxFinish())
     {
@@ -402,6 +422,21 @@ void Game::update()
     for (DoubleJumpPort *doublejumpport : m_levels[m_currentLevel]->getDoubleJumpPort())
     {
         doublejumpport->move(delta);
+    }
+    // Mise à jour de la position des Case
+    for (Case *Case : m_levels[m_currentLevel]->getCase())
+    {
+        Case->move(delta);
+    }
+    // Mise à jour de la position des D_Case
+    for (D_Case *d_case : m_levels[m_currentLevel]->getD_Case())
+    {
+        d_case->move(delta);
+    }
+    // Mise à jour de la position des BoxCmgtGrav
+    for (BoxCmgtGrav *boxCmgtGrav : m_levels[m_currentLevel]->getBoxCmgtGrav())
+    {
+        boxCmgtGrav->move(delta);
     }
     // Collision du joueur avec les pics stop la partie
     for (Pic *pic : m_levels[m_currentLevel]->getPics())
@@ -507,6 +542,12 @@ void Game::render()
     {
         SDL_Rect boxFinishRect = box->getRect();
         SDL_RenderFillRect(m_renderer, &boxFinishRect);
+    }
+    // Dessin des BoxCmgtGrav
+    for (BoxCmgtGrav *boxCmgtGrav : m_levels[m_currentLevel]->getBoxCmgtGrav())
+    {
+        SDL_Rect boxCmgtGravRect = boxCmgtGrav->getRect();
+        SDL_RenderCopy(m_renderer, m_texture_BoxCmgtGrav, NULL, &boxCmgtGravRect);
     }
 
     

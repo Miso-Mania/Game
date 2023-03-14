@@ -4,6 +4,20 @@
     "createur": "JUL",
     "Conventions : laisser minimum 150 entre chaque pic et 100 entre chaque obstacle": "",
 
+    "DoubleJumpPort": [
+        {
+            "x": 11,
+            "y": 21
+        }
+    ],
+
+    "BoxCmgtGrav": [
+        {
+            "x": 30,
+            "y": 20
+        }
+    ],
+   
     "BoxFinish": [
         {
             "x": 0,
