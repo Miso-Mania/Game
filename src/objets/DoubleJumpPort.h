@@ -7,6 +7,8 @@
 /// @brief classe DoubleJumpPort
 class DoubleJumpPort {
 public:
+    /// @brief constructeur par défaut de la classe DoubleJump
+    DoubleJumpPort();
     /// @brief constructeur de la classe DoubleJump, en paramètre les coordonnées de l'objet
     DoubleJumpPort(int x, int y, int TILE_SIZE);
     /// @brief destructeur de la classe DoubleJump
@@ -19,6 +21,8 @@ public:
     void move(double delta);
     /// @brief fonction qui permet de récupérer les coordonnées de l'objet
     Coords getCoords();
+    /// @brief fonction qui permet de tester la régression de la classe DoubleJump
+    void testRegression();
 
 private:
     /// @brief coordonnées de l'objet

@@ -7,6 +7,8 @@
 /// @brief classe Obstacle
 class Obstacle {
 public:
+    /// @brief constructeur par défaut de la classe Obstacle
+    Obstacle();
     /// @brief constructeur de la classe Obstacle, en paramètre les coordonnées de l'obstacle
     Obstacle(int x, int y, int width, int height);
     /// @brief destructeur de la classe Obstacle
@@ -19,6 +21,8 @@ public:
     void move(double delta);
 
     Coords getCoords();
+    /// @brief fonction qui permet de tester la régression de la classe Obstacle
+    void testRegression();
 
 private:
     /// @brief coordonnées de l'obstacle

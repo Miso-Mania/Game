@@ -7,6 +7,8 @@
 /// @brief classe Tree
 class Tree {
 public:
+    /// @brief constructeur par défaut de la classe Tree
+    Tree();
     /// @brief constructeur de la classe Tree, en paramètre les coordonnées du Tree, et sa largeur et sa hauteur
     Tree(int x, int y, int TILE_SIZE);
     /// @brief destructeur de la classe Tree
@@ -19,6 +21,8 @@ public:
     void move(double delta);
     /// @brief fonction qui permet de récupérer les coordonnées du Tree
     Coords getCoords();
+    /// @brief fonction qui permet de tester la régression de la classe Tree
+    void testRegression();
 
 private:
     /// @brief coordonnées du Tree

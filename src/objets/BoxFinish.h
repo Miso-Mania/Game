@@ -7,6 +7,8 @@
 /// @brief classe BoxFinish
 class BoxFinish {
 public:
+    /// @brief constructeur par défaut de la classe BoxFinish
+    BoxFinish();
     /// @brief constructeur de la classe BoxFinish, en paramètre les coordonnées de la box de fin
     BoxFinish(int x, int y, int TILE_SIZE) ;
     /// @brief destructeur de la classe BoxFinish
@@ -19,6 +21,8 @@ public:
     void move(double delta);
     /// @brief fonction qui permet de récupérer les coordonnées de la box de fin
     Coords getCoords();
+    /// @brief fonction qui permet de tester la régression de la classe BoxFinish
+    void testRegression();
 
 private:
     /// @brief coordonnées de la box de fin

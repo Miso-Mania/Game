@@ -7,6 +7,8 @@
 /// @brief classe Pic
 class Pic {
 public:
+    /// @brief constructeur par défaut de la classe Pic
+    Pic();
     /// @brief constructeur de la classe Pic, en paramètre les coordonnées de la pic
     Pic(int x, int y, int TILE_SIZE);
     /// @brief destructeur de la classe Pic
@@ -19,6 +21,8 @@ public:
     void move(double delta);
 
     Coords getCoords();
+    /// @brief fonction qui permet de tester la régression de la classe Pic
+    void testRegression();
 
 private:
     Coords m_coords;

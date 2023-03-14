@@ -7,6 +7,8 @@
 /// @brief classe D_Case
 class D_Case {
 public:
+    /// @brief constructeur par défaut de la classe D_Case
+    D_Case();
     /// @brief constructeur de la classe D_Case, en paramètre les coordonnées de l'D_Case
     D_Case(int x, int y, int TILE_SIZE);
     /// @brief destructeur de la classe D_Case
@@ -19,6 +21,8 @@ public:
     void move(double delta);
     /// @brief fonction qui permet de récupérer les coordonnées de l'D_Case
     Coords getCoords();
+    /// @brief fonction qui permet de tester la régression de la classe D_Case
+    void testRegression();
 
 private:
     /// @brief coordonnées de l'D_Case
