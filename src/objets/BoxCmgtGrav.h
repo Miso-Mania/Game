@@ -7,6 +7,8 @@
 /// @brief classe BoxCmgtGrav
 class BoxCmgtGrav {
     public:
+        ///@brief constructeur par défaut de la classe BoxCmgtGrav
+        BoxCmgtGrav();
         /// @brief constructeur de la classe BoxCmgtGrav, en paramètre les coordonnées de l'objet
         BoxCmgtGrav(int x, int y, int TILE_SIZE);
         /// @brief destructeur de la classe BoxCmgtGrav
@@ -19,6 +21,8 @@ class BoxCmgtGrav {
         void move(double delta);
         /// @brief fonction qui permet de récupérer les coordonnées de l'objet
         Coords getCoords();
+        /// @brief fonction qui permet de tester la classe
+        void testRegression();
         private:
         /// @brief coordonnées de l'objet
         Coords m_coords;
