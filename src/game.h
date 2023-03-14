@@ -7,107 +7,92 @@
 #include "level.h"
 #include "player.h"
 
-
 using namespace std;
 
-/// @brief classe Game
 class Game {
 public:
-    /// @brief constructeur de la classe Game
+/**
+    @brief constructeur de la classe Game
+    @param aucun
+    */
     Game();
-    /// @brief destructeur de la classe Game
+/**
+    @brief destructeur de la classe Game
+    @param aucun
+    */
     ~Game();
-    /// @brief fonction qui permet de lancer le jeu
+/**
+    @brief fonction qui permet de lancer le jeu
+    @param aucun
+    */
     void run();
-    /// @brief fonction qui permet de gérer les évènements
+/**
+    @brief fonction qui permet de gérer les évènements
+    @param SDL_Event& event
+    */
     void handleEvents(SDL_Event& event);
-    /// @brief fonction qui permet de mettre à jour le jeu
+/**
+    @brief fonction qui permet de mettre à jour le jeu
+    @param double delta
+    */
     void update(double delta);
-    /// @brief fonction qui permet de dessiner le jeu
+/**
+    @brief fonction qui permet de dessiner le jeu
+    @param aucun
+    */
     void render();
 
 private:
-    /// @brief FENETRE
-    SDL_Window *m_window;
-    /// @brief RENDERER
-    SDL_Renderer *m_renderer;
-    /// @brief RECTANGLE
-    SDL_Rect m_rect;
+    SDL_Window *m_window; // fenêtre du jeu
+    SDL_Renderer *m_renderer; // renderer du jeu
+    SDL_Rect m_rect; // rectangle du jeu
 
-    /// @brief Texture du joueur
-    SDL_Texture *m_texture_player;
-    /// @brief Surface du joueur
-    SDL_Surface *m_surface_player;
+    SDL_Texture *m_texture_player; // texture du joueur
+    SDL_Surface *m_surface_player; // surface du joueur
 
-    /// @brief Texture du pic
-    SDL_Texture *m_texture_pic;
-    /// @brief Surface du pic
-    SDL_Surface *m_surface_pic;
+    SDL_Texture *m_texture_pic; // texture du pic
+    SDL_Surface *m_surface_pic; // surface du pic
 
-    /// @brief Texture de l'obstacle
-    SDL_Texture *m_texture_obstacle;
-    /// @brief Surface de l'obstacle
-    SDL_Surface *m_surface_obstacle;
+    SDL_Texture *m_texture_obstacle; // texture de l'obstacle
+    SDL_Surface *m_surface_obstacle; // surface de l'obstacle
 
-    /// @brief Texture du background
-    SDL_Texture *m_texture_background;
-    /// @brief Surface du background
-    SDL_Surface *m_surface_background;
+    SDL_Texture *m_texture_background; // texture du background
+    SDL_Surface *m_surface_background; // surface du background
 
-    /// @brief Texture des arbres
-    SDL_Texture *m_texture_Trees;
-    /// @brief Surface des arbres
-    SDL_Surface *m_surface_Trees;
+    SDL_Texture *m_texture_Trees; // texture des arbres
+    SDL_Surface *m_surface_Trees; // surface des arbres
 
-    /// @brief Texture des box
-    SDL_Texture *m_texture_BoxFinish;
-    /// @brief Surface des box
-    SDL_Surface *m_surface_BoxFinish;
+    SDL_Texture *m_texture_BoxFinish; // texture de la boite de fin
+    SDL_Surface *m_surface_BoxFinish; // surface de la boite de fin
 
-    /// @brief Texture des doublejumpport
-    SDL_Texture *m_texture_DoubleJumpPort;
-    /// @brief Surface des doublejumpport
-    SDL_Surface *m_surface_DoubleJumpPort;
+    SDL_Texture *m_texture_DoubleJumpPort; // texture du portail de double saut
+    SDL_Surface *m_surface_DoubleJumpPort; // surface du portail de double saut
 
-    /// @brief Texture des S_Plateform
-    SDL_Texture *m_texture_S_Plateform;
-    /// @brief Surface des S_Plateform
-    SDL_Surface *m_surface_S_Plateform;
+    SDL_Texture *m_texture_S_Plateform; // texture de la petie plateforme 
+    SDL_Surface *m_surface_S_Plateform; // surface de la petie plateforme 
 
-    /// @brief Texture des M_Plateform
-    SDL_Texture *m_texture_M_Plateform;
-    /// @brief Surface des M_Plateform
-    SDL_Surface *m_surface_M_Plateform;
+    SDL_Texture *m_texture_M_Plateform; // texture de la moyenne plateforme 
+    SDL_Surface *m_surface_M_Plateform; // surface de la moyenne plateforme 
 
-    /// @brief Texture des L_Plateform
-    SDL_Texture *m_texture_L_Plateform;
-    /// @brief Surface des L_Plateform
-    SDL_Surface *m_surface_L_Plateform;
+    SDL_Texture *m_texture_L_Plateform; // texture de la longue plateforme 
+    SDL_Surface *m_surface_L_Plateform; // surface de la longue plateforme 
 
-    /// @brief Texture des cases
-    SDL_Texture *m_texture_Case;
-    /// @brief Surface des cases
-    SDL_Surface *m_surface_Case;
+    SDL_Texture *m_texture_Case; // texture de la caisse
+    SDL_Surface *m_surface_Case; // surface de la caisse
 
-    /// @brief Texture des D_Cases
-    SDL_Texture *m_texture_D_Case;
-    /// @brief Surface des D_Cases
-    SDL_Surface *m_surface_D_Case;
+    SDL_Texture *m_texture_D_Case; // texture de la double caisse
+    SDL_Surface *m_surface_D_Case; // surface de la double caisse
 
-    /// @brief Texture des BoxCmgtGrav
-    SDL_Texture *m_texture_BoxCmgtGrav;
-    /// @brief Surface des BoxCmgtGrav
-    SDL_Surface *m_surface_BoxCmgtGrav;
+    SDL_Texture *m_texture_BoxCmgtGrav; // texture de la boite de gestion de la gravité
+    SDL_Surface *m_surface_BoxCmgtGrav; // surface de la boite de gestion de la gravité
 
-    Player m_player;
+    Player m_player; // joueur du jeu
 
-    /// @brief vecteur de niveau 
-    vector<Level*> m_levels;
+    vector<Level*> m_levels; // vecteur de niveaux
 
-    /// @brief niveau actuel
-    int m_currentLevel;
+    int m_currentLevel; // niveau actuel
 
-    double timer;
+    double timer; // timer// @brief niveau actuel
 };
 #endif // GAME_H
 
