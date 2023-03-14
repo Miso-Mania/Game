@@ -270,6 +270,13 @@ void Level::saveToJSON(string filename) {
         L_PlateformJSON["y"] = L_PlateformCoords.y;
         j["L_Plateform"].push_back(L_PlateformJSON);
     }
+    for (BoxCmgtGrav* BoxCmgtGrav : m_BoxCmgtGrav) {
+        json BoxCmgtGravJSON;
+        Coords BoxCmgtGravCoords = BoxCmgtGrav->getCoords();
+        BoxCmgtGravJSON["x"] = BoxCmgtGravCoords.x;
+        BoxCmgtGravJSON["y"] = BoxCmgtGravCoords.y;
+        j["BoxCmgtGrav"].push_back(BoxCmgtGravJSON);
+    }
 
     ofstream file(filename);
     file << j;
@@ -353,6 +360,14 @@ void Level::click(double x, double y, int TILE_SIZE){
         }
         i++;
     }
+    i = 0;
+    for (BoxCmgtGrav* BoxCmgtGrav : m_BoxCmgtGrav) {
+        if (coords.isColliding(BoxCmgtGrav->getCoords())) {
+            m_BoxCmgtGrav.erase(m_BoxCmgtGrav.begin() + i);
+            return;
+        }
+        i++;
+    }
 
     if (selectedObj == "Case") {
         addCase(x, y, TILE_SIZE);
@@ -380,5 +395,8 @@ void Level::click(double x, double y, int TILE_SIZE){
     }
     else if (selectedObj == "DoubleJumpPort") {
         addDoubleJumpPort(x, y, TILE_SIZE);
+    }
+    else if (selectedObj == "BoxCmgtGrav") {
+        addBoxCmgtGrav(x, y, TILE_SIZE);
     }
 }
