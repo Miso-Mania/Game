@@ -14,7 +14,6 @@
 #include "objets/Case.h"
 #include "objets/D_Case.h"
 #include "objets/BoxCmgtGrav.h"
-#include <assert.h>
 
 
 class Player {
