@@ -1,6 +1,7 @@
 #include <iostream>
 #include <ncurses.h>
 
+const  int size = 100;
 
 void afficherTitre() {
   //on ouvre le fichier texte qui contient le titre
@@ -9,7 +10,7 @@ void afficherTitre() {
   //on affiche le titre, ligne par ligne
   char ligne[100];
   int i = 0;
-  while (fgets(ligne, 100, fichier) != NULL) {
+  while (fgets(ligne, size,  fichier) != NULL) {
     mvprintw(i + 20, COLS / 2 - 30, ligne); //TODO warning a la compilation, car la ligne 13 veut un const char* et non un char*, mais la ligne 12 ne veut pas de const char* et non un char*
     i++;
   }
