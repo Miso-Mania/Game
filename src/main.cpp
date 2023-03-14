@@ -47,13 +47,13 @@ int main() {
     fclose(fichierboxfinish);
 
     char lastInput = 'o';
+    char lastlastInput = 'o'; // the imput before the last one, it get the value of lastInput at the end of the loop
     // Listen for keyboard input to move and jump the player
     int key = getch();
     switch (key) {
       case 'q':
         player_x--;
         lastInput = 'q';
-
         break;
       case 'd':
         player_x++;
@@ -84,17 +84,32 @@ int main() {
       endwin();
       return 0;
     }
-     //we check if he his inside the platform (if yes we push him out)
-      if (mvwinch(stdscr, player_y , player_x) == 'P') {
-        if (lastInput == 'q')
-          player_x++;
-        else if (lastInput == 'd'){
-          player_x--;
-        }
-      }//we check if the player is on top of a platform, if yes he will not fall
-      if (mvwinch(stdscr, player_y - 1, player_x) == 'P') {
-        player_y++;
+    //Collisions with the platform
+    if (mvwinch(stdscr, player_y, player_x) == 'P') {
+      if(lastlastInput == 'z'){
+        player_y --;
+        player_vy = 0;
       }
+      else if(lastlastInput == 'q'){
+        player_x ++;
+      }
+      else if(lastlastInput == 'd'){
+        player_x --;
+      }
+      if (lastInput == 'd') {
+        player_x --;
+      }
+      else if (lastInput == 'q') {
+        player_x ++;
+      }
+      else if (lastInput == 'z') {
+        player_y ++;
+        player_vy = 0;
+      }
+    }
+     
+      
+
       //we check if the player touches the finish (if yes we print a message on the screen and  and we close the game and ncurses)
       if (mvwinch(stdscr, player_y, player_x) == 'F') {
         mvprintw(LINES / 2, COLS / 2 - 5, "YOU WIN");
@@ -107,7 +122,7 @@ int main() {
 
     
 
-    
+    lastlastInput = lastInput;
     refresh();
   }
 
