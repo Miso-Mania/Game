@@ -210,6 +210,9 @@ void Game::handleEvents(SDL_Event &event)
             case SDLK_9:
                 m_levels[m_currentLevel]->selectedObj = "Pic";
                 break;
+            case SDLK_r:
+                m_levels[m_currentLevel]->saveToJSON("niveaux/level0.json");
+                break;
         }
     } 
 

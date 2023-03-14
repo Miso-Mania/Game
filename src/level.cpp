@@ -9,7 +9,7 @@ using json = nlohmann::json;
 
 using namespace std;
 
-Level::Level() {
+Level::Level() : selectedObj("Case") {
 }
 
 Level::~Level() {
@@ -211,10 +211,51 @@ void Level::saveToJSON(string filename) {
         Coords treeCoords = tree->getCoords();
         treeJSON["x"] = treeCoords.x;
         treeJSON["y"] = treeCoords.y;
-        treeJSON["width"] = treeCoords.w;
-        treeJSON["height"] = treeCoords.h;
         j["trees"].push_back(treeJSON);
     }
+    for (DoubleJumpPort* doublejumpport : m_DoubleJumpPort) {
+        json doublejumpportJSON;
+        Coords doublejumpportCoords = doublejumpport->getCoords();
+        doublejumpportJSON["x"] = doublejumpportCoords.x;
+        doublejumpportJSON["y"] = doublejumpportCoords.y;
+        j["DoubleJumpPort"].push_back(doublejumpportJSON);
+    }
+    for (Case* Case : m_Case) {
+        json CaseJSON;
+        Coords CaseCoords = Case->getCoords();
+        CaseJSON["x"] = CaseCoords.x;
+        CaseJSON["y"] = CaseCoords.y;
+        j["Case"].push_back(CaseJSON);
+    }
+    for (D_Case* D_Case : m_D_Case) {
+        json D_CaseJSON;
+        Coords D_CaseCoords = D_Case->getCoords();
+        D_CaseJSON["x"] = D_CaseCoords.x;
+        D_CaseJSON["y"] = D_CaseCoords.y;
+        j["D_Case"].push_back(D_CaseJSON);
+    }
+    for (S_Plateform* S_Plateform : m_S_Plateform) {
+        json S_PlateformJSON;
+        Coords S_PlateformCoords = S_Plateform->getCoords();
+        S_PlateformJSON["x"] = S_PlateformCoords.x;
+        S_PlateformJSON["y"] = S_PlateformCoords.y;
+        j["S_Plateform"].push_back(S_PlateformJSON);
+    }
+    for (M_Plateform* M_Plateform : m_M_Plateform) {
+        json M_PlateformJSON;
+        Coords M_PlateformCoords = M_Plateform->getCoords();
+        M_PlateformJSON["x"] = M_PlateformCoords.x;
+        M_PlateformJSON["y"] = M_PlateformCoords.y;
+        j["M_Plateform"].push_back(M_PlateformJSON);
+    }
+    for (L_Plateform* L_Plateform : m_L_Plateform) {
+        json L_PlateformJSON;
+        Coords L_PlateformCoords = L_Plateform->getCoords();
+        L_PlateformJSON["x"] = L_PlateformCoords.x;
+        L_PlateformJSON["y"] = L_PlateformCoords.y;
+        j["L_Plateform"].push_back(L_PlateformJSON);
+    }
+
     ofstream file(filename);
     file << j;
 }
