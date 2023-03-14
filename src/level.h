@@ -76,6 +76,8 @@ public:
     void loadFromJSON(string filePATHandname, int TILE_SIZE);
     /// @brief fonction qui permet de sauvegarder un niveau vers un fichier JSON
     void saveToJSON(string filePATHandname);
+    ///@brief fonction qui test les fonctions membres
+    void testRegression();
 
     int id;
     string name;
