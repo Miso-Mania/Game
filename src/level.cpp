@@ -185,34 +185,34 @@ void Level::saveToJSON(string filename) {
     j["createur"] = creator;
     for (Obstacle* obstacle : m_obstacles) {
         json obstacleJSON;
-        SDL_Rect obstacleRect = obstacle->getRect();
-        obstacleJSON["x"] = obstacleRect.x;
-        obstacleJSON["y"] = obstacleRect.y;
-        obstacleJSON["width"] = obstacleRect.w;
-        obstacleJSON["height"] = obstacleRect.h;
+        Coords obstacleCoords = obstacle->getCoords();
+        obstacleJSON["x"] = obstacleCoords.x;
+        obstacleJSON["y"] = obstacleCoords.y;
+        obstacleJSON["width"] = obstacleCoords.w;
+        obstacleJSON["height"] = obstacleCoords.h;
         j["obstacles"].push_back(obstacleJSON);
     }
     for (Pic* pic : m_pics) {
         json picJSON;
-        SDL_Rect picRect = pic->getRect();
-        picJSON["x"] = picRect.x;
-        picJSON["y"] = picRect.y;
+        Coords picCoords = pic->getCoords();
+        picJSON["x"] = picCoords.x;
+        picJSON["y"] = picCoords.y;
         j["pics"].push_back(picJSON);
     }
     for (BoxFinish* box : m_BoxFinish) {
         json boxJSON;
-        SDL_Rect boxRect = box->getRect();
-        boxJSON["x"] = boxRect.x;
-        boxJSON["y"] = boxRect.y;
+        Coords boxCoords = box->getCoords();
+        boxJSON["x"] = boxCoords.x;
+        boxJSON["y"] = boxCoords.y;
         j["BoxFinish"].push_back(boxJSON);
     }
     for (Tree* tree : m_trees) {
         json treeJSON;
-        SDL_Rect treeRect = tree->getRect();
-        treeJSON["x"] = treeRect.x;
-        treeJSON["y"] = treeRect.y;
-        treeJSON["width"] = treeRect.w;
-        treeJSON["height"] = treeRect.h;
+        Coords treeCoords = tree->getCoords();
+        treeJSON["x"] = treeCoords.x;
+        treeJSON["y"] = treeCoords.y;
+        treeJSON["width"] = treeCoords.w;
+        treeJSON["height"] = treeCoords.h;
         j["trees"].push_back(treeJSON);
     }
     ofstream file(filename);
@@ -233,6 +233,96 @@ void Level::click(double x, double y, int TILE_SIZE){
         }
         i++;
     }
+    i = 0;
+    for (D_Case* D_Case : m_D_Case) {
+        if (coords.isColliding(D_Case->getCoords())) {
+            m_D_Case.erase(m_D_Case.begin() + i);
+            return;
+        }
+        i++;
+    }
+    i = 0;
+    for (S_Plateform* S_Plateform : m_S_Plateform) {
+        if (coords.isColliding(S_Plateform->getCoords())) {
+            m_S_Plateform.erase(m_S_Plateform.begin() + i);
+            return;
+        }
+        i++;
+    }
+    i = 0;
+    for (M_Plateform* M_Plateform : m_M_Plateform) {
+        if (coords.isColliding(M_Plateform->getCoords())) {
+            m_M_Plateform.erase(m_M_Plateform.begin() + i);
+            return;
+        }
+        i++;
+    }
+    i = 0;
+    for (L_Plateform* L_Plateform : m_L_Plateform) {
+        if (coords.isColliding(L_Plateform->getCoords())) {
+            m_L_Plateform.erase(m_L_Plateform.begin() + i);
+            return;
+        }
+        i++;
+    }
+    i = 0;
+    for (Pic* Pic : m_pics) {
+        if (coords.isColliding(Pic->getCoords())) {
+            m_pics.erase(m_pics.begin() + i);
+            return;
+        }
+        i++;
+    }
+    i = 0;
+    for (BoxFinish* BoxFinish : m_BoxFinish) {
+        if (coords.isColliding(BoxFinish->getCoords())) {
+            m_BoxFinish.erase(m_BoxFinish.begin() + i);
+            return;
+        }
+        i++;
+    }
+    i = 0;
+    for (Tree* Tree : m_trees) {
+        if (coords.isColliding(Tree->getCoords())) {
+            m_trees.erase(m_trees.begin() + i);
+            return;
+        }
+        i++;
+    }
+    i = 0;
+    for (DoubleJumpPort* DoubleJumpPort : m_DoubleJumpPort) {
+        if (coords.isColliding(DoubleJumpPort->getCoords())) {
+            m_DoubleJumpPort.erase(m_DoubleJumpPort.begin() + i);
+            return;
+        }
+        i++;
+    }
 
-    addCase(x, y, TILE_SIZE);
+    if (selectedObj == "Case") {
+        addCase(x, y, TILE_SIZE);
+    }
+    else if (selectedObj == "D_Case") {
+        addD_Case(x, y, TILE_SIZE);
+    }
+    else if (selectedObj == "S_Plateform") {
+        addS_Plateform(x, y, TILE_SIZE);
+    }
+    else if (selectedObj == "M_Plateform") {
+        addM_Plateform(x, y, TILE_SIZE);
+    }
+    else if (selectedObj == "L_Plateform") {
+        addL_Plateform(x, y, TILE_SIZE);
+    }
+    else if (selectedObj == "Pic") {
+        addPic(x, y, TILE_SIZE);
+    }
+    else if (selectedObj == "BoxFinish") {
+        addBoxFinish(x, y, TILE_SIZE);
+    }
+    else if (selectedObj == "Tree") {
+        addTree(x, y, TILE_SIZE);
+    }
+    else if (selectedObj == "DoubleJumpPort") {
+        addDoubleJumpPort(x, y, TILE_SIZE);
+    }
 }

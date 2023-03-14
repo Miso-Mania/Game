@@ -22,7 +22,7 @@ public:
     /// @brief fonction qui permet de gérer les évènements
     void handleEvents(SDL_Event& event);
     /// @brief fonction qui permet de mettre à jour le jeu
-    void update(double delta);
+    void update();
     /// @brief fonction qui permet de dessiner le jeu
     void render();
 
@@ -104,6 +104,11 @@ private:
     int m_currentLevel;
 
     double timer;
+
+    /// @brief booléen qui permet de savoir si on est en mode éditeur
+    bool editMode;
+    /// @brief temps au quel la dernière frame a été affichée
+    int timeLastFrame;
 };
 #endif // GAME_H
 

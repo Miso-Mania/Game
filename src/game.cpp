@@ -14,7 +14,7 @@ int inputtype = 0;
 
 
 
-Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0)
+Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0), editMode(false), timeLastFrame(0)
 {
     std::cout << "Choose your imput type" << std::endl;
     std::cout << "1: Arrows" << std::endl;
@@ -166,7 +166,7 @@ void Game::run()
             }
         }
         // Mise à jour
-        update(0.016);
+        update();
         // Affichage
         render();
     }
@@ -174,14 +174,44 @@ void Game::run()
 
 void Game::handleEvents(SDL_Event &event)
 {
-    if(event.type == SDL_MOUSEBUTTONDOWN) {
-        std::cout << "click :" << event.button.x << " " << event.button.y << std::endl;
+    if(event.type == SDL_MOUSEBUTTONDOWN && editMode) {
         double x = event.button.x * 1.0 / TILE_SIZE;
         double y = event.button.y * 1.0 / TILE_SIZE;
-        std::cout << "click x, y :" << x << " " << y << std::endl;
         m_levels[m_currentLevel]->click(x, y, 40);
-        std::cout << window_X_size / NUM_TILES_X << std::endl;
-    }   
+    } else if(event.type == SDL_KEYDOWN) {
+        switch (event.key.keysym.sym) {
+            case SDLK_e:
+                editMode = !editMode;
+                break;
+            case SDLK_1:
+                m_levels[m_currentLevel]->selectedObj = "Case";
+                break;
+            case SDLK_2:
+                m_levels[m_currentLevel]->selectedObj = "D_Case";
+                break;
+            case SDLK_3:
+                m_levels[m_currentLevel]->selectedObj = "S_Plateform";
+                break;
+            case SDLK_4:
+                m_levels[m_currentLevel]->selectedObj = "M_Plateform";
+                break;
+            case SDLK_5:
+                m_levels[m_currentLevel]->selectedObj = "L_Plateform";
+                break;
+            case SDLK_6:
+                m_levels[m_currentLevel]->selectedObj = "DoubleJumpPort";
+                break;
+            case SDLK_7:
+                m_levels[m_currentLevel]->selectedObj = "BoxFinish";
+                break;
+            case SDLK_8:
+                m_levels[m_currentLevel]->selectedObj = "Tree";
+                break;
+            case SDLK_9:
+                m_levels[m_currentLevel]->selectedObj = "Pic";
+                break;
+        }
+    } 
 
     if( inputtype == 1) {
         if (event.type == SDL_KEYDOWN)
@@ -254,8 +284,11 @@ void Game::handleEvents(SDL_Event &event)
     }
 }
 
-void Game::update(double delta)
+void Game::update()
 {
+    // Calcul du temps écoulé depuis la dernière mise à jour
+    double delta = (SDL_GetTicks() - timeLastFrame) / 1000.0;
+    timeLastFrame = SDL_GetTicks();
     // Mise à jour de la position du joueur
     m_player.move(delta);
     // Mise à jour de la gravité du joueur
@@ -473,17 +506,96 @@ void Game::render()
         SDL_RenderFillRect(m_renderer, &boxFinishRect);
     }
 
-    int x, y;
-    SDL_GetMouseState(&x, &y);
-    SDL_SetRenderDrawBlendMode(m_renderer, SDL_BLENDMODE_BLEND);
-    SDL_SetRenderDrawColor(m_renderer, 255, 255, 255, 150);
-    for (Case *Case : m_levels[m_currentLevel]->getCase())
-    {
-        SDL_Rect CaseRect = Case->getRect();
-        if (x > CaseRect.x && x < CaseRect.x + CaseRect.w && y > CaseRect.y && y < CaseRect.y + CaseRect.h)
-        {
-            SDL_RenderFillRect(m_renderer, &CaseRect);
+    
+    if (editMode){
+        int x, y;
+        SDL_GetMouseState(&x, &y);
+        SDL_SetRenderDrawBlendMode(m_renderer, SDL_BLENDMODE_BLEND);
+        SDL_SetRenderDrawColor(m_renderer, 255, 255, 255, 150);
+        //dessin du surlignage de l'objet survolé par la souris
+        if (m_levels[m_currentLevel]->selectedObj == "Case") {
+            for (Case *Case : m_levels[m_currentLevel]->getCase())
+            {
+                SDL_Rect CaseRect = Case->getRect();
+                if (x > CaseRect.x && x < CaseRect.x + CaseRect.w && y > CaseRect.y && y < CaseRect.y + CaseRect.h)
+                {
+                    SDL_RenderFillRect(m_renderer, &CaseRect);
+                }
+            }
+        } else if (m_levels[m_currentLevel]->selectedObj == "D_Case") {
+            for (D_Case *D_Case : m_levels[m_currentLevel]->getD_Case())
+            {
+                SDL_Rect D_CaseRect = D_Case->getRect();
+                if (x > D_CaseRect.x && x < D_CaseRect.x + D_CaseRect.w && y > D_CaseRect.y && y < D_CaseRect.y + D_CaseRect.h)
+                {
+                    SDL_RenderFillRect(m_renderer, &D_CaseRect);
+                }
+            }
+        } else if (m_levels[m_currentLevel]->selectedObj == "S_Plateform") {
+            for (S_Plateform *S_Plateform : m_levels[m_currentLevel]->getS_Plateform())
+            {
+                SDL_Rect S_PlateformRect = S_Plateform->getRect();
+                if (x > S_PlateformRect.x && x < S_PlateformRect.x + S_PlateformRect.w && y > S_PlateformRect.y && y < S_PlateformRect.y + S_PlateformRect.h)
+                {
+                    SDL_RenderFillRect(m_renderer, &S_PlateformRect);
+                }
+            }
+        } else if (m_levels[m_currentLevel]->selectedObj == "M_Plateform") {
+            for (M_Plateform *M_Plateform : m_levels[m_currentLevel]->getM_Plateform())
+            {
+                SDL_Rect M_PlateformRect = M_Plateform->getRect();
+                if (x > M_PlateformRect.x && x < M_PlateformRect.x + M_PlateformRect.w && y > M_PlateformRect.y && y < M_PlateformRect.y + M_PlateformRect.h)
+                {
+                    SDL_RenderFillRect(m_renderer, &M_PlateformRect);
+                }
+            }
+        } else if (m_levels[m_currentLevel]->selectedObj == "L_Plateform") {
+            for (L_Plateform *L_Plateform : m_levels[m_currentLevel]->getL_Plateform())
+            {
+                SDL_Rect L_PlateformRect = L_Plateform->getRect();
+                if (x > L_PlateformRect.x && x < L_PlateformRect.x + L_PlateformRect.w && y > L_PlateformRect.y && y < L_PlateformRect.y + L_PlateformRect.h)
+                {
+                    SDL_RenderFillRect(m_renderer, &L_PlateformRect);
+                }
+            }
+        } else if (m_levels[m_currentLevel]->selectedObj == "Pic") {
+            for (Pic *Pic : m_levels[m_currentLevel]->getPics())
+            {
+                SDL_Rect PicRect = Pic->getRect();
+                if (x > PicRect.x && x < PicRect.x + PicRect.w && y > PicRect.y && y < PicRect.y + PicRect.h)
+                {
+                    SDL_RenderFillRect(m_renderer, &PicRect);
+                }
+            }
+        } else if (m_levels[m_currentLevel]->selectedObj == "DoubleJumpPort") {
+            for (DoubleJumpPort *DoubleJumpPort : m_levels[m_currentLevel]->getDoubleJumpPort())
+            {
+                SDL_Rect DoubleJumpPortRect = DoubleJumpPort->getRect();
+                if (x > DoubleJumpPortRect.x && x < DoubleJumpPortRect.x + DoubleJumpPortRect.w && y > DoubleJumpPortRect.y && y < DoubleJumpPortRect.y + DoubleJumpPortRect.h)
+                {
+                    SDL_RenderFillRect(m_renderer, &DoubleJumpPortRect);
+                }
+            }
+        } else if (m_levels[m_currentLevel]->selectedObj == "Tree") {
+            for (Tree *Tree : m_levels[m_currentLevel]->getTrees())
+            {
+                SDL_Rect TreeRect = Tree->getRect();
+                if (x > TreeRect.x && x < TreeRect.x + TreeRect.w && y > TreeRect.y && y < TreeRect.y + TreeRect.h)
+                {
+                    SDL_RenderFillRect(m_renderer, &TreeRect);
+                }
+            }
+        } else if (m_levels[m_currentLevel]->selectedObj == "BoxFinish") {
+            for (BoxFinish *BoxFinish : m_levels[m_currentLevel]->getBoxFinish())
+            {
+                SDL_Rect BoxFinishRect = BoxFinish->getRect();
+                if (x > BoxFinishRect.x && x < BoxFinishRect.x + BoxFinishRect.w && y > BoxFinishRect.y && y < BoxFinishRect.y + BoxFinishRect.h)
+                {
+                    SDL_RenderFillRect(m_renderer, &BoxFinishRect);
+                }
+            }
         }
+        
     }
 
     // Affichage

@@ -67,8 +67,6 @@ public:
 
     void click(double x, double y, int TILE_SIZE);
 
-
-
     /// @brief fonction qui permet de charger un niveau, depuis un fichier JSON
     void loadFromJSON(string filePATHandname, int TILE_SIZE);
     /// @brief fonction qui permet de sauvegarder un niveau vers un fichier JSON
@@ -77,6 +75,9 @@ public:
     int id;
     string name;
     string creator;
+
+    /// @brief string qui permet de savoir quel type d'objet est sélectionné
+    string selectedObj;
 
 private:
     /// @brief vecteur d'obstacles
