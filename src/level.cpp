@@ -239,12 +239,12 @@ int Level::get_Tile_Size() {
 }
 
 void Level::testRegression() {
-    cout << "Test de regression de la Classe Player:" << endl;
-    cout<< "Test du constructeur de la classe Player:" << endl;
-    cout<< "Test du constructeur de la classe Player réussi" << endl;
-    cout<< "Test du destructeur de la classe Player:" << endl;
+    cout << "Test de regression de la Classe Level:" << endl;
+    cout<< "Test du constructeur de la classe Level:" << endl;
+    cout<< "Test du constructeur de la classe Level réussi" << endl;
+    cout<< "Test du destructeur de la classe Level:" << endl;
     assert(m_obstacles.size() == 0);
-    cout<< "Test du destructeur de la classe Player réussi" << endl;
+    cout<< "Test du destructeur de la classe Level réussi" << endl;
     cout<< "Test de la méthode addObstacle:" << endl;
     addObstacle(0, 0, 0, 0);
     assert(m_obstacles.size() == 1);

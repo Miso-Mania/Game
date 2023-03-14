@@ -8,6 +8,7 @@ public:
     ~Coords();
     double x, y, w, h;
     bool isColliding(Coords other);
+    void testRegression();
 
 };
 
