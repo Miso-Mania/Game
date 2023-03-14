@@ -1,6 +1,21 @@
-
+#include <iostream>
 #include <ncurses.h>
-using namespace std;
+
+
+void afficherTitre() {
+  //on ouvre le fichier texte qui contient le titre
+  FILE* fichier = NULL;
+  fichier = fopen("niveaux/texte/1/title.txt", "r");
+  //on affiche le titre, ligne par ligne
+  char ligne[100];
+  int i = 0;
+  while (fgets(ligne, 100, fichier) != NULL) {
+    mvprintw(i + 20, COLS / 2 - 30, ligne);
+    i++;
+  }
+  
+}
+
 
 int main() {
   // Initialize ncurses
@@ -18,6 +33,9 @@ int main() {
   while (true) {
     // Clear the screen and print the player character
     clear();
+    //we print the title
+    afficherTitre();
+
     mvhline(LINES - 1, 0, '=', COLS);
     mvprintw(player_y, player_x, "I");
  
