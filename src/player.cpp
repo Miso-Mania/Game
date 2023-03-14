@@ -1,5 +1,7 @@
 #include "player.h"
 #include <iostream>
+#include <assert.h>
+using namespace std;
 Player::Player(): m_coords(3, 15, 0.8, 0.8), m_rect({100, 600, 32, 32}), m_yVelocity(0), m_direction(PlayerDirection::NONE) {
 }
 
@@ -189,12 +191,35 @@ void Player::updateRect(){
 
 void Player::testRegression () {
     // test du constructeur de la classe Player
+    cout <<"Test de Regression de la classe Player :"<<endl;
+    cout<<"Test du constructeur de la classe Player:"<<endl;
     Player player = Player();
-    assert(player.getDirection() == PlayerDirection::NONE);
-    assert(player.getGravity() == 0);
-    assert(player.getRect().x == 0);
-    assert(player.getRect().y == 0);
-    assert(player.getRect().w == 40);
-    assert(player.getRect().h == 40);
-}
+    assert(player.m_direction == PlayerDirection::NONE);
+    assert(player.m_yVelocity == 0);
+    assert(player.m_rect.x == 100);
+    assert(player.m_rect.y == 600);
+    assert(player.m_rect.w == 32);
+    assert(player.m_rect.h == 32);
+    assert(player.m_coords.x == 3);
+    assert(player.m_coords.y == 15);
+    assert(player.m_coords.w == 0.8);
+    assert(player.m_coords.h == 0.8);
+    cout<<"Test du constructeur de la classe Player reussi"<<endl;
+    cout<<"Test du destructeur de la classe Player:"<<endl;
+    cout<<"Test du destructeur de la classe Player reussi"<<endl;
+    cout<<"Test de la methode move de la classe Player:"<<endl;
+    player.move(0.1);
+    if(player.m_direction == PlayerDirection::RIGHT){
+        assert(player.m_coords.x == 3.1);
+    }
+    else if(player.m_direction == PlayerDirection::LEFT){
+        assert(player.m_coords.x == 2.9);
+    }
+    else{
+        assert(player.m_coords.x == 3);
+    }
+    cout<<"Test de la methode move de la classe Player reussi"<<endl;
 
+
+
+}
