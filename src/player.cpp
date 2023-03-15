@@ -187,6 +187,8 @@ void Player::moveTo(double x, double y){
 void Player::updateRect(){
     m_rect.x = m_coords.x * 40;
     m_rect.y = m_coords.y * 40;
+    m_rect.w = m_coords.w * 40;
+    m_rect.h = m_coords.h * 40;
 }
 
 Coords Player::getCoords() const {
