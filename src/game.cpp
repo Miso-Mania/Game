@@ -279,6 +279,15 @@ void Game::handleEvents(SDL_Event &event)
             break;
         }
     }
+    
+    }
+    if (event.type == SDL_KEYDOWN)
+    {
+        switch (event.key.keysym.sym)
+        {
+        case SDLK_h:
+            showHitbox = !showHitbox;
+        }
     }
 }
 
@@ -502,7 +511,14 @@ void Game::render()
 
     SDL_Rect playerRect = m_player.getRect(); // Dessin du joueur
     SDL_RenderCopy(m_renderer, m_texture_player, NULL, &playerRect);
-     
+
+    if (showHitbox){
+        SDL_SetRenderDrawColor(m_renderer, 255, 255, 255, 255);
+        Coords coords_j = m_player.getCoords();
+        SDL_Rect rectHitbox = {(int)(coords_j.x * 40), (int)(coords_j.y * 40), (int)(coords_j.h * 40), (int)(coords_j.w * 40)};
+        SDL_RenderDrawRect(m_renderer, &rectHitbox);
+    }
+        
     // Dessin des obstacles
     for (Obstacle *obstacle : m_levels[m_currentLevel]->getObstacles())
     {

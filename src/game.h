@@ -93,6 +93,8 @@ private:
     int m_currentLevel; // niveau actuel
 
     double timer; // timer// @brief niveau actuel
+
+    bool showHitbox; // booléen qui permet d'afficher ou non les hitbox
 };
 #endif // GAME_H
 

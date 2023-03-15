@@ -227,6 +227,11 @@ public:
     */
     void testRegression();
 
+/**
+    @brief fonction qui retourne les coordonnées du joueur
+    */
+    Coords getCoords() const;
+    
 
 private:
     Coords m_coords; // Coordonnées du joueur

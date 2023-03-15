@@ -189,6 +189,10 @@ void Player::updateRect(){
     m_rect.y = m_coords.y * 40;
 }
 
+Coords Player::getCoords() const {
+    return m_coords;
+}
+
 void Player::testRegression () {
     // test du constructeur de la classe Player
     cout <<"Test de Regression de la classe Player :"<<endl;
