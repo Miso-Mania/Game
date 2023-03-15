@@ -2,6 +2,7 @@
 #include <iostream>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include <SDL2/SDL_mixer.h>
 #include <string>
 
 const int FPS = 60;
@@ -11,10 +12,37 @@ const int NUM_TILES_X = 48;
 const int NUM_TILES_Y = 27;
 int inputtype = 0;
 
+Mix_Music* music = nullptr;
 
 
 Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0)
-{
+{   
+    if (SDL_Init(SDL_INIT_VIDEO) != 0) {
+        std::cerr << "Failed to initialize SDL2: " << SDL_GetError() << std::endl;
+    }
+    if (SDL_Init(SDL_INIT_AUDIO) != 0) {
+        std::cerr << "Failed to initialize SDL2: " << SDL_GetError() << std::endl;
+    }
+     if (Mix_Init(MIX_INIT_MP3) != MIX_INIT_MP3) {
+        std::cerr << "Failed to initialize SDL2 Mixer: " << Mix_GetError() << std::endl;
+    }
+
+    if (Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, 2, 1024) != 0) {
+        std::cerr << "Failed to open audio device: " << Mix_GetError() << std::endl;
+    }
+
+    Mix_Music* music = Mix_LoadMUS("assets/music/gangsta.wav");
+    if (!music) {
+        std::cerr << "Failed to load music file: " << Mix_GetError() << std::endl;
+    }
+
+    if (Mix_PlayMusic(music, -1) != 0) {
+        std::cerr << "Failed to play music: " << Mix_GetError() << std::endl;
+    }
+    Mix_PlayMusic(music, -1);
+    
+
+
     std::cout << "Choose your imput type" << std::endl;
     std::cout << "1: Arrows" << std::endl;
     std::cout << "2: ZQSD" << std::endl;
@@ -151,6 +179,9 @@ Game::~Game()
     SDL_FreeSurface(m_surface_BoxCmgtGrav);
     SDL_DestroyTexture(m_texture_BoxCmgtGrav);
 
+    Mix_FreeMusic(music);
+    Mix_CloseAudio();
+    Mix_Quit();
 
     SDL_Quit();
 }
