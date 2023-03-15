@@ -18,100 +18,229 @@
 
 class Player {
 public:
-    /// @brief constructeur de la classe Player
+/**
+    @brief constructeur de la classe Player
+    @param aucun
+    */
     Player ();
-    /// @brief destructeur de la classe Player
+/**
+    @brief destructeur de la classe Player
+    @param aucun
+    */
     ~Player();
-    /// @brief fonction qui permet de déplacer le joueur
+/**
+    @brief fonction qui permet de déplacer le joueur
+    @param double delta
+    */
     void move(double delta);
-    /// @brief fonction qui permet de sauter
+/**
+    @brief fonction qui permet de sauter
+    @param aucun
+    */
     void jump();
-    /// @brief fonction qui permet d'appliquer la gravité au joueur
+/**
+    @brief fonction qui permet d'appliquer la gravité au joueur
+    @param double delta
+    */
     void gravity(double delta);
-    /// @brief fonction qui permet de savoir si le joueur est en collision avec un obstacle
+/**
+    @brief fonction qui permet de savoir si le joueur est en collision avec un obstacle
+    @param Obstacle *obstacle
+    @return bool
+    */
     bool collidesWith(Obstacle *obstacle);
-    /// @brief fonction qui permet de savoir si le joeur est en collision avec une S_Plateform
+/** 
+    @brief fonction qui permet de savoir si le joeur est en collision avec une S_Plateform
+    @param S_Plateform *S_Plateform
+    @return bool
+    */
     bool collidesWith(S_Plateform *S_Plateform);
-    ///@brief fonction qui permet de savoir si le joeur est en collision avec une M_Plateform
+/**
+    @brief fonction qui permet de savoir si le joeur est en collision avec une M_Plateform
+    @param M_Plateform *M_Plateform
+    @return bool
+    */
     bool collidesWith(M_Plateform *M_Plateform);
-    ///@brief fonction qui permet de savoir si le joueur est en collision avec une L_Plateform
+/**
+    @brief fonction qui permet de savoir si le joueur est en collision avec une L_Plateform
+    @param L_Plateform *L_Plateform
+    @return bool
+    */
     bool collidesWith(L_Plateform *L_Plateform);
-    /// @brief fonction qui permet de savoir si le joueur est en collision avec une pic
+/**
+    @brief fonction qui permet de savoir si le joueur est en collision avec une pic
+    @param Pic *pic
+    @return bool
+    */
     bool collidesWith(Pic *pic);
-    /// @brief fonction qui permet de savoir si le joeur est en collision avec le doublejumpport
+/**
+    @brief fonction qui permet de savoir si le joeur est en collision avec le doublejumpport
+    @param DoubleJumpPort *doubleJumpPort
+    @return bool
+    */
     bool collidesWith(DoubleJumpPort *doubleJumpPort);
-    /// @brief fonction qui permet de savoir si le joeur est en collision avec une Case
+/**
+    @brief fonction qui permet de savoir si le joeur est en collision avec une Case
+    @param Case *Case
+    @return bool
+    */
     bool collidesWith(Case *Case);
-    /// @brief fonction qui permet de savoir si le joeur est en collision avec une D_Case
+/**
+    @brief fonction qui permet de savoir si le joeur est en collision avec une D_Case
+    @param D_Case *D_Case
+    @return bool
+    */
     bool collidesWith(D_Case *D_Case);
-    /// @brief fonction qui permet de savoir si le joeur est en collision avec une BoxFinish
+/**
+    @brief fonction qui permet de savoir si le joeur est en collision avec une BoxFinish
+    @param BoxFinish *boxFinish
+    @return bool
+    */
     bool collidesWith(BoxFinish *boxFinish);
-    /// @brief fonction qui permet de savoir si le joeur est en collision avec une BoxCmgtGrav
+/**
+    @brief fonction qui permet de savoir si le joeur est en collision avec une BoxCmgtGrav
+    @param BoxCmgtGrav *BoxCmgtGrav
+    @return bool
+    */
     bool collidesWith(BoxCmgtGrav *BoxCmgtGrav);
-    /// @brief fonction qui permet de repousser le joueur si il est en collision avec un obstacle
+/**
+    @brief fonction qui permet de repousser le joueur si il est en collision avec un obstacle
+    @param Obstacle *obstacle
+    */
     void moveOutOf(Obstacle *obstacle);
-    /// @brief fonction qui permet de repousser le joueur si il est en collision avec une S_Plateform
+/**
+    @brief fonction qui permet de repousser le joueur si il est en collision avec une S_Plateform
+    @param S_Plateform *S_Plateform
+    */
     void moveOutOf(S_Plateform *S_Plateform);
-    /// @brief fonction qui permet de repousser le joueur si il est en collision avec une M_Plateform
+/**
+    @brief fonction qui permet de repousser le joueur si il est en collision avec une M_Plateform
+    @param M_Plateform *M_Plateform
+    */
     void moveOutOf(M_Plateform *M_Plateform);
-    /// @brief fonction qui permet de repousser le joueur si il est en collision avec une L_Plateform
+/**
+    @brief fonction qui permet de repousser le joueur si il est en collision avec une L_Plateform
+    @param L_Plateform *L_Plateform
+    */
     void moveOutOf(L_Plateform *L_Plateform);
-    /// @brief fonction qui permet de repousser le joueur si il est en collision avec une Case
+/**
+    @brief fonction qui permet de repousser le joueur si il est en collision avec une Case
+    @param Case *Case
+    */
     void moveOutOf(Case *Case);
-    /// @brief fonction qui permet de repousser le joueur si il est en collision avec unu D_Case
+/**
+    @brief fonction qui permet de repousser le joueur si il est en collision avec unu D_Case
+    @param D_Case *D_Case
+    */
     void moveOutOf(D_Case *D_Case);
-    /// @brief fonction qui permet de repousser le joueur si il est en collision avec une BoxCmgtGrav
+/**
+    @brief fonction qui permet de repousser le joueur si il est en collision avec une BoxCmgtGrav
+    @param BoxCmgtGrav *BoxCmgtGrav
+    */
     void moveOutOf(BoxCmgtGrav *BoxCmgtGrav);
-    /// @brief fonction qui permet de repousser le joueur selon les coordonnées
+/**
+    @brief fonction qui permet de repousser le joueur selon les coordonnées
+    @param Coords coords
+    */
     void moveOutOfCoords(Coords coords);
-    /// @brief fonction qui permet de set la direction du joueur
+/**
+    @brief fonction qui permet de set la direction du joueur
+    @param PlayerDirection direction
+    */
     void setDirection(PlayerDirection direction);
-    /// @brief fonction qui permet d'arreter la gravité
+/**
+    @brief fonction qui permet d'arreter la gravité
+    @param aucun
+    */
     void stopGravity();
-    /// @brief fonction qui permet d'arreter le mouvement du joueur
+/**
+    @brief fonction qui permet d'arreter le mouvement du joueur
+    @param aucun
+    */
     void stopMove();
-    /// @brief fonction qui permet au joueur de faire un double saut
+/**
+    @brief fonction qui permet au joueur de faire un double saut
+    @param aucun
+    */
     void doubleJump();
-    /// @brief fonction qui permet de connaitre la direction du joueur
+/**
+    @brief fonction qui permet de connaitre la direction du joueur
+    @param aucun
+    @return PlayerDirection
+    */
     PlayerDirection getDirection();
-    /// @brief fonction qui permet de connaitre les coordonnées du joueur
+/**
+    @brief fonction qui permet de connaitre les coordonnées du joueur
+    @param aucun
+    @return Coords
+    */
     SDL_Rect getRect();
-    /// @brief fonction qui permet de connaitre la gravité du joueur
+/**
+    @brief fonction qui permet de connaitre la gravité du joueur
+    @param aucun
+    @return double
+    */
     double getGravity();
-    /// @brief set la gravité du joueur
+/**
+    @brief set la gravité du joueur
+    @param double gravity
+    */
     void setGravity(double gravity);
-    /// @brief set JumpBuffer
+/**
+    @brief setJumpBuffer du joueur
+    @param double jumpBuffer
+    */
     void setJumpBuffer(double jumpBuffer);
-    ///@brief set TimeSinceTouchGround
+/**
+    @brief setTimeSinceTouchGround du joueur 
+    @param double timeSinceTouchGround
+    */
     void setTimeSinceTouchGround(double timeSinceTouchGround);
-    /// @brief fonction qui permet de déplacer le joueur a des coordonnées précises
+/**
+    @brief fonction qui permet de déplacer le joueur a des coordonnées précises
+    @param SDL_Rect rect
+    */
     void setRect(SDL_Rect rect);
-    /// @brief fonction qui permet de connaitre le temps depuis que le joueur n'est plus au sol
+/**
+    @brief incTimeSinceTouchGround du joueur
+    @param double delta
+    */
     void incTimeSinceTouchGround(double delta);
-    //todo : faire la docu ici
+/**
+    @brief decJumpBuffer du joueur
+    @param double delta
+    */
     void decJumpBuffer(double delta);
-
+/**
+    @brief moveTo permet de déplacer le joueur a des coordonnées précises
+    @param double x, double y
+    */
     void moveTo(double x, double y);
-
+/**
+    @brief updateRect permet de mettre a jour les coordonnées du joueur
+    @param aucun
+    */
     void updateRect();
-    /// @brief fonction qui fait des test de régréssion sur la classe
+/**
+    @brief fonction qui fait des test de régréssion sur la classe
+    @param aucun
+    */
     void testRegression();
 
+/**
+    @brief fonction qui retourne les coordonnées du joueur
+    */
+    Coords getCoords() const;
+    
 
 private:
-    Coords m_coords;
-    /// @brief coordonnées du joueur
-    SDL_Rect m_rect;
-    /// @brief velocité du joueur
-    double m_yVelocity;
-    /// @brief direction du joueur
-    PlayerDirection m_direction;
-    /// @brief temps depuis que le joueur n'est plus au sol
-    double timeSinceTouchGround;
-    //todo : faire la docu ici
-    double jumpBuffer;
-    /// @brief booléen qui permet de savoir si le joueur a déja sauté
-    bool haveJumped;
+    Coords m_coords; // Coordonnées du joueur
+    SDL_Rect m_rect; // Rectangle du joueur
+    double m_yVelocity; // Vitesse verticale du joueur
+    PlayerDirection m_direction; // Direction du joueur
+    double timeSinceTouchGround; // Temps depuis que le joueur est en contact avec le sol
+    double jumpBuffer; // Temps avant que le joueur puisse sauter
+    bool haveJumped; // Booléen qui permet de savoir si le joueur a sauté
 };
 
 #endif // PLAYER_H

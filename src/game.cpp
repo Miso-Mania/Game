@@ -2,6 +2,7 @@
 #include <iostream>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include <SDL2/SDL_mixer.h>
 #include <string>
 
 const int FPS = 60;
@@ -12,10 +13,12 @@ const int NUM_TILES_Y = 27;
 const int TILE_SIZE = 40;
 int inputtype = 0;
 
+Mix_Music* music = nullptr;
 
 
 Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0), editMode(false), timeLastFrame(0)
-{
+{   
+    //Initialisation de SDL
     std::cout << "Choose your imput type" << std::endl;
     std::cout << "1: Arrows" << std::endl;
     std::cout << "2: ZQSD" << std::endl;
@@ -47,6 +50,32 @@ Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0), editMode(fal
     m_window = SDL_CreateWindow("Game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, window_X_size, window_Y_size, SDL_WINDOW_FULLSCREEN);
     m_renderer = SDL_CreateRenderer(m_window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
     std::cout << "Window created" << std::endl;
+    //sound
+    if (SDL_Init(SDL_INIT_VIDEO) != 0) {
+        std::cerr << "Failed to initialize SDL2: " << SDL_GetError() << std::endl;
+    }
+    if (SDL_Init(SDL_INIT_AUDIO) != 0) {
+        std::cerr << "Failed to initialize SDL2: " << SDL_GetError() << std::endl;
+    }
+     if (Mix_Init(MIX_INIT_MP3) != MIX_INIT_MP3) {
+        std::cerr << "Failed to initialize SDL2 Mixer: " << Mix_GetError() << std::endl;
+    }
+
+    if (Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, 2, 1024) != 0) {
+        std::cerr << "Failed to open audio device: " << Mix_GetError() << std::endl;
+    }
+
+    Mix_Music* music = Mix_LoadMUS("assets/music/lofi.mp3");
+    if (!music) {
+        std::cerr << "Failed to load music file: " << Mix_GetError() << std::endl;
+    }
+
+    if (Mix_PlayMusic(music, -1) != 0) {
+        std::cerr << "Failed to play music: " << Mix_GetError() << std::endl;
+    }
+    Mix_PlayMusic(music, -1);
+
+
     int width, height;
     SDL_GetWindowSize(m_window, &width, &height);
     cout << "width " << width << endl;
@@ -58,7 +87,7 @@ Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0), editMode(fal
     m_surface_pic = IMG_Load("assets/textures/spikes.png");
     m_texture_pic = SDL_CreateTextureFromSurface(m_renderer, m_surface_pic);
 
-    m_surface_obstacle = IMG_Load("assets/textures/big-crate.png");
+    m_surface_obstacle = IMG_Load("assets/textures/ground.png");
     m_texture_obstacle = SDL_CreateTextureFromSurface(m_renderer, m_surface_obstacle);
 
     m_surface_background = IMG_Load("assets/textures/back.png");
@@ -94,7 +123,7 @@ Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0), editMode(fal
 
     Level *level = new Level();
     //we add the ground
-    level->addObstacle(0, 23, 50, 6);
+    level->addObstacle(0, 23, 50, 1);
     //we load the level from the json file
     level->loadFromJSON("niveaux/level" + std::to_string(levelnumber) + ".json", TILE_SIZE);
     std::cout << "pushing back level" << endl;
@@ -152,6 +181,9 @@ Game::~Game()
     SDL_FreeSurface(m_surface_BoxCmgtGrav);
     SDL_DestroyTexture(m_texture_BoxCmgtGrav);
 
+    Mix_FreeMusic(music);
+    Mix_CloseAudio();
+    Mix_Quit();
 
     SDL_Quit();
 }
@@ -293,6 +325,15 @@ void Game::handleEvents(SDL_Event &event)
             break;
         }
     }
+    
+    }
+    if (event.type == SDL_KEYDOWN)
+    {
+        switch (event.key.keysym.sym)
+        {
+        case SDLK_h:
+            showHitbox = !showHitbox;
+        }
     }
 }
 
@@ -519,7 +560,14 @@ void Game::render()
 
     SDL_Rect playerRect = m_player.getRect(); // Dessin du joueur
     SDL_RenderCopy(m_renderer, m_texture_player, NULL, &playerRect);
-     
+
+    if (showHitbox){
+        SDL_SetRenderDrawColor(m_renderer, 255, 255, 255, 255);
+        Coords coords_j = m_player.getCoords();
+        SDL_Rect rectHitbox = {(int)(coords_j.x * 40), (int)(coords_j.y * 40), (int)(coords_j.h * 40), (int)(coords_j.w * 40)};
+        SDL_RenderDrawRect(m_renderer, &rectHitbox);
+    }
+        
     // Dessin des obstacles
     for (Obstacle *obstacle : m_levels[m_currentLevel]->getObstacles())
     {
