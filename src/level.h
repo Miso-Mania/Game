@@ -165,6 +165,8 @@ public:
     */
     void saveToJSON(string filePATHandname);
 
+    void testRegression();
+
     int id;
     string name;
     string creator;
