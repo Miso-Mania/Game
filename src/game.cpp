@@ -17,32 +17,7 @@ Mix_Music* music = nullptr;
 
 Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0)
 {   
-    if (SDL_Init(SDL_INIT_VIDEO) != 0) {
-        std::cerr << "Failed to initialize SDL2: " << SDL_GetError() << std::endl;
-    }
-    if (SDL_Init(SDL_INIT_AUDIO) != 0) {
-        std::cerr << "Failed to initialize SDL2: " << SDL_GetError() << std::endl;
-    }
-     if (Mix_Init(MIX_INIT_MP3) != MIX_INIT_MP3) {
-        std::cerr << "Failed to initialize SDL2 Mixer: " << Mix_GetError() << std::endl;
-    }
-
-    if (Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, 2, 1024) != 0) {
-        std::cerr << "Failed to open audio device: " << Mix_GetError() << std::endl;
-    }
-
-    Mix_Music* music = Mix_LoadMUS("assets/music/gangsta.wav");
-    if (!music) {
-        std::cerr << "Failed to load music file: " << Mix_GetError() << std::endl;
-    }
-
-    if (Mix_PlayMusic(music, -1) != 0) {
-        std::cerr << "Failed to play music: " << Mix_GetError() << std::endl;
-    }
-    Mix_PlayMusic(music, -1);
-    
-
-
+    //Initialisation de SDL
     std::cout << "Choose your imput type" << std::endl;
     std::cout << "1: Arrows" << std::endl;
     std::cout << "2: ZQSD" << std::endl;
@@ -74,6 +49,32 @@ Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0)
     m_window = SDL_CreateWindow("Game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, window_X_size, window_Y_size, SDL_WINDOW_FULLSCREEN);
     m_renderer = SDL_CreateRenderer(m_window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
     std::cout << "Window created" << std::endl;
+    //sound
+    if (SDL_Init(SDL_INIT_VIDEO) != 0) {
+        std::cerr << "Failed to initialize SDL2: " << SDL_GetError() << std::endl;
+    }
+    if (SDL_Init(SDL_INIT_AUDIO) != 0) {
+        std::cerr << "Failed to initialize SDL2: " << SDL_GetError() << std::endl;
+    }
+     if (Mix_Init(MIX_INIT_MP3) != MIX_INIT_MP3) {
+        std::cerr << "Failed to initialize SDL2 Mixer: " << Mix_GetError() << std::endl;
+    }
+
+    if (Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, 2, 1024) != 0) {
+        std::cerr << "Failed to open audio device: " << Mix_GetError() << std::endl;
+    }
+
+    Mix_Music* music = Mix_LoadMUS("assets/music/gangsta.wav");
+    if (!music) {
+        std::cerr << "Failed to load music file: " << Mix_GetError() << std::endl;
+    }
+
+    if (Mix_PlayMusic(music, -1) != 0) {
+        std::cerr << "Failed to play music: " << Mix_GetError() << std::endl;
+    }
+    Mix_PlayMusic(music, -1);
+
+    
     int width, height;
     SDL_GetWindowSize(m_window, &width, &height);
     cout << "width " << width << endl;

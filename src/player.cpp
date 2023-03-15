@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace std;
 #include <assert.h>
-Player::Player(): m_coords(3, 15, 1.2, 1.2), m_rect({100, 600, 48, 48}), m_yVelocity(0), m_direction(PlayerDirection::NONE) {
+Player::Player(): m_coords(3, 15, 1.44, 1.44), m_rect({100, 600, 38, 38}), m_yVelocity(0), m_direction(PlayerDirection::NONE) {
 }
 
 Player::~Player() {
@@ -198,12 +198,12 @@ void Player::testRegression () {
     assert(player.m_yVelocity == 0);
     assert(player.m_rect.x == 100);
     assert(player.m_rect.y == 600);
-    assert(player.m_rect.w == 48);
-    assert(player.m_rect.h == 48);
+    assert(player.m_rect.w == 38);
+    assert(player.m_rect.h == 38);
     assert(player.m_coords.x == 3);
     assert(player.m_coords.y == 15);
-    assert(player.m_coords.w == 1.2);
-    assert(player.m_coords.h == 1.2);
+    assert(player.m_coords.w == 1.44);
+    assert(player.m_coords.h == 1.44);
     cout<<"Test du constructeur de la classe Player reussi"<<endl;
     cout<<"Test du destructeur de la classe Player:"<<endl;
     cout<<"Test du destructeur de la classe Player reussi"<<endl;
