@@ -64,7 +64,7 @@ Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0)
         std::cerr << "Failed to open audio device: " << Mix_GetError() << std::endl;
     }
 
-    Mix_Music* music = Mix_LoadMUS("assets/music/gangsta.wav");
+    Mix_Music* music = Mix_LoadMUS("assets/music/lofi.mp3");
     if (!music) {
         std::cerr << "Failed to load music file: " << Mix_GetError() << std::endl;
     }
@@ -74,7 +74,7 @@ Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0)
     }
     Mix_PlayMusic(music, -1);
 
-    
+
     int width, height;
     SDL_GetWindowSize(m_window, &width, &height);
     cout << "width " << width << endl;
@@ -86,7 +86,7 @@ Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0)
     m_surface_pic = IMG_Load("assets/textures/spikes.png");
     m_texture_pic = SDL_CreateTextureFromSurface(m_renderer, m_surface_pic);
 
-    m_surface_obstacle = IMG_Load("assets/textures/big-crate.png");
+    m_surface_obstacle = IMG_Load("assets/textures/ground.png");
     m_texture_obstacle = SDL_CreateTextureFromSurface(m_renderer, m_surface_obstacle);
 
     m_surface_background = IMG_Load("assets/textures/back.png");
@@ -122,7 +122,7 @@ Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0)
 
     Level *level = new Level();
     //we add the ground
-    level->addObstacle(0, 23, 50, 6);
+    level->addObstacle(0, 23, 50, 1);
     //we load the level from the json file
     level->loadFromJSON("niveaux/level" + std::to_string(levelnumber) + ".json", TILE_SIZE);
     std::cout << "pushing back level" << endl;

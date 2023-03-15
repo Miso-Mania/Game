@@ -1,7 +1,7 @@
 #include "player.h"
 #include <iostream>
-using namespace std;
 #include <assert.h>
+using namespace std;
 Player::Player(): m_coords(3, 15, 1.44, 1.44), m_rect({100, 600, 38, 38}), m_yVelocity(0), m_direction(PlayerDirection::NONE) {
 }
 
