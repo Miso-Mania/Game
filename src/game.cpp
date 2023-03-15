@@ -90,7 +90,7 @@ Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0), editMode(fal
     m_surface_obstacle = IMG_Load("assets/textures/ground.png");
     m_texture_obstacle = SDL_CreateTextureFromSurface(m_renderer, m_surface_obstacle);
 
-    m_surface_background = IMG_Load("assets/textures/back.png");
+    m_surface_background = IMG_Load("assets/textures/back2.png");
     m_texture_background = SDL_CreateTextureFromSurface(m_renderer, m_surface_background);
 
     m_surface_Trees = IMG_Load("assets/textures/tree.png");
