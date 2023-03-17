@@ -56,7 +56,10 @@ void Menu::handleEvents(SDL_Event& event) {
     if (event.type == SDL_KEYDOWN) {
         switch (event.key.keysym.sym) {
             case SDLK_LEFT:
-                std::cout<<"left"<<endl;
+                //on fermme la fenetre, et on libère la mémoire avant de lancé le jeu
+                SDL_DestroyRenderer(m_renderer);
+                SDL_DestroyWindow(m_window);
+
                 break;
 
         }
@@ -67,7 +70,7 @@ void Menu::handleEvents(SDL_Event& event) {
 void Menu::update(double delta) {
  
     
-   int timeLastFrame = SDL_GetTicks();
+   cout<<"update"<<endl;
 }
 
 void Menu::render() {
@@ -75,6 +78,7 @@ void Menu::render() {
 
     // on affiche l'image de fond
     SDL_RenderCopy(m_renderer, background_texture, NULL, NULL);  
+
     SDL_RenderPresent(m_renderer);
 
 }
