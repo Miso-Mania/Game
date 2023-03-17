@@ -362,7 +362,7 @@ void Game::update()
     // perte si le joeur sort de l'écran
     if (m_player.getRect().y > window_Y_size)
     {
-        m_player.moveTo(3, 15);
+        m_player.moveTo(1, 15);
         timer = 0;
     }
 
@@ -487,7 +487,7 @@ void Game::update()
     {
         if (m_player.collidesWith(pic))
         {
-            m_player.moveTo(3, 15);
+            m_player.moveTo(3, 23);
             timer = 0;
         }
     }
