@@ -2,7 +2,7 @@
 #include <iostream>
 #include <assert.h>
 using namespace std;
-Player::Player(): m_coords(3, 20, 1.44, 1.44), m_rect({100, 600, 38, 38}), m_yVelocity(0), m_direction(PlayerDirection::NONE) {
+Player::Player(): m_coords(1, 23, 1.44, 1.44), m_rect({100, 600, 38, 38}), m_yVelocity(0), m_direction(PlayerDirection::NONE) {
 }
 
 Player::~Player() {
@@ -206,8 +206,8 @@ void Player::testRegression () {
     assert(player.m_rect.y == 600);
     assert(player.m_rect.w == 38);
     assert(player.m_rect.h == 38);
-    assert(player.m_coords.x == 3);
-    assert(player.m_coords.y == 20);
+    assert(player.m_coords.x == 1);
+    assert(player.m_coords.y == 23);
     assert(player.m_coords.w == 1.44);
     assert(player.m_coords.h == 1.44);
     cout<<"Test du constructeur de la classe Player reussi"<<endl;
@@ -222,7 +222,7 @@ void Player::testRegression () {
         assert(player.m_coords.x == 2.9);
     }
     else{
-        assert(player.m_coords.x == 3);
+        assert(player.m_coords.x == 1);
     }
     cout<<"Test de la methode move de la classe Player reussi"<<endl;
     cout<<"Test de la methode jump de la classe Player:"<<endl;
@@ -231,13 +231,13 @@ void Player::testRegression () {
         assert(player.m_coords.y == 2);
     }
     else{
-        assert(player.m_coords.y == 20);
+        assert(player.m_coords.y == 23);
     }
     cout<<"Test de la methode jump de la classe Player reussi"<<endl;
     cout<<"Test de la methode moveOutOf de la classe Player:"<<endl;
     player.moveOutOfCoords(player.m_coords);
-    assert(player.m_coords.x == 3);
-    assert(player.m_coords.y == 20);
+    assert(player.m_coords.x == 1);
+    assert(player.m_coords.y == 23);
     cout<<"Test de la methode moveOutOf de la classe Player reussi"<<endl;
     cout<<"Test de la methode incTimeSinceTouchGround de la classe Player:"<<endl;
     player.incTimeSinceTouchGround(0.1);
@@ -278,8 +278,8 @@ void Player::testRegression () {
     cout<<"Test de la methode getRect de la classe Player:"<<endl;
     assert(player.getRect().x == 100);
     assert(player.getRect().y == 600);
-    assert(player.getRect().w == 48);
-    assert(player.getRect().h == 48);
+    assert(player.getRect().w == 38);
+    assert(player.getRect().h == 38);
     cout<<"Test de la methode getRect de la classe Player reussi"<<endl;
     cout<<"Test de la methode setRect de la classe Player:"<<endl;
     SDL_Rect rect = {0,0,0,0};
