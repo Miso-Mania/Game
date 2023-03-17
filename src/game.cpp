@@ -16,7 +16,7 @@ int inputtype = 0;
 Mix_Music* music = nullptr;
 
 
-Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0), editMode(false), timeLastFrame(0)
+Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0),  showHitbox(false), editMode(false), timeLastFrame(0)
 {   
     //Initialisation de SDL
     std::cout << "Choose your imput type" << std::endl;
@@ -254,8 +254,11 @@ void Game::handleEvents(SDL_Event &event)
             case SDLK_r:
                 m_levels[m_currentLevel]->saveToJSON("niveaux/level0.json");
                 break;
-        }
-    } 
+            case SDLK_h:
+                showHitbox = !showHitbox;
+                break;
+            }
+        } 
 
     if( inputtype == 1) {
         if (event.type == SDL_KEYDOWN)

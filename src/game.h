@@ -6,6 +6,7 @@
 #include <vector>
 #include "level.h"
 #include "player.h"
+#include "particule.h"
 
 using namespace std;
 
