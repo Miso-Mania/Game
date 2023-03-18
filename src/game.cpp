@@ -4,6 +4,7 @@
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_mixer.h>
 #include <string>
+#include <random>
 
 const int FPS = 60;
 const int window_X_size = 1900;
@@ -16,8 +17,9 @@ int inputtype = 0;
 Mix_Music* music = nullptr;
 
 
-Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0), editMode(false), timeLastFrame(0)
+Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0),  showHitbox(false), editMode(false), timeLastFrame(0)
 {   
+    srand(time(NULL));
     //Initialisation de SDL
     std::cout << "Choose your imput type" << std::endl;
     std::cout << "1: Arrows" << std::endl;
@@ -134,6 +136,8 @@ Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0), editMode(fal
     std::cout << "player created" << endl;
     timer = 0;
     std::cout << "timer created" << endl;
+
+    ParticuleSystem m_particuleSystem = ParticuleSystem();
 }
 
 Game::~Game()
@@ -254,8 +258,11 @@ void Game::handleEvents(SDL_Event &event)
             case SDLK_r:
                 m_levels[m_currentLevel]->saveToJSON("niveaux/level0.json");
                 break;
-        }
-    } 
+            case SDLK_h:
+                showHitbox = !showHitbox;
+                break;
+            }
+        } 
 
     if( inputtype == 1) {
         if (event.type == SDL_KEYDOWN)
@@ -350,6 +357,8 @@ void Game::update()
     m_player.incTimeSinceTouchGround(delta);
     m_player.decJumpBuffer(delta);
     timer += delta;
+
+    m_player.hasCollided = false;
     // Collision du joueur avec les obstacles stop la gravité et évite de traverser les obstacles
     for (Obstacle *obstacle : m_levels[m_currentLevel]->getObstacles())
     {
@@ -504,6 +513,36 @@ void Game::update()
     {
         m_currentLevel++;
     }
+
+    // ajout de particules sur les arbres
+    for (Tree *tree : m_levels[m_currentLevel]->getTrees())
+    {   
+        if (rand()%10 == 0)
+        {
+            Coords treeCoords = tree->getCoords();
+            double x = treeCoords.x + rand() / (double)RAND_MAX * 2.5 + 0.5;
+            double y = treeCoords.y + rand() / (double)RAND_MAX + 1.2;
+            Particule *p_particule = new Particule(x, y, 0.1, 0.3, 0, 0, 5, 0.06, 255, 120, 180, 255);
+            m_particuleSystem.addParticule(p_particule);
+        }
+    }
+
+    // ajout de particules sur le sol quand le joueur atterit
+    if(m_player.showParticlesOnLand()){
+        for(int i = 0; i < 10; i++){
+            Coords p = m_player.getCoords();
+            double x = p.x + rand() / (double)RAND_MAX * p.w;
+            double y = p.y + p.h + 0.2;
+            double vx = rand() / (double)RAND_MAX * 2 - 1;
+            double vy = rand() / (double)RAND_MAX * 1 - 0.5;
+            double life = rand() / (double)RAND_MAX * 0.5 + 0.5;
+            double size = rand() / (double)RAND_MAX * 0.1 + 0.1;
+            Particule *p_particule = new Particule(x , y, vx, vy, 0, 0, life, size, 255, 255, 255, 100);
+            m_particuleSystem.addParticule(p_particule);
+        }
+    }
+
+    m_particuleSystem.update(delta);
 
     m_player.updateRect();
 }
@@ -692,6 +731,9 @@ void Game::render()
         }
         
     }
+
+    // Affichage des particules
+    m_particuleSystem.render(m_renderer, window_X_size, window_Y_size);
 
     // Affichage
     SDL_RenderPresent(m_renderer);

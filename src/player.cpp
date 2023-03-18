@@ -2,7 +2,7 @@
 #include <iostream>
 #include <assert.h>
 using namespace std;
-Player::Player(): m_coords(1, 23, 1.44, 1.44), m_rect({100, 600, 38, 38}), m_yVelocity(0), m_direction(PlayerDirection::NONE) {
+Player::Player(): hasCollided(false), m_coords(1, 23, 1.44, 1.44), m_rect({100, 600, 38, 38}), m_yVelocity(0), m_direction(PlayerDirection::NONE), timeSinceTouchGround(0), jumpBuffer(0), isOnGround(false), oldIsOnGround(false) {
 }
 
 Player::~Player() {
@@ -22,6 +22,7 @@ void Player::jump() {
     if (!haveJumped && timeSinceTouchGround < 0.2) {
         m_yVelocity = -13;
         haveJumped = true;
+        isOnGround = false;
     } else {
         jumpBuffer = 0.1;
     }
@@ -86,6 +87,8 @@ void Player::moveOutOfCoords(Coords coords){
             jump();
             jumpBuffer = 0;
         }
+        isOnGround = true;
+        hasCollided = true;
     } else if (intoBottom < intoTop && intoBottom < intoLeft && intoBottom < intoRight) {
         m_coords.y += intoBottom;
         stopGravity();
@@ -193,6 +196,19 @@ void Player::updateRect(){
 
 Coords Player::getCoords() const {
     return m_coords;
+}
+
+bool Player::getIsOnGround() const {
+    return isOnGround;
+}
+
+bool Player::showParticlesOnLand() {
+    bool r = !oldIsOnGround && isOnGround;
+    if (!hasCollided) {
+        isOnGround = false;
+    }
+    oldIsOnGround = isOnGround;
+    return r;
 }
 
 void Player::testRegression () {
