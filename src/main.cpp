@@ -8,7 +8,7 @@ int main(int argc, char* argv[]) {
     SDL_Window* window = SDL_CreateWindow("SDL2 Window", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, 0);
     SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 
-    SDL_Surface* imageSurface = IMG_Load("assets/textures/menu-splashscreen.png");
+    SDL_Surface* imageSurface = IMG_Load("assets/textures/menusplash.png");
     SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, imageSurface);
     if (texture == NULL) {
         cout << "feur " << SDL_GetError() << endl;
