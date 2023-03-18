@@ -533,9 +533,11 @@ void Game::update()
             Coords p = m_player.getCoords();
             double x = p.x + rand() / (double)RAND_MAX * p.w;
             double y = p.y + p.h + 0.2;
-            double vx = rand() / (double)RAND_MAX * 1 - 0.5;
+            double vx = rand() / (double)RAND_MAX * 2 - 1;
             double vy = rand() / (double)RAND_MAX * 1 - 0.5;
-            Particule *p_particule = new Particule(x , y, vx, vy, 0, 0, 1, 0.3, 255, 255, 255, 100);
+            double life = rand() / (double)RAND_MAX * 0.5 + 0.5;
+            double size = rand() / (double)RAND_MAX * 0.1 + 0.1;
+            Particule *p_particule = new Particule(x , y, vx, vy, 0, 0, life, size, 255, 255, 255, 100);
             m_particuleSystem.addParticule(p_particule);
         }
     }
