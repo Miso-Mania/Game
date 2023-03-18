@@ -357,6 +357,8 @@ void Game::update()
     m_player.incTimeSinceTouchGround(delta);
     m_player.decJumpBuffer(delta);
     timer += delta;
+
+    m_player.hasCollided = false;
     // Collision du joueur avec les obstacles stop la gravité et évite de traverser les obstacles
     for (Obstacle *obstacle : m_levels[m_currentLevel]->getObstacles())
     {
@@ -520,7 +522,20 @@ void Game::update()
             Coords treeCoords = tree->getCoords();
             double x = treeCoords.x + rand() / (double)RAND_MAX * 2.5 + 0.5;
             double y = treeCoords.y + rand() / (double)RAND_MAX + 1.2;
-            Particule *p_particule = new Particule(x, y, 0.1, 0.3, 0, 0, 5, 0.06, 255, 120, 180);
+            Particule *p_particule = new Particule(x, y, 0.1, 0.3, 0, 0, 5, 0.06, 255, 120, 180, 255);
+            m_particuleSystem.addParticule(p_particule);
+        }
+    }
+
+    // ajout de particules sur le sol quand le joueur atterit
+    if(m_player.showParticlesOnLand()){
+        for(int i = 0; i < 10; i++){
+            Coords p = m_player.getCoords();
+            double x = p.x + rand() / (double)RAND_MAX * p.w;
+            double y = p.y + p.h + 0.2;
+            double vx = rand() / (double)RAND_MAX * 1 - 0.5;
+            double vy = rand() / (double)RAND_MAX * 1 - 0.5;
+            Particule *p_particule = new Particule(x , y, vx, vy, 0, 0, 1, 0.3, 255, 255, 255, 100);
             m_particuleSystem.addParticule(p_particule);
         }
     }
@@ -714,7 +729,7 @@ void Game::render()
         }
         
     }
-    
+
     // Affichage des particules
     m_particuleSystem.render(m_renderer, window_X_size, window_Y_size);
 

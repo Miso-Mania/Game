@@ -231,6 +231,18 @@ public:
     @brief fonction qui retourne les coordonnées du joueur
     */
     Coords getCoords() const;
+/**
+    @brief fonction qui retourne onGround
+    @return bool
+    */
+    bool getIsOnGround() const;
+/**
+   @brief fonction qui retourne si il faut afficher les particules sur le sol
+   @return bool
+   */
+    bool showParticlesOnLand();
+
+    bool hasCollided;
     
 
 private:
@@ -241,6 +253,8 @@ private:
     double timeSinceTouchGround; // Temps depuis que le joueur est en contact avec le sol
     double jumpBuffer; // Temps avant que le joueur puisse sauter
     bool haveJumped; // Booléen qui permet de savoir si le joueur a sauté
+    bool isOnGround; // Booléen qui permet de savoir si le joueur est en contact avec le sol
+    bool oldIsOnGround; // Booléen qui permet de savoir si le joueur était en contact avec le sol avant la derniere update
 };
 
 #endif // PLAYER_H

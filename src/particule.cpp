@@ -1,6 +1,6 @@
 #include "particule.h"
 
-Particule::Particule(double x, double y, double vx, double vy, double ax, double ay, double life, double size, int r, int g, int b) {
+Particule::Particule(double x, double y, double vx, double vy, double ax, double ay, double life, double size, int r, int g, int b, int a) {
     this->x = x;
     this->y = y;
     this->vx = vx;
@@ -12,6 +12,7 @@ Particule::Particule(double x, double y, double vx, double vy, double ax, double
     this->r = r;
     this->g = g;
     this->b = b;
+    this->a = a;
 }
 
 Particule::~Particule() {
@@ -56,7 +57,8 @@ void ParticuleSystem::render(SDL_Renderer *m_renderer, int windowWidth, int wind
         rect.y = p->y / 27.0 * windowHeight;
         rect.w = p->size / 48.0 * windowWidth;
         rect.h = p->size / 27.0 * windowHeight;
-        SDL_SetRenderDrawColor(m_renderer, p->r, p->g, p->b, 255);
+        SDL_SetRenderDrawBlendMode(m_renderer, SDL_BLENDMODE_BLEND);
+        SDL_SetRenderDrawColor(m_renderer, p->r, p->g, p->b, p->a);
         SDL_RenderFillRect(m_renderer, &rect);
     }
 }

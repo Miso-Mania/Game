@@ -3,7 +3,7 @@
 
 class Particule {
     public:
-        Particule(double x, double y, double vx, double vy, double ax, double ay, double life, double size, int r, int g, int b);
+        Particule(double x, double y, double vx, double vy, double ax, double ay, double life, double size, int r, int g, int b, int a);
         ~Particule();
         void update(double delta);
         bool isAlive();
@@ -11,7 +11,7 @@ class Particule {
 
         double x, y, vx, vy, ax, ay; // position, vitesse, accélération
         double life, size;           // durée de vie, taille
-        int r, g, b;                 // couleur
+        int r, g, b, a;              // couleur
 };
 
 class ParticuleSystem {
