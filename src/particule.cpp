@@ -45,6 +45,7 @@ void ParticuleSystem::update(double delta) {
         p->update(delta);
         if (!p->isAlive()) {
             m_particules.erase(m_particules.begin() + i);
+            i--;
         }
         i++;
     }
