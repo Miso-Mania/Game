@@ -101,6 +101,8 @@ private:
     bool editMode;
     /// @brief temps au quel la dernière frame a été affichée
     int timeLastFrame;
+
+    ParticuleSystem m_particuleSystem; // système de particules
 };
 #endif // GAME_H
 

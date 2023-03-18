@@ -7,8 +7,8 @@ class Particule {
         ~Particule();
         void update(double delta);
         bool isAlive();
+        void push_back(Particule* Particule);
 
-    private:
         double x, y, vx, vy, ax, ay; // position, vitesse, accélération
         double life, size;           // durée de vie, taille
         int r, g, b;                 // couleur
@@ -19,9 +19,9 @@ class ParticuleSystem {
         ParticuleSystem();
         ~ParticuleSystem();
         void update(double delta);
-        void render(int windowWidth, int windowHeight);
-        void addParticule(Particule p);
+        void render(SDL_Renderer *m_renderer, int windowWidth, int windowHeight);
+        void addParticule(Particule *p);
 
     private:
-        std::vector<Particule> m_particules;
+        std::vector<Particule*> m_particules;
 };
