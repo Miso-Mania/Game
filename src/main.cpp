@@ -1,9 +1,12 @@
 #include "game.h"
 #include <iostream>
 #include <SDL2/SDL_mixer.h>
-
 using namespace std;
-void menu(int i, int l) {
+int input = 444;
+int level = 445;
+
+
+void menu() {
     // Initialisation de la SDL
     SDL_Init(SDL_INIT_VIDEO);
 
@@ -53,9 +56,9 @@ void menu(int i, int l) {
     SDL_RenderCopy(inputRenderer, inputTexture, NULL, &inputRect);
     SDL_RenderPresent(inputRenderer);
     //on demande le type d'input
-    cin >> i;
+    cin >> input;
     //si l'input est clavier; on ferme la fenêtre
-    if (i == 1 || i == 2) {
+    if (input == 1 || input == 2) {
         //on ferme la fenêtre
         SDL_DestroyTexture(inputTexture);
         SDL_FreeSurface(inputSurface);
@@ -70,9 +73,9 @@ void menu(int i, int l) {
         SDL_RenderCopy(levelRenderer, levelTexture, NULL, &levelRect);
         SDL_RenderPresent(levelRenderer);
         //on demande le niveau
-        cin >> l;
+        cin >> level;
         //si le niveau est 1; on ferme la fenêtre
-        if (l == 1 || l == 2 || l == 3 || l == 4 || l == 5 || l == 6 || l == 7 || l == 8 || l == 9 || l == 10) {
+        if (level == 1 || level == 2 || level == 3 || level == 4 || level == 5 || level == 6 || level == 7 || level == 8 || level == 9 || level == 10) {
             SDL_DestroyTexture(levelTexture);
             SDL_FreeSurface(levelSurface);
             SDL_DestroyRenderer(levelRenderer);
@@ -82,10 +85,7 @@ void menu(int i, int l) {
 }   
 
 int main(int argc, char* argv[]) {
-    int input = 444;
-    int level = 445;
-    
-    menu(input, level);
+    menu();
     // on crée une instance de la classe Game, en lui passant le type d'input et le niveau
     Game game(input, level);
     // on lance la boucle principale du jeu
