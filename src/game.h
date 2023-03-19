@@ -14,9 +14,9 @@ class Game {
 public:
 /**
     @brief constructeur de la classe Game
-    @param aucun
+    @param int input, int level
     */
-    Game();
+    Game(int input, int level);
 /**
     @brief destructeur de la classe Game
     @param aucun

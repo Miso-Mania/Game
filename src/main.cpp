@@ -86,7 +86,9 @@ int main(int argc, char* argv[]) {
     int level = 445;
     
     menu(input, level);
-    Game game;
+    // on crée une instance de la classe Game, en lui passant le type d'input et le niveau
+    Game game(input, level);
+    // on lance la boucle principale du jeu
     game.run();
     SDL_Quit();
     return 0;

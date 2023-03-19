@@ -17,34 +17,13 @@ int inputtype = 0;
 Mix_Music* music = nullptr;
 
 
-Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0),  showHitbox(false), editMode(false), timeLastFrame(0)
+Game::Game(int inputtype, int levelnumber) : m_window(NULL), m_renderer(NULL), m_currentLevel(0),  showHitbox(false), editMode(false), timeLastFrame(0)
 {   
-    srand(time(NULL));
-    //Initialisation de SDL
-    std::cout << "Choose your imput type" << std::endl;
-    std::cout << "1: Arrows" << std::endl;
-    std::cout << "2: ZQSD" << std::endl;
-    std::cin >> inputtype;
-    if (inputtype == 1) {
-        inputtype = 1;
-    } else if (inputtype == 2) {
-        inputtype = 2;
-    } else {
-        std::cout << "You didn't select a valid imput type, the default imput type will be used" << std::endl;
-        inputtype = 1;
-    }
-    std::cout << "You selected imput type " << inputtype << std::endl;
+    cout << "le big type d'input c'est " << inputtype << endl;
+    cout << "ca va play le level " << levelnumber << endl;
 
-    std::cout << "Select the level that you want to load" << std::endl;
-    std::cout << "1: level1" << std::endl;
-    std::cout << "2: level2" << std::endl;
-    std::cout << "3: Debug Level" << std::endl;
-    
-    int levelnumber;
-    std::cin >> levelnumber;
-    std::cout << "You selected level " << levelnumber << std::endl;
-    
-    // Initialisation de SDL
+    srand(time(NULL));
+    // on initialise la SDL
     SDL_Init(SDL_INIT_VIDEO);
     IMG_Init(IMG_INIT_PNG);
     std::cout << "SDL initialized" << std::endl;
