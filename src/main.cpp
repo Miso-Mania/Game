@@ -81,6 +81,10 @@ void menu() {
             SDL_DestroyRenderer(levelRenderer);
             SDL_DestroyWindow(levelWindow);
         }
+        else {
+            cout << "Veuillez entrer un niveau valide" << endl;
+            cin >> level;
+        }
     }
 }   
 
