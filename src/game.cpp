@@ -59,24 +59,27 @@ Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0),  showHitbox(
     if (SDL_Init(SDL_INIT_AUDIO) != 0) {
         std::cerr << "Failed to initialize SDL2: " << SDL_GetError() << std::endl;
     }
-     if (Mix_Init(MIX_INIT_MP3) != MIX_INIT_MP3) {
+    if (Mix_Init(MIX_INIT_MP3) != MIX_INIT_MP3)
+    {
         std::cerr << "Failed to initialize SDL2 Mixer: " << Mix_GetError() << std::endl;
     }
 
-    if (Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, 2, 1024) != 0) {
+    if (Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, 2, 1024) != 0)
+    {
         std::cerr << "Failed to open audio device: " << Mix_GetError() << std::endl;
     }
 
-    Mix_Music* music = Mix_LoadMUS("assets/music/lofi.mp3");
-    if (!music) {
+    Mix_Music *music = Mix_LoadMUS("assets/music/lofi.mp3");
+    if (!music)
+    {
         std::cerr << "Failed to load music file: " << Mix_GetError() << std::endl;
     }
 
-    if (Mix_PlayMusic(music, -1) != 0) {
+    if (Mix_PlayMusic(music, -1) != 0)
+    {
         std::cerr << "Failed to play music: " << Mix_GetError() << std::endl;
     }
     Mix_PlayMusic(music, -1);
-
 
     int width, height;
     SDL_GetWindowSize(m_window, &width, &height);
