@@ -19,9 +19,6 @@ Mix_Music* music = nullptr;
 
 Game::Game(int inputtype, int levelnumber) : m_window(NULL), m_renderer(NULL), m_currentLevel(0),  showHitbox(false), editMode(false), timeLastFrame(0)
 {   
-    cout << "le big type d'input c'est " << inputtype << endl;
-    cout << "ca va play le level " << levelnumber << endl;
-
     srand(time(NULL));
     // on initialise la SDL
     SDL_Init(SDL_INIT_VIDEO);
@@ -42,18 +39,15 @@ Game::Game(int inputtype, int levelnumber) : m_window(NULL), m_renderer(NULL), m
     {
         std::cerr << "Failed to initialize SDL2 Mixer: " << Mix_GetError() << std::endl;
     }
-
     if (Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, 2, 1024) != 0)
     {
         std::cerr << "Failed to open audio device: " << Mix_GetError() << std::endl;
     }
-
     Mix_Music *music = Mix_LoadMUS("assets/music/lofi.mp3");
     if (!music)
     {
         std::cerr << "Failed to load music file: " << Mix_GetError() << std::endl;
     }
-
     if (Mix_PlayMusic(music, -1) != 0)
     {
         std::cerr << "Failed to play music: " << Mix_GetError() << std::endl;
@@ -103,14 +97,12 @@ Game::Game(int inputtype, int levelnumber) : m_window(NULL), m_renderer(NULL), m
 
     std::cout << "textures loaded" << endl;
 
-
-
     Level *level = new Level();
     //we add the ground
     level->addObstacle(0, 26, 50, 1);
     //we load the level from the json file
     level->loadFromJSON("niveaux/level" + std::to_string(levelnumber) + ".json", TILE_SIZE);
-    std::cout << "pushing back level" << endl;
+    std::cout << "pushing back level" << levelnumber <<endl;
     
     m_levels.push_back(level);
     // Chargement du joueur
@@ -203,6 +195,7 @@ void Game::handleEvents(SDL_Event &event)
         double y = event.button.y * 1.0 / TILE_SIZE;
         m_levels[m_currentLevel]->click(x, y, 40);
     } else if(event.type == SDL_KEYDOWN) {
+        cout << "key pressed" << endl;
         switch (event.key.keysym.sym) {
             case SDLK_e:
                 editMode = !editMode;
@@ -247,6 +240,7 @@ void Game::handleEvents(SDL_Event &event)
         } 
 
     if( inputtype == 1) {
+        cout << "inputtype 1" << endl;
         if (event.type == SDL_KEYDOWN)
     {
         switch (event.key.keysym.sym)
@@ -281,6 +275,7 @@ void Game::handleEvents(SDL_Event &event)
         }
     }
     }else if( inputtype == 2) {
+        cout << "inputtype 2" << endl;
         if (event.type == SDL_KEYDOWN)
     {
         switch (event.key.keysym.sym)
