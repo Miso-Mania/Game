@@ -11,7 +11,7 @@ void afficherTitre() {
   char ligne[100];
   int i = 0;
   while (fgets(ligne, size,  fichier) != NULL) {
-    mvprintw(i + 20, COLS / 2 - 30, ligne); //TODO warning a la compilation, car la ligne 13 veut un const char* et non un char*, mais la ligne 12 ne veut pas de const char* et non un char*
+    mvprintw(i + 20, COLS / 2 - 90, ligne); //TODO warning a la compilation, car la ligne 13 veut un const char* et non un char*, mais la ligne 12 ne veut pas de const char* et non un char*
     i++;
   }
   
@@ -45,7 +45,7 @@ int main() {
     //on the first line, the coordinates of the obstacles, separated by a space
     int x, y;
     while (fscanf(fichierobstacle, "%d %d", &y, &x) != EOF) {
-      mvprintw(LINES - y, x, "X");
+      mvprintw(LINES - y, x, "!");
     } 
     fclose(fichierobstacle); 
 
@@ -53,7 +53,7 @@ int main() {
     fichierplatform = fopen("niveaux/texte/1/0.txt", "r");
     //on the first line, the coordinates of the obstacles, separated by a space;
     while (fscanf(fichierobstacle, "%d %d", &y, &x) != EOF) {
-      mvprintw(LINES - y, x, "P");
+      mvprintw(LINES - y, x, "#");
     } 
     fclose(fichierplatform);
 
@@ -97,14 +97,14 @@ int main() {
       player_vy = 0;
     }
     //we check if the player touches the obstacle (if yes its game over, we print a message on the screen and  and we close the game and ncurses)
-    if (mvwinch(stdscr, player_y, player_x) == 'X') {
+    if (mvwinch(stdscr, player_y, player_x) == '!') {
       mvprintw(LINES / 2, COLS / 2 - 5, "GAME OVER");
       getch();
       endwin();
       return 0;
     }
     //Collisions with the platform
-    if (mvwinch(stdscr, player_y, player_x) == 'P') {
+    if (mvwinch(stdscr, player_y, player_x) == '#') {
       if(lastlastInput == 'z'){
         player_y --;
         player_vy = 0;
