@@ -39,12 +39,27 @@ void menu() {
     SDL_RenderPresent(renderer);
 
     SDL_Delay(1500); // on attends une seconde avant d'ouvrir le jeu
-
     SDL_DestroyTexture(texture);
     SDL_FreeSurface(imageSurface);
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
-}
+    SDL_Init(SDL_INIT_VIDEO);
+
+    SDL_Window* inputWindow = SDL_CreateWindow("SDL2 Window", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 720, 0);
+    SDL_Renderer* inputRenderer = SDL_CreateRenderer(inputWindow, -1, SDL_RENDERER_ACCELERATED);
+    SDL_Surface* inputSurface = IMG_Load("assets/textures/input.png");
+    SDL_Texture* inputTexture = SDL_CreateTextureFromSurface(inputRenderer, inputSurface);
+    SDL_Rect inputRect = {0, 0, 1280, 720};
+    SDL_RenderCopy(inputRenderer, inputTexture, NULL, &inputRect);
+    SDL_RenderPresent(inputRenderer);
+    
+    SDL_Delay(1500); // on attends une seconde avant d'ouvrir le jeu
+    SDL_DestroyTexture(inputTexture);
+    SDL_FreeSurface(inputSurface);
+    SDL_DestroyRenderer(inputRenderer);
+    SDL_DestroyWindow(inputWindow);
+    
+}   
 
 int main(int argc, char* argv[]) {
     
