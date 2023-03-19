@@ -17,34 +17,11 @@ int inputtype = 0;
 Mix_Music* music = nullptr;
 
 
-Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0),  showHitbox(false), editMode(false), timeLastFrame(0)
+Game::Game(int inputtypeparam, int levelnumber) : m_window(NULL), m_renderer(NULL), m_currentLevel(0),  showHitbox(false), editMode(false), timeLastFrame(0)
 {   
+    inputtype = inputtypeparam;
     srand(time(NULL));
-    //Initialisation de SDL
-    std::cout << "Choose your imput type" << std::endl;
-    std::cout << "1: Arrows" << std::endl;
-    std::cout << "2: ZQSD" << std::endl;
-    std::cin >> inputtype;
-    if (inputtype == 1) {
-        inputtype = 1;
-    } else if (inputtype == 2) {
-        inputtype = 2;
-    } else {
-        std::cout << "You didn't select a valid imput type, the default imput type will be used" << std::endl;
-        inputtype = 1;
-    }
-    std::cout << "You selected imput type " << inputtype << std::endl;
-
-    std::cout << "Select the level that you want to load" << std::endl;
-    std::cout << "1: level1" << std::endl;
-    std::cout << "2: level2" << std::endl;
-    std::cout << "3: Debug Level" << std::endl;
-    
-    int levelnumber;
-    std::cin >> levelnumber;
-    std::cout << "You selected level " << levelnumber << std::endl;
-    
-    // Initialisation de SDL
+    // on initialise la SDL
     SDL_Init(SDL_INIT_VIDEO);
     IMG_Init(IMG_INIT_PNG);
     std::cout << "SDL initialized" << std::endl;
@@ -59,24 +36,24 @@ Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0),  showHitbox(
     if (SDL_Init(SDL_INIT_AUDIO) != 0) {
         std::cerr << "Failed to initialize SDL2: " << SDL_GetError() << std::endl;
     }
-     if (Mix_Init(MIX_INIT_MP3) != MIX_INIT_MP3) {
+    if (Mix_Init(MIX_INIT_MP3) != MIX_INIT_MP3)
+    {
         std::cerr << "Failed to initialize SDL2 Mixer: " << Mix_GetError() << std::endl;
     }
-
-    if (Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, 2, 1024) != 0) {
+    if (Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, 2, 1024) != 0)
+    {
         std::cerr << "Failed to open audio device: " << Mix_GetError() << std::endl;
     }
-
-    Mix_Music* music = Mix_LoadMUS("assets/music/lofi.mp3");
-    if (!music) {
+    Mix_Music *music = Mix_LoadMUS("assets/music/lofi.mp3");
+    if (!music)
+    {
         std::cerr << "Failed to load music file: " << Mix_GetError() << std::endl;
     }
-
-    if (Mix_PlayMusic(music, -1) != 0) {
+    if (Mix_PlayMusic(music, -1) != 0)
+    {
         std::cerr << "Failed to play music: " << Mix_GetError() << std::endl;
     }
     Mix_PlayMusic(music, -1);
-
 
     int width, height;
     SDL_GetWindowSize(m_window, &width, &height);
@@ -121,14 +98,12 @@ Game::Game() : m_window(NULL), m_renderer(NULL), m_currentLevel(0),  showHitbox(
 
     std::cout << "textures loaded" << endl;
 
-
-
     Level *level = new Level();
     //we add the ground
     level->addObstacle(0, 26, 50, 1);
     //we load the level from the json file
     level->loadFromJSON("niveaux/level" + std::to_string(levelnumber) + ".json", TILE_SIZE);
-    std::cout << "pushing back level" << endl;
+    std::cout << "pushing back level" << levelnumber <<endl;
     
     m_levels.push_back(level);
     // Chargement du joueur

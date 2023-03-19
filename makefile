@@ -37,7 +37,7 @@ obj/DoubleJumpPort.o: src/objets/DoubleJumpPort.cpp src/objets/DoubleJumpPort.h
 obj/game.o : src/game.cpp src/game.h src/level.h src/player.h src/objets/obstacle.h src/objets/BoxFinish.h src/playerdirection.h src/objets/pic.h src/objets/tree.h src/objets/D_Case.h src/objets/Case.h src/json.hpp src/coords.h src/objets/S_Plateform.h src/objets/M_Plateform.h src/objets/L_Plateform.h src/objets/DoubleJumpPort.h src/objets/BoxCmgtGrav.h src/particule.h
 	$(cc) $(CFLAGS) $(Include_Dir_SDL2)  src/game.cpp -o obj/game.o $(LIBS)
 
-obj/main.o : src/main.cpp src/game.h src/level.h src/player.h src/objets/obstacle.h src/objets/BoxFinish.h src/playerdirection.h src/objets/pic.h src/objets/tree.h src/objets/D_Case.h src/objets/Case.h src/json.hpp src/coords.h src/objets/S_Plateform.h src/objets/M_Plateform.h src/objets/L_Plateform.h src/objets/DoubleJumpPort.h 
+obj/main.o :  src/main.cpp src/game.h src/level.h src/player.h src/objets/obstacle.h src/objets/BoxFinish.h src/playerdirection.h src/objets/pic.h src/objets/tree.h src/objets/D_Case.h src/objets/Case.h src/json.hpp src/coords.h src/objets/S_Plateform.h src/objets/M_Plateform.h src/objets/L_Plateform.h src/objets/DoubleJumpPort.h
 	$(cc) $(CFLAGS) $(Include_Dir_SDL2) src/main.cpp -o obj/main.o $(LIBS)
 
 obj/level.o : src/level.cpp src/level.h src/objets/obstacle.h src/objets/pic.h src/json.hpp src/objets/BoxFinish.h src/objets/tree.h src/objets/D_Case.h src/objets/Case.h src/objets/S_Plateform.h src/objets/M_Plateform.h src/objets/L_Plateform.h src/objets/DoubleJumpPort.h src/objets/BoxCmgtGrav.h
