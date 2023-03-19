@@ -196,7 +196,6 @@ void Game::handleEvents(SDL_Event &event)
         double y = event.button.y * 1.0 / TILE_SIZE;
         m_levels[m_currentLevel]->click(x, y, 40);
     } else if(event.type == SDL_KEYDOWN) {
-        cout << "key pressed" << endl;
         switch (event.key.keysym.sym) {
             case SDLK_e:
                 editMode = !editMode;
@@ -241,7 +240,6 @@ void Game::handleEvents(SDL_Event &event)
         } 
 
     if( inputtype == 1) {
-        cout << "inputtype 1" << endl;
         if (event.type == SDL_KEYDOWN)
     {
         switch (event.key.keysym.sym)
@@ -276,7 +274,6 @@ void Game::handleEvents(SDL_Event &event)
         }
     }
     }else if( inputtype == 2) {
-        cout << "inputtype 2" << endl;
         if (event.type == SDL_KEYDOWN)
     {
         switch (event.key.keysym.sym)
