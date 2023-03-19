@@ -17,8 +17,9 @@ int inputtype = 0;
 Mix_Music* music = nullptr;
 
 
-Game::Game(int inputtype, int levelnumber) : m_window(NULL), m_renderer(NULL), m_currentLevel(0),  showHitbox(false), editMode(false), timeLastFrame(0)
+Game::Game(int inputtypeparam, int levelnumber) : m_window(NULL), m_renderer(NULL), m_currentLevel(0),  showHitbox(false), editMode(false), timeLastFrame(0)
 {   
+    inputtype = inputtypeparam;
     srand(time(NULL));
     // on initialise la SDL
     SDL_Init(SDL_INIT_VIDEO);
