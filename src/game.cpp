@@ -91,7 +91,7 @@ Game::Game(int inputtypeparam, int levelnumber) : m_window(NULL), m_renderer(NUL
     m_surface_D_Case = IMG_Load("assets/textures/big-crate.png");
     m_texture_D_Case = SDL_CreateTextureFromSurface(m_renderer, m_surface_D_Case);
 
-    m_surface_DoubleJumpPort = IMG_Load("assets/textures/rondvert.png");
+    m_surface_DoubleJumpPort = IMG_Load("assets/textures/orb.png");
     m_texture_DoubleJumpPort = SDL_CreateTextureFromSurface(m_renderer, m_surface_DoubleJumpPort);
 
     m_surface_BoxCmgtGrav = IMG_Load("assets/textures/Manu.png");
