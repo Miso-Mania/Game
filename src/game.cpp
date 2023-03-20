@@ -97,6 +97,9 @@ Game::Game(int inputtypeparam, int levelnumber) : m_window(NULL), m_renderer(NUL
     m_surface_BoxCmgtGrav = IMG_Load("assets/textures/Manu.png");
     m_texture_BoxCmgtGrav = SDL_CreateTextureFromSurface(m_renderer, m_surface_BoxCmgtGrav);
 
+    m_surface_BoxFinish = IMG_Load("assets/textures/porte_fin.png");
+    m_texture_BoxFinish = SDL_CreateTextureFromSurface(m_renderer, m_surface_BoxFinish);
+
     std::cout << "textures loaded" << endl;
 
     Level *level = new Level();
@@ -160,6 +163,9 @@ Game::~Game()
 
     SDL_FreeSurface(m_surface_BoxCmgtGrav);
     SDL_DestroyTexture(m_texture_BoxCmgtGrav);
+
+    SDL_FreeSurface(m_surface_BoxFinish);
+    SDL_DestroyTexture(m_texture_BoxFinish);
 
     Mix_FreeMusic(music);
     Mix_CloseAudio();
@@ -602,12 +608,11 @@ void Game::render()
         SDL_Rect doublejumpportRect = doublejumpport->getRect();
         SDL_RenderCopy(m_renderer, m_texture_DoubleJumpPort, NULL, &doublejumpportRect);
     }
-    // Dessin de la fin du niveau
-    SDL_SetRenderDrawColor(m_renderer, 125, 255, 66, 255);
+    // Dessin des BoxFinish
     for (BoxFinish *box : m_levels[m_currentLevel]->getBoxFinish())
     {
         SDL_Rect boxFinishRect = box->getRect();
-        SDL_RenderFillRect(m_renderer, &boxFinishRect);
+        SDL_RenderCopy(m_renderer, m_texture_BoxFinish, NULL, &boxFinishRect);
     }
     // Dessin des BoxCmgtGrav
     for (BoxCmgtGrav *boxCmgtGrav : m_levels[m_currentLevel]->getBoxCmgtGrav())
