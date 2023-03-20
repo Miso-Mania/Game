@@ -5,6 +5,85 @@ using namespace std;
 int input = 444;
 int level = 445;
 
+int getUserInput()
+{
+    int userinput = -1;
+    while (userinput == -1)
+    {
+        SDL_Event event;
+        while (SDL_PollEvent(&event))
+        {
+            if (event.type == SDL_KEYDOWN)
+            {
+                cout << "key pressed : " << event.key.keysym.sym << endl;
+                switch (event.key.keysym.sym)
+                {
+                case SDLK_0:
+                    userinput = 0;
+                    break;
+                case SDLK_1:
+                    userinput = 1;
+                    break;
+                case SDLK_2:
+                    userinput = 2;
+                    break;
+                case SDLK_3:
+                    userinput = 3;
+                    break;
+                case SDLK_4:
+                    userinput = 4;
+                    break;
+                case SDLK_5:
+                    userinput = 5;
+                    break;
+                case SDLK_6:
+                    userinput = 6;
+                    break;
+                case SDLK_7:
+                    userinput = 7;
+                    break;
+                case SDLK_8:
+                    userinput = 8;
+                    break;
+                case SDLK_9:
+                    userinput = 9;
+                    break;
+                case SDLK_KP_0:
+                    userinput = 0;
+                    break;
+                case SDLK_KP_1:
+                    userinput = 1;
+                    break;
+                case SDLK_KP_2:
+                    userinput = 2;
+                    break;
+                case SDLK_KP_3:
+                    userinput = 3;
+                    break;
+                case SDLK_KP_4:
+                    userinput = 4;
+                    break;
+                case SDLK_KP_5:
+                    userinput = 5;
+                    break;
+                case SDLK_KP_6:
+                    userinput = 6;
+                    break;
+                case SDLK_KP_7:
+                    userinput = 7;
+                    break;
+                case SDLK_KP_8:
+                    userinput = 8;
+                    break;
+                case SDLK_KP_9:
+                    userinput = 9;
+                    break;
+                }
+            }
+        }
+    }
+    return userinput;
+}
 
 void menu() {
     // Initialisation de la SDL
@@ -56,7 +135,7 @@ void menu() {
     SDL_RenderCopy(inputRenderer, inputTexture, NULL, &inputRect);
     SDL_RenderPresent(inputRenderer);
     //on demande le type d'input
-    cin >> input;
+    input = getUserInput();
     //si l'input est clavier; on ferme la fenêtre
     if (input == 1 || input == 2) {
         //on ferme la fenêtre
@@ -73,7 +152,7 @@ void menu() {
         SDL_RenderCopy(levelRenderer, levelTexture, NULL, &levelRect);
         SDL_RenderPresent(levelRenderer);
         //on demande le niveau
-        cin >> level;
+        level = getUserInput();
         //si le niveau est 1; on ferme la fenêtre
         if (level == 1 || level == 2 || level == 3 || level == 4 || level == 5 || level == 6 || level == 7 || level == 8 || level == 9 || level == 10) {
             SDL_DestroyTexture(levelTexture);
@@ -83,7 +162,7 @@ void menu() {
         }
         else {
             cout << "Veuillez entrer un niveau valide" << endl;
-            cin >> level;
+            level = getUserInput();
         }
     }
 }   
