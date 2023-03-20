@@ -40,14 +40,11 @@ ParticuleSystem::~ParticuleSystem() {
 }
 
 void ParticuleSystem::update(double delta) {
-    int i = 0;
-    for (Particule *p : m_particules) {
-        p->update(delta);
-        if (!p->isAlive()) {
+    for (int i=m_particules.size()-1; i >= 0; i--) {
+        m_particules[i]->update(delta);
+        if (!m_particules[i]->isAlive()) {
             m_particules.erase(m_particules.begin() + i);
-            i--;
         }
-        i++;
     }
 }
 
