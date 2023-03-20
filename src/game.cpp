@@ -117,6 +117,8 @@ Game::Game(int inputtypeparam, int levelnumber) : m_window(NULL), m_renderer(NUL
     std::cout << "timer created" << endl;
 
     ParticuleSystem m_particuleSystem = ParticuleSystem();
+
+    timeLastFrame = SDL_GetTicks();
 }
 
 Game::~Game()
