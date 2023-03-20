@@ -13,6 +13,7 @@ const int NUM_TILES_X = 48;
 const int NUM_TILES_Y = 27;
 const int TILE_SIZE = 40;
 int inputtype = 0;
+bool running = true;
 
 Mix_Music* music = nullptr;
 
@@ -169,7 +170,6 @@ Game::~Game()
 
 void Game::run()
 {
-    bool running = true;
     while (running)
     {
         // Gestion des évènements
@@ -415,6 +415,7 @@ void Game::update()
     {
         if (m_player.collidesWith(boxFinish))
         {
+            running = false;
             cout << "temps : "  << timer << "s" << endl;
             m_currentLevel++;
             m_player.moveTo(3, 15);
@@ -712,13 +713,4 @@ void Game::render()
 
     // Affichage
     SDL_RenderPresent(m_renderer);
-
-    // Affichage du message de victoire si le joueur a gagné
-    if (m_levels[m_currentLevel]->getObstacles().size() == 0)
-    {
-        SDL_SetRenderDrawColor(m_renderer, 0, 0, 0, 255);
-        SDL_RenderClear(m_renderer);
-        SDL_SetRenderDrawColor(m_renderer, 255, 255, 255, 255);
-        SDL_RenderPresent(m_renderer);
-    }
 }
