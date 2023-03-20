@@ -24,7 +24,16 @@ int main() {
   cbreak();
   noecho();
   curs_set(0);
+  //On demande au joueur quel niveau il veut 
+  int level = 0; //level 1 par défaut
+  std::cout << "Veuillez entrer le niveau que vous voulez jouer (1-2)" << std::endl;
+  std::cin >> level;
+  //on vérifie que le niveau est valide
+  while (level != 1 && level != 2) {
+    std::cout << "Veuillez entrer un niveau valide" << std::endl;
 
+    std::cin >> level;
+  }
   int player_x = 0;
   int player_y = LINES - 2;
   int player_vy = 0;
@@ -41,8 +50,13 @@ int main() {
     mvprintw(player_y, player_x, "I");
  
     FILE* fichierobstacle = NULL;
-    fichierobstacle = fopen("niveaux/texte/1/1.txt", "r");
-    //on the first line, the coordinates of the obstacles, separated by a space
+    // en fonction du niveau on défini  une chaine de caractères qui représente le fichier texte qui contient les obstacles
+    if (level == 1) {
+      fichierobstacle = fopen("niveaux/texte/1/1.txt", "r");
+    }
+    else if (level == 2) {
+      fichierobstacle = fopen("niveaux/texte/2/1.txt", "r");
+    }
     int x, y;
     while (fscanf(fichierobstacle, "%d %d", &y, &x) != EOF) {
       mvprintw(LINES - y, x, "!");
@@ -50,7 +64,13 @@ int main() {
     fclose(fichierobstacle); 
 
     FILE* fichierplatform = NULL;
-    fichierplatform = fopen("niveaux/texte/1/0.txt", "r");
+
+    if (level == 1) {
+      fichierplatform = fopen("niveaux/texte/1/0.txt", "r");
+    }
+    else if (level == 2) {
+      fichierplatform = fopen("niveaux/texte/2/0.txt", "r");
+    }
     //on the first line, the coordinates of the obstacles, separated by a space;
     while (fscanf(fichierobstacle, "%d %d", &y, &x) != EOF) {
       mvprintw(LINES - y, x, "#");
@@ -58,7 +78,13 @@ int main() {
     fclose(fichierplatform);
 
     FILE* fichierboxfinish = NULL;
-    fichierboxfinish = fopen("niveaux/texte/1/2.txt", "r");
+
+    if (level == 1) {
+      fichierboxfinish = fopen("niveaux/texte/1/2.txt", "r");
+    }
+    else if (level == 2) {
+      fichierboxfinish = fopen("niveaux/texte/2/2.txt", "r");
+    }
     //on the first line, the coordinates of the obstacles, separated by a space;
     while (fscanf(fichierboxfinish, "%d %d", &y, &x) != EOF) {
       mvprintw(LINES - y, x, "F");
