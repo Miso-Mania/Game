@@ -506,7 +506,30 @@ void Game::update()
             Coords treeCoords = tree->getCoords();
             double x = treeCoords.x + rand() / (double)RAND_MAX * 2.5 + 0.5;
             double y = treeCoords.y + rand() / (double)RAND_MAX + 1.2;
-            Particule *p_particule = new Particule(x, y, 0.1, 0.3, 0, 0, 5, 0.06, 255, 120, 180, 255);
+            double r = 245; //+ rand() / (double)RAND_MAX * 20 - 10;
+            double g = 120; //+ rand() / (double)RAND_MAX * 20 - 10;
+            double b = 180; //+ rand() / (double)RAND_MAX * 20 - 10;
+            Particule *p_particule = new Particule(x, y, 0.1, 0.3, 0, 0, 5, 0.08, r, g, b, 255);
+            m_particuleSystem.addParticule(p_particule);
+        }
+    }
+
+    // ajout de particules sur les portails
+    for (DoubleJumpPort *doublejumpport : m_levels[m_currentLevel]->getDoubleJumpPort())
+    {   
+        if (rand()%10 == 0)
+        {
+            Coords doublejumpportCoords = doublejumpport->getCoords();
+            double x = doublejumpportCoords.x + 0.5;
+            double y = doublejumpportCoords.y + 0.5;
+            double vx = rand() / (double)RAND_MAX * 5 - 2.5;
+            double vy = rand() / (double)RAND_MAX * 5 - 2.5;
+            double ax = - vx * 4;
+            double ay = - vy * 4;
+            double r = 0; //+ rand() / (double)RAND_MAX * 20 - 10;
+            double g = 100; //+ rand() / (double)RAND_MAX * 20 - 10;
+            double b = 255; //+ rand() / (double)RAND_MAX * 20 - 10;
+            Particule *p_particule = new Particule(x, y, vx, vy, ax, ay, 0.5, 0.1, r, g, b, 255);
             m_particuleSystem.addParticule(p_particule);
         }
     }
@@ -516,7 +539,7 @@ void Game::update()
         for(int i = 0; i < 10; i++){
             Coords p = m_player.getCoords();
             double x = p.x + rand() / (double)RAND_MAX * p.w;
-            double y = p.y + p.h + 0.2;
+            double y = p.y + p.h - 0.1;
             double vx = rand() / (double)RAND_MAX * 2 - 1;
             double vy = rand() / (double)RAND_MAX * 1 - 0.5;
             double life = rand() / (double)RAND_MAX * 0.5 + 0.5;
