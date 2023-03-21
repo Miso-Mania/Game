@@ -2,12 +2,12 @@
 #include <ncurses.h>
 
 const  int size = 100;
-const  char *title = "niveaux/texte/1/title.txt";
+
 
 void afficherTitre() {
   //on ouvre le fichier texte qui contient le titre
   FILE* fichier = NULL;
-  fichier = fopen(title , "r");
+  fichier = fopen("niveaux/texte/1/title.txt" , "r");
   //on affiche le titre, ligne par ligne
   char ligne[100];
   int i = 0;
@@ -17,11 +17,6 @@ void afficherTitre() {
   }
   
 }
-
-void fermerFichier(FILE* fichier) {
-  fclose(fichier);
-}
-
 
 int main() {
   // Initialize ncurses
@@ -175,8 +170,6 @@ int main() {
     lastlastInput = lastInput;
     refresh();
   }
-  //on referme le fichier
-  fermerFichier(title);
   endwin();
   return 0;
 }
