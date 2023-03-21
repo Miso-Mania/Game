@@ -43,6 +43,7 @@ void ParticuleSystem::update(double delta) {
     for (int i=m_particules.size()-1; i >= 0; i--) {
         m_particules[i]->update(delta);
         if (!m_particules[i]->isAlive()) {
+            delete m_particules[i];
             m_particules.erase(m_particules.begin() + i);
         }
     }
@@ -51,10 +52,10 @@ void ParticuleSystem::update(double delta) {
 void ParticuleSystem::render(SDL_Renderer *m_renderer, int windowWidth, int windowHeight) {
     for (Particule *p : m_particules) {
         SDL_Rect rect;
-        rect.x = p->x / 48.0 * windowWidth;
-        rect.y = p->y / 27.0 * windowHeight;
-        rect.w = p->size / 48.0 * windowWidth;
-        rect.h = p->size / 27.0 * windowHeight;
+        rect.x = p->x * 40;
+        rect.y = p->y * 40;
+        rect.w = p->size * 40;
+        rect.h = p->size * 40;
         SDL_SetRenderDrawBlendMode(m_renderer, SDL_BLENDMODE_BLEND);
         SDL_SetRenderDrawColor(m_renderer, p->r, p->g, p->b, p->a);
         SDL_RenderFillRect(m_renderer, &rect);
