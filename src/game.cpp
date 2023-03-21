@@ -496,12 +496,12 @@ void Game::update()
     // ajout de particules sur les arbres
     for (Tree *tree : m_levels[m_currentLevel]->getTrees())
     {   
-        if (rand()%10 == 0)
+        if (rand()%20 == 0)
         {
             Coords treeCoords = tree->getCoords();
             double x = treeCoords.x + rand() / (double)RAND_MAX * 2.5 + 0.5;
             double y = treeCoords.y + rand() / (double)RAND_MAX + 1.2;
-            double r = 245; //+ rand() / (double)RAND_MAX * 20 - 10;
+            double r = 255; //+ rand() / (double)RAND_MAX * 20 - 10;
             double g = 120; //+ rand() / (double)RAND_MAX * 20 - 10;
             double b = 180; //+ rand() / (double)RAND_MAX * 20 - 10;
             Particule *p_particule = new Particule(x, y, 0.1, 0.3, 0, 0, 5, 0.08, r, g, b, 255);
@@ -512,19 +512,19 @@ void Game::update()
     // ajout de particules sur les portails
     for (DoubleJumpPort *doublejumpport : m_levels[m_currentLevel]->getDoubleJumpPort())
     {   
-        if (rand()%10 == 0)
+        if (rand()%5 == 0)
         {
             Coords doublejumpportCoords = doublejumpport->getCoords();
-            double x = doublejumpportCoords.x + 0.5;
-            double y = doublejumpportCoords.y + 0.5;
-            double vx = rand() / (double)RAND_MAX * 5 - 2.5;
-            double vy = rand() / (double)RAND_MAX * 5 - 2.5;
+            double x = doublejumpportCoords.x + rand() / (double)RAND_MAX * 0.5 + 0.25;
+            double y = doublejumpportCoords.y + rand() / (double)RAND_MAX * 0.5 + 0.25;
+            double vx = rand() / (double)RAND_MAX * 16 - 8;
+            double vy = rand() / (double)RAND_MAX * 16 - 8;
             double ax = - vx * 4;
             double ay = - vy * 4;
             double r = 0; //+ rand() / (double)RAND_MAX * 20 - 10;
-            double g = 100; //+ rand() / (double)RAND_MAX * 20 - 10;
+            double g = 255; //+ rand() / (double)RAND_MAX * 20 - 10;
             double b = 255; //+ rand() / (double)RAND_MAX * 20 - 10;
-            Particule *p_particule = new Particule(x, y, vx, vy, ax, ay, 0.5, 0.1, r, g, b, 255);
+            Particule *p_particule = new Particule(x, y, vx, vy, ax, ay, 0.5, 0.08, r, g, b, 255);
             m_particuleSystem.addParticule(p_particule);
         }
     }
