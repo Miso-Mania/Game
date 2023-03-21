@@ -26,10 +26,10 @@ int main() {
   curs_set(0);
   //On demande au joueur quel niveau il veut 
   int level = 0; //level 1 par défaut
-  std::cout << "Veuillez entrer le niveau que vous voulez jouer (1-2)" << std::endl;
+  std::cout << "Veuillez entrer le niveau que vous voulez jouer (1-3)" << std::endl;
   std::cin >> level;
   //on vérifie que le niveau est valide
-  while (level != 1 && level != 2) {
+  while (level != 1 && level != 2 && level != 3) {
     std::cout << "Veuillez entrer un niveau valide" << std::endl;
 
     std::cin >> level;
@@ -57,6 +57,9 @@ int main() {
     else if (level == 2) {
       fichierobstacle = fopen("niveaux/texte/2/1.txt", "r");
     }
+    else if (level == 3) {
+      fichierobstacle = fopen("niveaux/texte/3/1.txt", "r");
+    }
     int x, y;
     while (fscanf(fichierobstacle, "%d %d", &y, &x) != EOF) {
       mvprintw(LINES - y, x, "!");
@@ -71,6 +74,9 @@ int main() {
     else if (level == 2) {
       fichierplatform = fopen("niveaux/texte/2/0.txt", "r");
     }
+    else if (level == 3) {
+      fichierplatform = fopen("niveaux/texte/3/0.txt", "r");
+    }
     //on the first line, the coordinates of the obstacles, separated by a space;
     while (fscanf(fichierobstacle, "%d %d", &y, &x) != EOF) {
       mvprintw(LINES - y, x, "#");
@@ -84,6 +90,9 @@ int main() {
     }
     else if (level == 2) {
       fichierboxfinish = fopen("niveaux/texte/2/2.txt", "r");
+    }
+    else if (level == 3) {
+      fichierboxfinish = fopen("niveaux/texte/3/2.txt", "r");
     }
     //on the first line, the coordinates of the obstacles, separated by a space;
     while (fscanf(fichierboxfinish, "%d %d", &y, &x) != EOF) {
