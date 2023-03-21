@@ -415,9 +415,6 @@ void Game::update()
             m_player.setTimeSinceTouchGround(0);
         }
     }
-
-    
-
     // Le joueur gagne si il touche la BoxFinish
     for (BoxFinish *boxFinish : m_levels[m_currentLevel]->getBoxFinish())
     {
@@ -425,8 +422,6 @@ void Game::update()
         {
             running = false;
             cout << "temps : "  << timer << "s" << endl;
-            m_currentLevel++;
-            m_player.moveTo(3, 15);
         }
     }
 
