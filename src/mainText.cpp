@@ -2,6 +2,7 @@
 #include <ncurses.h>
 
 const  int size = 100;
+bool running = true;
 
 
 void afficherTitre() {
@@ -40,7 +41,7 @@ int main() {
 
 
   // Main game loop
-  while (true) {
+  while (running) {
     // Clear the screen and print the player character
     clear();
     //we print the title
@@ -161,16 +162,24 @@ int main() {
         player_vy = 0;
       }
     }
-     
-      
-
-      //we check if the player touches the finish (if yes we print a message on the screen and  and we close the game and ncurses)
-      if (mvwinch(stdscr, player_y, player_x) == 'F') {
+      //we check if the player touches the finish (if yes we go to the next level)
+    if (mvwinch(stdscr, player_y, player_x) == 'F') {
+      if(level == 3){
         mvprintw(LINES / 2, COLS / 2 - 5, "YOU WIN");
         getch();
         endwin();
         return 0;
       }
+      else{
+      running = false;
+      //on clear tout le terminal
+      clear();
+      level = 0;
+
+      }
+      
+    }
+    // Refresh the screen
 
 
 
@@ -179,6 +188,13 @@ int main() {
     lastlastInput = lastInput;
     refresh();
   }
-  endwin();
+  // on lance le niveau suivant
+  //on vérifie que le niveau est valide
+  //on clear la fenêtre
+  
+
+
+  main();
+
   return 0;
 }
