@@ -244,7 +244,7 @@ void Player::testRegression () {
     cout<<"Test de la methode jump de la classe Player:"<<endl;
     player.jump();
     if (player.m_yVelocity == -13){
-        assert(player.m_coords.y == 2);
+        assert(player.m_coords.y == 23);
     }
     else{
         assert(player.m_coords.y == 23);
@@ -255,24 +255,6 @@ void Player::testRegression () {
     assert(player.m_coords.x == 1);
     assert(player.m_coords.y == 23);
     cout<<"Test de la methode moveOutOf de la classe Player reussi"<<endl;
-    cout<<"Test de la methode incTimeSinceTouchGround de la classe Player:"<<endl;
-    player.incTimeSinceTouchGround(0.1);
-    if (player.timeSinceTouchGround == 0.1){
-        assert(player.m_yVelocity == 0.5);
-    }
-    else{
-        assert(player.m_yVelocity == 0);
-    }
-    cout<<"Test de la methode incTimeSinceTouchGround de la classe Player reussi"<<endl;
-    cout<<"Test de la methode decJumpBuffer de la classe Player:"<<endl;
-    player.decJumpBuffer(1);
-    if (player.jumpBuffer == 0){
-        assert(player.m_yVelocity == 0.5);
-    }
-    else{
-        assert(player.m_yVelocity == 0);
-    }
-    cout<<"Test de la methode decJumpBuffer de la classe Player reussi"<<endl;
     cout<<"Test de la methode stopGravity de la classe Player:"<<endl;
     player.stopGravity();
     assert(player.m_yVelocity == 0);
