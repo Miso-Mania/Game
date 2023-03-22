@@ -421,23 +421,32 @@ void Game::update()
         {
             running = false;
             cout << "temps : "  << timer << "s" << endl;
-            //on écrit le temps dans un fichier; dans le fichier /times/levelX.txt
+            //on ouvre le fichier /times/levelX.txt, on va récupérer le temps précédent et le comparer avec le nouveau
             FILE* fichierTimes = NULL;
-            fichierTimes = fopen(("times/level" + to_string(actualLevel) + ".txt").c_str(), "w");
+            fichierTimes = fopen(("/times/level" + to_string(m_currentLevel) + ".txt").c_str(), "r");
             if (fichierTimes != NULL)
             {
-                fprintf(fichierTimes, "%f", timer);
-                //on met une virgule pour séparer les temps
-                fprintf(fichierTimes, ",");
-                cout << "temps enregistré, on va fermer le fichier, puis le jeu." << endl;
+                //On récupère le temps précédent
+                char tempsPrecedent[10];
+                fgets(tempsPrecedent, 10, fichierTimes);
+                //On compare le temps précédent avec le nouveau
+                if (timer < atof(tempsPrecedent))
+                {
+                    //On écrit le nouveau temps
+                    fprintf(fichierTimes, "%f", timer);
+                    cout << "Nouveau record !";
+                }
                 fclose(fichierTimes);
             }
-            else
+            else //Si le fichier n'existe pas, on le crée
             {
-                cout << "Impossible d'ouvrir le fichier !" << endl;
+                fichierTimes = fopen(("/times/level" + to_string(m_currentLevel) + ".txt").c_str(), "w");
+                fprintf(fichierTimes, "%f", timer);
+                fclose(fichierTimes);
             }
-        }
     }
+    }
+
 
     // Mise à jour de la position des obstacles
     for (Obstacle *obstacle : m_levels[m_currentLevel]->getObstacles())
