@@ -13,6 +13,7 @@ const int NUM_TILES_X = 48;
 const int NUM_TILES_Y = 27;
 const int TILE_SIZE = 40;
 int inputtype = 0;
+int actualLevel = 0;
 bool running = true;
 
 Mix_Music* music = nullptr;
@@ -21,6 +22,7 @@ Mix_Music* music = nullptr;
 Game::Game(int inputtypeparam, int levelnumber) : m_window(NULL), m_renderer(NULL), m_currentLevel(0),  showHitbox(false), editMode(false), timeLastFrame(0)
 {   
     inputtype = inputtypeparam;
+    actualLevel = levelnumber;
     srand(time(NULL));
     // on initialise la SDL
     SDL_Init(SDL_INIT_VIDEO);
@@ -424,8 +426,8 @@ void Game::update()
             cout << "temps : "  << timer << "s" << endl;
             //on écrit le temps dans un fichier; dans le fichier /times/levelX.txt
             FILE* fichierTimes = NULL;
-            fichierTimes = fopen(("times/level" + to_string(m_currentLevel) + ".txt").c_str(), "w");
-            cout << "on va ouvrir le fichier : " << "times/level" << to_string(m_currentLevel) << ".txt" << endl;
+            fichierTimes = fopen(("times/level" + to_string(actualLevel) + ".txt").c_str(), "w");
+            cout << "on va ouvrir le fichier : " << "times/level" << to_string(actualLevel) << ".txt" << endl;
             if (fichierTimes != NULL)
             {
                 fprintf(fichierTimes, "%f", timer);

@@ -143,6 +143,8 @@ void menu() {
         SDL_FreeSurface(inputSurface);
         SDL_DestroyRenderer(inputRenderer);
         SDL_DestroyWindow(inputWindow);
+        //on pause pour 0.1 seconde
+        SDL_Delay(100);
         //on ouvre le menu suivant
         SDL_Window* levelWindow = SDL_CreateWindow("SDL2 Window", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 720, 0);
         SDL_Renderer* levelRenderer = SDL_CreateRenderer(levelWindow, -1, SDL_RENDERER_ACCELERATED);
