@@ -4,6 +4,8 @@
 using namespace std;
 int input = 444;
 int level = 445;
+int activity = 446;
+bool editorMode = false;
 
 int getUserInput()
 {
@@ -145,6 +147,55 @@ void menu() {
         SDL_DestroyWindow(inputWindow);
         //on pause pour 0.1 seconde
         SDL_Delay(100);
+        //on demande au joueur de choisir entre le mode edition, le mode jeu ou le leaderboard
+
+
+        SDL_Window* activityWindow = SDL_CreateWindow("Actity", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 720, 0);
+        SDL_Renderer* activityRenderer = SDL_CreateRenderer(activityWindow, -1, SDL_RENDERER_ACCELERATED);
+        SDL_Surface* activitySurface = IMG_Load("assets/textures/activity.png");
+        SDL_Texture* activityTexture = SDL_CreateTextureFromSurface(activityRenderer, activitySurface);
+        SDL_Rect activityRect = {0, 0, 1280, 720};
+        SDL_RenderCopy(activityRenderer, activityTexture, NULL, &activityRect);
+        SDL_RenderPresent(activityRenderer);
+        //on demande au joueur de choisir entre le mode edition, le mode jeu ou le leaderboard, en fonction de l'input
+        activity = getUserInput();
+        if (activity == 2){
+            editorMode = true;
+        }
+        if (activity == 3){
+            SDL_Quit();
+        }
+
+        //on ferme la fenêtre
+        SDL_DestroyTexture(activityTexture);
+        SDL_FreeSurface(activitySurface);
+        SDL_DestroyRenderer(activityRenderer);
+        SDL_DestroyWindow(activityWindow);
+        
+        //on pause pour 0.1 seconde
+        SDL_Delay(100);
+        
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         //on ouvre le menu suivant
         SDL_Window* levelWindow = SDL_CreateWindow("SDL2 Window", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 720, 0);
         SDL_Renderer* levelRenderer = SDL_CreateRenderer(levelWindow, -1, SDL_RENDERER_ACCELERATED);
@@ -170,9 +221,10 @@ void menu() {
 }   
 
 int main(int argc, char* argv[]) {
+    // on affiche le menu
     menu();
     // on crée une instance de la classe Game, en lui passant le type d'input et le niveau
-    Game game(input, level);
+    Game game(input, level, editorMode);
     // on lance la boucle principale du jeu
     game.run();
     SDL_Quit();

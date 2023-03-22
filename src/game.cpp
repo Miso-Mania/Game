@@ -19,7 +19,7 @@ bool running = true;
 Mix_Music* music = nullptr;
 
 
-Game::Game(int inputtypeparam, int levelnumber) : m_window(NULL), m_renderer(NULL), m_currentLevel(0),  showHitbox(false), editMode(false), timeLastFrame(0)
+Game::Game(int inputtypeparam, int levelnumber, bool editMode) : m_window(NULL), m_renderer(NULL), m_currentLevel(0),  showHitbox(false), editMode(false), timeLastFrame(0)
 {   
     inputtype = inputtypeparam;
     actualLevel = levelnumber;
@@ -207,9 +207,6 @@ void Game::handleEvents(SDL_Event &event)
         m_levels[m_currentLevel]->click(x, y, 40);
     } else if(event.type == SDL_KEYDOWN) {
         switch (event.key.keysym.sym) {
-            case SDLK_e:
-                editMode = !editMode;
-                break;
             case SDLK_1:
                 m_levels[m_currentLevel]->selectedObj = "Case";
                 break;
