@@ -422,6 +422,21 @@ void Game::update()
         {
             running = false;
             cout << "temps : "  << timer << "s" << endl;
+            //on écrit le temps dans un fichier; dans le fichier /times/levelX.txt
+            FILE* fichierTimes = NULL;
+            fichierTimes = fopen(("times/level" + to_string(m_currentLevel) + ".txt").c_str(), "w");
+            cout << "on va ouvrir le fichier : " << "times/level" << to_string(m_currentLevel) << ".txt" << endl;
+            if (fichierTimes != NULL)
+            {
+                fprintf(fichierTimes, "%f", timer);
+                //on met une virgule pour séparer les temps
+                fprintf(fichierTimes, ",");
+                fclose(fichierTimes);
+            }
+            else
+            {
+                cout << "Impossible d'ouvrir le fichier !" << endl;
+            }
         }
     }
 
