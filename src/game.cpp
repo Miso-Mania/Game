@@ -436,7 +436,8 @@ void Game::update()
 
                 if (timer < atof(tempsPrecedent))
                 {   
-                    //On écrit le nouveau temps
+                    //On remplace le temps précédent par le nouveau en écrivant dans le fichier que l'on a ouvert
+                    fichierTimes = fopen(("times/level" + to_string(actualLevel) + ".txt").c_str(), "w");
                     fprintf(fichierTimes, "%f", timer);
                     cout << "Nouveau record !";
                 }
