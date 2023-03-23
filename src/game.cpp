@@ -15,6 +15,7 @@ const int TILE_SIZE = 40;
 int inputtype = 0;
 int actualLevel = 0;
 bool running = true;
+bool editionMode = false;
 
 Mix_Music* music = nullptr;
 
@@ -23,6 +24,7 @@ Game::Game(int inputtypeparam, int levelnumber, bool editMode) : m_window(NULL),
 {   
     inputtype = inputtypeparam;
     actualLevel = levelnumber;
+    editionMode = editMode;
     srand(time(NULL));
     // on initialise la SDL
     SDL_Init(SDL_INIT_VIDEO);
@@ -200,8 +202,9 @@ void Game::run()
 }
 
 void Game::handleEvents(SDL_Event &event)
-{
-    if(event.type == SDL_MOUSEBUTTONDOWN && editMode) {
+{   
+    if(event.type == SDL_MOUSEBUTTONDOWN && editionMode) {
+        cout << "click" << endl;
         double x = event.button.x * 1.0 / TILE_SIZE;
         double y = event.button.y * 1.0 / TILE_SIZE;
         m_levels[m_currentLevel]->click(x, y, 40);
