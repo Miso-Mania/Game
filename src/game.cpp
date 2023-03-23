@@ -423,7 +423,8 @@ void Game::update()
             cout << "temps : "  << timer << "s" << endl;
             //on ouvre le fichier /times/levelX.txt, on va récupérer le temps précédent et le comparer avec le nouveau
             FILE* fichierTimes = NULL;
-            fichierTimes = fopen(("times/level" + to_string(m_currentLevel) + ".txt").c_str(), "r");
+            fichierTimes = fopen(("times/level" + to_string(actualLevel) + ".txt").c_str(), "r");
+            cout<< "times/level" + to_string(actualLevel) + ".txt"<<endl;
             if (fichierTimes != NULL)
             {   
                 cout << "fichier ouvert" << endl;
