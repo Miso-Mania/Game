@@ -424,22 +424,21 @@ void Game::update()
             //on ouvre le fichier /times/levelX.txt, on va récupérer le temps précédent et le comparer avec le nouveau
             FILE* fichierTimes = NULL;
             fichierTimes = fopen(("times/level" + to_string(actualLevel) + ".txt").c_str(), "r");
-            cout<< "times/level" + to_string(actualLevel) + ".txt"<<endl;
             if (fichierTimes != NULL)
             {   
-                cout << "fichier ouvert" << endl;
                 //On récupère le temps précédent
                 char tempsPrecedent[10];
                 fgets(tempsPrecedent, 10, fichierTimes);
-                //On compare le temps précédent avec le nouveau*
-                cout<< tempsPrecedent<<endl;
-
                 if (timer < atof(tempsPrecedent))
                 {   
                     //On remplace le temps précédent par le nouveau en écrivant dans le fichier que l'on a ouvert
                     fichierTimes = fopen(("times/level" + to_string(actualLevel) + ".txt").c_str(), "w");
                     fprintf(fichierTimes, "%f", timer);
-                    cout << "Nouveau record !";
+                    cout << "Le record a été battu de " << atof(tempsPrecedent) - timer << "s !, félicitations" << endl;
+                }
+                else
+                {
+                    cout << "Le record n'a pas été battu à " << timer - atof(tempsPrecedent) << "s près ! Le prochain essai sera le bon !" << endl;
                 }
                 fclose(fichierTimes);
             }
