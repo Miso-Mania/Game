@@ -128,8 +128,8 @@ int menu() {
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
     SDL_Init(SDL_INIT_VIDEO);
-        SDL_Window* activityWindow = SDL_CreateWindow("Actity", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 720, 0);
-        SDL_Renderer* mainRenderer = SDL_CreateRenderer(activityWindow, -1, SDL_RENDERER_ACCELERATED);
+        SDL_Window* menuWindow = SDL_CreateWindow("Menu", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 720, 0);
+        SDL_Renderer* mainRenderer = SDL_CreateRenderer(menuWindow, -1, SDL_RENDERER_ACCELERATED);
         SDL_Surface* activitySurface = IMG_Load("assets/textures/activity.png");
         SDL_Texture* activityTexture = SDL_CreateTextureFromSurface(mainRenderer, activitySurface);
         SDL_Rect mainRect = {0, 0, 1280, 720};
