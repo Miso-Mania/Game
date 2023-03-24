@@ -195,14 +195,15 @@ int menu() {
         //on demande le type d'input
         input = getUserInput();
         //si l'input est clavier; on ferme la fenêtre
-        if (input == 1 || input == 2) {
-        //on ferme la fenêtre
+        do{
+            input = getUserInput();
+            cout << "Merci de choisir votre type d'imput" << endl;
+        }while (!(input==1 || input ==2));
         SDL_DestroyTexture(inputTexture);
         SDL_FreeSurface(inputSurface);
         SDL_DestroyRenderer(inputRenderer);
         SDL_DestroyWindow(inputWindow);
         return 0;
-    }
 }
 
 int main(int argc, char* argv[]) {
