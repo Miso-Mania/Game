@@ -240,13 +240,11 @@ void Game::handleEvents(SDL_Event &event)
             case SDLK_0:
                 m_levels[m_currentLevel]->selectedObj = "BoxCmgtGrav";
                 break;
-            case SDLK_r:
-                m_levels[m_currentLevel]->saveToJSON("niveaux/level0.json");
-                break;
             case SDLK_h:
                 showHitbox = !showHitbox;
                 break;
             }
+        m_levels[m_currentLevel]->saveToJSON("niveaux/level0.json"); //on sauvegarde à chaque touche
         } 
 
     if( inputtype == 1) {
