@@ -87,7 +87,7 @@ int getUserInput()
     return userinput;
 }
 
-void menu() {
+int menu() {
     // Initialisation de la SDL
     SDL_Init(SDL_INIT_VIDEO);
 
@@ -108,7 +108,7 @@ void menu() {
         std::cerr << "Failed to open audio device: " << Mix_GetError() << std::endl;
     }
 
-    Mix_Music *intro = Mix_LoadMUS("assets/music/intro.mp3");
+    Mix_Music *intro = Mix_LoadMUS("assets/music/gangsta.wav");
     if (!intro)
     {
         std::cerr << "Failed to load intro file: " << Mix_GetError() << std::endl;
@@ -163,7 +163,18 @@ void menu() {
             editorMode = true;
         }
         if (activity == 3){
-            SDL_Quit();
+            cout << "Leaderboard" << endl;
+             cout << "Voici le leaderboard pour chaque niveau :" << endl;
+        for (int i = 0; i < 4; i++) {
+            FILE* leaderboard = NULL;
+            leaderboard = fopen(("times/level" + to_string(i) + ".txt").c_str(), "r");
+            char tempsRecord[10];
+            fgets(tempsRecord, 10, leaderboard);
+            cout << "Niveau " << i << " : " << endl;
+            cout << "Le record est : " <<  tempsRecord << endl;    
+
+        }
+    return 1;
         }
 
         //on ferme la fenêtre
@@ -174,27 +185,6 @@ void menu() {
         
         //on pause pour 0.1 seconde
         SDL_Delay(100);
-        
-
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         //on ouvre le menu suivant
         SDL_Window* levelWindow = SDL_CreateWindow("SDL2 Window", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 720, 0);
@@ -217,16 +207,17 @@ void menu() {
             cout << "Veuillez entrer un niveau valide" << endl;
             level = getUserInput();
         }
+        return 0;
     }
-}   
+}
 
 int main(int argc, char* argv[]) {
-    // on affiche le menu
-    menu();
-    // on crée une instance de la classe Game, en lui passant le type d'input et le niveau
-    Game game(input, level, editorMode);
-    // on lance la boucle principale du jeu
-    game.run();
+    // on lance le jeu ssi le menu a retourné 0
+    if (menu() == 0) {
+         Game game(input, level, editorMode);
+        // on lance la boucle principale du jeu
+        game.run();
+    }
     SDL_Quit();
     return 0;
 }
