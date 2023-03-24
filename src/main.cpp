@@ -129,12 +129,12 @@ int menu() {
     SDL_DestroyWindow(window);
     SDL_Init(SDL_INIT_VIDEO);
         SDL_Window* activityWindow = SDL_CreateWindow("Actity", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 720, 0);
-        SDL_Renderer* activityRenderer = SDL_CreateRenderer(activityWindow, -1, SDL_RENDERER_ACCELERATED);
+        SDL_Renderer* mainRenderer = SDL_CreateRenderer(activityWindow, -1, SDL_RENDERER_ACCELERATED);
         SDL_Surface* activitySurface = IMG_Load("assets/textures/activity.png");
-        SDL_Texture* activityTexture = SDL_CreateTextureFromSurface(activityRenderer, activitySurface);
-        SDL_Rect activityRect = {0, 0, 1280, 720};
-        SDL_RenderCopy(activityRenderer, activityTexture, NULL, &activityRect);
-        SDL_RenderPresent(activityRenderer);
+        SDL_Texture* activityTexture = SDL_CreateTextureFromSurface(mainRenderer, activitySurface);
+        SDL_Rect mainRect = {0, 0, 1280, 720};
+        SDL_RenderCopy(mainRenderer, activityTexture, NULL, &mainRect);
+        SDL_RenderPresent(mainRenderer);
         //on demande au joueur de choisir entre le mode edition, le mode jeu ou le leaderboard, en fonction de l'input
         activity = getUserInput();
         if (activity == 2){
@@ -163,10 +163,9 @@ int menu() {
 
         //on ouvre le menu suivant
         SDL_Surface* levelSurface = IMG_Load("assets/textures/level.png");
-        SDL_Texture* levelTexture = SDL_CreateTextureFromSurface(activityRenderer, levelSurface);
-        SDL_Rect levelRect = {0, 0, 1280, 720};
-        SDL_RenderCopy(activityRenderer, levelTexture, NULL, &levelRect);
-        SDL_RenderPresent(activityRenderer);
+        SDL_Texture* levelTexture = SDL_CreateTextureFromSurface(mainRenderer, levelSurface);
+        SDL_RenderCopy(mainRenderer, levelTexture, NULL, &mainRect);
+        SDL_RenderPresent(mainRenderer);
         //on demande le niveau
         level = getUserInput();
         //si le niveau est 1; on ferme la fenêtre
@@ -179,10 +178,9 @@ int menu() {
             level = getUserInput();
         }
         SDL_Surface* inputSurface = IMG_Load("assets/textures/input.png");
-        SDL_Texture* inputTexture = SDL_CreateTextureFromSurface(activityRenderer, inputSurface);
-        SDL_Rect inputRect = {0, 0, 1280, 720};
-        SDL_RenderCopy(activityRenderer, inputTexture, NULL, &inputRect);
-        SDL_RenderPresent(activityRenderer);
+        SDL_Texture* inputTexture = SDL_CreateTextureFromSurface(mainRenderer, inputSurface);
+        SDL_RenderCopy(mainRenderer, inputTexture, NULL, &mainRect);
+        SDL_RenderPresent(mainRenderer);
         //on demande le type d'input
         input = getUserInput();
         //si l'input est clavier; on ferme la fenêtre
