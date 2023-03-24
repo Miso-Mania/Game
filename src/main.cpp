@@ -128,28 +128,6 @@ int menu() {
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
     SDL_Init(SDL_INIT_VIDEO);
-
-    SDL_Window* inputWindow = SDL_CreateWindow("SDL2 Window", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 720, 0);
-    SDL_Renderer* inputRenderer = SDL_CreateRenderer(inputWindow, -1, SDL_RENDERER_ACCELERATED);
-    SDL_Surface* inputSurface = IMG_Load("assets/textures/input.png");
-    SDL_Texture* inputTexture = SDL_CreateTextureFromSurface(inputRenderer, inputSurface);
-    SDL_Rect inputRect = {0, 0, 1280, 720};
-    SDL_RenderCopy(inputRenderer, inputTexture, NULL, &inputRect);
-    SDL_RenderPresent(inputRenderer);
-    //on demande le type d'input
-    input = getUserInput();
-    //si l'input est clavier; on ferme la fenêtre
-    if (input == 1 || input == 2) {
-        //on ferme la fenêtre
-        SDL_DestroyTexture(inputTexture);
-        SDL_FreeSurface(inputSurface);
-        SDL_DestroyRenderer(inputRenderer);
-        SDL_DestroyWindow(inputWindow);
-        //on pause pour 0.1 seconde
-        SDL_Delay(100);
-        //on demande au joueur de choisir entre le mode edition, le mode jeu ou le leaderboard
-
-
         SDL_Window* activityWindow = SDL_CreateWindow("Actity", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 720, 0);
         SDL_Renderer* activityRenderer = SDL_CreateRenderer(activityWindow, -1, SDL_RENDERER_ACCELERATED);
         SDL_Surface* activitySurface = IMG_Load("assets/textures/activity.png");
@@ -207,6 +185,22 @@ int menu() {
             cout << "Veuillez entrer un niveau valide" << endl;
             level = getUserInput();
         }
+        SDL_Window* inputWindow = SDL_CreateWindow("SDL2 Window", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 720, 0);
+        SDL_Renderer* inputRenderer = SDL_CreateRenderer(inputWindow, -1, SDL_RENDERER_ACCELERATED);
+        SDL_Surface* inputSurface = IMG_Load("assets/textures/input.png");
+        SDL_Texture* inputTexture = SDL_CreateTextureFromSurface(inputRenderer, inputSurface);
+        SDL_Rect inputRect = {0, 0, 1280, 720};
+        SDL_RenderCopy(inputRenderer, inputTexture, NULL, &inputRect);
+        SDL_RenderPresent(inputRenderer);
+        //on demande le type d'input
+        input = getUserInput();
+        //si l'input est clavier; on ferme la fenêtre
+        if (input == 1 || input == 2) {
+        //on ferme la fenêtre
+        SDL_DestroyTexture(inputTexture);
+        SDL_FreeSurface(inputSurface);
+        SDL_DestroyRenderer(inputRenderer);
+        SDL_DestroyWindow(inputWindow);
         return 0;
     }
 }
