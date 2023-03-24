@@ -443,12 +443,7 @@ void Game::update()
                 }
                 fclose(fichierTimes);
             }
-            else //Si le fichier n'existe pas, on le crée
-            {
-                fichierTimes = fopen(("/times/level" + to_string(m_currentLevel) + ".txt").c_str(), "w");
-                fprintf(fichierTimes, "%f", timer);
-                fclose(fichierTimes);
-            }
+        
     }
     }
 
