@@ -112,6 +112,15 @@ vector<BoxCmgtGrav*> Level::getBoxCmgtGrav() {
     return m_BoxCmgtGrav;
 }
 
+void Level::addEnemy (int x, int y, int TILE_SIZE) {
+    Enemy* enemy = new Enemy(x, y, TILE_SIZE);
+    m_Enemy.push_back(enemy);
+}
+
+vector<Enemy*> Level::getEnemy() {
+    return m_Enemy;
+}
+
 void Level::loadFromJSON(string filename, int TILE_SIZE) {
     cout << "Loading level from " << filename << endl;
     ifstream file(filename);
@@ -189,6 +198,14 @@ void Level::loadFromJSON(string filename, int TILE_SIZE) {
         int y = element["y"];
         addBoxCmgtGrav(x, y, TILE_SIZE);
         cout << "Une BoxCmgtGrav de posée ici: " << x << ", " << y << endl;
+    }
+    for (auto& element : j["Enemy"]) {
+        int x = element["x"];
+        int y = element["y"];
+        int width = element["width"];
+        int height = element["height"];
+        addObstacle(x , y, width , height);
+        cout << "Enemy: " << x << ", " << y << ", " << width << ", " << height << endl;
     }
 }
 

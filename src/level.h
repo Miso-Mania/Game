@@ -14,6 +14,7 @@
 #include "objets/L_Plateform.h"
 #include "objets/DoubleJumpPort.h"
 #include "objets/BoxCmgtGrav.h"
+#include "enemy.h"
 #include "json.hpp"
 
 using json = nlohmann::json;
@@ -152,6 +153,8 @@ public:
     @return vector<BoxCmgtGrav*>
     */
     vector<BoxCmgtGrav*> getBoxCmgtGrav();
+    void addEnemy(int x, int y, int TILE_SIZE);
+    vector<Enemy*> getEnemy();
     void click(double x, double y, int TILE_SIZE);
 
 /**
@@ -186,6 +189,7 @@ private:
     vector<M_Plateform*> m_M_Plateform; // liste des M_Plateform
     vector<L_Plateform*> m_L_Plateform; // liste des L_Plateform
     vector<BoxCmgtGrav*> m_BoxCmgtGrav; // liste des box changement de gravité
+    vector<Enemy*> m_Enemy;
     int get_Tile_Size(); // fonction qui permet de récupérer la taille d'une tile
 
 };
