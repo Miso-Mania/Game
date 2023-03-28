@@ -1,11 +1,13 @@
 #include "game.h"
 #include <iostream>
+#include <string>
 #include <SDL2/SDL_mixer.h>
 using namespace std;
 int input = 444;
 int level = 445;
 int activity = 446;
 bool editorMode = false;
+
 
 int getUserInput()
 {
@@ -194,6 +196,11 @@ int menu() {
 }
 
 int main(int argc, char* argv[]) {
+
+//pour régler l''erreur 'fileExists' was not declared in this scope
+
+
+
     // on lance le jeu ssi le menu a retourné 0
     if (menu() == 0) {
          Game game(input, level, editorMode);
