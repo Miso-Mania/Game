@@ -16,16 +16,18 @@ int inputtype = 0;
 int actualLevel = 0;
 bool running = true;
 bool editionMode = false;
+string username = "";
 bool showBar = false;
 
 Mix_Music* music = nullptr;
 
 
-Game::Game(int inputtypeparam, int levelnumber, bool editMode) : m_window(NULL), m_renderer(NULL), m_currentLevel(0),  showHitbox(false), editMode(false), timeLastFrame(0)
+Game::Game(int inputtypeparam, int levelnumber, bool editMode, string userName) : m_window(NULL), m_renderer(NULL), m_currentLevel(0),  showHitbox(false), editMode(false), timeLastFrame(0)
 {   
     inputtype = inputtypeparam;
     actualLevel = levelnumber;
     editionMode = editMode;
+    username = userName;
     srand(time(NULL));
     // on initialise la SDL
     SDL_Init(SDL_INIT_VIDEO);
@@ -436,12 +438,14 @@ void Game::update()
             if (fichierTimes != NULL)
             {   
                 //On récupère le temps précédent
-                char tempsPrecedent[10];
-                fgets(tempsPrecedent, 10, fichierTimes);
+                char tempsPrecedent[7];
+                fgets(tempsPrecedent, 7, fichierTimes);
                 if (timer < atof(tempsPrecedent))
                 {   
                     //On remplace le temps précédent par le nouveau en écrivant dans le fichier que l'on a ouvert
                     fichierTimes = fopen(("times/level" + to_string(actualLevel) + ".txt").c_str(), "w");
+                    // on concatène le temps avec l'username
+                    string toWrite = to_string(timer) + " " + username;
                     fprintf(fichierTimes, "%f", timer);
                     cout << "Le record a été battu de " << atof(tempsPrecedent) - timer << "s !, félicitations" << endl;
                 }
