@@ -16,6 +16,7 @@ int inputtype = 0;
 int actualLevel = 0;
 bool running = true;
 bool editionMode = false;
+bool showBar = false;
 
 Mix_Music* music = nullptr;
 
@@ -326,6 +327,9 @@ void Game::handleEvents(SDL_Event &event)
             break;
         case SDLK_ESCAPE:
             running = false;
+            break;
+        case SDLK_t:
+            showBar = !showBar;
             break;
         }
     }
@@ -814,6 +818,32 @@ void Game::render()
                 SDL_Rect BoxCmgtGravRect = {x - x % 40, y - y % 40, 40, 40*2};
                 SDL_RenderCopy(m_renderer, m_texture_BoxCmgtGrav, NULL, &BoxCmgtGravRect);
             }
+        }
+
+        if (showBar){
+            //this draws a horizontal bar at the top of the screen withh each of the ojects
+            SDL_Rect CaseRect = {0, 0, 40, 40};
+            SDL_RenderCopy(m_renderer, m_texture_Case, NULL, &CaseRect);
+            SDL_Rect D_CaseRect = {40*2, 0, 40*2, 40*2};
+            SDL_RenderCopy(m_renderer, m_texture_D_Case, NULL, &D_CaseRect);
+            SDL_Rect S_PlateformRect = {40*5, 0, 40 * 3, 40};
+            SDL_RenderCopy(m_renderer, m_texture_S_Plateform, NULL, &S_PlateformRect);
+            SDL_Rect M_PlateformRect = {40*9, 0, 40 * 5, 40};
+            SDL_RenderCopy(m_renderer, m_texture_M_Plateform, NULL, &M_PlateformRect);
+            SDL_Rect L_PlateformRect = {40*15, 0, 40 * 7, 40};
+            SDL_RenderCopy(m_renderer, m_texture_L_Plateform, NULL, &L_PlateformRect);
+            SDL_Rect DoubleJumpPortRect = {40*23, 0, 40, 40};
+            SDL_RenderCopy(m_renderer, m_texture_DoubleJumpPort, NULL, &DoubleJumpPortRect);
+            SDL_Rect BoxFinishRect = {40*25, 0, 40, 40*2};
+            SDL_RenderCopy(m_renderer, m_texture_BoxFinish, NULL, &BoxFinishRect);
+            SDL_Rect TreeRect = {40*27, 0, 40 * 3, 40 * 3};
+            SDL_RenderCopy(m_renderer, m_texture_Trees, NULL, &TreeRect);
+            SDL_Rect PicRect = {40*31, 0, 40, 40};
+            SDL_RenderCopy(m_renderer, m_texture_pic, NULL, &PicRect);
+            SDL_Rect BoxCmgtGravRect = {40*33, 0, 40, 40*2};
+            SDL_RenderCopy(m_renderer, m_texture_BoxCmgtGrav, NULL, &BoxCmgtGravRect);
+
+
         }
     }
 
