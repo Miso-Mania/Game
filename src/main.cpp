@@ -15,7 +15,21 @@ string auth(){
     char nameValue[13];
     fgets(nameValue, 13, name);
     cout << "Bonjour " << nameValue << endl;
-    return nameValue;
+    //on converti la valeur de name en string
+    string nameString = nameValue;
+    if (nameString == "default"){
+        cout << "Veuillez entrer votre nom : " << endl;
+        string nameInput;
+        cin >> nameInput;
+        //on ecrit le nom dans le fichier
+        name = fopen("user/name.txt", "w");
+        fputs(nameInput.c_str(), name);
+        fclose(name);
+        return nameInput;
+    }
+    else{
+        return nameString;
+    }
 }
 
 int getUserInput()
