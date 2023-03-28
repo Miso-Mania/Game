@@ -6,6 +6,7 @@
 #include <vector>
 #include "level.h"
 #include "player.h"
+#include "enemy.h"
 #include "particule.h"
 
 using namespace std;
@@ -86,6 +87,9 @@ private:
 
     SDL_Texture *m_texture_BoxCmgtGrav; // texture de la boite de gestion de la gravité
     SDL_Surface *m_surface_BoxCmgtGrav; // surface de la boite de gestion de la gravité
+
+    SDL_Texture *m_texture_Enemy;
+    SDL_Surface *m_surface_Enemy;
 
     Player m_player; // joueur du jeu
 
