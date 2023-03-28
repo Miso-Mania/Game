@@ -17,7 +17,7 @@ public:
     @brief constructeur de la classe Game
     @param int input, int level
     */
-    Game(int input, int level, bool editorMode);
+    Game(int input, int level, bool editorMode, string username);
 /**
     @brief destructeur de la classe Game
     @param aucun

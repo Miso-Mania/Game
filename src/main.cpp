@@ -7,6 +7,7 @@ int input = 444;
 int level = 445;
 int activity = 446;
 bool editorMode = false;
+string username = "";
 
 string auth(){
     FILE* name = NULL;
@@ -221,10 +222,11 @@ int menu() {
 }
 
 int main(int argc, char* argv[]) {
-    auth();
+    username = auth();
+    cout << "Bienvenue " << username << endl;
     // on lance le jeu ssi le menu a retourné 0
     if (menu() == 0) {
-         Game game(input, level, editorMode);
+         Game game(input, level, editorMode, username);
         // on lance la boucle principale du jeu
         game.run();
     }
