@@ -825,26 +825,31 @@ void Game::render()
         }
 
         if (showBar){
-            //this draws a horizontal bar at the top of the screen withh each of the ojects
-            SDL_Rect CaseRect = {0, 0, 40, 40};
+            int offset = 7;
+            //this draws a horizontal bar at the top of the screen with each of the ojects
+            SDL_SetRenderDrawColor(m_renderer, 0, 0, 0, 100);
+            SDL_Rect BarRect = {40*(offset-1), 0, 40 * 36, 40*3};
+            SDL_RenderFillRect(m_renderer, &BarRect);
+
+            SDL_Rect CaseRect = {40*(offset), 0, 40, 40};
             SDL_RenderCopy(m_renderer, m_texture_Case, NULL, &CaseRect);
-            SDL_Rect D_CaseRect = {40*2, 0, 40*2, 40*2};
+            SDL_Rect D_CaseRect = {40*(2+offset), 0, 40*2, 40*2};
             SDL_RenderCopy(m_renderer, m_texture_D_Case, NULL, &D_CaseRect);
-            SDL_Rect S_PlateformRect = {40*5, 0, 40 * 3, 40};
+            SDL_Rect S_PlateformRect = {40*(5+offset), 0, 40 * 3, 40};
             SDL_RenderCopy(m_renderer, m_texture_S_Plateform, NULL, &S_PlateformRect);
-            SDL_Rect M_PlateformRect = {40*9, 0, 40 * 5, 40};
+            SDL_Rect M_PlateformRect = {40*(9+offset), 0, 40 * 5, 40};
             SDL_RenderCopy(m_renderer, m_texture_M_Plateform, NULL, &M_PlateformRect);
-            SDL_Rect L_PlateformRect = {40*15, 0, 40 * 7, 40};
+            SDL_Rect L_PlateformRect = {40*(15+offset), 0, 40 * 7, 40};
             SDL_RenderCopy(m_renderer, m_texture_L_Plateform, NULL, &L_PlateformRect);
-            SDL_Rect DoubleJumpPortRect = {40*23, 0, 40, 40};
+            SDL_Rect DoubleJumpPortRect = {40*(23+offset), 0, 40, 40};
             SDL_RenderCopy(m_renderer, m_texture_DoubleJumpPort, NULL, &DoubleJumpPortRect);
-            SDL_Rect BoxFinishRect = {40*25, 0, 40, 40*2};
+            SDL_Rect BoxFinishRect = {40*(25+offset), 0, 40, 40*2};
             SDL_RenderCopy(m_renderer, m_texture_BoxFinish, NULL, &BoxFinishRect);
-            SDL_Rect TreeRect = {40*27, 0, 40 * 3, 40 * 3};
+            SDL_Rect TreeRect = {40*(27+offset), 0, 40 * 3, 40 * 3};
             SDL_RenderCopy(m_renderer, m_texture_Trees, NULL, &TreeRect);
-            SDL_Rect PicRect = {40*31, 0, 40, 40};
+            SDL_Rect PicRect = {40*(31+offset), 0, 40, 40};
             SDL_RenderCopy(m_renderer, m_texture_pic, NULL, &PicRect);
-            SDL_Rect BoxCmgtGravRect = {40*33, 0, 40, 40*2};
+            SDL_Rect BoxCmgtGravRect = {40*(33+offset), 0, 40, 40*2};
             SDL_RenderCopy(m_renderer, m_texture_BoxCmgtGrav, NULL, &BoxCmgtGravRect);
 
 
