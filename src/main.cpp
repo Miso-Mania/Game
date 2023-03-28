@@ -181,8 +181,7 @@ int menu() {
         SDL_Texture* inputTexture = SDL_CreateTextureFromSurface(mainRenderer, inputSurface);
         SDL_RenderCopy(mainRenderer, inputTexture, NULL, &mainRect);
         SDL_RenderPresent(mainRenderer);
-        //on demande le type d'input
-        input = getUserInput();
+        input = 0;
         //si l'input est clavier; on ferme la fenêtre
         do{
             input = getUserInput();
@@ -190,6 +189,7 @@ int menu() {
         }while (!(input==1 || input ==2));
         SDL_DestroyTexture(inputTexture);
         SDL_FreeSurface(inputSurface);
+        SDL_DestroyWindow(menuWindow);
         return 0;
 }
 
