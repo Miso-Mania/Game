@@ -1,11 +1,38 @@
 #include "game.h"
 #include <iostream>
+#include <string>
 #include <SDL2/SDL_mixer.h>
 using namespace std;
 int input = 444;
 int level = 445;
 int activity = 446;
 bool editorMode = false;
+
+string auth(){
+    FILE* name = NULL;
+    name = fopen("user/name.txt", "r");
+    //on lit la valeur de name
+    char nameValue[13];
+    fgets(nameValue, 13, name);
+    //on converti la valeur de name en string
+    string nameString = nameValue;
+    //on regarde si le nom est vide
+    if (nameString == ""){
+        //si le nom est vide on demande le nom
+        cout << "Veuillez entrer votre nom : ";
+        cin >> nameString;
+        //on converti le nom en char
+        char nameChar[13];
+        strcpy(nameChar, nameString.c_str());
+        //on écrit le nom dans le fichier
+        name = fopen("user/name.txt", "w");
+        fputs(nameChar, name);
+        return nameString;
+    } else {
+        return nameString;
+    }
+    cout << "Connecté en temps que " << nameString << endl;
+}
 
 int getUserInput()
 {
@@ -194,6 +221,7 @@ int menu() {
 }
 
 int main(int argc, char* argv[]) {
+    auth();
     // on lance le jeu ssi le menu a retourné 0
     if (menu() == 0) {
          Game game(input, level, editorMode);
