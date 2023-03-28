@@ -323,6 +323,10 @@ void Game::handleEvents(SDL_Event &event)
         {
         case SDLK_h:
             showHitbox = !showHitbox;
+            break;
+        case SDLK_ESCAPE:
+            running = false;
+            break;
         }
     }
 }
