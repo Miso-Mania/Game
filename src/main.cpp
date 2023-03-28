@@ -189,6 +189,7 @@ int menu() {
         }while (!(input==1 || input ==2));
         SDL_DestroyTexture(inputTexture);
         SDL_FreeSurface(inputSurface);
+        SDL_DestroyWindow(menuWindow);
         return 0;
 }
 
