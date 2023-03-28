@@ -578,6 +578,20 @@ void Game::update()
 
 void Game::render()
 {
+
+    Uint8 alpha = 0xFF;
+    SDL_SetTextureAlphaMod(m_texture_Case, alpha);
+    SDL_SetTextureAlphaMod(m_texture_D_Case, alpha);
+    SDL_SetTextureAlphaMod(m_texture_S_Plateform, alpha);
+    SDL_SetTextureAlphaMod(m_texture_M_Plateform, alpha);
+    SDL_SetTextureAlphaMod(m_texture_L_Plateform, alpha);
+    SDL_SetTextureAlphaMod(m_texture_pic, alpha);
+    SDL_SetTextureAlphaMod(m_texture_DoubleJumpPort, alpha);
+    SDL_SetTextureAlphaMod(m_texture_BoxFinish, alpha);
+    SDL_SetTextureAlphaMod(m_texture_BoxCmgtGrav, alpha);
+    SDL_SetTextureAlphaMod(m_texture_Trees, alpha);
+
+
     // Effacement de l'écran
     SDL_SetRenderDrawColor(m_renderer, 0, 0, 0, 255);
     SDL_RenderClear(m_renderer);
@@ -669,95 +683,138 @@ void Game::render()
     }
 
     
-    if (editMode){
+    if (editionMode){
         int x, y;
+        bool mouseOnObj = false;
         SDL_GetMouseState(&x, &y);
         SDL_SetRenderDrawBlendMode(m_renderer, SDL_BLENDMODE_BLEND);
         SDL_SetRenderDrawColor(m_renderer, 255, 255, 255, 150);
         //dessin du surlignage de l'objet survolé par la souris
-        if (m_levels[m_currentLevel]->selectedObj == "Case") {
-            for (Case *Case : m_levels[m_currentLevel]->getCase())
+        for (Case *Case : m_levels[m_currentLevel]->getCase()) {
+            SDL_Rect CaseRect = Case->getRect();
+            if (x > CaseRect.x && x < CaseRect.x + CaseRect.w && y > CaseRect.y && y < CaseRect.y + CaseRect.h && !mouseOnObj)
             {
-                SDL_Rect CaseRect = Case->getRect();
-                if (x > CaseRect.x && x < CaseRect.x + CaseRect.w && y > CaseRect.y && y < CaseRect.y + CaseRect.h)
-                {
-                    SDL_RenderFillRect(m_renderer, &CaseRect);
-                }
-            }
-        } else if (m_levels[m_currentLevel]->selectedObj == "D_Case") {
-            for (D_Case *D_Case : m_levels[m_currentLevel]->getD_Case())
-            {
-                SDL_Rect D_CaseRect = D_Case->getRect();
-                if (x > D_CaseRect.x && x < D_CaseRect.x + D_CaseRect.w && y > D_CaseRect.y && y < D_CaseRect.y + D_CaseRect.h)
-                {
-                    SDL_RenderFillRect(m_renderer, &D_CaseRect);
-                }
-            }
-        } else if (m_levels[m_currentLevel]->selectedObj == "S_Plateform") {
-            for (S_Plateform *S_Plateform : m_levels[m_currentLevel]->getS_Plateform())
-            {
-                SDL_Rect S_PlateformRect = S_Plateform->getRect();
-                if (x > S_PlateformRect.x && x < S_PlateformRect.x + S_PlateformRect.w && y > S_PlateformRect.y && y < S_PlateformRect.y + S_PlateformRect.h)
-                {
-                    SDL_RenderFillRect(m_renderer, &S_PlateformRect);
-                }
-            }
-        } else if (m_levels[m_currentLevel]->selectedObj == "M_Plateform") {
-            for (M_Plateform *M_Plateform : m_levels[m_currentLevel]->getM_Plateform())
-            {
-                SDL_Rect M_PlateformRect = M_Plateform->getRect();
-                if (x > M_PlateformRect.x && x < M_PlateformRect.x + M_PlateformRect.w && y > M_PlateformRect.y && y < M_PlateformRect.y + M_PlateformRect.h)
-                {
-                    SDL_RenderFillRect(m_renderer, &M_PlateformRect);
-                }
-            }
-        } else if (m_levels[m_currentLevel]->selectedObj == "L_Plateform") {
-            for (L_Plateform *L_Plateform : m_levels[m_currentLevel]->getL_Plateform())
-            {
-                SDL_Rect L_PlateformRect = L_Plateform->getRect();
-                if (x > L_PlateformRect.x && x < L_PlateformRect.x + L_PlateformRect.w && y > L_PlateformRect.y && y < L_PlateformRect.y + L_PlateformRect.h)
-                {
-                    SDL_RenderFillRect(m_renderer, &L_PlateformRect);
-                }
-            }
-        } else if (m_levels[m_currentLevel]->selectedObj == "Pic") {
-            for (Pic *Pic : m_levels[m_currentLevel]->getPics())
-            {
-                SDL_Rect PicRect = Pic->getRect();
-                if (x > PicRect.x && x < PicRect.x + PicRect.w && y > PicRect.y && y < PicRect.y + PicRect.h)
-                {
-                    SDL_RenderFillRect(m_renderer, &PicRect);
-                }
-            }
-        } else if (m_levels[m_currentLevel]->selectedObj == "DoubleJumpPort") {
-            for (DoubleJumpPort *DoubleJumpPort : m_levels[m_currentLevel]->getDoubleJumpPort())
-            {
-                SDL_Rect DoubleJumpPortRect = DoubleJumpPort->getRect();
-                if (x > DoubleJumpPortRect.x && x < DoubleJumpPortRect.x + DoubleJumpPortRect.w && y > DoubleJumpPortRect.y && y < DoubleJumpPortRect.y + DoubleJumpPortRect.h)
-                {
-                    SDL_RenderFillRect(m_renderer, &DoubleJumpPortRect);
-                }
-            }
-        } else if (m_levels[m_currentLevel]->selectedObj == "Tree") {
-            for (Tree *Tree : m_levels[m_currentLevel]->getTrees())
-            {
-                SDL_Rect TreeRect = Tree->getRect();
-                if (x > TreeRect.x && x < TreeRect.x + TreeRect.w && y > TreeRect.y && y < TreeRect.y + TreeRect.h)
-                {
-                    SDL_RenderFillRect(m_renderer, &TreeRect);
-                }
-            }
-        } else if (m_levels[m_currentLevel]->selectedObj == "BoxFinish") {
-            for (BoxFinish *BoxFinish : m_levels[m_currentLevel]->getBoxFinish())
-            {
-                SDL_Rect BoxFinishRect = BoxFinish->getRect();
-                if (x > BoxFinishRect.x && x < BoxFinishRect.x + BoxFinishRect.w && y > BoxFinishRect.y && y < BoxFinishRect.y + BoxFinishRect.h)
-                {
-                    SDL_RenderFillRect(m_renderer, &BoxFinishRect);
-                }
+                SDL_RenderFillRect(m_renderer, &CaseRect);
+                mouseOnObj = true;
             }
         }
-        
+        for (D_Case *D_Case : m_levels[m_currentLevel]->getD_Case()) {
+            SDL_Rect D_CaseRect = D_Case->getRect();
+            if (x > D_CaseRect.x && x < D_CaseRect.x + D_CaseRect.w && y > D_CaseRect.y && y < D_CaseRect.y + D_CaseRect.h && !mouseOnObj)
+            {
+                SDL_RenderFillRect(m_renderer, &D_CaseRect);
+                mouseOnObj = true;
+            }
+        }
+        for (S_Plateform *S_Plateform : m_levels[m_currentLevel]->getS_Plateform()) {
+            SDL_Rect S_PlateformRect = S_Plateform->getRect();
+            if (x > S_PlateformRect.x && x < S_PlateformRect.x + S_PlateformRect.w && y > S_PlateformRect.y && y < S_PlateformRect.y + S_PlateformRect.h && !mouseOnObj)
+            {
+                SDL_RenderFillRect(m_renderer, &S_PlateformRect);
+                mouseOnObj = true;
+            }
+        }
+        for (M_Plateform *M_Plateform : m_levels[m_currentLevel]->getM_Plateform()) {
+            SDL_Rect M_PlateformRect = M_Plateform->getRect();
+            if (x > M_PlateformRect.x && x < M_PlateformRect.x + M_PlateformRect.w && y > M_PlateformRect.y && y < M_PlateformRect.y + M_PlateformRect.h && !mouseOnObj)
+            {
+                SDL_RenderFillRect(m_renderer, &M_PlateformRect);
+                mouseOnObj = true;
+            }
+        }
+        for (L_Plateform *L_Plateform : m_levels[m_currentLevel]->getL_Plateform()) {
+            SDL_Rect L_PlateformRect = L_Plateform->getRect();
+            if (x > L_PlateformRect.x && x < L_PlateformRect.x + L_PlateformRect.w && y > L_PlateformRect.y && y < L_PlateformRect.y + L_PlateformRect.h && !mouseOnObj)
+            {
+                SDL_RenderFillRect(m_renderer, &L_PlateformRect);
+                mouseOnObj = true;
+            }
+        }
+        for (Pic *Pic : m_levels[m_currentLevel]->getPics()) {
+            SDL_Rect PicRect = Pic->getRect();
+            if (x > PicRect.x && x < PicRect.x + PicRect.w && y > PicRect.y && y < PicRect.y + PicRect.h && !mouseOnObj)
+            {
+                SDL_RenderFillRect(m_renderer, &PicRect);
+                mouseOnObj = true;
+            }
+        }
+        for (DoubleJumpPort *DoubleJumpPort : m_levels[m_currentLevel]->getDoubleJumpPort()) {
+            SDL_Rect DoubleJumpPortRect = DoubleJumpPort->getRect();
+            if (x > DoubleJumpPortRect.x && x < DoubleJumpPortRect.x + DoubleJumpPortRect.w && y > DoubleJumpPortRect.y && y < DoubleJumpPortRect.y + DoubleJumpPortRect.h && !mouseOnObj)
+            {
+                SDL_RenderFillRect(m_renderer, &DoubleJumpPortRect);
+                mouseOnObj = true;
+            }
+        }
+        for (BoxFinish *BoxFinish : m_levels[m_currentLevel]->getBoxFinish()) {
+            SDL_Rect BoxFinishRect = BoxFinish->getRect();
+            if (x > BoxFinishRect.x && x < BoxFinishRect.x + BoxFinishRect.w && y > BoxFinishRect.y && y < BoxFinishRect.y + BoxFinishRect.h && !mouseOnObj)
+            {
+                SDL_RenderFillRect(m_renderer, &BoxFinishRect);
+                mouseOnObj = true;
+            }
+        }
+        for (BoxCmgtGrav *BoxCmgtGrav : m_levels[m_currentLevel]->getBoxCmgtGrav()) {
+            SDL_Rect BoxCmgtGravRect = BoxCmgtGrav->getRect();
+            if (x > BoxCmgtGravRect.x && x < BoxCmgtGravRect.x + BoxCmgtGravRect.w && y > BoxCmgtGravRect.y && y < BoxCmgtGravRect.y + BoxCmgtGravRect.h && !mouseOnObj)
+            {
+                SDL_RenderFillRect(m_renderer, &BoxCmgtGravRect);
+                mouseOnObj = true;
+            }
+        }
+        for (Tree *Tree : m_levels[m_currentLevel]->getTrees()) {
+            SDL_Rect TreeRect = Tree->getRect();
+            if (x > TreeRect.x && x < TreeRect.x + TreeRect.w && y > TreeRect.y && y < TreeRect.y + TreeRect.h && !mouseOnObj)
+            {
+                SDL_RenderFillRect(m_renderer, &TreeRect);
+                mouseOnObj = true;
+            }
+        }
+        SDL_SetTextureBlendMode(m_texture_Case, SDL_BLENDMODE_BLEND);
+        Uint8 alpha = 0x7F; 
+        if (!mouseOnObj){
+            if (m_levels[m_currentLevel]->selectedObj == "Case") {
+                SDL_SetTextureAlphaMod(m_texture_Case, alpha);
+                SDL_Rect CaseRect = {x - x % 40, y - y % 40, 40, 40};
+                SDL_RenderCopy(m_renderer, m_texture_Case, NULL, &CaseRect);
+            } else if (m_levels[m_currentLevel]->selectedObj == "D_Case") {
+                SDL_SetTextureAlphaMod(m_texture_D_Case, alpha);
+                SDL_Rect D_CaseRect = {x - x % 40, y - y % 40, 80, 80};
+                SDL_RenderCopy(m_renderer, m_texture_D_Case, NULL, &D_CaseRect);
+            } else if (m_levels[m_currentLevel]->selectedObj == "S_Plateform") {
+                SDL_SetTextureAlphaMod(m_texture_S_Plateform, alpha);
+                SDL_Rect S_PlateformRect = {x - x % 40, y - y % 40, 40 * 3, 40};
+                SDL_RenderCopy(m_renderer, m_texture_S_Plateform, NULL, &S_PlateformRect);
+            } else if (m_levels[m_currentLevel]->selectedObj == "M_Plateform") {
+                SDL_SetTextureAlphaMod(m_texture_M_Plateform, alpha);
+                SDL_Rect M_PlateformRect = {x - x % 40, y - y % 40, 40 * 5, 40};
+                SDL_RenderCopy(m_renderer, m_texture_M_Plateform, NULL, &M_PlateformRect);
+            } else if (m_levels[m_currentLevel]->selectedObj == "L_Plateform") {
+                SDL_SetTextureAlphaMod(m_texture_L_Plateform, alpha);
+                SDL_Rect L_PlateformRect = {x - x % 40, y - y % 40, 40 * 7, 40};
+                SDL_RenderCopy(m_renderer, m_texture_L_Plateform, NULL, &L_PlateformRect);
+            } else if (m_levels[m_currentLevel]->selectedObj == "Pic") {
+                SDL_SetTextureAlphaMod(m_texture_pic, alpha);
+                SDL_Rect PicRect = {x - x % 40, y - y % 40, 40, 40};
+                SDL_RenderCopy(m_renderer, m_texture_pic, NULL, &PicRect);                
+            } else if (m_levels[m_currentLevel]->selectedObj == "DoubleJumpPort") {
+                SDL_SetTextureAlphaMod(m_texture_DoubleJumpPort, alpha);
+                SDL_Rect DoubleJumpPortRect = {x - x % 40, y - y % 40, 40, 40};
+                SDL_RenderCopy(m_renderer, m_texture_DoubleJumpPort, NULL, &DoubleJumpPortRect);
+            } else if (m_levels[m_currentLevel]->selectedObj == "Tree") {
+                SDL_SetTextureAlphaMod(m_texture_Trees, alpha);
+                SDL_Rect TreeRect = {x - x % 40, y - y % 40, 40 * 3, 40 * 3};
+                SDL_RenderCopy(m_renderer, m_texture_Trees, NULL, &TreeRect);
+            } else if (m_levels[m_currentLevel]->selectedObj == "BoxFinish") {
+                SDL_SetTextureAlphaMod(m_texture_BoxFinish, alpha);
+                SDL_Rect BoxFinishRect = {x - x % 40, y - y % 40, 40, 40*2};
+                SDL_RenderCopy(m_renderer, m_texture_BoxFinish, NULL, &BoxFinishRect);
+            } else if (m_levels[m_currentLevel]->selectedObj == "BoxCmgtGrav") {
+                SDL_SetTextureAlphaMod(m_texture_BoxCmgtGrav, alpha);
+                SDL_Rect BoxCmgtGravRect = {x - x % 40, y - y % 40, 40, 40*2};
+                SDL_RenderCopy(m_renderer, m_texture_BoxCmgtGrav, NULL, &BoxCmgtGravRect);
+            }
+        }
     }
 
     // Affichage des particules
