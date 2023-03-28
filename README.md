@@ -1,10 +1,9 @@
 Miso Mania Par Romain Rochebloine, Jules Ginhac et Mathieu Ponton.
-
+-------
 Projet réalisé dans le cadre de L'UE LIFAP4 à l'université Claude Bernard Lyon 1, dans le cadre de notre deuxième année de cursus préparatoire
 aux écoles d'ingénieur Polytech (Peip). Les cours magistraux de cette UE ont été assurés par Alexandre Meyer et Nicolas Pronost, tous deux 
 chercheurs à LIRIS, un laboratoire du CNRS.
 -------
-
 ## I)Prérequis
 1. Un système d'exploitation **Linux** (*Ubuntu, Debian, Fedora, Arch, etc...*), ou **WSL** (*Windows Subsystem for Linux*) sous Windows 10 ou supérieur.
 2. Le compilateur **g++**. 
