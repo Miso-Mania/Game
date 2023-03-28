@@ -197,8 +197,12 @@ int menu() {
 
 int main(int argc, char* argv[]) {
 
-//pour régler l''erreur 'fileExists' was not declared in this scope
-
+//on ouvre le fichier user/name.txt
+    FILE* name = NULL;
+    name = fopen("user/name.txt", "r");
+    char userName[20];
+    fgets(userName, 20, name);
+    cout << "Bonjour " << userName << endl;
 
 
     // on lance le jeu ssi le menu a retourné 0
