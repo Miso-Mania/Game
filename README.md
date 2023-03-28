@@ -41,7 +41,7 @@ Si  les versions de **g++** et **SDL2** s'affichent, c'est que tout est bien ins
 ## III)Utilisation
 1. Pour lancer le jeu, il suffit de taper la commande suivante depuis le terminal : 
    ```bin/jeu```
-2. Une feneêtre s'ouvre, et le jeu se lance. Un menu s'affiche, et vous pouvez choisir de jouer, créer un niveau, ou consulter le leaderboard.
+2. Une fenêtre s'ouvre, et le jeu se lance. Un menu s'affiche, et vous pouvez choisir de jouer, créer un niveau, ou consulter le leaderboard.
 
 ## IV)Création de niveau:
 1. Une fois le mode création de niveau lancé, il suffit de cliquer sur les cases pour les remplir du bloc selectionné. Pour changer de bloc, il suffit d'appuyer sur la toucne avec le numéro du bloc.
