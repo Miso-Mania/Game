@@ -8,6 +8,15 @@ int level = 445;
 int activity = 446;
 bool editorMode = false;
 
+string auth(){
+    FILE* name = NULL;
+    name = fopen("user/name.txt", "r");
+    //on lit la valeur de name
+    char nameValue[13];
+    fgets(nameValue, 13, name);
+    cout << "Bonjour " << nameValue << endl;
+    return nameValue;
+}
 
 int getUserInput()
 {
@@ -196,15 +205,7 @@ int menu() {
 }
 
 int main(int argc, char* argv[]) {
-
-//on ouvre le fichier user/name.txt
-    FILE* name = NULL;
-    name = fopen("user/name.txt", "r");
-    char userName[20];
-    fgets(userName, 20, name);
-    cout << "Bonjour " << userName << endl;
-
-
+    auth();
     // on lance le jeu ssi le menu a retourné 0
     if (menu() == 0) {
          Game game(input, level, editorMode);
