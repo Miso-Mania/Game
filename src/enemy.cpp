@@ -65,42 +65,6 @@ void Enemy::moveOutOf(Case *Case) {
     moveOutOfCoords(Case->getCoords());
 }
 
-void Enemy::incTimeSinceTouchGround(double delta) {
-    timeSinceTouchGround += delta;
-}
-
-void Enemy::decJumpBuffer(double delta) {
-    if (jumpBuffer > 0) jumpBuffer -= delta;
-}
-
-EnemyDirection Enemy::getDirection() {
-    return m_direction;
-}
-
-SDL_Rect Enemy::getRect() {
-    return m_rect;
-}
-
-void Enemy::setRect(SDL_Rect rect) {
-    m_rect = rect;
-}
-
-double Enemy::getGravity() {
-    return m_yVelocity;
-}
-
-void Enemy::setGravity(double gravity) {
-    m_yVelocity = gravity;
-}
-
-void Enemy::setJumpBuffer(double jumpBuffer) {
-    this->jumpBuffer = jumpBuffer;
-}
-
-void Enemy::setTimeSinceTouchGround(double timeSinceTouchGround) {
-    this->timeSinceTouchGround = timeSinceTouchGround;
-}
-
 void Enemy::moveTo(double x, double y){
     m_coords.x = x;
     m_coords.y = y;
@@ -111,10 +75,6 @@ void Enemy::updateRect(){
     m_rect.y = m_coords.y * 40;
     m_rect.w = m_coords.w * 40;
     m_rect.h = m_coords.h * 40;
-}
-
-Coords Enemy::getCoords() const {
-    return m_coords;
 }
 
 bool Enemy::getIsOnGround() const {
