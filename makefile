@@ -9,6 +9,7 @@ all : dir bin/jeu bin/Reg bin/text
 dir:
 	mkdir -p obj 
 	mkdir -p bin
+	mkdir -p name
 
 
 bin/text : $(OBJS)
