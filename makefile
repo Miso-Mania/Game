@@ -9,8 +9,8 @@ all : dir bin/jeu bin/Reg bin/text
 dir:
 	mkdir -p obj 
 	mkdir -p bin
-	mkdir -p name
-	cd name && touch name.txt 
+	mkdir -p user
+	cd user && touch name.txt 
 
 bin/text : $(OBJS)
 	$(cc) obj/mainText.o -o bin/text -lncurses
@@ -82,4 +82,4 @@ obj/mainReg.o: src/mainReg.cpp src/player.h src/level.h src/coords.h src/objets/
 	$(cc) $(CFLAGS) $(Include_Dir_SDL2) src/mainReg.cpp -o obj/mainReg.o $(LIBS)
 
 clean:
-	rm obj/ bin/ -rf rm name/
+	rm obj/ bin/ -rf rm user/

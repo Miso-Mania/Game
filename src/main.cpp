@@ -16,21 +16,22 @@ string auth(){
     fgets(nameValue, 13, name);
     //on converti la valeur de name en string
     string nameString = nameValue;
-    if (nameString == "default"){
-        cout << "Veuillez entrer votre nom : " << endl;
-        string nameInput;
-        cin >> nameInput;
-        //on ecrit le nom dans le fichier
+    //on regarde si le nom est vide
+    if (nameString == ""){
+        //si le nom est vide on demande le nom
+        cout << "Veuillez entrer votre nom : ";
+        cin >> nameString;
+        //on converti le nom en char
+        char nameChar[13];
+        strcpy(nameChar, nameString.c_str());
+        //on écrit le nom dans le fichier
         name = fopen("user/name.txt", "w");
-        fputs(nameInput.c_str(), name);
-        fclose(name);
-        cout << "Bonjour " << nameInput << " ! "<< endl;
-        return nameInput;
-    }
-    else{
+        fputs(nameChar, name);
+        return nameString;
+    } else {
         return nameString;
     }
-    
+    cout << "Connecté en temps que " << nameString << endl;
 }
 
 int getUserInput()
