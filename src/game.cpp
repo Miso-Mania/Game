@@ -16,7 +16,7 @@ int inputtype = 0;
 int actualLevel = 0;
 bool running = true;
 bool editionMode = false;
-string username = "";
+string usernameGame = "";
 bool showBar = false;
 
 Mix_Music* music = nullptr;
@@ -27,7 +27,7 @@ Game::Game(int inputtypeparam, int levelnumber, bool editMode, string userName) 
     inputtype = inputtypeparam;
     actualLevel = levelnumber;
     editionMode = editMode;
-    username = userName;
+    usernameGame = userName;
     srand(time(NULL));
     // on initialise la SDL
     SDL_Init(SDL_INIT_VIDEO);
@@ -445,7 +445,7 @@ void Game::update()
                     //On remplace le temps précédent par le nouveau en écrivant dans le fichier que l'on a ouvert
                     fichierTimes = fopen(("times/level" + to_string(actualLevel) + ".txt").c_str(), "w");
                     // on concatène le temps avec l'username
-                    string toWrite = to_string(timer) + " " + username;
+                    string toWrite = to_string(timer) + " " + usernameGame;
                     fprintf(fichierTimes, "%f", timer);
                     cout << "Le record a été battu de " << atof(tempsPrecedent) - timer << "s !, félicitations" << endl;
                 }
