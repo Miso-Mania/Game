@@ -174,8 +174,8 @@ int menu() {
         for (int i = 0; i < 4; i++) {
             FILE* leaderboard = NULL;
             leaderboard = fopen(("times/level" + to_string(i) + ".txt").c_str(), "r");
-            char tempsRecord[10];
-            fgets(tempsRecord, 10, leaderboard);
+            char tempsRecord[30];
+            fgets(tempsRecord, 30, leaderboard);
             cout << "Niveau " << i << " : " << endl;
             cout << "Le record est : " <<  tempsRecord << endl;    
 

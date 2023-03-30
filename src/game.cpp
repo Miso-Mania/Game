@@ -445,7 +445,7 @@ void Game::update()
                     //On remplace le temps précédent par le nouveau en écrivant dans le fichier que l'on a ouvert
                     fichierTimes = fopen(("times/level" + to_string(actualLevel) + ".txt").c_str(), "w");
                     // on concatène le temps avec l'username
-                    string toWrite = to_string(timer) + " " + usernameGame;
+                    string toWrite = to_string(timer) + " by " + usernameGame;
                     
                     //on converti la string toWrite en char*
                     char *cstr = new char[toWrite.length() + 1];
