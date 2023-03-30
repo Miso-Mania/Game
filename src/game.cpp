@@ -446,8 +446,13 @@ void Game::update()
                     fichierTimes = fopen(("times/level" + to_string(actualLevel) + ".txt").c_str(), "w");
                     // on concatène le temps avec l'username
                     string toWrite = to_string(timer) + " " + usernameGame;
-                    fprintf(fichierTimes, "%f", timer);
-                    cout << "Le record a été battu de " << atof(tempsPrecedent) - timer << "s !, félicitations" << endl;
+                    
+                    //on converti la string toWrite en char*
+                    char *cstr = new char[toWrite.length() + 1];
+                    strcpy(cstr, toWrite.c_str());
+                    fputs(cstr, fichierTimes);
+                    cout << cstr << endl;
+                    cout << "Le record a été battu de " << atof(tempsPrecedent) - timer << "s !, félicitations "<< usernameGame << endl;
                 }
                 else
                 {
