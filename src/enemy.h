@@ -14,6 +14,7 @@ class Enemy {
     Enemy (int x, int y, int TILE_SIZE);
     ~Enemy();
     void move(double delta);
+    void push_back(Case* Case);
     void gravity(double delta);
     bool collidesWith(Case *Case);
     void moveOutOf(Case *Case);
@@ -24,7 +25,7 @@ class Enemy {
     void updateRect();
     bool getIsOnGround() const;
     bool showParticlesOnLand();
-
+    SDL_Rect getRect();
     bool hasCollided;
     
 

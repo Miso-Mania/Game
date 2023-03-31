@@ -104,6 +104,9 @@ Game::Game(int inputtypeparam, int levelnumber, bool editMode) : m_window(NULL),
     m_surface_BoxFinish = IMG_Load("assets/textures/porte_fin.png");
     m_texture_BoxFinish = SDL_CreateTextureFromSurface(m_renderer, m_surface_BoxFinish);
 
+    m_surface_enemy = IMG_Load("assets/textures/rondvert.png");
+    m_texture_enemy = SDL_CreateTextureFromSurface(m_renderer, m_surface_enemy);
+
     std::cout << "textures loaded" << endl;
 
     Level *level = new Level();
@@ -172,6 +175,9 @@ Game::~Game()
 
     SDL_FreeSurface(m_surface_BoxFinish);
     SDL_DestroyTexture(m_texture_BoxFinish);
+
+    SDL_FreeSurface(m_surface_enemy);
+    SDL_DestroyTexture(m_texture_enemy);
 
     Mix_FreeMusic(music);
     Mix_CloseAudio();

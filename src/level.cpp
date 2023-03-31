@@ -112,6 +112,11 @@ vector<BoxCmgtGrav*> Level::getBoxCmgtGrav() {
     return m_BoxCmgtGrav;
 }
 
+void Level::addEnemy(int x, int y, int TILE_SIZE) {
+    Enemy* enemy = new Enemy(x, y, TILE_SIZE);
+    m_Enemy.push_back(enemy);
+}
+
 vector<Enemy*> Level::getEnemy() {
     return m_Enemy;
 }

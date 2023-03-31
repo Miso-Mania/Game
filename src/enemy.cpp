@@ -22,6 +22,9 @@ void Enemy::move(double delta) {
     }
 }
 
+void Enemy::push_back (Case* Case) {
+}
+
 void Enemy::gravity(double delta) {
     m_yVelocity += 25 * delta;
    m_coords.y += m_yVelocity * delta;
@@ -89,6 +92,11 @@ bool Enemy::showParticlesOnLand() {
     oldIsOnGround = isOnGround;
     return r;
 }
+
+SDL_Rect Enemy::getRect() {
+    return m_rect;
+}
+
 
 
 
