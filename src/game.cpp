@@ -173,9 +173,6 @@ Game::~Game()
     SDL_FreeSurface(m_surface_BoxCmgtGrav);
     SDL_DestroyTexture(m_texture_BoxCmgtGrav);
 
-    SDL_FreeSurface(m_surface_BoxFinish);
-    SDL_DestroyTexture(m_texture_BoxFinish);
-
     Mix_FreeMusic(music);
     Mix_CloseAudio();
     Mix_Quit();
@@ -185,6 +182,7 @@ Game::~Game()
 
 void Game::run()
 {
+    running = true;
     while (running)
     {
         // Gestion des évènements
@@ -430,7 +428,6 @@ void Game::update()
     {
         if (m_player.collidesWith(boxFinish))
         {
-            running = false;
             cout << "temps : "  << timer << "s" << endl;
             //on ouvre le fichier /times/levelX.txt, on va récupérer le temps précédent et le comparer avec le nouveau
             FILE* fichierTimes = NULL;
@@ -460,6 +457,10 @@ void Game::update()
                 }
                 fclose(fichierTimes);
             }
+            timer = 0;
+            m_player.moveTo(1, 23);
+
+
         
     }
     }
