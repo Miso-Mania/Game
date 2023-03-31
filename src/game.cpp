@@ -113,6 +113,7 @@ Game::Game(int inputtypeparam, int levelnumber, bool editMode, string userName) 
     //we add the ground
     level->addObstacle(0, 26, 50, 1);
     //we load the level from the json file
+    cout << levelnumber << endl;
     level->loadFromJSON("niveaux/level" + std::to_string(levelnumber) + ".json", TILE_SIZE);
     std::cout << "pushing back level" << levelnumber <<endl;
     
