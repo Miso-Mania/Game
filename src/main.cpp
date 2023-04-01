@@ -184,7 +184,7 @@ int menu(bool skipIntro)
     {
         cout << "Leaderboard" << endl;
         cout << "Voici le leaderboard pour chaque niveau :" << endl;
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < 7; i++)
         {
             FILE *leaderboard = NULL;
             leaderboard = fopen(("times/level" + to_string(i) + ".txt").c_str(), "r");
