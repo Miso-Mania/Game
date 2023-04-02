@@ -7,6 +7,7 @@ int input = 444;
 int level = 445;
 int activity = 446;
 bool editorMode = false;
+bool speedrunMode = false;
 string username = "";
 
 string auth()
@@ -184,7 +185,7 @@ int menu(bool skipIntro)
     {
         cout << "Leaderboard" << endl;
         cout << "Voici le leaderboard pour chaque niveau :" << endl;
-        for (int i = 0; i < 7; i++)
+        for (int i = 0; i < 8; i++)
         {
             FILE *leaderboard = NULL;
             leaderboard = fopen(("times/level" + to_string(i) + ".txt").c_str(), "r");
@@ -194,6 +195,9 @@ int menu(bool skipIntro)
             cout << "Le record est : " << tempsRecord << endl;
         }
         return 1;
+    }
+    if(activity ==4){ //mode speedrun
+        speedrunMode = true;
     }
 
     // on ferme la fenêtre
@@ -261,7 +265,7 @@ int main(int argc, char *argv[])
     // on lance le jeu ssi le menu a retourné 0
     while (menu(skipIntro) == 0)
     {
-        Game game(input, level, editorMode, username);
+        Game game(input, level, editorMode, username, speedrunMode);
         // on lance la boucle principale du jeu
         game.run();
         skipIntro = true;

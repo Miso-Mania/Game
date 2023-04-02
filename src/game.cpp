@@ -16,18 +16,20 @@ int inputtype = 0;
 int actualLevel = 0;
 bool running = true;
 bool editionMode = false;
+bool speedrun = false;
 string usernameGame = "";
 bool showBar = false;
 
 Mix_Music* music = nullptr;
 
 
-Game::Game(int inputtypeparam, int levelnumber, bool editMode, string userName) : m_window(NULL), m_renderer(NULL), m_currentLevel(0),  showHitbox(false), editMode(false), timeLastFrame(0)
+Game::Game(int inputtypeparam, int levelnumber, bool editMode, string userName, bool speedR) : m_window(NULL), m_renderer(NULL), m_currentLevel(0),  showHitbox(false), editMode(false), timeLastFrame(0)
 {   
     inputtype = inputtypeparam;
     actualLevel = levelnumber;
     editionMode = editMode;
     usernameGame = userName;
+    speedrun = speedR;
     srand(time(NULL));
     // on initialise la SDL
     SDL_Init(SDL_INIT_VIDEO);
@@ -64,6 +66,7 @@ Game::Game(int inputtypeparam, int levelnumber, bool editMode, string userName) 
     Mix_PlayMusic(music, -1);
 
     int width, height;
+    cout << speedrun << endl;
     SDL_GetWindowSize(m_window, &width, &height);
     cout << "width " << width << endl;
     const int TILE_SIZE = width / NUM_TILES_X;
