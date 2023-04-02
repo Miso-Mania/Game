@@ -12,6 +12,7 @@ const int window_Y_size = 1068;
 const int NUM_TILES_X = 48;
 const int NUM_TILES_Y = 27;
 const int TILE_SIZE = 40;
+const int NUM_LEVELS = 8;
 int inputtype = 0;
 int actualLevel = 0;
 bool running = true;
@@ -121,6 +122,18 @@ Game::Game(int inputtypeparam, int levelnumber, bool editMode, string userName, 
     std::cout << "pushing back level" << levelnumber <<endl;
     
     m_levels.push_back(level);
+
+    // Chargements des autre niveaux si speedrunmode est true
+
+    for(int i = 2; i <= NUM_LEVELS; i++){
+        if(speedR){
+            Level *level = new Level();
+            level->addObstacle(0, 26, 50, 1);
+            level->loadFromJSON("niveaux/level" + std::to_string(i) + ".json", TILE_SIZE);
+            m_levels.push_back(level);
+        }
+    }
+
     // Chargement du joueur
     m_player = Player();
     std::cout << "player created" << endl;
@@ -367,7 +380,7 @@ void Game::update()
     if (m_player.getRect().y > window_Y_size)
     {
         m_player.moveTo(1, 23);
-        timer = 0;
+        if(!speedrun) timer = 0;
     }
 
     // Collision du joueur avec la S_Plateformes stop la gravité et évite de traverser les obstacles
@@ -432,41 +445,79 @@ void Game::update()
     {
         if (m_player.collidesWith(boxFinish))
         {
-            cout << "temps : "  << timer << "s" << endl;
-            //on ouvre le fichier /times/levelX.txt, on va récupérer le temps précédent et le comparer avec le nouveau
-            FILE* fichierTimes = NULL;
-            fichierTimes = fopen(("times/level" + to_string(actualLevel) + ".txt").c_str(), "r");
-            if (fichierTimes != NULL)
-            {   
-                //On récupère le temps précédent
-                char tempsPrecedent[7];
-                fgets(tempsPrecedent, 7, fichierTimes);
-                if (timer < atof(tempsPrecedent))
-                {   
-                    //On remplace le temps précédent par le nouveau en écrivant dans le fichier que l'on a ouvert
-                    fichierTimes = fopen(("times/level" + to_string(actualLevel) + ".txt").c_str(), "w");
-                    // on concatène le temps avec l'username
-                    string toWrite = to_string(timer) + " by " + usernameGame;
-                    
-                    //on converti la string toWrite en char*
-                    char *cstr = new char[toWrite.length() + 1];
-                    strcpy(cstr, toWrite.c_str());
-                    fputs(cstr, fichierTimes);
-                    cout << cstr << endl;
-                    cout << "Le record a été battu de " << atof(tempsPrecedent) - timer << "s !, félicitations "<< usernameGame << endl;
-                }
-                else
+
+            if(speedrun){
+                m_currentLevel++;
+                m_player.moveTo(1, 23);
+                if (m_currentLevel >= NUM_LEVELS)
                 {
-                    cout << "Le record n'a pas été battu à " << timer - atof(tempsPrecedent) << "s près ! Le prochain essai sera le bon !" << endl;
+                    m_currentLevel = 1;
+                    cout << "temps : "  << timer << "s" << endl;
+                    //on ouvre le fichier /times/speedrun.txt, on va récupérer le temps précédent et le comparer avec le nouveau
+                    FILE* fichierTimes = NULL;
+                    fichierTimes = fopen("times/speedrun.txt", "r");
+                    if (fichierTimes != NULL)
+                    {   
+                        //On récupère le temps précédent
+                        char tempsPrecedent[7];
+                        fgets(tempsPrecedent, 7, fichierTimes);
+                        if (timer < atof(tempsPrecedent))
+                        {   
+                            //On remplace le temps précédent par le nouveau en écrivant dans le fichier que l'on a ouvert
+                            fichierTimes = fopen("times/speedrun.txt", "w");
+                            // on concatène le temps avec l'username
+                            string toWrite = to_string(timer) + " by " + usernameGame;
+                            
+                            //on converti la string toWrite en char*
+                            char *cstr = new char[toWrite.length() + 1];
+                            strcpy(cstr, toWrite.c_str());
+                            fputs(cstr, fichierTimes);
+                            cout << cstr << endl;
+                            cout << "Le record a été battu de " << atof(tempsPrecedent) - timer << "s !, félicitations "<< usernameGame << endl;
+                        }
+                        else
+                        {
+                            cout << "Le record n'a pas été battu à " << timer - atof(tempsPrecedent) << "s près ! Le prochain essai sera le bon !" << endl;
+                        }
+                        fclose(fichierTimes);
+                    }
                 }
-                fclose(fichierTimes);
             }
-            timer = 0;
-            m_player.moveTo(1, 23);
+            else{
 
-
-        
-    }
+                cout << "temps : "  << timer << "s" << endl;
+                //on ouvre le fichier /times/levelX.txt, on va récupérer le temps précédent et le comparer avec le nouveau
+                FILE* fichierTimes = NULL;
+                fichierTimes = fopen(("times/level" + to_string(actualLevel) + ".txt").c_str(), "r");
+                if (fichierTimes != NULL)
+                {   
+                    //On récupère le temps précédent
+                    char tempsPrecedent[7];
+                    fgets(tempsPrecedent, 7, fichierTimes);
+                    if (timer < atof(tempsPrecedent))
+                    {   
+                        //On remplace le temps précédent par le nouveau en écrivant dans le fichier que l'on a ouvert
+                        fichierTimes = fopen(("times/level" + to_string(actualLevel) + ".txt").c_str(), "w");
+                        // on concatène le temps avec l'username
+                        string toWrite = to_string(timer) + " by " + usernameGame;
+                        
+                        //on converti la string toWrite en char*
+                        char *cstr = new char[toWrite.length() + 1];
+                        strcpy(cstr, toWrite.c_str());
+                        fputs(cstr, fichierTimes);
+                        cout << cstr << endl;
+                        cout << "Le record a été battu de " << atof(tempsPrecedent) - timer << "s !, félicitations "<< usernameGame << endl;
+                    }
+                    else
+                    {
+                        cout << "Le record n'a pas été battu à " << timer - atof(tempsPrecedent) << "s près ! Le prochain essai sera le bon !" << endl;
+                    }
+                    fclose(fichierTimes);
+                    timer = 0;
+                    m_player.moveTo(1, 23);
+                }
+            }    
+        }
     }
 
 
@@ -521,7 +572,7 @@ void Game::update()
         if (m_player.collidesWith(pic))
         {
             m_player.moveTo(1, 23);
-            timer = 0;
+            if(!speedrun) timer = 0;
         }
     }
     // Collision du joueur avec les doublejumpport fait un double saut

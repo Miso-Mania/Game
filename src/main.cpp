@@ -125,6 +125,7 @@ int getUserInput()
 
 int menu(bool skipIntro)
 {
+    speedrunMode = false;
     if (!skipIntro)
     {
         // Initialisation de la SDL
@@ -177,6 +178,11 @@ int menu(bool skipIntro)
     SDL_RenderPresent(mainRenderer);
     // on demande au joueur de choisir entre le mode edition, le mode jeu ou le leaderboard, en fonction de l'input
     activity = getUserInput();
+
+    // on ferme la fenêtre
+    SDL_DestroyTexture(activityTexture);
+    SDL_FreeSurface(activitySurface);
+
     if (activity == 2)
     {
         editorMode = true;
@@ -196,46 +202,49 @@ int menu(bool skipIntro)
         }
         return 1;
     }
-    if(activity ==4){ //mode speedrun
+    if (activity == 4)
+    { // mode speedrun
         speedrunMode = true;
+        level = 1;
     }
-
-    // on ferme la fenêtre
-    SDL_DestroyTexture(activityTexture);
-    SDL_FreeSurface(activitySurface);
     if (activity == -2)
     {
         SDL_DestroyWindow(menuWindow);
-        return 1;
+        return 1; 
     }
-    // on pause pour 0.1 seconde
-    SDL_Delay(100);
 
-    // on ouvre le menu suivant
-    SDL_Surface *levelSurface = IMG_Load("assets/textures/level.png");
-    SDL_Texture *levelTexture = SDL_CreateTextureFromSurface(mainRenderer, levelSurface);
-    SDL_RenderCopy(mainRenderer, levelTexture, NULL, &mainRect);
-    SDL_RenderPresent(mainRenderer);
-    // on demande le niveau
-    level = getUserInput();
+    if (!speedrunMode)
+    {
+        // on pause pour 0.1 seconde
+        SDL_Delay(100);
 
-    if (level == -2)
-    {
-        SDL_DestroyTexture(levelTexture);
-        SDL_FreeSurface(levelSurface);
-        SDL_DestroyWindow(menuWindow);
-        return 1;
-    }
-    if (level == 1 || level == 2 || level == 3 || level == 4 || level == 5 || level == 6 || level == 7 || level == 8 || level == 9 || level == 10)
-    {
-        SDL_DestroyTexture(levelTexture);
-        SDL_FreeSurface(levelSurface);
-    }
-    else
-    {
-        cout << "Veuillez entrer un niveau valide" << endl;
+        // on ouvre le menu suivant
+        SDL_Surface *levelSurface = IMG_Load("assets/textures/level.png");
+        SDL_Texture *levelTexture = SDL_CreateTextureFromSurface(mainRenderer, levelSurface);
+        SDL_RenderCopy(mainRenderer, levelTexture, NULL, &mainRect);
+        SDL_RenderPresent(mainRenderer);
+        // on demande le niveau
         level = getUserInput();
+
+        if (level == -2)
+        {
+            SDL_DestroyTexture(levelTexture);
+            SDL_FreeSurface(levelSurface);
+            SDL_DestroyWindow(menuWindow);
+            return 1;
+        }
+        if (level == 1 || level == 2 || level == 3 || level == 4 || level == 5 || level == 6 || level == 7 || level == 8 || level == 9 || level == 10)
+        {
+            SDL_DestroyTexture(levelTexture);
+            SDL_FreeSurface(levelSurface);
+        }
+        else
+        {
+            cout << "Veuillez entrer un niveau valide" << endl;
+            level = getUserInput();
+        }
     }
+
     SDL_Surface *inputSurface = IMG_Load("assets/textures/input.png");
     SDL_Texture *inputTexture = SDL_CreateTextureFromSurface(mainRenderer, inputSurface);
     SDL_RenderCopy(mainRenderer, inputTexture, NULL, &mainRect);
