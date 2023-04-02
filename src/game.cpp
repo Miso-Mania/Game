@@ -1,4 +1,4 @@
-#include "game.h"           //TODO: CREATE A DIFFERENT CLASS FOR OBSTACLES AND PLATTFORMS
+#include "game.h"          
 #include <iostream>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
