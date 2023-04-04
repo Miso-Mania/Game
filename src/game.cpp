@@ -441,7 +441,7 @@ void Game::update()
         }
     }
     // Le joueur gagne si il touche la BoxFinish
-    for (BoxFinish *boxFinish : m_levels[m_currentLevel]->getBoxFinish())
+    for (BoxFinish *boxFinish : m_levels[m_currentLevel]->getBoxFinish())  
     {
         if (m_player.collidesWith(boxFinish))
         {
@@ -467,7 +467,6 @@ void Game::update()
                             fichierTimes = fopen("times/speedrun.txt", "w");
                             // on concatène le temps avec l'username
                             string toWrite = to_string(timer) + " by " + usernameGame;
-                            
                             //on converti la string toWrite en char*
                             char *cstr = new char[toWrite.length() + 1];
                             strcpy(cstr, toWrite.c_str());
@@ -513,10 +512,31 @@ void Game::update()
                         cout << "Le record n'a pas été battu à " << timer - atof(tempsPrecedent) << "s près ! Le prochain essai sera le bon !" << endl;
                     }
                     fclose(fichierTimes);
+                    FILE* fichierCoins = NULL;
+                    fichierCoins = fopen("user/coins.txt", "r");
+                    char coins [7]; 
+                    fgets(coins, 7,  fichierCoins);
+                    int coinsInt = atoi(coins);
+                    fclose(fichierCoins);
+                    //on ajoute 10 coins - toInt((timer - atof(tempsPrecedent)))
+                    //on arrondi le temps à l'entier le plus proche
+                    int coinsToAdd = 10 - round(timer - atof(tempsPrecedent));
+                    if (coinsToAdd < 0)
+                    {
+                        coinsToAdd = 0;
+                    }
+                    coinsInt += coinsToAdd;
+                    FILE* fichierCoins2 = NULL;
+                    fichierCoins2 = fopen("user/coins.txt", "w");
+                    fputs(to_string(coinsInt).c_str(), fichierCoins2);
+                    fclose(fichierCoins2);
+                    cout << "Vous avez gagné " << coinsToAdd << " coins !" << endl;
+                    cout << "Vous avez maintenant " << coinsInt << " coins !" << endl;
                     timer = 0;
                     m_player.moveTo(1, 23);
                 }
             }    
+
         }
     }
 
