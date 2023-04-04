@@ -535,12 +535,23 @@ void Game::update()
                     coinsInt += coinsToAdd;
                     FILE* fichierCoins2 = NULL;
                     fichierCoins2 = fopen("user/coins.txt", "w");
-                    fputs(to_string(coinsInt).c_str(), fichierCoins2);
+                    if (fichierCoins2 != NULL){
+                        fputs(to_string(coinsInt).c_str(), fichierCoins2);
+                        cout << "Vous avez gagné " << coinsToAdd << " coins !" << endl;
+                        cout << "Vous avez maintenant " << coinsInt << " coins !" << endl;
+                       
+                    }
+                    else{ //on écrit 100 dans le fichier
+                        fputs("100", fichierCoins2);
+                        cout << "Bravo pour ton premier niveau terminé ! Tu as gagné 100 coins !" << endl;
+                        
+                    }
                     fclose(fichierCoins2);
-                    cout << "Vous avez gagné " << coinsToAdd << " coins !" << endl;
-                    cout << "Vous avez maintenant " << coinsInt << " coins !" << endl;
                     timer = 0;
                     m_player.moveTo(1, 23);
+                    
+
+                    
                 }
             }    
 
