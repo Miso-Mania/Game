@@ -960,16 +960,20 @@ void Game::render()
 
     //affichage du timer
     if(!editionMode){
-
+        int size_timer;
+        if(timer < 10) size_timer = 4;
+        else if(timer < 100) size_timer = 5;
+        else if(timer < 1000) size_timer = 6;
+        else size_timer = 7;
         string temp = to_string(timer);
         char *char_timer = new char[temp.length()];
         strcpy(char_timer, temp.c_str());
-        char_timer[5] = '\0';
+        char_timer[size_timer] = '\0';
 
         SDL_Color white = {255, 255, 255};
         m_surface_Timer = TTF_RenderText_Blended(m_font, char_timer, white);
         m_texture_Timer = SDL_CreateTextureFromSurface(m_renderer, m_surface_Timer);
-        SDL_Rect TimerRect = {1820, 0, 100, 40};
+        SDL_Rect TimerRect = {1920 - size_timer*30, 0, size_timer*30, 40};
         SDL_RenderCopy(m_renderer, m_texture_Timer, NULL, &TimerRect);
     }
 
