@@ -3,6 +3,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_mixer.h>
+#include <SDL2/SDL_ttf.h>
 #include <string>
 #include <random>
 
@@ -35,6 +36,9 @@ Game::Game(int inputtypeparam, int levelnumber, bool editMode, string userName, 
     // on initialise la SDL
     SDL_Init(SDL_INIT_VIDEO);
     IMG_Init(IMG_INIT_PNG);
+    TTF_Init();
+    TTF_Font* font = TTF_OpenFont("font/MonospaceTypewriter.ttf", 24);
+
     std::cout << "SDL initialized" << std::endl;
     // on créé une fenetre  de 1920*1080, fullscreen et on la rend visible
     m_window = SDL_CreateWindow("Game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, window_X_size, window_Y_size, SDL_WINDOW_FULLSCREEN);
@@ -193,6 +197,9 @@ Game::~Game()
     Mix_FreeMusic(music);
     Mix_CloseAudio();
     Mix_Quit();
+
+    TTF_CloseFont(font);
+    TTF_Quit();
 
     SDL_Quit();
 }
@@ -919,6 +926,15 @@ void Game::render()
 
     // Affichage des particules
     m_particuleSystem.render(m_renderer, window_X_size, window_Y_size);
+
+    //affichage du timer
+    if(!editionMode){
+        SDL_Color white = {255, 255, 255};
+        SDL_Surface* surface_Timer = TTF_RenderText_Solid(font, to_string(timer), White);
+        SDL_Texture* texture_Timer = SDL_CreateTextureFromSurface(m_renderer, surface_Timer);
+        SDL_Rect TimerRect = {0, 0, 40, 40};
+        SDL_RenderCopy(m_renderer, texture_Timer, NULL, &TimerRect);
+    }
 
     // Affichage
     SDL_RenderPresent(m_renderer);
