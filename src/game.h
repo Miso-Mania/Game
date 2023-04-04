@@ -92,6 +92,10 @@ private:
     SDL_Texture *m_texture_Enemy;
     SDL_Surface *m_surface_Enemy;
 
+    TTF_Font *m_font; // police d'écriture
+    SDL_Texture *m_texture_Timer; // texture du texte du timer
+    SDL_Surface *m_surface_Timer; // surface du texte du timer
+
     Player m_player; // joueur du jeu
 
     vector<Level*> m_levels; // vecteur de niveaux

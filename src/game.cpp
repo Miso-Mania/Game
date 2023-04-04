@@ -37,7 +37,7 @@ Game::Game(int inputtypeparam, int levelnumber, bool editMode, string userName, 
     SDL_Init(SDL_INIT_VIDEO);
     IMG_Init(IMG_INIT_PNG);
     TTF_Init();
-    TTF_Font* font = TTF_OpenFont("font/MonospaceTypewriter.ttf", 24);
+    m_font = TTF_OpenFont("font/MonospaceTypewriter.ttf", 24);
 
     std::cout << "SDL initialized" << std::endl;
     // on créé une fenetre  de 1920*1080, fullscreen et on la rend visible
@@ -198,7 +198,7 @@ Game::~Game()
     Mix_CloseAudio();
     Mix_Quit();
 
-    TTF_CloseFont(font);
+    TTF_CloseFont(m_font);
     TTF_Quit();
 
     SDL_Quit();
@@ -949,11 +949,17 @@ void Game::render()
 
     //affichage du timer
     if(!editionMode){
+
+        string temp = to_string(timer);
+        char *char_timer = new char[temp.length()];
+        strcpy(char_timer, temp.c_str());
+        char_timer[5] = '\0';
+
         SDL_Color white = {255, 255, 255};
-        SDL_Surface* surface_Timer = TTF_RenderText_Solid(font, to_string(timer), White);
-        SDL_Texture* texture_Timer = SDL_CreateTextureFromSurface(m_renderer, surface_Timer);
-        SDL_Rect TimerRect = {0, 0, 40, 40};
-        SDL_RenderCopy(m_renderer, texture_Timer, NULL, &TimerRect);
+        m_surface_Timer = TTF_RenderText_Blended(m_font, char_timer, white);
+        m_texture_Timer = SDL_CreateTextureFromSurface(m_renderer, m_surface_Timer);
+        SDL_Rect TimerRect = {1820, 0, 100, 40};
+        SDL_RenderCopy(m_renderer, m_texture_Timer, NULL, &TimerRect);
     }
 
     // Affichage
