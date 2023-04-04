@@ -207,6 +207,22 @@ int menu(bool skipIntro)
         speedrunMode = true;
         level = 1;
     }
+    if (activity == 5)
+    { // mode shop
+
+    SDL_Surface *shopSurface = IMG_Load("assets/textures/shop.png");
+    SDL_Texture *shopTexture = SDL_CreateTextureFromSurface(mainRenderer, shopSurface);
+    SDL_Rect mainRect = {0, 0, 1280, 720};
+    SDL_RenderCopy(mainRenderer, shopTexture, NULL, &mainRect);
+    SDL_RenderPresent(mainRenderer);
+    // on demande au joueur de choisir entre le mode edition, le mode jeu ou le leaderboard, en fonction de l'input
+    activity = getUserInput();
+
+    // on ferme la fenêtre
+    SDL_DestroyTexture(shopTexture);
+    SDL_FreeSurface(shopSurface);
+        
+    }
     if (activity == -2)
     {
         SDL_DestroyWindow(menuWindow);
