@@ -45,6 +45,8 @@ public:
     */
     void render();
 
+    void renderTimer(int y, double time);
+
 private:
     SDL_Window *m_window; // fenêtre du jeu
     SDL_Renderer *m_renderer; // renderer du jeu
@@ -112,6 +114,8 @@ private:
     int timeLastFrame;
 
     ParticuleSystem m_particuleSystem; // système de particules
+
+    float bestTime; // meilleur temps
 };
 #endif // GAME_H
 

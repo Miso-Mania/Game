@@ -37,7 +37,10 @@ Game::Game(int inputtypeparam, int levelnumber, bool editMode, string userName, 
     SDL_Init(SDL_INIT_VIDEO);
     IMG_Init(IMG_INIT_PNG);
     TTF_Init();
-    m_font = TTF_OpenFont("font/MonospaceTypewriter.ttf", 24);
+    m_font = TTF_OpenFont("font/Kemco Pixel Bold.ttf", 50);
+    if (m_font == NULL) {
+        std::cerr << "Failed to load font: " << TTF_GetError() << std::endl;
+    }
 
     std::cout << "SDL initialized" << std::endl;
     // on créé une fenetre  de 1920*1080, fullscreen et on la rend visible
@@ -143,6 +146,19 @@ Game::Game(int inputtypeparam, int levelnumber, bool editMode, string userName, 
     std::cout << "player created" << endl;
     timer = 0;
     std::cout << "timer created" << endl;
+
+    FILE* fichierTimes = NULL;
+    if (speedR)
+    {
+        fichierTimes = fopen("times/speedrun.txt", "r");
+    }
+    else
+    {
+        fichierTimes = fopen(("times/level" + std::to_string(levelnumber) + ".txt").c_str(), "r");
+    }
+    char best[7];
+    fgets(best, 7, fichierTimes);
+    bestTime = atof(best);
 
     ParticuleSystem m_particuleSystem = ParticuleSystem();
 
@@ -480,6 +496,7 @@ void Game::update()
                             fputs(cstr, fichierTimes);
                             cout << cstr << endl;
                             cout << "Le record a été battu de " << atof(tempsPrecedent) - timer << "s !, félicitations "<< usernameGame << endl;
+                            bestTime = timer;
                         }
                         else
                         {
@@ -513,6 +530,7 @@ void Game::update()
                         fputs(cstr, fichierTimes);
                         cout << cstr << endl;
                         cout << "Le record a été battu de " << atof(tempsPrecedent) - timer << "s !, félicitations "<< usernameGame << endl;
+                        bestTime = timer;
                     }
                     else
                     {
@@ -681,6 +699,28 @@ void Game::update()
     m_particuleSystem.update(delta);
 
     m_player.updateRect();
+}
+
+void Game::renderTimer(int y, double time){
+    int size_timer;
+        if(time < 10) size_timer = 4;
+        else if(time < 100) size_timer = 5;
+        else if(time < 1000) size_timer = 6;
+        else size_timer = 7;
+        string temp = to_string(time);
+        char *char_timer = new char[temp.length()];
+        strcpy(char_timer, temp.c_str());
+        char_timer[size_timer] = '\0';
+        char_timer[size_timer-3] = '.';
+
+        SDL_Color white = {255, 255, 255};
+        m_surface_Timer = TTF_RenderText_Solid(m_font, char_timer, white);
+        m_texture_Timer = SDL_CreateTextureFromSurface(m_renderer, m_surface_Timer);
+        SDL_Rect TimerRect = {1920 - size_timer*30 - 10, y+5, size_timer*30, 40};
+        SDL_Rect TimerBackRect = {1920 - size_timer*30 - 15, y, size_timer*30 + 5, 45};
+        SDL_SetRenderDrawColor(m_renderer, 0, 0, 0, 100);
+        SDL_RenderFillRect(m_renderer, &TimerBackRect);
+        SDL_RenderCopy(m_renderer, m_texture_Timer, NULL, &TimerRect);
 }
 
 void Game::render()
@@ -960,21 +1000,8 @@ void Game::render()
 
     //affichage du timer
     if(!editionMode){
-        int size_timer;
-        if(timer < 10) size_timer = 4;
-        else if(timer < 100) size_timer = 5;
-        else if(timer < 1000) size_timer = 6;
-        else size_timer = 7;
-        string temp = to_string(timer);
-        char *char_timer = new char[temp.length()];
-        strcpy(char_timer, temp.c_str());
-        char_timer[size_timer] = '\0';
-
-        SDL_Color white = {255, 255, 255};
-        m_surface_Timer = TTF_RenderText_Blended(m_font, char_timer, white);
-        m_texture_Timer = SDL_CreateTextureFromSurface(m_renderer, m_surface_Timer);
-        SDL_Rect TimerRect = {1920 - size_timer*30, 0, size_timer*30, 40};
-        SDL_RenderCopy(m_renderer, m_texture_Timer, NULL, &TimerRect);
+        renderTimer(10, timer);
+        renderTimer(60, bestTime);
     }
 
     // Affichage
