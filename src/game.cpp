@@ -1,4 +1,4 @@
-#include "game.h"           //TODO: CREATE A DIFFERENT CLASS FOR OBSTACLES AND PLATTFORMS
+#include "game.h"         
 #include <iostream>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
@@ -104,8 +104,8 @@ Game::Game(int inputtypeparam, int levelnumber, bool editMode) : m_window(NULL),
     m_surface_BoxFinish = IMG_Load("assets/textures/porte_fin.png");
     m_texture_BoxFinish = SDL_CreateTextureFromSurface(m_renderer, m_surface_BoxFinish);
 
-    m_surface_enemy = IMG_Load("assets/textures/rondvert.png");
-    m_texture_enemy = SDL_CreateTextureFromSurface(m_renderer, m_surface_enemy);
+    m_surface_Enemy = IMG_Load("assets/textures/rondvert.png");
+    m_texture_Enemy = SDL_CreateTextureFromSurface(m_renderer, m_surface_Enemy);
 
     std::cout << "textures loaded" << endl;
 
@@ -176,8 +176,8 @@ Game::~Game()
     SDL_FreeSurface(m_surface_BoxFinish);
     SDL_DestroyTexture(m_texture_BoxFinish);
 
-    SDL_FreeSurface(m_surface_enemy);
-    SDL_DestroyTexture(m_texture_enemy);
+    SDL_FreeSurface(m_surface_Enemy);
+    SDL_DestroyTexture(m_texture_Enemy);
 
     Mix_FreeMusic(music);
     Mix_CloseAudio();
@@ -267,6 +267,12 @@ void Game::handleEvents(SDL_Event &event)
         case SDLK_SPACE:
             m_player.jump();
             break;
+        case SDLK_k:
+            m_enemy.setDirection(EnemyDirection::LEFT);
+            break;
+        case SDLK_l:
+            m_enemy.setDirection(EnemyDirection::RIGHT);
+            break;
         }
     }
     else if (event.type == SDL_KEYUP)
@@ -334,7 +340,7 @@ void Game::handleEvents(SDL_Event &event)
             running = false;
             break;
         }
-    }
+    }    
 }
 
 void Game::update()
@@ -503,10 +509,25 @@ void Game::update()
     {
         boxCmgtGrav->move(delta);
     }
+    // Mise à jour de la position des Enemys
+    for (Enemy *enemy : m_levels[m_currentLevel]->getEnemy())
+    {
+        enemy->move(delta);
+    }
+    
     // Collision du joueur avec les pics stop la partie
     for (Pic *pic : m_levels[m_currentLevel]->getPics())
     {
         if (m_player.collidesWith(pic))
+        {
+            m_player.moveTo(1, 23);
+            timer = 0;
+        }
+    }
+    // Collision du joueur avec l'enemy stop la partie
+    for (Enemy *Enemy : m_levels[m_currentLevel]->getEnemy())
+    {
+        if (m_player.collidesWith(Enemy))
         {
             m_player.moveTo(1, 23);
             timer = 0;
@@ -821,6 +842,12 @@ void Game::render()
                 SDL_RenderCopy(m_renderer, m_texture_BoxCmgtGrav, NULL, &BoxCmgtGravRect);
             }
         }
+    }
+
+    //affichage enemis
+    for (Enemy *enemy : m_levels[m_currentLevel]->getEnemy()) {
+        SDL_Rect enemyRect = enemy->getRect();
+        SDL_RenderCopy(m_renderer, m_texture_Enemy, NULL, &enemyRect);
     }
 
     // Affichage des particules

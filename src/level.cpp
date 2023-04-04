@@ -202,10 +202,8 @@ void Level::loadFromJSON(string filename, int TILE_SIZE) {
     for (auto& element : j["Enemy"]) {
         int x = element["x"];
         int y = element["y"];
-        int width = element["width"];
-        int height = element["height"];
-        addObstacle(x , y, width , height);
-        cout << "Enemy: " << x << ", " << y << ", " << width << ", " << height << endl;
+        addEnemy(x, y, TILE_SIZE);
+        cout << "Un Enemy de posée ici: " << x << ", " << y << endl;
     }
 }
 

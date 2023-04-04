@@ -73,6 +73,10 @@ bool Player::collidesWith(BoxCmgtGrav *BoxCmgtGrav) {
     return m_coords.isColliding(BoxCmgtGrav->getCoords());
 }
 
+bool Player::collidesWith(Enemy *Enemy) {
+    return m_coords.isColliding(Enemy->getCoords());
+}
+
 void Player::moveOutOfCoords(Coords coords){
     double intoTop = m_coords.y + m_coords.h - coords.y;
     double intoBottom = coords.y + coords.h - m_coords.y;

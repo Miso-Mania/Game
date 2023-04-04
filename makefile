@@ -24,7 +24,7 @@ bin/Reg : $(OBJS)
 obj/mainText.o : src/mainText.cpp
 	$(cc) $(CFLAGS) src/mainText.cpp -o obj/mainText.o $(LIBS)
 
-obj/player.o  : src/player.cpp src/player.h src/objets/obstacle.h src/playerdirection.h src/objets/pic.h src/objets/BoxFinish.h src/objets/DoubleJumpPort.h src/coords.h src/objets/S_Plateform.h src/objets/M_Plateform.h src/objets/L_Plateform.h src/objets/BoxCmgtGrav.h
+obj/player.o  : src/player.cpp src/player.h src/objets/obstacle.h src/playerdirection.h src/objets/pic.h src/objets/BoxFinish.h src/objets/DoubleJumpPort.h src/coords.h src/objets/S_Plateform.h src/objets/M_Plateform.h src/objets/L_Plateform.h src/objets/BoxCmgtGrav.h src/enemydirection.h src/enemy.h
 	$(cc) $(CFLAGS) $(Include_Dir_SDL2) src/player.cpp -o obj/player.o $(LIBS)
 
 obj/obstacle.o : src/objets/obstacle.cpp src/objets/obstacle.h src/coords.h
