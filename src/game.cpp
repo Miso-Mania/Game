@@ -79,9 +79,7 @@ Game::Game(int inputtypeparam, int levelnumber, bool editMode, string userName, 
     cout << "width " << width << endl;
     const int TILE_SIZE = width / NUM_TILES_X;
     cout << "TILE_SIZE: " << TILE_SIZE << endl;
-    m_surface_player = IMG_Load("assets/textures/icon.png");
-    m_texture_player = SDL_CreateTextureFromSurface(m_renderer, m_surface_player);
-
+    
     m_surface_pic = IMG_Load("assets/textures/spikes.png");
     m_texture_pic = SDL_CreateTextureFromSurface(m_renderer, m_surface_pic);
 
@@ -119,6 +117,26 @@ Game::Game(int inputtypeparam, int levelnumber, bool editMode, string userName, 
     m_texture_BoxFinish = SDL_CreateTextureFromSurface(m_renderer, m_surface_BoxFinish);
 
     std::cout << "textures loaded" << endl;
+    std::cout << "Now loading player icon" << endl;
+    FILE *iconFile = NULL;
+    iconFile = fopen("user/icon.txt", "r");
+    if (iconFile != NULL)
+    {
+        char icon[2];
+        fgets(icon, 2, iconFile);
+        fclose(iconFile);
+        //we get the pathh of the icon
+        char iconPath[20] = "assets/icons/";
+        strcat(iconPath, icon);
+        strcat(iconPath, ".png"); //
+        m_surface_player = IMG_Load(iconPath);
+    }
+    else
+    {
+        m_surface_player = IMG_Load("assets/icons/0.png");
+    }
+
+    m_texture_player = SDL_CreateTextureFromSurface(m_renderer, m_surface_player);
 
     Level *level = new Level();
     //we add the ground

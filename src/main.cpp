@@ -8,6 +8,7 @@ int level = 445;
 int activity = 446;
 bool editorMode = false;
 bool speedrunMode = false;
+int itemToBuy = 0;
 string username = "";
 
 string auth()
@@ -207,6 +208,73 @@ int menu(bool skipIntro)
         speedrunMode = true;
         level = 1;
     }
+    if (activity == 5)
+    { // mode shop
+
+    SDL_Surface *shopSurface = IMG_Load("assets/textures/shop.png");
+    SDL_Texture *shopTexture = SDL_CreateTextureFromSurface(mainRenderer, shopSurface);
+    SDL_Rect mainRect = {0, 0, 1280, 720};
+    SDL_RenderCopy(mainRenderer, shopTexture, NULL, &mainRect);
+    SDL_RenderPresent(mainRenderer);
+    // on demande au joueur de choisir entre le mode edition, le mode jeu ou le leaderboard, en fonction de l'input
+    //on récupère l'argent du joueur
+    FILE* moneyFile = NULL;
+    moneyFile = fopen("user/coins.txt", "r");
+    char moneyChar [7]; 
+    fgets(moneyChar, 7,  moneyFile);
+    int money = atoi(moneyChar);
+    cout << "Vous avez " << money << " coins" << endl;
+    fclose(moneyFile);
+
+
+    itemToBuy = getUserInput();
+    if (itemToBuy !=0){
+        switch(itemToBuy)
+        {
+            case 1:
+                if(money >= 100){
+                    cout << "Vous avez acheté l'item 1" << endl;
+                    FILE* iconFile = NULL;
+                    iconFile = fopen("user/icon.txt", "w");
+                    fputs("1", iconFile);
+                    fclose(iconFile);
+                    money -= 100;
+                    break;
+                
+                }
+                else{
+                    cout << "Vous n'avez pas assez d'argent" << endl;
+                }
+                break;
+            case 2:
+                if(money >= 200){
+                    cout << "Vous avez acheté l'item 2" << endl;
+                    FILE* iconFile = NULL;
+                    iconFile = fopen("user/icon.txt", "w");
+                    fputs("2", iconFile);
+                    fclose(iconFile);
+                    money -= 200;
+                    break;
+                
+                }
+                else{
+                    cout << "Vous n'avez pas assez d'argent" << endl;
+                }
+                break;
+            default:
+                cout << "Cet item n'est pas disponible" << endl;
+                break;
+        }
+        FILE* moneyFile = NULL; //on actualise l'argent du joueur
+        moneyFile = fopen("user/coins.txt", "w");
+        fputs(to_string(money).c_str(), moneyFile);
+        fclose(moneyFile);
+
+    // on ferme la fenêtre
+    SDL_DestroyTexture(shopTexture);
+    SDL_FreeSurface(shopSurface);
+    } 
+} 
     if (activity == -2)
     {
         SDL_DestroyWindow(menuWindow);
