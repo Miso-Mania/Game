@@ -273,8 +273,8 @@ int menu(bool skipIntro)
     // on ferme la fenêtre
     SDL_DestroyTexture(shopTexture);
     SDL_FreeSurface(shopSurface);
-        
-    }
+    } 
+} 
     if (activity == -2)
     {
         SDL_DestroyWindow(menuWindow);
@@ -332,7 +332,6 @@ int menu(bool skipIntro)
         return 1;
     }
     return 0;
-}
 }
 
 int main(int argc, char *argv[])
