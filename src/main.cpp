@@ -235,7 +235,7 @@ int menu(bool skipIntro)
                 if(money >= 100){
                     cout << "Vous avez acheté l'item 1" << endl;
                     FILE* iconFile = NULL;
-                    iconFile = fopen("user/skin.txt", "w");
+                    iconFile = fopen("user/icon.txt", "w");
                     fputs("1", iconFile);
                     fclose(iconFile);
                     money -= 100;
@@ -250,7 +250,7 @@ int menu(bool skipIntro)
                 if(money >= 200){
                     cout << "Vous avez acheté l'item 2" << endl;
                     FILE* iconFile = NULL;
-                    iconFile = fopen("user/skin.txt", "w");
+                    iconFile = fopen("user/icon.txt", "w");
                     fputs("2", iconFile);
                     fclose(iconFile);
                     money -= 200;
