@@ -8,6 +8,7 @@ int level = 445;
 int activity = 446;
 bool editorMode = false;
 bool speedrunMode = false;
+int itemToBuy = 0;
 string username = "";
 
 string auth()
@@ -216,12 +217,39 @@ int menu(bool skipIntro)
     SDL_RenderCopy(mainRenderer, shopTexture, NULL, &mainRect);
     SDL_RenderPresent(mainRenderer);
     // on demande au joueur de choisir entre le mode edition, le mode jeu ou le leaderboard, en fonction de l'input
-    activity = getUserInput();
+    //on récupère l'argent du joueur
+    FILE* moneyFile = NULL;
+    moneyFile = fopen("user/coins.txt", "r");
+    char moneyChar [7]; 
+    fgets(moneyChar, 7,  moneyFile);
+    int money = atoi(moneyChar);
+    cout << "Vous avez " << money << " coins" << endl;
+    fclose(moneyFile);
+
+
+    itemToBuy = getUserInput();
+    if (itemToBuy !=0){
+        switch(itemToBuy)
+        {
+            default:
+                cout << "Cet item n'est pas disponible" << endl;
+                break;
+        }
+
+
+
+
+
+
+
 
     // on ferme la fenêtre
     SDL_DestroyTexture(shopTexture);
     SDL_FreeSurface(shopSurface);
         
+
+
+
     }
     if (activity == -2)
     {
@@ -280,6 +308,7 @@ int menu(bool skipIntro)
         return 1;
     }
     return 0;
+}
 }
 
 int main(int argc, char *argv[])
