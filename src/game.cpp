@@ -118,14 +118,21 @@ Game::Game(int inputtypeparam, int levelnumber, bool editMode, string userName, 
         char icon[2];
         fgets(icon, 2, iconFile);
         fclose(iconFile);
-        //we get the pathh of the icon
-        char iconPath[20] = "assets/icons/";
-        strcat(iconPath, icon);
-        strcat(iconPath, ".png"); //
-        m_surface_player = IMG_Load(iconPath);
+        //si le fichier est vide, on charge l'icone par defaut
+        if (icon[0] == '\0')
+        {
+            m_surface_player = IMG_Load("assets/icons/0.png");
+        }
+        else{
+            char iconPath[20] = "assets/icons/";
+            strcat(iconPath, icon);
+            strcat(iconPath, ".png"); //
+            m_surface_player = IMG_Load(iconPath);
+        }
     }
     else
     {
+
         m_surface_player = IMG_Load("assets/icons/0.png");
     }
 
