@@ -231,25 +231,49 @@ int menu(bool skipIntro)
     if (itemToBuy !=0){
         switch(itemToBuy)
         {
+            case 1:
+                if(money >= 100){
+                    cout << "Vous avez acheté l'item 1" << endl;
+                    FILE* iconFile = NULL;
+                    iconFile = fopen("user/skin.txt", "w");
+                    fputs("1", iconFile);
+                    fclose(iconFile);
+                    money -= 100;
+                    break;
+                
+                }
+                else{
+                    cout << "Vous n'avez pas assez d'argent" << endl;
+                }
+                break;
+            case 2:
+                if(money >= 200){
+                    cout << "Vous avez acheté l'item 2" << endl;
+                    FILE* iconFile = NULL;
+                    iconFile = fopen("user/skin.txt", "w");
+                    fputs("2", iconFile);
+                    fclose(iconFile);
+                    money -= 200;
+                    break;
+                
+                }
+                else{
+                    cout << "Vous n'avez pas assez d'argent" << endl;
+                }
+                break;
             default:
                 cout << "Cet item n'est pas disponible" << endl;
                 break;
         }
-
-
-
-
-
-
-
+        FILE* moneyFile = NULL; //on actualise l'argent du joueur
+        moneyFile = fopen("user/coins.txt", "w");
+        fputs(to_string(money).c_str(), moneyFile);
+        fclose(moneyFile);
 
     // on ferme la fenêtre
     SDL_DestroyTexture(shopTexture);
     SDL_FreeSurface(shopSurface);
         
-
-
-
     }
     if (activity == -2)
     {

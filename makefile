@@ -10,7 +10,7 @@ dir:
 	mkdir -p obj 
 	mkdir -p bin
 	mkdir -p user
-	cd user && touch name.txt && touch coins.txt
+	cd user && touch name.txt && touch coins.txt && touch icon.txt
 
 bin/text : $(OBJS)
 	$(cc) obj/mainText.o -o bin/text -lncurses
