@@ -209,6 +209,7 @@ int menu(bool skipIntro)
         level = 1;
     }
     if (activity == 5)
+
     { // mode shop
 
     SDL_Surface *shopSurface = IMG_Load("assets/textures/shop.png");
@@ -275,6 +276,7 @@ int menu(bool skipIntro)
     SDL_FreeSurface(shopSurface);
     } 
 } 
+        
     if (activity == -2)
     {
         SDL_DestroyWindow(menuWindow);
