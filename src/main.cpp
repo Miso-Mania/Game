@@ -317,7 +317,7 @@ int menu(bool skipIntro)
             if(e == 2){
             SDL_Surface *objSurface2 = IMG_Load("assets/icons/2.png");
             SDL_Texture *objTexture2 = SDL_CreateTextureFromSurface(mainRenderer, objSurface2);
-            SDL_Rect objRect2 = {400 + (e-1) * 200, 100, 200, 200};
+            SDL_Rect objRect2 = {450 + (e-1) * 200, 100, 200, 200};
             SDL_RenderCopy(mainRenderer, objTexture2, NULL, &objRect2);
 
             }
