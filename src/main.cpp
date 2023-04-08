@@ -178,6 +178,13 @@ int menu(bool skipIntro)
     SDL_RenderCopy(mainRenderer, activityTexture, NULL, &mainRect);
     SDL_RenderPresent(mainRenderer);
     // on demande au joueur de choisir entre le mode edition, le mode jeu ou le leaderboard, en fonction de l'input
+    cout << "1 - Jouer" << endl;
+    cout << "2 - Editeur" << endl;
+    cout << "3 - Leaderboard" << endl;
+    cout << "4 - Speedrun" << endl;
+    cout << "5 - Shop" << endl;
+    cout << "6 - Collection" << endl;
+    cout << "Echap - Quitter" << endl;
     activity = getUserInput();
 
     // on ferme la fenêtre
@@ -239,6 +246,10 @@ int menu(bool skipIntro)
                     iconFile = fopen("user/icon.txt", "w");
                     fputs("1", iconFile);
                     fclose(iconFile);
+                    FILE* objFile = NULL;
+                    objFile = fopen("user/icons/1.txt", "w");
+                    fputs("1", objFile);
+                    fclose(objFile);
                     money -= 100;
                     break;
                 
@@ -254,6 +265,10 @@ int menu(bool skipIntro)
                     iconFile = fopen("user/icon.txt", "w");
                     fputs("2", iconFile);
                     fclose(iconFile);
+                    FILE* objFile2 = NULL;
+                    objFile2 = fopen("user/icons/2.txt", "w");
+                    fputs("1", objFile2);
+                    fclose(objFile2);
                     money -= 200;
                     break;
                 
@@ -275,7 +290,16 @@ int menu(bool skipIntro)
     SDL_DestroyTexture(shopTexture);
     SDL_FreeSurface(shopSurface);
     } 
-} 
+    }
+    if (activity == 6) //collection
+    {
+        
+    SDL_Surface *collectionSurface = IMG_Load("assets/textures/cat-waves.png"); //temporaire
+    SDL_Texture *collectionTexture = SDL_CreateTextureFromSurface(mainRenderer, collectionSurface);
+    SDL_Rect mainRect = {0, 0, 1280, 720};
+    SDL_RenderCopy(mainRenderer, collectionTexture, NULL, &mainRect);
+    SDL_RenderPresent(mainRenderer);
+    }
         
     if (activity == -2)
     {
