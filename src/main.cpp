@@ -300,6 +300,7 @@ int menu(bool skipIntro)
     SDL_RenderCopy(mainRenderer, collectionTexture, NULL, &mainRect);
     SDL_RenderPresent(mainRenderer);
     }
+  
         
     if (activity == -2)
     {
