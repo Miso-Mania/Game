@@ -311,10 +311,14 @@ int menu(bool skipIntro)
         cout << obj << endl;
         if (obj == 1){
             cout << "Vous possédez l'objet " << e << endl;
-            //on l'affiche en petit dans la feneêtre (200x200)
-
-            //TODO : afficher les objets dans la fenêtre
-
+            //on créé un char* avec le nom de l'objet
+          
+            //on charge l'image de l'objet
+            SDL_Surface *objSurface = IMG_Load("assets/icons/1.png");
+            SDL_Texture *objTexture = SDL_CreateTextureFromSurface(mainRenderer, objSurface);
+            SDL_Rect objRect = {400 + (e-1) * 200, 100, 200, 200};
+            SDL_RenderCopy(mainRenderer, objTexture, NULL, &objRect);
+            SDL_RenderPresent(mainRenderer);
 
         }
         else{
