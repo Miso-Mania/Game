@@ -299,7 +299,6 @@ int menu(bool skipIntro)
     SDL_Texture *collectionTexture = SDL_CreateTextureFromSurface(mainRenderer, collectionSurface);
     SDL_Rect mainRect = {0, 0, 1280, 720};
     SDL_RenderCopy(mainRenderer, collectionTexture, NULL, &mainRect);
-    SDL_RenderPresent(mainRenderer);
     for (int e = 1; e < 3; e++)
     {
         FILE* objFile = NULL;
