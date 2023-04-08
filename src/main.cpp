@@ -321,25 +321,16 @@ int menu(bool skipIntro)
             SDL_RenderCopy(mainRenderer, objTexture2, NULL, &objRect2);
 
             }
-
-
         }
         else{
             cout << "Vous ne possédez pas l'objet " << e << endl;
         }
-
-        
         fclose(objFile);
     }
-
-SDL_RenderPresent(mainRenderer);
-
+    SDL_RenderPresent(mainRenderer);
     quitCollection = getUserInput();
-    //on affiche les icons que le joueur possède, en regardant dans le dossier user/icons
-    
     while (quitCollection != -2){ //tant que l'utilisateur ne quitte pas la collection
         quitCollection = getUserInput();
-        
     }
     // on ferme la fenêtre
     SDL_DestroyTexture(collectionTexture);
