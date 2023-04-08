@@ -9,6 +9,7 @@ int activity = 446;
 bool editorMode = false;
 bool speedrunMode = false;
 int itemToBuy = 0;
+int quitCollection = 0;
 string username = "";
 
 string auth()
@@ -299,6 +300,12 @@ int menu(bool skipIntro)
     SDL_Rect mainRect = {0, 0, 1280, 720};
     SDL_RenderCopy(mainRenderer, collectionTexture, NULL, &mainRect);
     SDL_RenderPresent(mainRenderer);
+    quitCollection = getUserInput();
+    while (quitCollection != -2){
+        quitCollection = getUserInput();
+    }
+    SDL_DestroyTexture(collectionTexture);
+    SDL_FreeSurface(collectionSurface);
     }
   
         
