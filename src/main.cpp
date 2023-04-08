@@ -300,14 +300,37 @@ int menu(bool skipIntro)
     SDL_Rect mainRect = {0, 0, 1280, 720};
     SDL_RenderCopy(mainRenderer, collectionTexture, NULL, &mainRect);
     SDL_RenderPresent(mainRenderer);
-    quitCollection = getUserInput();
-    while (quitCollection != -2){
-        quitCollection = getUserInput();
+    for (int e = 1; e < 3; e++)
+    {
+        cout << "Objet " << e << endl;
+        FILE* objFile = NULL;
+        objFile = fopen(("user/icons/" + to_string(e) + ".txt").c_str(), "r");
+        char objChar [2]; 
+        fgets(objChar, 2,  objFile);
+        int obj = atoi(objChar);
+        cout << obj << endl;
+        if (obj == 1){
+            cout << "Vous possédez l'objet " << e << endl;
+            SDL_Surface *objSurface = IMG_Load(("assets/icons/" + to_string(e) + ".png").c_str());
+            SDL_Texture *objTexture = SDL_CreateTextureFromSurface(mainRenderer, objSurface);
+            //on affiche l'objet en taille 200x200
+            SDL_Rect objRect = {0, 0, 200, 200};
+            SDL_RenderCopy(mainRenderer, objTexture, NULL, &objRect);
+            SDL_RenderPresent(mainRenderer);
+        }
+        fclose(objFile);
     }
+    quitCollection = getUserInput();
+    //on affiche les icons que le joueur possède, en regardant dans le dossier user/icons
+    
+    while (quitCollection != -2){ //tant que l'utilisateur ne quitte pas la collection
+        quitCollection = getUserInput();
+        
+    }
+    // on ferme la fenêtre
     SDL_DestroyTexture(collectionTexture);
     SDL_FreeSurface(collectionSurface);
     }
-  
         
     if (activity == -2)
     {
