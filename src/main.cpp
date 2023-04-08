@@ -302,35 +302,39 @@ int menu(bool skipIntro)
     SDL_RenderPresent(mainRenderer);
     for (int e = 1; e < 3; e++)
     {
-        cout << "e = " << e << endl;
         FILE* objFile = NULL;
         objFile = fopen(("user/icons/" + to_string(e) + ".txt").c_str(), "r");
         char objChar [2]; 
         fgets(objChar, 2,  objFile);
         int obj = atoi(objChar);
-        cout << obj << endl;
         if (obj == 1){
-            cout << "Vous possédez l'objet " << e << endl;
-            //on créé un char* avec le nom de l'objet
-            char* objName = new char[20];
-            sprintf(objName, "assets/icons/%d.png", e);
-            cout << objName << endl;
-          
-            //on charge l'image de l'objet
-            SDL_Surface *objSurface = IMG_Load(objName);
-            SDL_Texture *objTexture = SDL_CreateTextureFromSurface(mainRenderer, objSurface);
-            SDL_Rect objRect = {400 + (e-1) * 200, 100, 200, 200};
-            SDL_RenderCopy(mainRenderer, objTexture, NULL, &objRect);
-            SDL_RenderPresent(mainRenderer);
+            cout << "Vous possédez l'objet " << e << endl;      
+            if(e == 1){
+            SDL_Surface *objSurface1 = IMG_Load("assets/icons/1.png");
+            SDL_Texture *objTexture1 = SDL_CreateTextureFromSurface(mainRenderer, objSurface1);
+            SDL_Rect objRect1 = {400 + (e-1) * 200, 100, 200, 200};
+            SDL_RenderCopy(mainRenderer, objTexture1, NULL, &objRect1);
+            }
+            if(e == 2){
+            SDL_Surface *objSurface2 = IMG_Load("assets/icons/2.png");
+            SDL_Texture *objTexture2 = SDL_CreateTextureFromSurface(mainRenderer, objSurface2);
+            SDL_Rect objRect2 = {400 + (e-1) * 200, 100, 200, 200};
+            SDL_RenderCopy(mainRenderer, objTexture2, NULL, &objRect2);
+
+            }
+
 
         }
         else{
             cout << "Vous ne possédez pas l'objet " << e << endl;
         }
 
-            
+        
         fclose(objFile);
     }
+
+SDL_RenderPresent(mainRenderer);
+
     quitCollection = getUserInput();
     //on affiche les icons que le joueur possède, en regardant dans le dossier user/icons
     
