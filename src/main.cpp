@@ -302,7 +302,7 @@ int menu(bool skipIntro)
     SDL_RenderPresent(mainRenderer);
     for (int e = 1; e < 3; e++)
     {
-        cout << "Objet " << e << endl;
+        cout << "e = " << e << endl;
         FILE* objFile = NULL;
         objFile = fopen(("user/icons/" + to_string(e) + ".txt").c_str(), "r");
         char objChar [2]; 
@@ -311,13 +311,17 @@ int menu(bool skipIntro)
         cout << obj << endl;
         if (obj == 1){
             cout << "Vous possédez l'objet " << e << endl;
-            SDL_Surface *objSurface = IMG_Load(("assets/icons/" + to_string(e) + ".png").c_str());
-            SDL_Texture *objTexture = SDL_CreateTextureFromSurface(mainRenderer, objSurface);
-            //on affiche l'objet en taille 200x200
-            SDL_Rect objRect = {0, 0, 200, 200};
-            SDL_RenderCopy(mainRenderer, objTexture, NULL, &objRect);
-            SDL_RenderPresent(mainRenderer);
+            //on l'affiche en petit dans la feneêtre (200x200)
+
+            //TODO : afficher les objets dans la fenêtre
+
+
         }
+        else{
+            cout << "Vous ne possédez pas l'objet " << e << endl;
+        }
+
+            
         fclose(objFile);
     }
     quitCollection = getUserInput();
