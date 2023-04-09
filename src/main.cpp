@@ -321,12 +321,11 @@ int menu(bool skipIntro)
             SDL_RenderCopy(mainRenderer, objTexture1, NULL, &objRect1);
             }
             if(e == 2){
-            SDL_Surface *objSurface3 = IMG_Load("assets/icons/jules.jpg");
+            SDL_Surface *objSurface3 = IMG_Load("assets/icons/2.png");
             SDL_Texture *objTexture3 = SDL_CreateTextureFromSurface(mainRenderer, objSurface3);
             SDL_Rect objRect3 = {420 + (e-1) * 210 , 100, 200, 200};
             SDL_RenderCopy(mainRenderer, objTexture3, NULL, &objRect3);
             }
-            
 
         }
         else{
