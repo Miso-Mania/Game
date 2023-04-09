@@ -299,7 +299,7 @@ int menu(bool skipIntro)
     SDL_Texture *collectionTexture = SDL_CreateTextureFromSurface(mainRenderer, collectionSurface);
     SDL_Rect mainRect = {0, 0, 1280, 720};
     SDL_RenderCopy(mainRenderer, collectionTexture, NULL, &mainRect);
-    for (int e = 1; e < 3; e++)
+    for (int e = 0; e < 3; e++)
     {
         FILE* objFile = NULL;
         objFile = fopen(("user/icons/" + to_string(e) + ".txt").c_str(), "r");
@@ -307,20 +307,27 @@ int menu(bool skipIntro)
         fgets(objChar, 2,  objFile);
         int obj = atoi(objChar);
         if (obj == 1){
-            cout << "Vous possédez l'objet " << e << endl;      
+            cout << "Vous possédez l'objet " << e << endl;  
+            if(e == 0){
+            SDL_Surface *objSurface2 = IMG_Load("assets/icons/0.png");
+            SDL_Texture *objTexture2 = SDL_CreateTextureFromSurface(mainRenderer, objSurface2);
+            SDL_Rect objRect2 = {200 , 100, 200, 200};
+            SDL_RenderCopy(mainRenderer, objTexture2, NULL, &objRect2);
+            }    
             if(e == 1){
             SDL_Surface *objSurface1 = IMG_Load("assets/icons/1.png");
             SDL_Texture *objTexture1 = SDL_CreateTextureFromSurface(mainRenderer, objSurface1);
-            SDL_Rect objRect1 = {400 + (e-1) * 200, 100, 200, 200};
+            SDL_Rect objRect1 = {410 + (e-1) * 210, 100, 200, 200};
             SDL_RenderCopy(mainRenderer, objTexture1, NULL, &objRect1);
             }
             if(e == 2){
-            SDL_Surface *objSurface2 = IMG_Load("assets/icons/2.png");
-            SDL_Texture *objTexture2 = SDL_CreateTextureFromSurface(mainRenderer, objSurface2);
-            SDL_Rect objRect2 = {450 + (e-1) * 200, 100, 200, 200};
-            SDL_RenderCopy(mainRenderer, objTexture2, NULL, &objRect2);
-
+            SDL_Surface *objSurface3 = IMG_Load("assets/icons/jules.jpg");
+            SDL_Texture *objTexture3 = SDL_CreateTextureFromSurface(mainRenderer, objSurface3);
+            SDL_Rect objRect3 = {420 + (e-1) * 210 , 100, 200, 200};
+            SDL_RenderCopy(mainRenderer, objTexture3, NULL, &objRect3);
             }
+            
+
         }
         else{
             cout << "Vous ne possédez pas l'objet " << e << endl;
