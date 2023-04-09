@@ -10,6 +10,7 @@ bool editorMode = false;
 bool speedrunMode = false;
 int itemToBuy = 0;
 int quitCollection = 0;
+int chooseIcon = 444;
 string username = "";
 
 string auth()
@@ -326,7 +327,6 @@ int menu(bool skipIntro)
             SDL_Rect objRect3 = {420 + (e-1) * 210 , 100, 200, 200};
             SDL_RenderCopy(mainRenderer, objTexture3, NULL, &objRect3);
             }
-
         }
         else{
             cout << "Vous ne possédez pas l'objet " << e << endl;
@@ -334,6 +334,29 @@ int menu(bool skipIntro)
         fclose(objFile);
     }
     SDL_RenderPresent(mainRenderer);
+    chooseIcon = getUserInput();
+    if (chooseIcon !=0){
+        FILE* iconFile = NULL;
+        FILE* iconFile2 = NULL;
+        switch(chooseIcon)
+        {
+            case 1:
+                cout << "Vous avez choisi l'item 1" << endl;
+                iconFile = fopen("user/icon.txt", "w");
+                fputs("1", iconFile);
+                fclose(iconFile);
+                break;
+            case 2:
+                cout << "Vous avez choisi l'item 2" << endl;
+                iconFile2 = fopen("user/icon.txt", "w");
+                fputs("2", iconFile2);
+                fclose(iconFile2);
+                break;
+            default:
+                cout << "Cet item n'est pas disponible" << endl;
+                break;
+        }
+    }
     quitCollection = getUserInput();
     while (quitCollection != -2){ //tant que l'utilisateur ne quitte pas la collection
         quitCollection = getUserInput();
