@@ -11,6 +11,7 @@ dir:
 	mkdir -p bin
 	mkdir -p user
 	cd user && touch name.txt && touch coins.txt && touch icon.txt 
+	cd user && mkdir -p icons
 	cd user/icons && touch 0.txt 1.txt 2.txt 3.txt
 	
 
