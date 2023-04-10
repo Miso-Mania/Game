@@ -235,9 +235,8 @@ int menu(bool skipIntro)
     SDL_Texture *item2Texture = SDL_CreateTextureFromSurface(mainRenderer, item2Surface);
     SDL_Rect item2Rect = {300, 132, 100, 100};
     SDL_RenderCopy(mainRenderer, item2Texture, NULL, &item2Rect);
-
-
     SDL_RenderPresent(mainRenderer);
+
     // on demande au joueur de choisir entre le mode edition, le mode jeu ou le leaderboard, en fonction de l'input
     //on récupère l'argent du joueur
     FILE* moneyFile = NULL;
@@ -248,13 +247,12 @@ int menu(bool skipIntro)
     cout << "Vous avez " << money << " coins" << endl;
     fclose(moneyFile);
 
-
     itemToBuy = getUserInput();
     if (itemToBuy !=0){
         switch(itemToBuy)
         {
             case 1:
-                if(money >= 100){
+                if(money >= 150){
                     cout << "Vous avez acheté l'item 1" << endl;
                     FILE* iconFile = NULL;
                     iconFile = fopen("user/icon.txt", "w");
@@ -264,16 +262,15 @@ int menu(bool skipIntro)
                     objFile = fopen("user/icons/1.txt", "w");
                     fputs("1", objFile);
                     fclose(objFile);
-                    money -= 100;
+                    money -= 150;
                     break;
-                
                 }
                 else{
                     cout << "Vous n'avez pas assez d'argent" << endl;
                 }
                 break;
             case 2:
-                if(money >= 200){
+                if(money >= 150){
                     cout << "Vous avez acheté l'item 2" << endl;
                     FILE* iconFile = NULL;
                     iconFile = fopen("user/icon.txt", "w");
@@ -283,7 +280,7 @@ int menu(bool skipIntro)
                     objFile2 = fopen("user/icons/2.txt", "w");
                     fputs("1", objFile2);
                     fclose(objFile2);
-                    money -= 200;
+                    money -= 150;
                     break;
                 
                 }
@@ -312,21 +309,21 @@ int menu(bool skipIntro)
     SDL_Texture *collectionTexture = SDL_CreateTextureFromSurface(mainRenderer, collectionSurface);
     SDL_Rect mainRect = {0, 0, 1280, 720};
     SDL_RenderCopy(mainRenderer, collectionTexture, NULL, &mainRect);
-    for (int e = 0; e < 3; e++)
+    SDL_Surface *objSurface2 = IMG_Load("assets/icons/0.png");
+    SDL_Texture *objTexture2 = SDL_CreateTextureFromSurface(mainRenderer, objSurface2);
+    SDL_Rect objRect2 = {200 , 100, 200, 200};
+    SDL_RenderCopy(mainRenderer, objTexture2, NULL, &objRect2);
+    for (int e = 1; e < 3; e++)
     {
         FILE* objFile = NULL;
         objFile = fopen(("user/icons/" + to_string(e) + ".txt").c_str(), "r");
+        cout << "opening file "<< "user/icons/" + to_string(e) + ".txt" << endl;
         char objChar [2]; 
         fgets(objChar, 2,  objFile);
         int obj = atoi(objChar);
+        cout<< obj << endl;
         if (obj == 1){
             cout << "Vous possédez l'objet " << e << endl;  
-            if(e == 0){
-            SDL_Surface *objSurface2 = IMG_Load("assets/icons/0.png");
-            SDL_Texture *objTexture2 = SDL_CreateTextureFromSurface(mainRenderer, objSurface2);
-            SDL_Rect objRect2 = {200 , 100, 200, 200};
-            SDL_RenderCopy(mainRenderer, objTexture2, NULL, &objRect2);
-            }    
             if(e == 1){
             SDL_Surface *objSurface1 = IMG_Load("assets/icons/1.png");
             SDL_Texture *objTexture1 = SDL_CreateTextureFromSurface(mainRenderer, objSurface1);
@@ -344,6 +341,10 @@ int menu(bool skipIntro)
             cout << "Vous ne possédez pas l'objet " << e << endl;
         }
         fclose(objFile);
+        //si on remet pas à 0, tous les objets sont considérés comme possédés si on a au moins un objet
+        obj = 0;
+        objFile = NULL;
+        objChar[0] = '\0';
     }
     SDL_RenderPresent(mainRenderer);
     chooseIcon = getUserInput();
