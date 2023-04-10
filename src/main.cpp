@@ -9,6 +9,8 @@ int activity = 446;
 bool editorMode = false;
 bool speedrunMode = false;
 int itemToBuy = 0;
+int quitCollection = 0;
+int chooseIcon = 444;
 string username = "";
 
 string auth()
@@ -178,6 +180,13 @@ int menu(bool skipIntro)
     SDL_RenderCopy(mainRenderer, activityTexture, NULL, &mainRect);
     SDL_RenderPresent(mainRenderer);
     // on demande au joueur de choisir entre le mode edition, le mode jeu ou le leaderboard, en fonction de l'input
+    cout << "1 - Jouer" << endl;
+    cout << "2 - Editeur" << endl;
+    cout << "3 - Leaderboard" << endl;
+    cout << "4 - Speedrun" << endl;
+    cout << "5 - Shop" << endl;
+    cout << "6 - Collection" << endl;
+    cout << "Echap - Quitter" << endl;
     activity = getUserInput();
 
     // on ferme la fenêtre
@@ -209,6 +218,7 @@ int menu(bool skipIntro)
         level = 1;
     }
     if (activity == 5)
+
     { // mode shop
 
     SDL_Surface *shopSurface = IMG_Load("assets/textures/shop.png");
@@ -238,6 +248,10 @@ int menu(bool skipIntro)
                     iconFile = fopen("user/icon.txt", "w");
                     fputs("1", iconFile);
                     fclose(iconFile);
+                    FILE* objFile = NULL;
+                    objFile = fopen("user/icons/1.txt", "w");
+                    fputs("1", objFile);
+                    fclose(objFile);
                     money -= 100;
                     break;
                 
@@ -253,6 +267,10 @@ int menu(bool skipIntro)
                     iconFile = fopen("user/icon.txt", "w");
                     fputs("2", iconFile);
                     fclose(iconFile);
+                    FILE* objFile2 = NULL;
+                    objFile2 = fopen("user/icons/2.txt", "w");
+                    fputs("1", objFile2);
+                    fclose(objFile2);
                     money -= 200;
                     break;
                 
@@ -274,7 +292,85 @@ int menu(bool skipIntro)
     SDL_DestroyTexture(shopTexture);
     SDL_FreeSurface(shopSurface);
     } 
-} 
+    }
+    if (activity == 6) //collection
+    {
+        
+    SDL_Surface *collectionSurface = IMG_Load("assets/textures/cat-waves.png"); //temporaire
+    SDL_Texture *collectionTexture = SDL_CreateTextureFromSurface(mainRenderer, collectionSurface);
+    SDL_Rect mainRect = {0, 0, 1280, 720};
+    SDL_RenderCopy(mainRenderer, collectionTexture, NULL, &mainRect);
+    for (int e = 0; e < 3; e++)
+    {
+        FILE* objFile = NULL;
+        objFile = fopen(("user/icons/" + to_string(e) + ".txt").c_str(), "r");
+        char objChar [2]; 
+        fgets(objChar, 2,  objFile);
+        int obj = atoi(objChar);
+        if (obj == 1){
+            cout << "Vous possédez l'objet " << e << endl;  
+            if(e == 0){
+            SDL_Surface *objSurface2 = IMG_Load("assets/icons/0.png");
+            SDL_Texture *objTexture2 = SDL_CreateTextureFromSurface(mainRenderer, objSurface2);
+            SDL_Rect objRect2 = {200 , 100, 200, 200};
+            SDL_RenderCopy(mainRenderer, objTexture2, NULL, &objRect2);
+            }    
+            if(e == 1){
+            SDL_Surface *objSurface1 = IMG_Load("assets/icons/1.png");
+            SDL_Texture *objTexture1 = SDL_CreateTextureFromSurface(mainRenderer, objSurface1);
+            SDL_Rect objRect1 = {410 + (e-1) * 210, 100, 200, 200};
+            SDL_RenderCopy(mainRenderer, objTexture1, NULL, &objRect1);
+            }
+            if(e == 2){
+            SDL_Surface *objSurface3 = IMG_Load("assets/icons/2.png");
+            SDL_Texture *objTexture3 = SDL_CreateTextureFromSurface(mainRenderer, objSurface3);
+            SDL_Rect objRect3 = {420 + (e-1) * 210 , 100, 200, 200};
+            SDL_RenderCopy(mainRenderer, objTexture3, NULL, &objRect3);
+            }
+        }
+        else{
+            cout << "Vous ne possédez pas l'objet " << e << endl;
+        }
+        fclose(objFile);
+    }
+    SDL_RenderPresent(mainRenderer);
+    chooseIcon = getUserInput();
+    FILE* iconFile0 = NULL;
+    FILE* iconFile = NULL;
+    FILE* iconFile2 = NULL;
+    switch(chooseIcon)
+    {
+        case 0:
+            cout << "Vous avez choisi l'item 0" << endl;
+            iconFile0 = fopen("user/icon.txt", "w");
+            fputs("0", iconFile0);
+            fclose(iconFile0);
+            break;
+        case 1:
+            cout << "Vous avez choisi l'item 1" << endl;
+            iconFile = fopen("user/icon.txt", "w");
+            fputs("1", iconFile);
+            fclose(iconFile);
+            break;
+        case 2:
+            cout << "Vous avez choisi l'item 2" << endl;
+            iconFile2 = fopen("user/icon.txt", "w");
+            fputs("2", iconFile2);
+            fclose(iconFile2);
+            break;
+        default:
+            cout << "Cet item n'est pas disponible" << endl;
+            break;
+    }
+    quitCollection = getUserInput();
+    while (quitCollection != -2){ //tant que l'utilisateur ne quitte pas la collection
+        quitCollection = getUserInput();
+    }
+    // on ferme la fenêtre
+    SDL_DestroyTexture(collectionTexture);
+    SDL_FreeSurface(collectionSurface);
+    }
+        
     if (activity == -2)
     {
         SDL_DestroyWindow(menuWindow);
