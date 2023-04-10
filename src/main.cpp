@@ -235,7 +235,14 @@ int menu(bool skipIntro)
     SDL_Texture *item2Texture = SDL_CreateTextureFromSurface(mainRenderer, item2Surface);
     SDL_Rect item2Rect = {300, 132, 100, 100};
     SDL_RenderCopy(mainRenderer, item2Texture, NULL, &item2Rect);
+
+    SDL_Surface *item3Surface = IMG_Load("assets/icons/3.png");
+    SDL_Texture *item3Texture = SDL_CreateTextureFromSurface(mainRenderer, item3Surface);
+    SDL_Rect item3Rect = {500, 132, 100, 100};
+    SDL_RenderCopy(mainRenderer, item3Texture, NULL, &item3Rect);
+
     SDL_RenderPresent(mainRenderer);
+
 
     // on demande au joueur de choisir entre le mode edition, le mode jeu ou le leaderboard, en fonction de l'input
     //on récupère l'argent du joueur
@@ -265,10 +272,6 @@ int menu(bool skipIntro)
                     money -= 150;
                     break;
                 }
-                else{
-                    cout << "Vous n'avez pas assez d'argent" << endl;
-                }
-                break;
             case 2:
                 if(money >= 150){
                     cout << "Vous avez acheté l'item 2" << endl;
@@ -284,10 +287,20 @@ int menu(bool skipIntro)
                     break;
                 
                 }
-                else{
-                    cout << "Vous n'avez pas assez d'argent" << endl;
+            case 3:
+                if(money >= 150){
+                    cout << "Vous avez acheté l'item 3" << endl;
+                    FILE* iconFile = NULL;
+                    iconFile = fopen("user/icon.txt", "w");
+                    fputs("3", iconFile);
+                    fclose(iconFile);
+                    FILE* objFile3 = NULL;
+                    objFile3 = fopen("user/icons/3.txt", "w");
+                    fputs("1", objFile3);
+                    fclose(objFile3);
+                    money -= 150;
+                    break;
                 }
-                break;
             default:
                 cout << "Cet item n'est pas disponible" << endl;
                 break;
@@ -335,6 +348,12 @@ int menu(bool skipIntro)
             SDL_Texture *objTexture3 = SDL_CreateTextureFromSurface(mainRenderer, objSurface3);
             SDL_Rect objRect3 = {420 + (e-1) * 210 , 100, 200, 200};
             SDL_RenderCopy(mainRenderer, objTexture3, NULL, &objRect3);
+            }
+            if (e == 3){
+            SDL_Surface *objSurface4 = IMG_Load("assets/icons/3.png");
+            SDL_Texture *objTexture4 = SDL_CreateTextureFromSurface(mainRenderer, objSurface4);
+            SDL_Rect objRect4 = {430 + (e-1) * 210 , 100, 200, 200};
+            SDL_RenderCopy(mainRenderer, objTexture4, NULL, &objRect4);
             }
         }
         else{
