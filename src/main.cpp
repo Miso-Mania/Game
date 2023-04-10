@@ -322,6 +322,12 @@ int menu(bool skipIntro)
     SDL_Texture *collectionTexture = SDL_CreateTextureFromSurface(mainRenderer, collectionSurface);
     SDL_Rect mainRect = {0, 0, 1280, 720};
     SDL_RenderCopy(mainRenderer, collectionTexture, NULL, &mainRect);
+    SDL_Surface *objSurface1 = IMG_Load("assets/icons/1.png");
+    SDL_Texture *objTexture1 = SDL_CreateTextureFromSurface(mainRenderer, objSurface1);
+    SDL_Surface *objSurface3 = IMG_Load("assets/icons/2.png");
+    SDL_Texture *objTexture3 = SDL_CreateTextureFromSurface(mainRenderer, objSurface3);
+    SDL_Surface *objSurface4 = IMG_Load("assets/icons/3.png");
+    SDL_Texture *objTexture4 = SDL_CreateTextureFromSurface(mainRenderer, objSurface4);
     SDL_Surface *objSurface2 = IMG_Load("assets/icons/0.png");
     SDL_Texture *objTexture2 = SDL_CreateTextureFromSurface(mainRenderer, objSurface2);
     SDL_Rect objRect2 = {200 , 100, 200, 200};
@@ -334,24 +340,22 @@ int menu(bool skipIntro)
         char objChar [2]; 
         fgets(objChar, 2,  objFile);
         int obj = atoi(objChar);
-        cout<< obj << endl;
+        
+
         if (obj == 1){
             cout << "Vous possédez l'objet " << e << endl;  
             if(e == 1){
-            SDL_Surface *objSurface1 = IMG_Load("assets/icons/1.png");
-            SDL_Texture *objTexture1 = SDL_CreateTextureFromSurface(mainRenderer, objSurface1);
+            
             SDL_Rect objRect1 = {410 + (e-1) * 210, 100, 200, 200};
             SDL_RenderCopy(mainRenderer, objTexture1, NULL, &objRect1);
             }
             if(e == 2){
-            SDL_Surface *objSurface3 = IMG_Load("assets/icons/2.png");
-            SDL_Texture *objTexture3 = SDL_CreateTextureFromSurface(mainRenderer, objSurface3);
+            
             SDL_Rect objRect3 = {420 + (e-1) * 210 , 100, 200, 200};
             SDL_RenderCopy(mainRenderer, objTexture3, NULL, &objRect3);
             }
             if (e == 3){
-            SDL_Surface *objSurface4 = IMG_Load("assets/icons/3.png");
-            SDL_Texture *objTexture4 = SDL_CreateTextureFromSurface(mainRenderer, objSurface4);
+            
             SDL_Rect objRect4 = {430 + (e-1) * 210 , 100, 200, 200};
             SDL_RenderCopy(mainRenderer, objTexture4, NULL, &objRect4);
             }
@@ -401,6 +405,15 @@ int menu(bool skipIntro)
     // on ferme la fenêtre
     SDL_DestroyTexture(collectionTexture);
     SDL_FreeSurface(collectionSurface);
+    SDL_DestroyTexture(objTexture2);
+    SDL_FreeSurface(objSurface2);
+    SDL_DestroyTexture(objTexture1);
+    SDL_FreeSurface(objSurface1);
+    SDL_DestroyTexture(objTexture3);
+    SDL_FreeSurface(objSurface3);
+    SDL_DestroyTexture(objTexture4);
+    SDL_FreeSurface(objSurface4);
+
     }
         
     if (activity == -2)
