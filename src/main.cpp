@@ -225,6 +225,18 @@ int menu(bool skipIntro)
     SDL_Texture *shopTexture = SDL_CreateTextureFromSurface(mainRenderer, shopSurface);
     SDL_Rect mainRect = {0, 0, 1280, 720};
     SDL_RenderCopy(mainRenderer, shopTexture, NULL, &mainRect);
+    //on affiche les items
+    SDL_Surface *item1Surface = IMG_Load("assets/icons/1.png");
+    SDL_Texture *item1Texture = SDL_CreateTextureFromSurface(mainRenderer, item1Surface);
+    SDL_Rect item1Rect = {100, 132, 100, 100};
+    SDL_RenderCopy(mainRenderer, item1Texture, NULL, &item1Rect);
+
+    SDL_Surface *item2Surface = IMG_Load("assets/icons/2.png");
+    SDL_Texture *item2Texture = SDL_CreateTextureFromSurface(mainRenderer, item2Surface);
+    SDL_Rect item2Rect = {300, 132, 100, 100};
+    SDL_RenderCopy(mainRenderer, item2Texture, NULL, &item2Rect);
+
+
     SDL_RenderPresent(mainRenderer);
     // on demande au joueur de choisir entre le mode edition, le mode jeu ou le leaderboard, en fonction de l'input
     //on récupère l'argent du joueur
