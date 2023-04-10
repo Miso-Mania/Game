@@ -119,20 +119,20 @@ Game::Game(int inputtypeparam, int levelnumber, bool editMode, string userName, 
         fgets(icon, 2, iconFile);
         fclose(iconFile);
         //si le fichier est vide, on charge l'icone par defaut
-        if (icon[0] == '\0')
+        if (icon[0] == '\0') 
         {
             m_surface_player = IMG_Load("assets/icons/0.png");
         }
-        else{
+        else{ //sinon, on charge l'icone du joueur correspondante à la valeur du fichier
             char iconPath[20] = "assets/icons/";
             strcat(iconPath, icon);
             strcat(iconPath, ".png"); //
             m_surface_player = IMG_Load(iconPath);
         }
     }
-    else
+    else //si le fichier n'existe pas, on charge l'icone par defaut
     {
-
+        cout << "icon.txt not found" << endl;
         m_surface_player = IMG_Load("assets/icons/0.png");
     }
 

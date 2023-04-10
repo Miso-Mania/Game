@@ -335,27 +335,32 @@ int menu(bool skipIntro)
     }
     SDL_RenderPresent(mainRenderer);
     chooseIcon = getUserInput();
-    if (chooseIcon !=0){
-        FILE* iconFile = NULL;
-        FILE* iconFile2 = NULL;
-        switch(chooseIcon)
-        {
-            case 1:
-                cout << "Vous avez choisi l'item 1" << endl;
-                iconFile = fopen("user/icon.txt", "w");
-                fputs("1", iconFile);
-                fclose(iconFile);
-                break;
-            case 2:
-                cout << "Vous avez choisi l'item 2" << endl;
-                iconFile2 = fopen("user/icon.txt", "w");
-                fputs("2", iconFile2);
-                fclose(iconFile2);
-                break;
-            default:
-                cout << "Cet item n'est pas disponible" << endl;
-                break;
-        }
+    FILE* iconFile0 = NULL;
+    FILE* iconFile = NULL;
+    FILE* iconFile2 = NULL;
+    switch(chooseIcon)
+    {
+        case 0:
+            cout << "Vous avez choisi l'item 0" << endl;
+            iconFile0 = fopen("user/icon.txt", "w");
+            fputs("0", iconFile0);
+            fclose(iconFile0);
+            break;
+        case 1:
+            cout << "Vous avez choisi l'item 1" << endl;
+            iconFile = fopen("user/icon.txt", "w");
+            fputs("1", iconFile);
+            fclose(iconFile);
+            break;
+        case 2:
+            cout << "Vous avez choisi l'item 2" << endl;
+            iconFile2 = fopen("user/icon.txt", "w");
+            fputs("2", iconFile2);
+            fclose(iconFile2);
+            break;
+        default:
+            cout << "Cet item n'est pas disponible" << endl;
+            break;
     }
     quitCollection = getUserInput();
     while (quitCollection != -2){ //tant que l'utilisateur ne quitte pas la collection
