@@ -151,7 +151,7 @@ int menu(bool skipIntro)
             std::cerr << "Failed to open audio device: " << Mix_GetError() << std::endl;
         }
 
-        Mix_Music *intro = Mix_LoadMUS("assets/music/gangsta.wav");
+        Mix_Music *intro = Mix_LoadMUS("assets/music/intro.mp3");
         if (!intro)
         {
             std::cerr << "Failed to load intro file: " << Mix_GetError() << std::endl;
@@ -413,7 +413,6 @@ int menu(bool skipIntro)
     SDL_FreeSurface(objSurface3);
     SDL_DestroyTexture(objTexture4);
     SDL_FreeSurface(objSurface4);
-
     }
         
     if (activity == -2)
@@ -424,9 +423,7 @@ int menu(bool skipIntro)
 
     if (!speedrunMode)
     {
-        // on pause pour 0.1 seconde
         SDL_Delay(100);
-
         // on ouvre le menu suivant
         SDL_Surface *levelSurface = IMG_Load("assets/textures/level.png");
         SDL_Texture *levelTexture = SDL_CreateTextureFromSurface(mainRenderer, levelSurface);

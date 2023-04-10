@@ -56,6 +56,8 @@ Game::Game(int inputtypeparam, int levelnumber, bool editMode, string userName, 
         std::cerr << "Failed to open audio device: " << Mix_GetError() << std::endl;
     }
     Mix_Music *music = Mix_LoadMUS("assets/music/lofi.mp3");
+    Mix_Music *on_the_level = Mix_LoadMUS("assets/music/otl.mp3");
+    Mix_Music *chamber_of_r = Mix_LoadMUS("assets/music/cor.mp3");
     if (!music)
     {
         std::cerr << "Failed to load music file: " << Mix_GetError() << std::endl;
@@ -64,7 +66,10 @@ Game::Game(int inputtypeparam, int levelnumber, bool editMode, string userName, 
     {
         std::cerr << "Failed to play music: " << Mix_GetError() << std::endl;
     }
-    Mix_PlayMusic(music, -1);
+    //on joue les 3 musiques
+    Mix_PlayMusic(on_the_level, -1);
+    Mix_PlayMusic(chamber_of_r, -1);
+
 
     int width, height;
     cout << speedrun << endl;
