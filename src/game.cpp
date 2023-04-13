@@ -499,7 +499,7 @@ void Game::update()
                 m_player.moveTo(1, 23);
                 if (m_currentLevel >= NUM_LEVELS)
                 {
-                    m_currentLevel = 1;
+                    m_currentLevel = 0;
                     cout << "temps : "  << timer << "s" << endl;
                     //on ouvre le fichier /times/speedrun.txt, on va récupérer le temps précédent et le comparer avec le nouveau
                     FILE* fichierTimes = NULL;
@@ -529,6 +529,7 @@ void Game::update()
                         }
                         fclose(fichierTimes);
                     }
+                    timer = 0;
                 }
             }
             else{
