@@ -722,6 +722,69 @@ void Game::update()
         }
     }
 
+    // ajout de particules sur la fin du niveau
+    for(BoxFinish *boxFinish : m_levels[m_currentLevel]->getBoxFinish()){
+        if (rand()%5 == 0)
+        {
+            Coords boxFinishCoords = boxFinish->getCoords();
+            double x = boxFinishCoords.x + rand() / (double)RAND_MAX * 0.5 + 0.25;
+            double y = boxFinishCoords.y + rand() / (double)RAND_MAX * 1.5 + 0.5;
+            double vx = rand() / (double)RAND_MAX * 8 - 4;
+            double vy = rand() / (double)RAND_MAX * 8 - 4;
+            double ax = - vx;
+            double ay = - vy;
+
+            double h = rand() / (double)RAND_MAX * 360;
+            double s = 1;
+            double l = 0.5;
+            
+            // Convert from HSL to RGB
+
+            float chroma = (1 - std::abs(2 * l - 1)) * s;
+            float huePrime = h / 60.0;
+            float component2 = chroma * (1 - std::abs(std::fmod(huePrime, 2) - 1));
+            float red, green, blue;
+            
+            if (0 <= huePrime && huePrime < 1) {
+                red = chroma;
+                green = component2;
+                blue = 0;
+            } else if (1 <= huePrime && huePrime < 2) {
+                red = component2;
+                green = chroma;
+                blue = 0;
+            } else if (2 <= huePrime && huePrime < 3) {
+                red = 0;
+                green = chroma;
+                blue = component2;
+            } else if (3 <= huePrime && huePrime < 4) {
+                red = 0;
+                green = component2;
+                blue = chroma;
+            } else if (4 <= huePrime && huePrime < 5) {
+                red = component2;
+                green = 0;
+                blue = chroma;
+            } else {
+                red = chroma;
+                green = 0;
+                blue = component2;
+            }
+            
+            float lightnessAdjustment = l - chroma / 2;
+            red += lightnessAdjustment;
+            green += lightnessAdjustment;
+            blue += lightnessAdjustment;
+            
+            int r = round(red * 255);
+            int g = round(green * 255);
+            int b = round(blue * 255);
+
+            Particule *p_particule = new Particule(x, y, vx, vy, ax, ay, 1, 0.12, r, g, b, 255);
+            m_particuleSystem.addParticule(p_particule);
+        }
+    }
+
     m_particuleSystem.update(delta);
 
     m_player.updateRect();
