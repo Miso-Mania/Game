@@ -508,17 +508,17 @@ int menu(bool skipIntro)
             }
 
             if (e == 4){
-                SDL_Rect objRect5 = {410 + (e-5) * 210 , 300, 200, 200};
+                SDL_Rect objRect5 = {410 + (e-5) * 210 , 275, 200, 200};
                 SDL_RenderCopy(mainRenderer, objTexture5, NULL, &objRect5);
             }
 
             if (e == 5){
-                SDL_Rect objRect6 = {420 + (e-5) * 210 , 300, 200, 200};
+                SDL_Rect objRect6 = {420 + (e-5) * 210 , 275, 200, 200};
                 SDL_RenderCopy(mainRenderer, objTexture6, NULL, &objRect6);
             }
 
             if (e == 6){
-                SDL_Rect objRect7 = {430 + (e-5) * 210 , 300, 200, 200};
+                SDL_Rect objRect7 = {430 + (e-5) * 210 , 275, 200, 200};
                 SDL_RenderCopy(mainRenderer, objTexture7, NULL, &objRect7);
             }
 
