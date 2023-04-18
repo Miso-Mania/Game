@@ -12,7 +12,8 @@ dir:
 	mkdir -p user
 	cd user && touch name.txt && touch coins.txt && touch icon.txt 
 	cd user && mkdir -p icons
-	cd user/icons && touch 0.txt 1.txt 2.txt 3.txt
+	cd user/icons && touch 0.txt 1.txt 2.txt 3.txt 4.txt 5.txt 6.txt
+
 	
 
 bin/text : $(OBJS)

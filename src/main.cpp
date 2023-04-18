@@ -369,6 +369,19 @@ int menu(bool skipIntro)
     // on ferme la fenêtre
     SDL_DestroyTexture(shopTexture);
     SDL_FreeSurface(shopSurface);
+    SDL_DestroyTexture(item1Texture);
+    SDL_FreeSurface(item1Surface);
+    SDL_DestroyTexture(item2Texture);
+    SDL_FreeSurface(item2Surface);
+    SDL_DestroyTexture(item3Texture);
+    SDL_FreeSurface(item3Surface);
+    SDL_DestroyTexture(item4Texture);
+    SDL_FreeSurface(item4Surface);
+    SDL_DestroyTexture(item5Texture);
+    SDL_FreeSurface(item5Surface);
+    SDL_DestroyTexture(item6Texture);
+    SDL_FreeSurface(item6Surface);
+
     } 
     }
     if (activity == 6) //collection
@@ -386,9 +399,17 @@ int menu(bool skipIntro)
     SDL_Texture *objTexture4 = SDL_CreateTextureFromSurface(mainRenderer, objSurface4);
     SDL_Surface *objSurface2 = IMG_Load("assets/icons/0.png");
     SDL_Texture *objTexture2 = SDL_CreateTextureFromSurface(mainRenderer, objSurface2);
+    SDL_Surface *objSurface5 = IMG_Load("assets/icons/4.png");
+    SDL_Texture *objTexture5 = SDL_CreateTextureFromSurface(mainRenderer, objSurface5);
+    SDL_Surface *objSurface6 = IMG_Load("assets/icons/5.png");
+    SDL_Texture *objTexture6 = SDL_CreateTextureFromSurface(mainRenderer, objSurface6);
+    SDL_Surface *objSurface7 = IMG_Load("assets/icons/6.png");
+    SDL_Texture *objTexture7 = SDL_CreateTextureFromSurface(mainRenderer, objSurface7);
+
+
     SDL_Rect objRect2 = {200 , 100, 200, 200};
     SDL_RenderCopy(mainRenderer, objTexture2, NULL, &objRect2);
-    for (int e = 1; e < 3; e++)
+    for (int e = 1; e < 7; e++)
     {
         FILE* objFile = NULL;
         objFile = fopen(("user/icons/" + to_string(e) + ".txt").c_str(), "r");
@@ -415,6 +436,22 @@ int menu(bool skipIntro)
             SDL_Rect objRect4 = {430 + (e-1) * 210 , 100, 200, 200};
             SDL_RenderCopy(mainRenderer, objTexture4, NULL, &objRect4);
             }
+
+            if (e == 4){
+                SDL_Rect objRect5 = {410 + (e-5) * 210 , 350, 200, 200};
+                SDL_RenderCopy(mainRenderer, objTexture5, NULL, &objRect5);
+            }
+
+            if (e == 5){
+                SDL_Rect objRect6 = {420 + (e-5) * 210 , 350, 200, 200};
+                SDL_RenderCopy(mainRenderer, objTexture6, NULL, &objRect6);
+            }
+
+            if (e == 6){
+                SDL_Rect objRect7 = {430 + (e-5) * 210 , 350, 200, 200};
+                SDL_RenderCopy(mainRenderer, objTexture7, NULL, &objRect7);
+            }
+
         }
         else{
             cout << "Vous ne possédez pas l'objet " << e << endl;
@@ -469,6 +506,13 @@ int menu(bool skipIntro)
     SDL_FreeSurface(objSurface3);
     SDL_DestroyTexture(objTexture4);
     SDL_FreeSurface(objSurface4);
+    SDL_DestroyTexture(objTexture5);
+    SDL_FreeSurface(objSurface5);
+    SDL_DestroyTexture(objTexture6);
+    SDL_FreeSurface(objSurface6);
+    SDL_DestroyTexture(objTexture7);
+    SDL_FreeSurface(objSurface7);
+
     }
         
     if (activity == -2)
