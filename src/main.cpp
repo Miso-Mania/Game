@@ -260,8 +260,15 @@ int menu(bool skipIntro)
     SDL_Rect item6Rect = {500, 362, 100, 100};
     SDL_RenderCopy(mainRenderer, item6Texture, NULL, &item6Rect);
 
+    SDL_Surface *item7Surface = IMG_Load("assets/icons/7.png");
+    SDL_Texture *item7Texture = SDL_CreateTextureFromSurface(mainRenderer, item7Surface);
+    SDL_Rect item7Rect = {100, 592, 100, 100};
+    SDL_RenderCopy(mainRenderer, item7Texture, NULL, &item7Rect);
 
-    
+    SDL_Surface *item8Surface = IMG_Load("assets/icons/8.png");
+    SDL_Texture *item8Texture = SDL_CreateTextureFromSurface(mainRenderer, item8Surface);
+    SDL_Rect item8Rect = {300, 592, 100, 100};
+    SDL_RenderCopy(mainRenderer, item8Texture, NULL, &item8Rect);
 
     //on récupère l'argent du joueur
     FILE* moneyFile = NULL;
@@ -378,6 +385,36 @@ int menu(bool skipIntro)
                     money -= 350;
                     break;
                 }
+                case 7:
+                if(money >= 500){
+                    cout << "Vous avez acheté l'item 7" << endl;
+                    FILE* iconFile = NULL;
+                    iconFile = fopen("user/icon.txt", "w");
+                    fputs("7", iconFile);
+                    fclose(iconFile);
+                    FILE* objFile7 = NULL;
+                    objFile7 = fopen("user/icons/7.txt", "w");
+                    fputs("1", objFile7);
+                    fclose(objFile7);
+                    money -= 500;
+                    break;
+                }
+                case 8:
+                if(money >= 500){
+                    cout << "Vous avez acheté l'item 8" << endl;
+                    FILE* iconFile = NULL;
+                    iconFile = fopen("user/icon.txt", "w");
+                    fputs("8", iconFile);
+                    fclose(iconFile);
+                    FILE* objFile8 = NULL;
+                    objFile8 = fopen("user/icons/8.txt", "w");
+                    fputs("1", objFile8);
+                    fclose(objFile8);
+                    money -= 500;
+                    break;
+                }
+
+
             default:
                 cout << "Cet item n'est pas disponible" << endl;
                 break;
@@ -402,6 +439,10 @@ int menu(bool skipIntro)
     SDL_FreeSurface(item5Surface);
     SDL_DestroyTexture(item6Texture);
     SDL_FreeSurface(item6Surface);
+    SDL_DestroyTexture(item7Texture);
+    SDL_FreeSurface(item7Surface);
+    SDL_DestroyTexture(item8Texture);
+    SDL_FreeSurface(item8Surface);
     SDL_DestroyTexture(textTexture);
     SDL_FreeSurface(textSurface);
 
@@ -429,11 +470,16 @@ int menu(bool skipIntro)
     SDL_Texture *objTexture6 = SDL_CreateTextureFromSurface(mainRenderer, objSurface6);
     SDL_Surface *objSurface7 = IMG_Load("assets/icons/6.png");
     SDL_Texture *objTexture7 = SDL_CreateTextureFromSurface(mainRenderer, objSurface7);
+    SDL_Surface *objSurface8 = IMG_Load("assets/icons/7.png");
+    SDL_Texture *objTexture8 = SDL_CreateTextureFromSurface(mainRenderer, objSurface8);
+    SDL_Surface *objSurface9 = IMG_Load("assets/icons/8.png");
+    SDL_Texture *objTexture9 = SDL_CreateTextureFromSurface(mainRenderer, objSurface9);
+
 
 
     SDL_Rect objRect2 = {200 , 100, 200, 200};
     SDL_RenderCopy(mainRenderer, objTexture2, NULL, &objRect2);
-    for (int e = 1; e < 7; e++)
+    for (int e = 1; e < 9; e++)
     {
         FILE* objFile = NULL;
         objFile = fopen(("user/icons/" + to_string(e) + ".txt").c_str(), "r");
@@ -476,6 +522,16 @@ int menu(bool skipIntro)
                 SDL_RenderCopy(mainRenderer, objTexture7, NULL, &objRect7);
             }
 
+            if (e == 7){
+                SDL_Rect objRect8 = {410 + (e-8) * 210 , 600, 200, 200};
+                SDL_RenderCopy(mainRenderer, objTexture8, NULL, &objRect8);
+            }
+
+            if (e == 8){
+                SDL_Rect objRect9 = {420 + (e-8) * 210 , 600, 200, 200};
+                SDL_RenderCopy(mainRenderer, objTexture9, NULL, &objRect9);
+            }
+
         }
         else{
             cout << "Vous ne possédez pas l'objet " << e << endl;
@@ -495,6 +551,8 @@ int menu(bool skipIntro)
     FILE* iconFile4 = NULL;
     FILE* iconFile5 = NULL;
     FILE* iconFile6 = NULL;
+    FILE* iconFile7 = NULL;
+    FILE* iconFile8 = NULL;
 
     switch(chooseIcon)
     {
@@ -541,6 +599,14 @@ int menu(bool skipIntro)
             fputs("6", iconFile6);
             fclose(iconFile6);
             break;
+        case 8:
+            cout << "Vous avez choisi l'item 7" << endl;
+            iconFile7 = fopen("user/icon.txt", "w");
+            fputs("7", iconFile7);
+            fclose(iconFile7);
+            break;
+        case 9:
+        
         default:
             cout << "Cet item n'est pas disponible" << endl;
             break;
@@ -566,6 +632,11 @@ int menu(bool skipIntro)
     SDL_FreeSurface(objSurface6);
     SDL_DestroyTexture(objTexture7);
     SDL_FreeSurface(objSurface7);
+    SDL_DestroyTexture(objTexture8);
+    SDL_FreeSurface(objSurface8);
+    SDL_DestroyTexture(objTexture9);
+    SDL_FreeSurface(objSurface9);
+
     }
         
     if (activity == -2)
