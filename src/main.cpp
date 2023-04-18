@@ -241,10 +241,24 @@ int menu(bool skipIntro)
     SDL_Rect item3Rect = {500, 132, 100, 100};
     SDL_RenderCopy(mainRenderer, item3Texture, NULL, &item3Rect);
 
+    SDL_Surface *item4Surface = IMG_Load("assets/icons/4.png");
+    SDL_Texture *item4Texture = SDL_CreateTextureFromSurface(mainRenderer, item4Surface);
+    SDL_Rect item4Rect = {100, 362, 100, 100};
+    SDL_RenderCopy(mainRenderer, item4Texture, NULL, &item4Rect);
+
+    SDL_Surface *item5Surface = IMG_Load("assets/icons/5.png");
+    SDL_Texture *item5Texture = SDL_CreateTextureFromSurface(mainRenderer, item5Surface);
+    SDL_Rect item5Rect = {300, 362, 100, 100};
+    SDL_RenderCopy(mainRenderer, item5Texture, NULL, &item5Rect);
+
+    SDL_Surface *item6Surface = IMG_Load("assets/icons/6.png");
+    SDL_Texture *item6Texture = SDL_CreateTextureFromSurface(mainRenderer, item6Surface);
+    SDL_Rect item6Rect = {500, 362, 100, 100};
+    SDL_RenderCopy(mainRenderer, item6Texture, NULL, &item6Rect);
+
+
     SDL_RenderPresent(mainRenderer);
 
-
-    // on demande au joueur de choisir entre le mode edition, le mode jeu ou le leaderboard, en fonction de l'input
     //on récupère l'argent du joueur
     FILE* moneyFile = NULL;
     moneyFile = fopen("user/coins.txt", "r");
@@ -299,6 +313,48 @@ int menu(bool skipIntro)
                     fputs("1", objFile3);
                     fclose(objFile3);
                     money -= 150;
+                    break;
+                }
+                case 4:
+                if(money >= 350){
+                    cout << "Vous avez acheté l'item 4" << endl;
+                    FILE* iconFile = NULL;
+                    iconFile = fopen("user/icon.txt", "w");
+                    fputs("4", iconFile);
+                    fclose(iconFile);
+                    FILE* objFile4 = NULL;
+                    objFile4 = fopen("user/icons/4.txt", "w");
+                    fputs("1", objFile4);
+                    fclose(objFile4);
+                    money -= 350;
+                    break;
+                }
+                case 5:
+                if(money >= 350){
+                    cout << "Vous avez acheté l'item 5" << endl;
+                    FILE* iconFile = NULL;
+                    iconFile = fopen("user/icon.txt", "w");
+                    fputs("5", iconFile);
+                    fclose(iconFile);
+                    FILE* objFile5 = NULL;
+                    objFile5 = fopen("user/icons/5.txt", "w");
+                    fputs("1", objFile5);
+                    fclose(objFile5);
+                    money -= 350;
+                    break;
+                }
+                case 6:
+                if(money >= 350){
+                    cout << "Vous avez acheté l'item 6" << endl;
+                    FILE* iconFile = NULL;
+                    iconFile = fopen("user/icon.txt", "w");
+                    fputs("6", iconFile);
+                    fclose(iconFile);
+                    FILE* objFile6 = NULL;
+                    objFile6 = fopen("user/icons/6.txt", "w");
+                    fputs("1", objFile6);
+                    fclose(objFile6);
+                    money -= 350;
                     break;
                 }
             default:
