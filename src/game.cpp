@@ -235,6 +235,9 @@ Game::~Game()
     SDL_FreeSurface(m_surface_BoxCmgtGrav);
     SDL_DestroyTexture(m_texture_BoxCmgtGrav);
 
+    SDL_FreeSurface(m_surface_Timer);
+    SDL_DestroyTexture(m_texture_Timer);
+
     Mix_FreeMusic(music);
     Mix_CloseAudio();
     Mix_Quit();
