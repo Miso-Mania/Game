@@ -258,7 +258,7 @@ int menu(bool skipIntro)
     SDL_RenderCopy(mainRenderer, item6Texture, NULL, &item6Rect);
 
 
-    SDL_RenderPresent(mainRenderer);
+    
 
     //on récupère l'argent du joueur
     FILE* moneyFile = NULL;
@@ -268,7 +268,23 @@ int menu(bool skipIntro)
     int money = atoi(moneyChar);
     cout << "Vous avez " << money << " coins" << endl;
     fclose(moneyFile);
+    //on affiche un texte avec l'argent du joueur
+    TTF_Init();
+    const char *fontPath = "font/Kemco Pixel Bold.ttf";
+    
+    TTF_Font *font = TTF_OpenFont(fontPath, 30);
+    if (font == NULL)
+    {
+        cout << "Erreur lors du chargement de la police" << endl;
+    }
 
+    SDL_Color color = {255, 255, 255};
+    SDL_Surface *textSurface = TTF_RenderText_Solid(font, ("Vous avez " + to_string(money) + " coins").c_str(), color);
+    SDL_Texture *textTexture = SDL_CreateTextureFromSurface(mainRenderer, textSurface);
+    SDL_Rect textRect = {900, 650, 300, 75};
+    SDL_RenderCopy(mainRenderer, textTexture, NULL, &textRect);
+
+    SDL_RenderPresent(mainRenderer);
 
     itemToBuy = getUserInput();
     if (itemToBuy !=0){
