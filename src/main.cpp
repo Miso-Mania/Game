@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include <SDL2/SDL_mixer.h>
+#include <SDL2/SDL_ttf.h>
 using namespace std;
 int input = 444;
 int level = 445;
@@ -225,6 +226,21 @@ int menu(bool skipIntro)
     int money = atoi(moneyChar);
     cout << "Vous avez " << money << " coins" << endl;
     fclose(moneyFile);
+
+    //on affiche l'argent du joueur
+    TTF_Init();
+    TTF_Font *font = TTF_OpenFont("assets/font/Kemco Pixel Bold.ttf", 50);
+    SDL_Color color = {255, 255, 255};
+    string money_string = to_string(money);
+    char char_money[money_string.size() + 1];
+    strcpy(char_money, money_string.c_str());
+    SDL_Surface *moneySurface = TTF_RenderText_Solid(font, char_money, color);
+    SDL_Texture *moneyTexture = SDL_CreateTextureFromSurface(mainRenderer, moneySurface);
+    SDL_Rect moneyRect = {100, 100, 100, 100};
+    SDL_RenderCopy(mainRenderer, moneyTexture, NULL, &moneyRect);
+    SDL_RenderPresent(mainRenderer);
+    //on affiche les items
+
 
 
     itemToBuy = getUserInput();
