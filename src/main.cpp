@@ -278,10 +278,10 @@ int menu(bool skipIntro)
         cout << "Erreur lors du chargement de la police" << endl;
     }
 
-    SDL_Color color = {255, 255, 255};
+    SDL_Color color = {245, 173, 100};
     SDL_Surface *textSurface = TTF_RenderText_Solid(font, ("Vous avez " + to_string(money) + " coins").c_str(), color);
     SDL_Texture *textTexture = SDL_CreateTextureFromSurface(mainRenderer, textSurface);
-    SDL_Rect textRect = {900, 650, 300, 75};
+    SDL_Rect textRect = {900, 650, 300, 30};
     SDL_RenderCopy(mainRenderer, textTexture, NULL, &textRect);
 
     SDL_RenderPresent(mainRenderer);
