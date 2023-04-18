@@ -146,6 +146,11 @@ public:
     */
     void moveOutOf(BoxCmgtGrav *BoxCmgtGrav);
 /**
+     @brief fonction qui permet de repousser le joueur si il est en collision un ennemy
+     @param Enemy *Enemy
+     */
+    void moveOutOf(Enemy *Enemy);
+/**
     @brief fonction qui permet de repousser le joueur selon les coordonnées
     @param Coords coords
     */

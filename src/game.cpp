@@ -104,7 +104,7 @@ Game::Game(int inputtypeparam, int levelnumber, bool editMode) : m_window(NULL),
     m_surface_BoxFinish = IMG_Load("assets/textures/porte_fin.png");
     m_texture_BoxFinish = SDL_CreateTextureFromSurface(m_renderer, m_surface_BoxFinish);
 
-    m_surface_Enemy = IMG_Load("assets/textures/rondvert.png");
+    m_surface_Enemy = IMG_Load("assets/textures/samurai.png");
     m_texture_Enemy = SDL_CreateTextureFromSurface(m_renderer, m_surface_Enemy);
 
     std::cout << "textures loaded" << endl;
@@ -266,12 +266,6 @@ void Game::handleEvents(SDL_Event &event)
             break;
         case SDLK_SPACE:
             m_player.jump();
-            break;
-        case SDLK_k:
-            m_enemy.setDirection(EnemyDirection::LEFT);
-            break;
-        case SDLK_l:
-            m_enemy.setDirection(EnemyDirection::RIGHT);
             break;
         }
     }
@@ -509,11 +503,6 @@ void Game::update()
     {
         boxCmgtGrav->move(delta);
     }
-    // Mise à jour de la position des Enemys
-    for (Enemy *enemy : m_levels[m_currentLevel]->getEnemy())
-    {
-        enemy->move(delta);
-    }
     
     // Collision du joueur avec les pics stop la partie
     for (Pic *pic : m_levels[m_currentLevel]->getPics())
@@ -524,13 +513,13 @@ void Game::update()
             timer = 0;
         }
     }
-    // Collision du joueur avec l'enemy stop la partie
-    for (Enemy *Enemy : m_levels[m_currentLevel]->getEnemy())
+    // Collision du joueur avec l'enemy repousse le joueur
+    for (Enemy *enemy : m_levels[m_currentLevel]->getEnemy())
     {
-        if (m_player.collidesWith(Enemy))
+        if (m_player.collidesWith(enemy))
         {
-            m_player.moveTo(1, 23);
-            timer = 0;
+            m_player.moveOutOf(enemy);
+            m_player.move(1);
         }
     }
     // Collision du joueur avec les doublejumpport fait un double saut

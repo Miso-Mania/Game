@@ -131,6 +131,10 @@ void Player::moveOutOf(BoxCmgtGrav *BoxCmgtGrav){
     moveOutOfCoords(BoxCmgtGrav->getCoords());
 }
 
+void Player::moveOutOf(Enemy *Enemy){
+    moveOutOfCoords(Enemy->getCoords());
+}
+
 void Player::incTimeSinceTouchGround(double delta) {
     timeSinceTouchGround += delta;
 }
