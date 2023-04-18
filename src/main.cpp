@@ -491,25 +491,55 @@ int menu(bool skipIntro)
     FILE* iconFile0 = NULL;
     FILE* iconFile = NULL;
     FILE* iconFile2 = NULL;
+    FILE* iconFile3 = NULL;
+    FILE* iconFile4 = NULL;
+    FILE* iconFile5 = NULL;
+    FILE* iconFile6 = NULL;
+
     switch(chooseIcon)
     {
-        case 0:
+        //on decale tout de 1 car les iconex commencent à 0
+        case 1:
             cout << "Vous avez choisi l'item 0" << endl;
             iconFile0 = fopen("user/icon.txt", "w");
             fputs("0", iconFile0);
             fclose(iconFile0);
             break;
-        case 1:
+        case 2:
             cout << "Vous avez choisi l'item 1" << endl;
             iconFile = fopen("user/icon.txt", "w");
             fputs("1", iconFile);
             fclose(iconFile);
             break;
-        case 2:
+        case 3:
             cout << "Vous avez choisi l'item 2" << endl;
             iconFile2 = fopen("user/icon.txt", "w");
             fputs("2", iconFile2);
             fclose(iconFile2);
+            break;
+        case 4:
+            cout << "Vous avez choisi l'item 3" << endl;
+            iconFile3 = fopen("user/icon.txt", "w");
+            fputs("3", iconFile3);
+            fclose(iconFile3);
+            break;
+        case 5:
+            cout << "Vous avez choisi l'item 4" << endl;
+            iconFile4 = fopen("user/icon.txt", "w");
+            fputs("4", iconFile4);
+            fclose(iconFile4);
+            break;
+        case 6:
+            cout << "Vous avez choisi l'item 5" << endl;
+            iconFile5 = fopen("user/icon.txt", "w");
+            fputs("5", iconFile5);
+            fclose(iconFile5);
+            break;
+        case 7:
+            cout << "Vous avez choisi l'item 6" << endl;
+            iconFile6 = fopen("user/icon.txt", "w");
+            fputs("6", iconFile6);
+            fclose(iconFile6);
             break;
         default:
             cout << "Cet item n'est pas disponible" << endl;
@@ -536,7 +566,6 @@ int menu(bool skipIntro)
     SDL_FreeSurface(objSurface6);
     SDL_DestroyTexture(objTexture7);
     SDL_FreeSurface(objSurface7);
-
     }
         
     if (activity == -2)
@@ -609,7 +638,6 @@ int main(int argc, char *argv[])
         game.run();
         skipIntro = true;
     }
-
     SDL_DestroyRenderer(mainRenderer);
     SDL_DestroyWindow(menuWindow);
     SDL_Quit();
