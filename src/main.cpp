@@ -477,7 +477,7 @@ int menu(bool skipIntro)
 
 
 
-    SDL_Rect objRect2 = {200 , 100, 200, 200};
+    SDL_Rect objRect2 = {200 , 50, 200, 200}; //l'objet de base 
     SDL_RenderCopy(mainRenderer, objTexture2, NULL, &objRect2);
     for (int e = 1; e < 9; e++)
     {
@@ -493,42 +493,42 @@ int menu(bool skipIntro)
             cout << "Vous possédez l'objet " << e << endl;  
             if(e == 1){
             
-            SDL_Rect objRect1 = {410 + (e-1) * 210, 100, 200, 200};
+            SDL_Rect objRect1 = {410 + (e-1) * 210, 50, 200, 200};
             SDL_RenderCopy(mainRenderer, objTexture1, NULL, &objRect1);
             }
             if(e == 2){
             
-            SDL_Rect objRect3 = {420 + (e-1) * 210 , 100, 200, 200};
+            SDL_Rect objRect3 = {420 + (e-1) * 210 , 50, 200, 200};
             SDL_RenderCopy(mainRenderer, objTexture3, NULL, &objRect3);
             }
             if (e == 3){
             
-            SDL_Rect objRect4 = {430 + (e-1) * 210 , 100, 200, 200};
+            SDL_Rect objRect4 = {430 + (e-1) * 210 , 50, 200, 200};
             SDL_RenderCopy(mainRenderer, objTexture4, NULL, &objRect4);
             }
 
             if (e == 4){
-                SDL_Rect objRect5 = {410 + (e-5) * 210 , 350, 200, 200};
+                SDL_Rect objRect5 = {410 + (e-5) * 210 , 300, 200, 200};
                 SDL_RenderCopy(mainRenderer, objTexture5, NULL, &objRect5);
             }
 
             if (e == 5){
-                SDL_Rect objRect6 = {420 + (e-5) * 210 , 350, 200, 200};
+                SDL_Rect objRect6 = {420 + (e-5) * 210 , 300, 200, 200};
                 SDL_RenderCopy(mainRenderer, objTexture6, NULL, &objRect6);
             }
 
             if (e == 6){
-                SDL_Rect objRect7 = {430 + (e-5) * 210 , 350, 200, 200};
+                SDL_Rect objRect7 = {430 + (e-5) * 210 , 300, 200, 200};
                 SDL_RenderCopy(mainRenderer, objTexture7, NULL, &objRect7);
             }
 
             if (e == 7){
-                SDL_Rect objRect8 = {410 + (e-8) * 210 , 600, 200, 200};
+                SDL_Rect objRect8 = {410 + (e-8) * 210 , 500, 200, 200};
                 SDL_RenderCopy(mainRenderer, objTexture8, NULL, &objRect8);
             }
 
             if (e == 8){
-                SDL_Rect objRect9 = {420 + (e-8) * 210 , 600, 200, 200};
+                SDL_Rect objRect9 = {420 + (e-8) * 210 , 500, 200, 200};
                 SDL_RenderCopy(mainRenderer, objTexture9, NULL, &objRect9);
             }
 
