@@ -14,6 +14,9 @@ int quitCollection = 0;
 int chooseIcon = 444;
 string username = "";
 
+SDL_Window *menuWindow = SDL_CreateWindow("Menu", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 720, 0);
+SDL_Renderer *mainRenderer = SDL_CreateRenderer(menuWindow, -1, SDL_RENDERER_ACCELERATED);
+
 string auth()
 {
     FILE *name = NULL;
@@ -399,6 +402,9 @@ int menu(bool skipIntro)
     SDL_FreeSurface(item5Surface);
     SDL_DestroyTexture(item6Texture);
     SDL_FreeSurface(item6Surface);
+    SDL_DestroyTexture(textTexture);
+    SDL_FreeSurface(textSurface);
+
 
     } 
     }
@@ -603,6 +609,9 @@ int main(int argc, char *argv[])
         game.run();
         skipIntro = true;
     }
+
+    SDL_DestroyRenderer(mainRenderer);
+    SDL_DestroyWindow(menuWindow);
     SDL_Quit();
     return 0;
 }
