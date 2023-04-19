@@ -551,7 +551,6 @@ int menu(bool skipIntro)
     FILE* iconFile5 = NULL;
     FILE* iconFile6 = NULL;
     FILE* iconFile7 = NULL;
-
     switch(chooseIcon)
     {
         //on decale tout de 1 car les iconex commencent à 0
