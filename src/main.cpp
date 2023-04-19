@@ -531,7 +531,6 @@ int menu(bool skipIntro)
                 SDL_Rect objRect9 = {420 + (e-8) * 210 , 500, 200, 200};
                 SDL_RenderCopy(mainRenderer, objTexture9, NULL, &objRect9);
             }
-
         }
         else{
             cout << "Vous ne possédez pas l'objet " << e << endl;
@@ -552,7 +551,6 @@ int menu(bool skipIntro)
     FILE* iconFile5 = NULL;
     FILE* iconFile6 = NULL;
     FILE* iconFile7 = NULL;
-    FILE* iconFile8 = NULL;
 
     switch(chooseIcon)
     {
