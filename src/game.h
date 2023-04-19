@@ -9,6 +9,7 @@
 #include "player.h"
 #include "enemy.h"
 #include "particule.h"
+#include "playerdirection.h"
 
 using namespace std;
 
@@ -116,6 +117,12 @@ private:
     ParticuleSystem m_particuleSystem; // système de particules
 
     float bestTime; // meilleur temps
+
+    int iconNb; // index de l'icon actuel
+
+    double delta; // delta
+
+    Coords PlayerCoordsLastFrame; // coordonnées du joueur à la dernière frame
 };
 #endif // GAME_H
 

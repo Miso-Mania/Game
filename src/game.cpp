@@ -21,6 +21,7 @@ bool editionMode = false;
 bool speedrun = false;
 string usernameGame = "";
 bool showBar = false;
+int inconNb = 0;
 
 Mix_Music* music = nullptr;
 
@@ -140,6 +141,7 @@ Game::Game(int inputtypeparam, int levelnumber, bool editMode, string userName, 
             strcat(iconPath, icon);
             strcat(iconPath, ".png"); //
             m_surface_player = IMG_Load(iconPath);
+            iconNb = atoi(icon);
         }
     }
     else //si le fichier n'existe pas, on charge l'icone par defaut
@@ -193,6 +195,7 @@ Game::Game(int inputtypeparam, int levelnumber, bool editMode, string userName, 
     ParticuleSystem m_particuleSystem = ParticuleSystem();
 
     timeLastFrame = SDL_GetTicks();
+    PlayerCoordsLastFrame = m_player.getCoords();
 }
 
 Game::~Game()
@@ -411,7 +414,7 @@ void Game::handleEvents(SDL_Event &event)
 void Game::update()
 {
     // Calcul du temps écoulé depuis la dernière mise à jour
-    double delta = (SDL_GetTicks() - timeLastFrame) / 1000.0;
+    delta = (SDL_GetTicks() - timeLastFrame) / 1000.0;
     timeLastFrame = SDL_GetTicks();
     // Mise à jour de la position du joueur
     m_player.move(delta);
@@ -793,12 +796,43 @@ void Game::update()
         }
     }
 
+    // ajout de particules sur le joueur si il a l'icone 7 ou 8
+    Coords p = m_player.getCoords();
+    Coords dir = Coords(p.x - PlayerCoordsLastFrame.x, p.y - PlayerCoordsLastFrame.y, 0, 0);
+    //double dirNorm = sqrt(dir.x * dir.x + dir.y * dir.y);
+    //Coords dirNormed = Coords(dir.x / dirNorm, dir.y / dirNorm, 0, 0);
+    if((iconNb == 7 || iconNb == 8) &&
+        (dir.x != 0 || dir.y != 0) &&
+        !(m_player.getDirection() == PlayerDirection::NONE && m_player.getIsOnGround())){
+        if (rand()%2 == 0){
+            double size = 0.1 + rand() / (double)RAND_MAX * 0.3;
+            double x = p.x + rand() / (double)RAND_MAX * (p.w - size);
+            double y = p.y + rand() / (double)RAND_MAX * (p.h - size);
+            double vx = 0;
+            double vy = 0;
+            double ax = rand() / (double)RAND_MAX * 3 - 1.5;
+            double ay = rand() / (double)RAND_MAX * 3 - 1.5;
+
+            double life = rand() / (double)RAND_MAX * 1 + 0.6;
+            
+            double r = 50 + rand() / (double)RAND_MAX * 40 - 20;
+            double g = 50 + rand() / (double)RAND_MAX * 40 - 20;
+            double b = 235 + rand() / (double)RAND_MAX * 40 - 20;
+
+            Particule *p_particule = new Particule(x, y, vx, vy, ax, ay, life, size, r, g, b, 150);
+            m_particuleSystem.addParticule(p_particule);
+        }
+    }
+
     m_particuleSystem.update(delta);
 
     m_player.updateRect();
+
+    PlayerCoordsLastFrame = m_player.getCoords();
 }
 
 void Game::renderTimer(int y, double time){
+    SDL_SetRenderDrawBlendMode(m_renderer, SDL_BLENDMODE_BLEND);
     int size_timer;
         if(time < 10) size_timer = 4;
         else if(time < 100) size_timer = 5;

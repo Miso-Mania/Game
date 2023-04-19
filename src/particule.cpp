@@ -50,13 +50,14 @@ void ParticuleSystem::update(double delta) {
 }
 
 void ParticuleSystem::render(SDL_Renderer *m_renderer, int windowWidth, int windowHeight) {
+    
+    SDL_SetRenderDrawBlendMode(m_renderer, SDL_BLENDMODE_ADD);
     for (Particule *p : m_particules) {
         SDL_Rect rect;
         rect.x = p->x * 40;
         rect.y = p->y * 40;
         rect.w = p->size * 40;
         rect.h = p->size * 40;
-        SDL_SetRenderDrawBlendMode(m_renderer, SDL_BLENDMODE_BLEND);
         SDL_SetRenderDrawColor(m_renderer, p->r, p->g, p->b, p->a);
         SDL_RenderFillRect(m_renderer, &rect);
     }
