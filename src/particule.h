@@ -7,7 +7,7 @@ class Particule {
         @brief constructeur de la classe Particule
         @param double x, double y, double vx, double vy, double ax, double ay, double life, double size, int r, int g, int b, int a
     */
-        Particule(double x, double y, double vx, double vy, double ax, double ay, double life, double size, int r, int g, int b, int a);
+        Particule(double x, double y, double vx, double vy, double ax, double ay, double life, double size, int r, int g, int b, int a, SDL_BlendMode blendMode);
     /**
         @brief destructeur de la classe Particule
         @param aucun
@@ -33,6 +33,7 @@ class Particule {
         double x, y, vx, vy, ax, ay; // position, vitesse, accélération
         double life, size;           // durée de vie, taille
         int r, g, b, a;              // couleur
+        SDL_BlendMode blendMode;               // mode de fusion
 };
 
 class ParticuleSystem {

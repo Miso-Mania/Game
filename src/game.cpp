@@ -693,7 +693,7 @@ void Game::update()
             double r = 255; //+ rand() / (double)RAND_MAX * 20 - 10;
             double g = 120; //+ rand() / (double)RAND_MAX * 20 - 10;
             double b = 180; //+ rand() / (double)RAND_MAX * 20 - 10;
-            Particule *p_particule = new Particule(x, y, 0.1, 0.3, 0, 0, 5, 0.08, r, g, b, 255);
+            Particule *p_particule = new Particule(x, y, 0.1, 0.3, 0, 0, 5, 0.08, r, g, b, 255, SDL_BLENDMODE_BLEND);
             m_particuleSystem.addParticule(p_particule);
         }
     }
@@ -713,7 +713,7 @@ void Game::update()
             double r = 0; //+ rand() / (double)RAND_MAX * 20 - 10;
             double g = 255; //+ rand() / (double)RAND_MAX * 20 - 10;
             double b = 255; //+ rand() / (double)RAND_MAX * 20 - 10;
-            Particule *p_particule = new Particule(x, y, vx, vy, ax, ay, 0.5, 0.08, r, g, b, 255);
+            Particule *p_particule = new Particule(x, y, vx, vy, ax, ay, 0.5, 0.08, r, g, b, 255, SDL_BLENDMODE_BLEND);
             m_particuleSystem.addParticule(p_particule);
         }
     }
@@ -728,7 +728,7 @@ void Game::update()
             double vy = rand() / (double)RAND_MAX * 1 - 0.5;
             double life = rand() / (double)RAND_MAX * 0.5 + 0.5;
             double size = rand() / (double)RAND_MAX * 0.1 + 0.1;
-            Particule *p_particule = new Particule(x , y, vx, vy, 0, 0, life, size, 255, 255, 255, 100);
+            Particule *p_particule = new Particule(x , y, vx, vy, 0, 0, life, size, 255, 255, 255, 100, SDL_BLENDMODE_BLEND);
             m_particuleSystem.addParticule(p_particule);
         }
     }
@@ -791,7 +791,7 @@ void Game::update()
             int g = round(green * 255);
             int b = round(blue * 255);
 
-            Particule *p_particule = new Particule(x, y, vx, vy, ax, ay, 1, 0.12, r, g, b, 255);
+            Particule *p_particule = new Particule(x, y, vx, vy, ax, ay, 1, 0.12, r, g, b, 255, SDL_BLENDMODE_ADD);
             m_particuleSystem.addParticule(p_particule);
         }
     }
@@ -819,7 +819,7 @@ void Game::update()
             double g = 50 + rand() / (double)RAND_MAX * 40 - 20;
             double b = 235 + rand() / (double)RAND_MAX * 40 - 20;
 
-            Particule *p_particule = new Particule(x, y, vx, vy, ax, ay, life, size, r, g, b, 150);
+            Particule *p_particule = new Particule(x, y, vx, vy, ax, ay, life, size, r, g, b, 150, SDL_BLENDMODE_ADD);
             m_particuleSystem.addParticule(p_particule);
         }
     }
