@@ -1,4 +1,4 @@
-OBJS =  obj/mainText.o obj/main.o obj/game.o obj/player.o obj/obstacle.o obj/level.o obj/score.o obj/pic.o obj/BoxFinish.o obj/tree.o obj/Case.o obj/D_Case.o obj/S_Plateform.o obj/M_Plateform.o obj/L_Plateform.o obj/DoubleJumpPort.o obj/coords.o obj/BoxCmgtGrav.o obj/mainReg.o obj/particule.o obj/enemy.o
+OBJS =  obj/mainText.o obj/main.o obj/game.o obj/player.o obj/obstacle.o obj/level.o obj/score.o obj/pic.o obj/BoxFinish.o obj/tree.o obj/Case.o obj/D_Case.o obj/S_Plateform.o obj/M_Plateform.o obj/L_Plateform.o obj/DoubleJumpPort.o obj/coords.o obj/BoxCmgtGrav.o obj/mainReg.o obj/particule.o obj/enemy.o obj/menu.o
 cc = g++
 CFLAGS = -g -Wall -c
 LIBS = -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer 
@@ -20,7 +20,7 @@ bin/text : $(OBJS)
 	$(cc) obj/mainText.o -o bin/text -lncurses
 
 bin/jeu : $(OBJS)
-	$(cc) $(Include_Dir_SDL2)  obj/main.o obj/game.o obj/player.o obj/obstacle.o obj/level.o obj/score.o obj/pic.o obj/BoxFinish.o obj/tree.o obj/Case.o obj/D_Case.o obj/S_Plateform.o obj/M_Plateform.o obj/L_Plateform.o obj/DoubleJumpPort.o obj/coords.o obj/BoxCmgtGrav.o obj/particule.o obj/enemy.o -o bin/jeu   $(LIBS)
+	$(cc) $(Include_Dir_SDL2)  obj/main.o obj/game.o obj/player.o obj/obstacle.o obj/level.o obj/score.o obj/pic.o obj/BoxFinish.o obj/tree.o obj/Case.o obj/D_Case.o obj/S_Plateform.o obj/M_Plateform.o obj/L_Plateform.o obj/DoubleJumpPort.o obj/coords.o obj/BoxCmgtGrav.o obj/particule.o obj/enemy.o obj/menu.o -o bin/jeu   $(LIBS)
 
 bin/Reg : $(OBJS)
 	$(cc) $(Include_Dir_SDL2)  obj/mainReg.o obj/player.o obj/level.o obj/coords.o obj/tree.o obj/obstacle.o obj/pic.o obj/BoxFinish.o obj/Case.o obj/D_Case.o obj/S_Plateform.o obj/M_Plateform.o obj/L_Plateform.o obj/DoubleJumpPort.o obj/BoxCmgtGrav.o obj/enemy.o -o bin/Reg   $(LIBS)
@@ -87,6 +87,9 @@ obj/mainReg.o: src/mainReg.cpp src/player.h src/level.h src/coords.h src/objets/
 
 obj/enemy.o : src/enemy.cpp src/enemy.h src/enemydirection.h src/coords.h src/objets/Case.h 
 	$(cc) $(CFLAGS) $(Include_Dir_SDL2) src/enemy.cpp -o obj/enemy.o $(LIBS)
+
+obj/menu.o : src/menu.cpp src/menu.h
+	$(cc) $(CFLAGS) $(Include_Dir_SDL2) src/menu.cpp -o obj/menu.o $(LIBS)
 
 
 clean:
