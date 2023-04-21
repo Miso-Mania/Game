@@ -491,6 +491,8 @@ int Menu::menu()
             SDL_Texture *objTexture8 = SDL_CreateTextureFromSurface(mainRenderer, objSurface8);
             SDL_Surface *objSurface9 = IMG_Load("assets/icons/8.png");
             SDL_Texture *objTexture9 = SDL_CreateTextureFromSurface(mainRenderer, objSurface9);
+            SDL_Surface *objSurfaceLock = IMG_Load("assets/textures/padlock.png");
+            SDL_Texture *objTextureLock = SDL_CreateTextureFromSurface(mainRenderer, objSurfaceLock);
 
             SDL_Rect objRect2 = {200, 50, 200, 200}; // l'objet de base
             SDL_RenderCopy(mainRenderer, objTexture2, NULL, &objRect2);
@@ -504,62 +506,101 @@ int Menu::menu()
                 fgets(objChar, 2, objFile);
                 int obj = atoi(objChar);
 
-                if (obj == 1)
-                {
-                    cout << "Vous possédez l'objet " << e << endl;
                     if (e == 1)
                     {
-
                         SDL_Rect objRect1 = {410 + (e - 1) * 210, 50, 200, 200};
-                        SDL_RenderCopy(mainRenderer, objTexture1, NULL, &objRect1);
+                        if (obj != 1)
+                        {
+                            SDL_RenderCopy(mainRenderer, objTextureLock, NULL, &objRect1);
+                        }
+                        else{
+                            SDL_RenderCopy(mainRenderer, objTexture1, NULL, &objRect1);
+                        }
                     }
                     if (e == 2)
                     {
-
                         SDL_Rect objRect3 = {420 + (e - 1) * 210, 50, 200, 200};
-                        SDL_RenderCopy(mainRenderer, objTexture3, NULL, &objRect3);
+                        if (obj != 1)
+                        {
+                            SDL_RenderCopy(mainRenderer, objTextureLock, NULL, &objRect3);
+                        }
+                        else{
+                            SDL_RenderCopy(mainRenderer, objTexture3, NULL, &objRect3);
+                        }
                     }
                     if (e == 3)
                     {
 
                         SDL_Rect objRect4 = {430 + (e - 1) * 210, 50, 200, 200};
-                        SDL_RenderCopy(mainRenderer, objTexture4, NULL, &objRect4);
+                        if (obj != 1)
+                        {
+                            SDL_RenderCopy(mainRenderer, objTextureLock, NULL, &objRect4);
+                        }
+                        else{
+                            SDL_RenderCopy(mainRenderer, objTexture4, NULL, &objRect4);
+                        }
                     }
 
                     if (e == 4)
                     {
                         SDL_Rect objRect5 = {410 + (e - 5) * 210, 275, 200, 200};
-                        SDL_RenderCopy(mainRenderer, objTexture5, NULL, &objRect5);
+                        if (obj != 1)
+                        {
+                            SDL_RenderCopy(mainRenderer, objTextureLock, NULL, &objRect5);
+                        }
+                        else{
+                            SDL_RenderCopy(mainRenderer, objTexture5, NULL, &objRect5);
+                        }
                     }
 
                     if (e == 5)
                     {
                         SDL_Rect objRect6 = {420 + (e - 5) * 210, 275, 200, 200};
-                        SDL_RenderCopy(mainRenderer, objTexture6, NULL, &objRect6);
+                        if (obj != 1)
+                        {
+                            SDL_RenderCopy(mainRenderer, objTextureLock, NULL, &objRect6);
+                        }
+                        else{
+                            SDL_RenderCopy(mainRenderer, objTexture6, NULL, &objRect6);
+                        }
                     }
 
                     if (e == 6)
                     {
                         SDL_Rect objRect7 = {430 + (e - 5) * 210, 275, 200, 200};
-                        SDL_RenderCopy(mainRenderer, objTexture7, NULL, &objRect7);
+                        if (obj != 1)
+                        {
+                            SDL_RenderCopy(mainRenderer, objTextureLock, NULL, &objRect7);
+                        }
+                        else{
+                            SDL_RenderCopy(mainRenderer, objTexture7, NULL, &objRect7);
+                        }
                     }
 
                     if (e == 7)
                     {
                         SDL_Rect objRect8 = {410 + (e - 8) * 210, 500, 200, 200};
-                        SDL_RenderCopy(mainRenderer, objTexture8, NULL, &objRect8);
+                        if (obj != 1)
+                        {
+                            SDL_RenderCopy(mainRenderer, objTextureLock, NULL, &objRect8);
+                        }
+                        else{
+                            SDL_RenderCopy(mainRenderer, objTexture8, NULL, &objRect8);
+                        }
                     }
 
                     if (e == 8)
                     {
                         SDL_Rect objRect9 = {420 + (e - 8) * 210, 500, 200, 200};
-                        SDL_RenderCopy(mainRenderer, objTexture9, NULL, &objRect9);
+                        if (obj != 1)
+                        {
+                            SDL_RenderCopy(mainRenderer, objTextureLock, NULL, &objRect9);
+                        }
+                        else{
+                            SDL_RenderCopy(mainRenderer, objTexture9, NULL, &objRect9);
+                        }
                     }
-                }
-                else
-                {
-                    cout << "Vous ne possédez pas l'objet " << e << endl;
-                }
+
                 fclose(objFile);
                 // si on remet pas à 0, tous les objets sont considérés comme possédés si on a au moins un objet
                 obj = 0;
