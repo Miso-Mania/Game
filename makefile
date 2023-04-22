@@ -1,4 +1,4 @@
-OBJS =  obj/mainText.o obj/main.o obj/game.o obj/player.o obj/obstacle.o obj/level.o obj/score.o obj/pic.o obj/BoxFinish.o obj/tree.o obj/Case.o obj/D_Case.o obj/S_Plateform.o obj/M_Plateform.o obj/L_Plateform.o obj/DoubleJumpPort.o obj/coords.o obj/BoxCmgtGrav.o obj/mainReg.o obj/particule.o obj/enemy.o obj/menu.o
+OBJS =  obj/mainText.o obj/main.o obj/game.o obj/player.o obj/obstacle.o obj/level.o obj/pic.o obj/BoxFinish.o obj/tree.o obj/Case.o obj/D_Case.o obj/S_Plateform.o obj/M_Plateform.o obj/L_Plateform.o obj/DoubleJumpPort.o obj/coords.o obj/BoxCmgtGrav.o obj/mainReg.o obj/particule.o obj/enemy.o obj/menu.o
 cc = g++
 CFLAGS = -g -Wall -c
 LIBS = -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer 
@@ -20,7 +20,7 @@ bin/text : $(OBJS)
 	$(cc) obj/mainText.o -o bin/text -lncurses
 
 bin/jeu : $(OBJS)
-	$(cc) $(Include_Dir_SDL2)  obj/main.o obj/game.o obj/player.o obj/obstacle.o obj/level.o obj/score.o obj/pic.o obj/BoxFinish.o obj/tree.o obj/Case.o obj/D_Case.o obj/S_Plateform.o obj/M_Plateform.o obj/L_Plateform.o obj/DoubleJumpPort.o obj/coords.o obj/BoxCmgtGrav.o obj/particule.o obj/enemy.o obj/menu.o -o bin/jeu   $(LIBS)
+	$(cc) $(Include_Dir_SDL2)  obj/main.o obj/game.o obj/player.o obj/obstacle.o obj/level.o obj/pic.o obj/BoxFinish.o obj/tree.o obj/Case.o obj/D_Case.o obj/S_Plateform.o obj/M_Plateform.o obj/L_Plateform.o obj/DoubleJumpPort.o obj/coords.o obj/BoxCmgtGrav.o obj/particule.o obj/enemy.o obj/menu.o -o bin/jeu   $(LIBS)
 
 bin/Reg : $(OBJS)
 	$(cc) $(Include_Dir_SDL2)  obj/mainReg.o obj/player.o obj/level.o obj/coords.o obj/tree.o obj/obstacle.o obj/pic.o obj/BoxFinish.o obj/Case.o obj/D_Case.o obj/S_Plateform.o obj/M_Plateform.o obj/L_Plateform.o obj/DoubleJumpPort.o obj/BoxCmgtGrav.o obj/enemy.o -o bin/Reg   $(LIBS)
@@ -48,9 +48,6 @@ obj/main.o :  src/main.cpp src/game.h src/level.h src/player.h src/objets/obstac
 
 obj/level.o : src/level.cpp src/level.h src/objets/obstacle.h src/objets/pic.h src/json.hpp src/objets/BoxFinish.h src/objets/tree.h src/objets/D_Case.h src/objets/Case.h src/objets/S_Plateform.h src/objets/M_Plateform.h src/objets/L_Plateform.h src/objets/DoubleJumpPort.h src/objets/BoxCmgtGrav.h src/enemydirection.h src/enemy.h
 	$(cc) $(CFLAGS) $(Include_Dir_SDL2) src/level.cpp -o obj/level.o $(LIBS)
-
-obj/score.o : src/score.cpp src/score.h
-	$(cc) $(CFLAGS) $(Include_Dir_SDL2) src/score.cpp -o obj/score.o $(LIBS)
 
 obj/pic.o : src/objets/pic.cpp src/objets/pic.h src/coords.h
 	$(cc) $(CFLAGS) $(Include_Dir_SDL2) src/objets/pic.cpp -o obj/pic.o $(LIBS)

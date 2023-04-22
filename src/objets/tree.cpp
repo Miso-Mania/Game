@@ -17,6 +17,7 @@ Tree::Tree(int x, int y, int TILE_SIZE) {
 }
 
 Tree::~Tree() {
+    
 }
 
 void Tree::move(double delta) {
