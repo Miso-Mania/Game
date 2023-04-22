@@ -5,6 +5,11 @@ class Particule {
     public:
     /**
         @brief constructeur de la classe Particule
+        @param aucun
+    */
+        Particule();
+    /**
+        @brief constructeur de la classe Particule
         @param double x, double y, double vx, double vy, double ax, double ay, double life, double size, int r, int g, int b, int a
     */
         Particule(double x, double y, double vx, double vy, double ax, double ay, double life, double size, int r, int g, int b, int a, SDL_BlendMode blendMode);
@@ -63,6 +68,7 @@ class ParticuleSystem {
         @param Particule *p
     */
         void addParticule(Particule *p);
+
 
     private:
         std::vector<Particule*> m_particules;

@@ -1,4 +1,23 @@
 #include "particule.h"
+#include <iostream>
+#include <assert.h>
+using namespace std;
+
+Particule::Particule() {
+    x = 0;
+    y = 0;
+    vx = 0;
+    vy = 0;
+    ax = 0;
+    ay = 0;
+    life = 0;
+    size = 0;
+    r = 0;
+    g = 0;
+    b = 0;
+    a = 0;
+    blendMode = SDL_BLENDMODE_NONE;
+}
 
 Particule::Particule(double x, double y, double vx, double vy, double ax, double ay, double life, double size, int r, int g, int b, int a, SDL_BlendMode blendMode) {
     this->x = x;
@@ -66,4 +85,3 @@ void ParticuleSystem::render(SDL_Renderer *m_renderer, int windowWidth, int wind
 void ParticuleSystem::addParticule(Particule *p) {
     m_particules.push_back(p);
 }
-
