@@ -209,7 +209,7 @@ bool Player::showParticlesOnLand() {
 }
 
 void Player::testRegression () {
-    // test du constructeur de la classe Player
+    // regresion test of the class Player
     std::cout <<"Test de Regression de la classe Player :"<<std::endl;
     std::cout<<"Test du constructeur de la classe Player:"<<std::endl;
     Player player = Player();
