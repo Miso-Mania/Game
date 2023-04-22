@@ -469,7 +469,7 @@ int Menu::menu()
         {
             goToNextMenu = false;
 
-            SDL_Surface *collectionSurface = IMG_Load("assets/textures/cat-waves.png"); // temporaire
+            SDL_Surface *collectionSurface = IMG_Load("assets/textures/bg.png"); // temporaire
             SDL_Texture *collectionTexture = SDL_CreateTextureFromSurface(mainRenderer, collectionSurface);
             SDL_Rect mainRect = {0, 0, 1280, 720};
             SDL_RenderCopy(mainRenderer, collectionTexture, NULL, &mainRect);
