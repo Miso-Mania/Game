@@ -74,8 +74,6 @@ Game::Game(int inputtypeparam, int levelnumber, bool editMode, string userName, 
         std::cerr << "Failed to play music: " << Mix_GetError() << std::endl;
     }
     Mix_PlayMusic(on_the_level, -1);
-
-
     int width, height;
     cout << speedrun << endl;
     SDL_GetWindowSize(m_window, &width, &height);
@@ -128,12 +126,12 @@ Game::Game(int inputtypeparam, int levelnumber, bool editMode, string userName, 
         char icon[2];
         fgets(icon, 2, iconFile);
         fclose(iconFile);
-        //si le fichier est vide, on charge l'icone par defaut
+        //if null, we load the default icon
         if (icon[0] == '\0') 
         {
             m_surface_player = IMG_Load("assets/icons/0.png");
         }
-        else{ //sinon, on charge l'icone du joueur correspondante à la valeur du fichier
+        else{ 
             char iconPath[20] = "assets/icons/";
             strcat(iconPath, icon);
             strcat(iconPath, ".png"); //
@@ -141,7 +139,7 @@ Game::Game(int inputtypeparam, int levelnumber, bool editMode, string userName, 
             iconNb = atoi(icon);
         }
     }
-    else //si le fichier n'existe pas, on charge l'icone par defaut
+    else 
     {
         cout << "icon.txt not found" << endl;
         m_surface_player = IMG_Load("assets/icons/0.png");
@@ -159,8 +157,7 @@ Game::Game(int inputtypeparam, int levelnumber, bool editMode, string userName, 
     
     m_levels.push_back(level);
 
-    // Chargements des autre niveaux si speedrunmode est true
-
+    // loading of the others level is only for speedrun
     for(int i = 2; i <= NUM_LEVELS; i++){
         if(speedR){
             Level *level = new Level();
@@ -170,7 +167,7 @@ Game::Game(int inputtypeparam, int levelnumber, bool editMode, string userName, 
         }
     }
 
-    // Chargement du joueur
+    // load the player
     m_player = Player();
     std::cout << "player created" << endl;
     timer = 0;
@@ -197,7 +194,7 @@ Game::Game(int inputtypeparam, int levelnumber, bool editMode, string userName, 
 
 Game::~Game()
 {
-    // Nettoyage de SDL
+    // we free the memory
     SDL_DestroyRenderer(m_renderer);
     SDL_DestroyWindow(m_window);
     IMG_Quit();
@@ -258,7 +255,7 @@ void Game::run()
     running = true;
     while (running)
     {
-        // Gestion des évènements
+        // Events
         SDL_Event event;
         while (SDL_PollEvent(&event))
         {
@@ -268,9 +265,9 @@ void Game::run()
                 running = false;
             }
         }
-        // Mise à jour
+        // update of the game
         update();
-        // Affichage
+        // render of the game
         render();
     }
 }
@@ -318,7 +315,7 @@ void Game::handleEvents(SDL_Event &event)
                 showHitbox = !showHitbox;
                 break;
             }
-        m_levels[m_currentLevel]->saveToJSON("niveaux/level0.json"); //on sauvegarde à chaque touche
+        m_levels[m_currentLevel]->saveToJSON("niveaux/level0.json"); //every key pressed save the level
         } 
 
     if( inputtype == 1) {
@@ -410,12 +407,12 @@ void Game::handleEvents(SDL_Event &event)
 
 void Game::update()
 {
-    // Calcul du temps écoulé depuis la dernière mise à jour
+    // we get the time since the last frame
     delta = (SDL_GetTicks() - timeLastFrame) / 1000.0;
     timeLastFrame = SDL_GetTicks();
-    // Mise à jour de la position du joueur
+    // update of the player
     m_player.move(delta);
-    // Mise à jour de la gravité du joueur
+    // update of the camera
     m_player.gravity(delta);
 
     m_player.incTimeSinceTouchGround(delta);
@@ -423,7 +420,7 @@ void Game::update()
     timer += delta;
 
     m_player.hasCollided = false;
-    // Collision du joueur avec les obstacles stop la gravité et évite de traverser les obstacles
+    // collision of the player with the obstacles
     for (Obstacle *obstacle : m_levels[m_currentLevel]->getObstacles())
     {
         if (m_player.collidesWith(obstacle))
@@ -432,14 +429,14 @@ void Game::update()
             // m_player.stopMove();
         }
     }
-    // perte si le joeur sort de l'écran
+    // we loose if the player is out of the screen
     if (m_player.getRect().y > window_Y_size)
     {
         m_player.moveTo(1, 23);
         if(!speedrun) timer = 0;
     }
 
-    // Collision du joueur avec la S_Plateformes stop la gravité et évite de traverser les obstacles
+    // Collision between the player and the S_Plateformes
     for (S_Plateform *s_plateform : m_levels[m_currentLevel]->getS_Plateform())
     {
         if (m_player.collidesWith(s_plateform))
@@ -448,7 +445,7 @@ void Game::update()
             // m_player.stopMove();
         }
     }   
-    // Collision du joueur avec la M_Plateformes stop la gravité et évite de traverser les obstacles
+    // Collision between the player and the M_Plateformes
     for (M_Plateform *m_plateform : m_levels[m_currentLevel]->getM_Plateform())
     {
         if (m_player.collidesWith(m_plateform))
@@ -457,7 +454,7 @@ void Game::update()
             // m_player.stopMove();
         }
     }
-    // Collision du joueur avec la L_Plateformes stop la gravité et évite de traverser les obstacles
+    // Collision between the player and the SLPlateformes
     for (L_Plateform *l_plateform : m_levels[m_currentLevel]->getL_Plateform())
     {
         if (m_player.collidesWith(l_plateform))
@@ -467,7 +464,7 @@ void Game::update()
         }
     }
 
-    // Collision du joueur avec la Case stop la gravité et évite de traverser les obstacles
+    // Collision between the player and the case
     for (Case *Case : m_levels[m_currentLevel]->getCase())
     {
         if (m_player.collidesWith(Case))
@@ -476,7 +473,7 @@ void Game::update()
         }
     }
 
-    // Collision du joueur avec la D_Case stop la gravité et évite de traverser les obstacles
+    // Collision between the player and the D_Case
     for (D_Case *d_case : m_levels[m_currentLevel]->getD_Case())
     {
         if (m_player.collidesWith(d_case))
@@ -485,7 +482,7 @@ void Game::update()
         }
     }
 
-    // Le joeur se retourne et il chute jusqu'à y=0 quand il traverse BoxCmgtGrav
+    // Collision between the player and the BoxCmgtGrav
     for (BoxCmgtGrav *boxCmgtGrav : m_levels[m_currentLevel]->getBoxCmgtGrav())
     {
         if (m_player.collidesWith(boxCmgtGrav))
@@ -496,7 +493,7 @@ void Game::update()
             m_player.setTimeSinceTouchGround(0);
         }
     }
-    // Le joueur gagne si il touche la BoxFinish
+    // if the player touches the finish, we go to the next level
     for (BoxFinish *boxFinish : m_levels[m_currentLevel]->getBoxFinish())  
     {
         if (m_player.collidesWith(boxFinish))
@@ -509,7 +506,7 @@ void Game::update()
                 {
                     m_currentLevel = 0;
                     cout << "temps : "  << timer << "s" << endl;
-                    //on ouvre le fichier /times/speedrun.txt, on va récupérer le temps précédent et le comparer avec le nouveau
+                    // we open the file speedrun.txt and we write the time if it's better than the previous one
                     FILE* fichierTimes = NULL;
                     fichierTimes = fopen("times/speedrun.txt", "r");
                     if (fichierTimes != NULL)
@@ -519,16 +516,15 @@ void Game::update()
                         fgets(tempsPrecedent, 7, fichierTimes);
                         if (timer < atof(tempsPrecedent))
                         {   
-                            //On remplace le temps précédent par le nouveau en écrivant dans le fichier que l'on a ouvert
+                            // we remove the previous time and we write the new one
                             fichierTimes = fopen("times/speedrun.txt", "w");
-                            // on concatène le temps avec l'username
+                            // we add the usernamee
                             string toWrite = to_string(timer) + " by " + usernameGame;
-                            //on converti la string toWrite en char*
+                            // we convert the string to a char*
                             char *cstr = new char[toWrite.length() + 1];
                             strcpy(cstr, toWrite.c_str());
                             fputs(cstr, fichierTimes);
-                            cout << cstr << endl;
-                            cout << "Le record a été battu de " << atof(tempsPrecedent) - timer << "s !, félicitations "<< usernameGame << endl;
+                            cout << "Le record a été battu à " << timer - atof(tempsPrecedent) << "s près ! Félicitations !" << endl;
                             bestTime = timer;
                         }
                         else
@@ -543,22 +539,22 @@ void Game::update()
             else{
 
                 cout << "temps : "  << timer << "s" << endl;
-                //on ouvre le fichier /times/levelX.txt, on va récupérer le temps précédent et le comparer avec le nouveau
+                //we open the file levelX.txt and we write the time if it's better than the previous one
                 FILE* fichierTimes = NULL;
                 fichierTimes = fopen(("times/level" + to_string(actualLevel) + ".txt").c_str(), "r");
                 if (fichierTimes != NULL)
                 {   
-                    //On récupère le temps précédent
+                    // we get the previous time
                     char tempsPrecedent[7];
                     fgets(tempsPrecedent, 7, fichierTimes);
                     if (timer < atof(tempsPrecedent))
                     {   
-                        //On remplace le temps précédent par le nouveau en écrivant dans le fichier que l'on a ouvert
+                        // we remove the previous time and we write the new one
                         fichierTimes = fopen(("times/level" + to_string(actualLevel) + ".txt").c_str(), "w");
-                        // on concatène le temps avec l'username
+                        // we add the username
                         string toWrite = to_string(timer) + " by " + usernameGame;
                         
-                        //on converti la string toWrite en char*
+                        // we convert the string to a char*
                         char *cstr = new char[toWrite.length() + 1];
                         strcpy(cstr, toWrite.c_str());
                         fputs(cstr, fichierTimes);
@@ -577,8 +573,7 @@ void Game::update()
                     fgets(coins, 7,  fichierCoins);
                     int coinsInt = atoi(coins);
                     fclose(fichierCoins);
-                    //on ajoute 10 coins - toInt((timer - atof(tempsPrecedent)))
-                    //on arrondi le temps à l'entier le plus proche
+                    //we add coins to the user, 10 coins - the difference between the previous best time and the current time
                     int coinsToAdd = 10 - round(timer - atof(tempsPrecedent));
                     if (coinsToAdd < 0)
                     {
@@ -593,7 +588,7 @@ void Game::update()
                         cout << "Vous avez maintenant " << coinsInt << " coins !" << endl;
                        
                     }
-                    else{ //on écrit 100 dans le fichier
+                    else{ //we add 100 coins if it's the first time the user finishes the level
                         fputs("100", fichierCoins2);
                         cout << "Bravo pour ton premier niveau terminé ! Tu as gagné 100 coins !" << endl;
                         
@@ -611,52 +606,52 @@ void Game::update()
     }
 
 
-    // Mise à jour de la position des obstacles
+    // update for the obstacle
     for (Obstacle *obstacle : m_levels[m_currentLevel]->getObstacles())
     {
         obstacle->move(delta);
     }
-    // Mise à jour de la position des S_Plateform
+    // update for the S_Plateform
     for (S_Plateform *s_plateform : m_levels[m_currentLevel]->getS_Plateform())
     {
         s_plateform->move(delta);
     }
-    // Mise à jour de la position des M_Plateform
+    // update for the M_Plateform
     for (M_Plateform *m_plateform : m_levels[m_currentLevel]->getM_Plateform())
     {
         m_plateform->move(delta);
     }
-    // Mise à jour de la position des L_Plateform
+    // update for the L_Plateform
     for (L_Plateform *l_plateform : m_levels[m_currentLevel]->getL_Plateform())
     {
         l_plateform->move(delta);
     }
-    // Mise à jour de la position des pics
+    // update for the Pic
     for (Pic *pic : m_levels[m_currentLevel]->getPics())
     {
         pic->move(delta);
     }
-    // Mise à jour de la position des doublejumpport
+    // update for the doublejumpport
     for (DoubleJumpPort *doublejumpport : m_levels[m_currentLevel]->getDoubleJumpPort())
     {
         doublejumpport->move(delta);
     }
-    // Mise à jour de la position des Case
+    // update for the case
     for (Case *Case : m_levels[m_currentLevel]->getCase())
     {
         Case->move(delta);
     }
-    // Mise à jour de la position des D_Case
+    // update for the d_case
     for (D_Case *d_case : m_levels[m_currentLevel]->getD_Case())
     {
         d_case->move(delta);
     }
-    // Mise à jour de la position des BoxCmgtGrav
+    // update for the boxCmgtGrav
     for (BoxCmgtGrav *boxCmgtGrav : m_levels[m_currentLevel]->getBoxCmgtGrav())
     {
         boxCmgtGrav->move(delta);
     }
-    // Collision du joueur avec les pics stop la partie
+    // we check if the player is on a spike, if it is, we reset the level and the timer
     for (Pic *pic : m_levels[m_currentLevel]->getPics())
     {
         if (m_player.collidesWith(pic))
@@ -665,7 +660,7 @@ void Game::update()
             if(!speedrun) timer = 0;
         }
     }
-    // Collision du joueur avec les doublejumpport fait un double saut
+    // we check if the player is on a doublejumpport, if it is, we give him a double jump
     for (DoubleJumpPort *doublejumpport : m_levels[m_currentLevel]->getDoubleJumpPort())
     {
         if (m_player.collidesWith(doublejumpport))
@@ -673,13 +668,13 @@ void Game::update()
             m_player.doubleJump();
         }
     }
-    // Mise à jour du niveau
+    // update of the level
     if (m_levels[m_currentLevel]->getObstacles().size() == 0)
     {
         m_currentLevel++;
     }
 
-    // ajout de particules sur les arbres
+    // we add particules to the trees
     for (Tree *tree : m_levels[m_currentLevel]->getTrees())
     {   
         if (rand()%20 == 0)
@@ -695,7 +690,7 @@ void Game::update()
         }
     }
 
-    // ajout de particules sur les portails
+    // particles for the doublejumpport
     for (DoubleJumpPort *doublejumpport : m_levels[m_currentLevel]->getDoubleJumpPort())
     {   
         if (rand()%5 == 0)
@@ -715,7 +710,7 @@ void Game::update()
         }
     }
 
-    // ajout de particules sur le sol quand le joueur atterit
+    // particles on the ground when the player lands
     if(m_player.showParticlesOnLand()){
         for(int i = 0; i < 10; i++){
             Coords p = m_player.getCoords();
@@ -730,7 +725,7 @@ void Game::update()
         }
     }
 
-    // ajout de particules sur la fin du niveau
+    // particles at the end of the level
     for(BoxFinish *boxFinish : m_levels[m_currentLevel]->getBoxFinish()){
         if (rand()%5 == 0)
         {
@@ -793,7 +788,7 @@ void Game::update()
         }
     }
 
-    // ajout de particules sur le joueur si il a l'icone 7 ou 8
+    // special particles for the player if he has the icon 7 or 8
     Coords p = m_player.getCoords();
     Coords dir = Coords(p.x - PlayerCoordsLastFrame.x, p.y - PlayerCoordsLastFrame.y, 0, 0);
     //double dirNorm = sqrt(dir.x * dir.x + dir.y * dir.y);
@@ -867,19 +862,13 @@ void Game::render()
     SDL_SetTextureAlphaMod(m_texture_Trees, alpha);
 
 
-    // Effacement de l'écran
+    // we clear the screen
     SDL_SetRenderDrawColor(m_renderer, 0, 0, 0, 255);
     SDL_RenderClear(m_renderer);
 
 
 
-    SDL_RenderCopy(m_renderer, m_texture_background, NULL, NULL); // Dessin du background
-    // Dessin des arbres
-    for (Case *Case : m_levels[m_currentLevel]->getCase())
-    {
-        SDL_Rect CaseRect = Case->getRect();
-        SDL_RenderCopy(m_renderer, m_texture_Case, NULL, &CaseRect); //A CHANGER EN METTANT LA TEXTURE DES CASES
-    }
+    SDL_RenderCopy(m_renderer, m_texture_background, NULL, NULL); // we add the background
      for (S_Plateform *S_Plateform : m_levels[m_currentLevel]->getS_Plateform())
     {
         SDL_Rect S_PlateformRect = S_Plateform->getRect();
@@ -895,13 +884,11 @@ void Game::render()
         SDL_Rect L_PlateformRect = L_Plateform->getRect();
         SDL_RenderCopy(m_renderer, m_texture_L_Plateform, NULL, &L_PlateformRect);
     }
-    //affichage des cases:
     for (Case *Case : m_levels[m_currentLevel]->getCase())
     {
         SDL_Rect CaseRect = Case->getRect();
         SDL_RenderCopy(m_renderer, m_texture_Case, NULL, &CaseRect);
     }
-    //affichage des D_case:
     for (D_Case *D_Case : m_levels[m_currentLevel]->getD_Case())
     {
         SDL_Rect D_CaseRect = D_Case->getRect();
@@ -915,7 +902,7 @@ void Game::render()
     }
 
 
-    SDL_Rect playerRect = m_player.getRect(); // Dessin du joueur
+    SDL_Rect playerRect = m_player.getRect(); // draw the player
     SDL_RenderCopy(m_renderer, m_texture_player, NULL, &playerRect);
 
     if (showHitbox){
@@ -925,46 +912,42 @@ void Game::render()
         SDL_RenderDrawRect(m_renderer, &rectHitbox);
     }
         
-    // Dessin des obstacles
+    // draw the obstacles
     for (Obstacle *obstacle : m_levels[m_currentLevel]->getObstacles())
     {
         SDL_Rect obstacleRect = obstacle->getRect();
         SDL_RenderCopy(m_renderer, m_texture_obstacle, NULL, &obstacleRect);
     }
 
-    // Dessin des pic
+    // draw the pics
     for (Pic *pic : m_levels[m_currentLevel]->getPics())
     {
         SDL_Rect picRect = pic->getRect();
         SDL_RenderCopy(m_renderer, m_texture_pic, NULL, &picRect);
     }
-    // Dessin des doublejumpport
     for (DoubleJumpPort *doublejumpport : m_levels[m_currentLevel]->getDoubleJumpPort())
     {
         SDL_Rect doublejumpportRect = doublejumpport->getRect();
         SDL_RenderCopy(m_renderer, m_texture_DoubleJumpPort, NULL, &doublejumpportRect);
     }
-    // Dessin des BoxFinish
     for (BoxFinish *box : m_levels[m_currentLevel]->getBoxFinish())
     {
         SDL_Rect boxFinishRect = box->getRect();
         SDL_RenderCopy(m_renderer, m_texture_BoxFinish, NULL, &boxFinishRect);
     }
-    // Dessin des BoxCmgtGrav
     for (BoxCmgtGrav *boxCmgtGrav : m_levels[m_currentLevel]->getBoxCmgtGrav())
     {
         SDL_Rect boxCmgtGravRect = boxCmgtGrav->getRect();
         SDL_RenderCopy(m_renderer, m_texture_BoxCmgtGrav, NULL, &boxCmgtGravRect);
     }
 
-    
     if (editionMode){
         int x, y;
         bool mouseOnObj = false;
         SDL_GetMouseState(&x, &y);
         SDL_SetRenderDrawBlendMode(m_renderer, SDL_BLENDMODE_BLEND);
         SDL_SetRenderDrawColor(m_renderer, 255, 255, 255, 150);
-        //dessin du surlignage de l'objet survolé par la souris
+        //hover on the current tile of the mouse    
         for (Case *Case : m_levels[m_currentLevel]->getCase()) {
             SDL_Rect CaseRect = Case->getRect();
             if (x > CaseRect.x && x < CaseRect.x + CaseRect.w && y > CaseRect.y && y < CaseRect.y + CaseRect.h && !mouseOnObj)
@@ -1123,15 +1106,15 @@ void Game::render()
         }
     }
 
-    // Affichage des particules
+    //render the particle system
     m_particuleSystem.render(m_renderer, window_X_size, window_Y_size);
 
-    //affichage du timer
+    //render the timer
     if(!editionMode){
         renderTimer(10, timer);
         renderTimer(60, bestTime);
     }
 
-    // Affichage
+    // render the level
     SDL_RenderPresent(m_renderer);
 }
