@@ -12,11 +12,11 @@ int main(int argc, char *argv[])
     Menu menu;
     username = menu.auth();
     cout << "Bienvenue " << username << endl;
-    // on lance le jeu ssi le menu a retourné 0
+    // we launch the game if the menu is closed
     while (menu.menu() == 0)
     {
         Game game(menu.input, menu.level, menu.editorMode, menu.username, menu.speedrunMode);
-        // on lance la boucle principale du jeu
+        //we launch the main loop of the game
         game.run();
         menu.skipIntro = true;
     }
