@@ -13,6 +13,7 @@
 #include "objets/obstacle.h"
 #include "objets/pic.h"
 #include "objets/tree.h"
+#include "particule.h"
 
 using namespace std;
 

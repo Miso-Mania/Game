@@ -1,7 +1,6 @@
 #include "player.h"
 #include <iostream>
 #include <assert.h>
-using namespace std;
 Player::Player(): hasCollided(false), m_coords(1, 23, 1.44, 1.44), m_rect({100, 600, 38, 38}), m_yVelocity(0), m_direction(PlayerDirection::NONE), timeSinceTouchGround(0), jumpBuffer(0), isOnGround(false), oldIsOnGround(false) {
 }
 
@@ -15,9 +14,7 @@ void Player::move(double delta) {
         m_coords.x += 5 * delta;
     }
 }
-// saute
-// le joeur ne peut pas faire de double saut
-// le joeur ne peut pas sauter si il n'est pas sur le sol
+
 void Player::jump() {
     if (!haveJumped && timeSinceTouchGround < 0.2) {
         m_yVelocity = -13;
@@ -213,8 +210,8 @@ bool Player::showParticlesOnLand() {
 
 void Player::testRegression () {
     // test du constructeur de la classe Player
-    cout <<"Test de Regression de la classe Player :"<<endl;
-    cout<<"Test du constructeur de la classe Player:"<<endl;
+    std::cout <<"Test de Regression de la classe Player :"<<std::endl;
+    std::cout<<"Test du constructeur de la classe Player:"<<std::endl;
     Player player = Player();
     assert(player.m_direction == PlayerDirection::NONE);
     assert(player.m_yVelocity == 0);
@@ -226,10 +223,21 @@ void Player::testRegression () {
     assert(player.m_coords.y == 23);
     assert(player.m_coords.w == 1.44);
     assert(player.m_coords.h == 1.44);
-    cout<<"Test du constructeur de la classe Player reussi"<<endl;
-    cout<<"Test du destructeur de la classe Player:"<<endl;
-    cout<<"Test du destructeur de la classe Player reussi"<<endl;
-    cout<<"Test de la methode move de la classe Player:"<<endl;
+    std::cout<<"Test du constructeur de la classe Player reussi"<<std::endl;
+    std::cout<<"Test du destructeur de la classe Player:"<<std::endl;
+    player.~Player();
+    assert(player.m_direction == PlayerDirection::NONE);
+    assert(player.m_yVelocity == 0);
+    assert(player.m_rect.x == 100);
+    assert(player.m_rect.y == 600);
+    assert(player.m_rect.w == 38);
+    assert(player.m_rect.h == 38);
+    assert(player.m_coords.x == 1);
+    assert(player.m_coords.y == 23);
+    assert(player.m_coords.w == 1.44);
+    assert(player.m_coords.h == 1.44);
+    std::cout<<"Test du destructeur de la classe Player reussi"<<std::endl;
+    std::cout<<"Test de la methode move de la classe Player:"<<std::endl;
     player.move(0.1);
     if(player.m_direction == PlayerDirection::RIGHT){
         assert(player.m_coords.x == 3.1);
@@ -240,8 +248,8 @@ void Player::testRegression () {
     else{
         assert(player.m_coords.x == 1);
     }
-    cout<<"Test de la methode move de la classe Player reussi"<<endl;
-    cout<<"Test de la methode jump de la classe Player:"<<endl;
+    std::cout<<"Test de la methode move de la classe Player reussi"<<std::endl;
+    std::cout<<"Test de la methode jump de la classe Player:"<<std::endl;
     player.jump();
     if (player.m_yVelocity == -13){
         assert(player.m_coords.y == 23);
@@ -249,65 +257,92 @@ void Player::testRegression () {
     else{
         assert(player.m_coords.y == 23);
     }
-    cout<<"Test de la methode jump de la classe Player reussi"<<endl;
-    cout<<"Test de la methode moveOutOf de la classe Player:"<<endl;
+    std::cout<<"Test de la methode jump de la classe Player reussi"<<std::endl;
+    std::cout<<"Test de la methode gravity de la classe Player:"<<std::endl;
+    player.gravity(1);
+    assert(player.m_yVelocity == 12);
+    assert(player.m_coords.y == 35);
+    std::cout<<"Test de la methode gravity de la classe Player reussi"<<std::endl;
+    std::cout <<"Test de la methode collidesWith de la classe Player:"<<std::endl;
+    std::cout <<player.m_coords.x<<std::endl;
+    std::cout <<player.m_coords.y<<std::endl;
+    bool x;
+    bool y;
+    Obstacle *obstacle = new Obstacle(1, 23, 1, 1);
+    x = player.collidesWith(obstacle);
+    assert(x == 0);
+    delete obstacle;
+    Obstacle *obstacle2 = new Obstacle(1, 35, 1, 1);
+    y = player.collidesWith(obstacle2);
+    assert(y == 1);
+    delete obstacle2;
+    std::cout<<"Test de la methode collidesWith de la classe Player reussi"<<std::endl;
+
+    std::cout<<"Test de la methode moveOutOfCoords de la classe Player:"<<std::endl;
     player.moveOutOfCoords(player.m_coords);
     assert(player.m_coords.x == 1);
-    assert(player.m_coords.y == 23);
-    cout<<"Test de la methode moveOutOf de la classe Player reussi"<<endl;
-    cout<<"Test de la methode stopGravity de la classe Player:"<<endl;
+    assert(player.m_coords.y == 35);
+    std::cout<<"Test de la methode moveOutOfCoords de la classe Player reussi"<<std::endl;
+    std::cout<<"Test de la methode moveOutOf de la classe Player:"<<std::endl;
+    Obstacle *obstacle3 = new Obstacle(1, 35, 1, 1);
+    player.moveOutOf(obstacle3);
+    assert(player.m_coords.x == 1);
+    assert(player.m_coords.y == 35);
+    delete obstacle3;
+    std::cout<<"Test de la methode stopGravity de la classe Player:"<<std::endl;
     player.stopGravity();
     assert(player.m_yVelocity == 0);
-    cout<<"Test de la methode stopGravity de la classe Player reussi"<<endl;
-    cout<<"Test de la methode stopMove de la classe Player:"<<endl;
+    std::cout<<"Test de la methode stopGravity de la classe Player reussi"<<std::endl;
+    std::cout<<"Test de la methode stopMove de la classe Player:"<<std::endl;
     player.stopMove();
     assert(player.m_direction == PlayerDirection::NONE);
-    cout<<"Test de la methode stopMove de la classe Player reussi"<<endl;
-    cout<<"Test de la methode doubleJump de la classe Player:"<<endl;
-
-    cout<<"Test de la methode doubleJump de la classe Player reussi"<<endl;
-    cout<<"Test de la methode setDirection de la classe Player:"<<endl;
+    std::cout<<"Test de la methode stopMove de la classe Player reussi"<<std::endl;
+    std::cout<<"Test de la methode doubleJump de la classe Player:"<<std::endl;
+    player.doubleJump();
+    assert(player.m_yVelocity == -13);
+    std::cout<<"Test de la methode doubleJump de la classe Player reussi"<<std::endl;
+    std::cout<<"Test de la methode setDirection de la classe Player:"<<std::endl;
     player.setDirection(PlayerDirection::RIGHT);
     assert(player.m_direction == PlayerDirection::RIGHT);
-    cout<<"Test de la methode setDirection de la classe Player reussi"<<endl;
-    cout<<"Test de la methode getDirection de la classe Player:"<<endl;
+    std::cout<<"Test de la methode setDirection de la classe Player reussi"<<std::endl;
+    std::cout<<"Test de la methode getDirection de la classe Player:"<<std::endl;
     assert(player.getDirection() == PlayerDirection::RIGHT);
-    cout<<"Test de la methode getDirection de la classe Player reussi"<<endl;
-    cout<<"Test de la methode getRect de la classe Player:"<<endl;
+    std::cout<<"Test de la methode getDirection de la classe Player reussi"<<std::endl;
+    std::cout<<"Test de la methode getRect de la classe Player:"<<std::endl;
     assert(player.getRect().x == 100);
     assert(player.getRect().y == 600);
     assert(player.getRect().w == 38);
     assert(player.getRect().h == 38);
-    cout<<"Test de la methode getRect de la classe Player reussi"<<endl;
-    cout<<"Test de la methode setRect de la classe Player:"<<endl;
+    std::cout<<"Test de la methode getRect de la classe Player reussi"<<std::endl;
+    std::cout<<"Test de la methode setRect de la classe Player:"<<std::endl;
     SDL_Rect rect = {0,0,0,0};
     player.setRect(rect);
     assert(player.getRect().x == 0);
     assert(player.getRect().y == 0);
     assert(player.getRect().w == 0);
     assert(player.getRect().h == 0);
-    cout<<"Test de la methode setRect de la classe Player reussi"<<endl;
-    cout<<"Test de la methode getGravity de la classe Player:"<<endl;
+    std::cout<<"Test de la methode setRect de la classe Player reussi"<<std::endl;
+    std::cout<<"Test de la methode getGravity de la classe Player:"<<std::endl;
     assert(player.getGravity() == 0);
-    cout<<"Test de la methode getGravity de la classe Player reussi"<<endl;
-    cout<<"Test de la methode setGravity de la classe Player:"<<endl;
+    std::cout<<"Test de la methode getGravity de la classe Player reussi"<<std::endl;
+    std::cout<<"Test de la methode setGravity de la classe Player:"<<std::endl;
     player.setGravity(1);
     assert(player.getGravity() == 1);
-    cout<<"Test de la methode setGravity de la classe Player reussi"<<endl;
-    cout<<"Test de la methode setJumpBuffer de la classe Player:"<<endl;
+    std::cout<<"Test de la methode setGravity de la classe Player reussi"<<std::endl;
+    std::cout<<"Test de la methode setJumpBuffer de la classe Player:"<<std::endl;
     player.setJumpBuffer(1);
     assert(player.jumpBuffer == 1);
-    cout<<"Test de la methode setJumpBuffer de la classe Player reussi"<<endl;
-    cout<<"Test de la methode setTimeSinceTouchGround de la classe Player:"<<endl;
+    std::cout<<"Test de la methode setJumpBuffer de la classe Player reussi"<<std::endl;
+    std::cout<<"Test de la methode setTimeSinceTouchGround de la classe Player:"<<std::endl;
     player.setTimeSinceTouchGround(1);
     assert(player.timeSinceTouchGround == 1);
-    cout<<"Test de la methode setTimeSinceTouchGround de la classe Player reussi"<<endl;
-    cout<<"Test de la methode moveTo de la classe Player:"<<endl;
+    std::cout<<"Test de la methode setTimeSinceTouchGround de la classe Player reussi"<<std::endl;
+    std::cout<<"Test de la methode moveTo de la classe Player:"<<std::endl;
     player.moveTo(1,1);
     assert(player.m_coords.x == 1);
     assert(player.m_coords.y == 1);
-    cout<<"Test de la methode moveTo de la classe Player reussi"<<endl;
-    cout<<"Test de la methode gravity de la classe Player"<<endl;
+    std::cout<<"Test de la methode moveTo de la classe Player reussi"<<std::endl;
+    std::cout<<"Test de la methode gravity de la classe Player"<<std::endl;
     
 
 }

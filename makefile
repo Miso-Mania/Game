@@ -82,7 +82,7 @@ obj/BoxCmgtGrav.o : src/objets/BoxCmgtGrav.cpp src/objets/BoxCmgtGrav.h src/coor
 obj/particule.o : src/particule.cpp src/particule.h src/coords.h
 	$(cc) $(CFLAGS) $(Include_Dir_SDL2) src/particule.cpp -o obj/particule.o $(LIBS)
 
-obj/mainReg.o: src/mainReg.cpp src/player.h src/level.h src/coords.h src/objets/obstacle.h src/objets/tree.h src/playerdirection.h src/objets/pic.h src/objets/BoxFinish.h src/objets/DoubleJumpPort.h src/objets/S_Plateform.h src/objets/M_Plateform.h src/objets/L_Plateform.h src/objets/BoxCmgtGrav.h
+obj/mainReg.o: src/mainReg.cpp src/player.h src/level.h src/coords.h src/objets/obstacle.h src/objets/tree.h src/playerdirection.h src/objets/pic.h src/objets/BoxFinish.h src/objets/DoubleJumpPort.h src/objets/S_Plateform.h src/objets/M_Plateform.h src/objets/L_Plateform.h src/objets/BoxCmgtGrav.h src/particule.h
 	$(cc) $(CFLAGS) $(Include_Dir_SDL2) src/mainReg.cpp -o obj/mainReg.o $(LIBS)
 
 obj/enemy.o : src/enemy.cpp src/enemy.h src/enemydirection.h src/coords.h src/objets/Case.h 
