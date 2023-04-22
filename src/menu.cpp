@@ -32,21 +32,21 @@ string Menu::auth()
 {
     FILE *name = NULL;
     name = fopen("user/name.txt", "r");
-    // on lit la valeur de name
+    // we read the name of the user
     char nameValue[13];
     fgets(nameValue, 13, name);
-    // on converti la valeur de name en string
+    // we convert the name in string
     string nameString = nameValue;
-    // on regarde si le nom est vide
+    // we check if the name is empty
     if (nameString == "")
     {
-        // si le nom est vide on demande le nom
+        // if the name is empty, we ask the user to enter his name
         cout << "Veuillez entrer votre nom : ";
         cin >> nameString;
-        // on converti le nom en char
+        // we convert the name in char
         char nameChar[13];
         strcpy(nameChar, nameString.c_str());
-        // on écrit le nom dans le fichier
+        // we write the name in the file
         name = fopen("user/name.txt", "w");
         fputs(nameChar, name);
         return nameString;
@@ -146,7 +146,7 @@ int Menu::menu()
     speedrunMode = false;
     if (!skipIntro)
     {
-        // Initialisation de la SDL
+        // initialisation of SDL2
         SDL_Init(SDL_INIT_VIDEO);
 
         SDL_Window *window = SDL_CreateWindow("SDL2 Window", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 400, 400, 0);
@@ -155,7 +155,7 @@ int Menu::menu()
         SDL_Surface *imageSurface = IMG_Load("assets/textures/splash.png");
         SDL_Texture *texture = SDL_CreateTextureFromSurface(renderer, imageSurface);
         SDL_Rect dstRect = {0, 0, 400, 400};
-        // initialisation de la musique
+        // initialisation of SDL2 Mixer
         if (Mix_Init(MIX_INIT_MP3) != MIX_INIT_MP3)
         {
             std::cerr << "Failed to initialize SDL2 Mixer: " << Mix_GetError() << std::endl;
@@ -180,7 +180,7 @@ int Menu::menu()
         SDL_RenderCopy(renderer, texture, NULL, &dstRect);
         SDL_RenderPresent(renderer);
 
-        SDL_Delay(1500); // on attends une seconde avant d'ouvrir le jeu
+        SDL_Delay(1500); // we wait 1.5 seconds
         SDL_DestroyTexture(texture);
         SDL_FreeSurface(imageSurface);
         SDL_DestroyRenderer(renderer);
@@ -198,7 +198,7 @@ int Menu::menu()
         goToNextMenu = true;
         SDL_RenderCopy(mainRenderer, activityTexture, NULL, &mainRect);
         SDL_RenderPresent(mainRenderer);
-        // on demande au joueur de choisir entre le mode edition, le mode jeu ou le leaderboard, en fonction de l'input
+        //we ask the user what he wants to do
         cout << "1 - Jouer" << endl;
         cout << "2 - Editeur" << endl;
         cout << "3 - Leaderboard" << endl;
@@ -208,7 +208,7 @@ int Menu::menu()
         cout << "Echap - Quitter" << endl;
         activity = getUserInput();
 
-        if (activity == 2) // mode edition
+        if (activity == 2) // edition mode
         {
             editorMode = true;
         }
@@ -227,12 +227,12 @@ int Menu::menu()
             }
             return 1;
         }
-        if (activity == 4) // mode speedrun
+        if (activity == 4) // speedrun mode
         {
             speedrunMode = true;
             level = 1;
         }
-        if (activity == 5) // mode shop
+        if (activity == 5) // shop mode
         {
             goToNextMenu = false;
 
@@ -240,7 +240,7 @@ int Menu::menu()
             SDL_Texture *shopTexture = SDL_CreateTextureFromSurface(mainRenderer, shopSurface);
             SDL_Rect mainRect = {0, 0, 1280, 720};
             SDL_RenderCopy(mainRenderer, shopTexture, NULL, &mainRect);
-            // on affiche les items
+            // we render all of the     items
             SDL_Surface *item1Surface = IMG_Load("assets/icons/1.png");
             SDL_Texture *item1Texture = SDL_CreateTextureFromSurface(mainRenderer, item1Surface);
             SDL_Rect item1Rect = {100, 132, 100, 100};
@@ -281,7 +281,7 @@ int Menu::menu()
             SDL_Rect item8Rect = {300, 592, 100, 100};
             SDL_RenderCopy(mainRenderer, item8Texture, NULL, &item8Rect);
 
-            // on récupère l'argent du joueur
+            // we get the balance of the player
             FILE *moneyFile = NULL;
             moneyFile = fopen("user/coins.txt", "r");
             char moneyChar[7];
@@ -289,7 +289,7 @@ int Menu::menu()
             int money = atoi(moneyChar);
             cout << "Vous avez " << money << " coins" << endl;
             fclose(moneyFile);
-            // on affiche un texte avec l'argent du joueur
+            // we print the balance of the player
             TTF_Init();
             const char *fontPath = "font/Kemco Pixel Bold.ttf";
 
@@ -437,12 +437,12 @@ int Menu::menu()
                     cout << "Cet item n'est pas disponible" << endl;
                     break;
                 }
-                FILE *moneyFile = NULL; // on actualise l'argent du joueur
+                FILE *moneyFile = NULL; // we actualise the money
                 moneyFile = fopen("user/coins.txt", "w");
                 fputs(to_string(money).c_str(), moneyFile);
                 fclose(moneyFile);
 
-                // on ferme la fenêtre
+                // we free the memory and close the window
                 SDL_DestroyTexture(shopTexture);
                 SDL_FreeSurface(shopSurface);
                 SDL_DestroyTexture(item1Texture);
@@ -494,7 +494,7 @@ int Menu::menu()
             SDL_Surface *objSurfaceLock = IMG_Load("assets/textures/padlock.png");
             SDL_Texture *objTextureLock = SDL_CreateTextureFromSurface(mainRenderer, objSurfaceLock);
 
-            SDL_Rect objRect2 = {200, 50, 200, 200}; // l'objet de base
+            SDL_Rect objRect2 = {200, 50, 200, 200}; // standard
             SDL_RenderCopy(mainRenderer, objTexture2, NULL, &objRect2);
             for (int e = 1; e < 9; e++)
             {
@@ -602,7 +602,7 @@ int Menu::menu()
                     }
 
                 fclose(objFile);
-                // si on remet pas à 0, tous les objets sont considérés comme possédés si on a au moins un objet
+                // we need to reset the obj variable to 0
                 obj = 0;
                 objFile = NULL;
                 objChar[0] = '\0';
@@ -619,7 +619,7 @@ int Menu::menu()
             FILE *iconFile7 = NULL;
             switch (chooseIcon)
             {
-            // on decale tout de 1 car les iconex commencent à 0
+            // we need to have a look 1 ahead because the first item is the standard one
             case 1:
                 cout << "Vous avez choisi l'item 0" << endl;
                 iconFile0 = fopen("user/icon.txt", "w");
@@ -676,10 +676,10 @@ int Menu::menu()
             }
             quitCollection = getUserInput();
             while (quitCollection != -2)
-            { // tant que l'utilisateur ne quitte pas la collection
+            { // while the user doesn't press the back button
                 quitCollection = getUserInput();
             }
-            // on ferme la fenêtre
+            // we close the files and free the memory
             SDL_DestroyTexture(collectionTexture);
             SDL_FreeSurface(collectionSurface);
             SDL_DestroyTexture(objTexture2);
@@ -708,19 +708,19 @@ int Menu::menu()
         }
     } while (!goToNextMenu);
 
-    // on ferme la fenêtre
+    // we free the memory
     SDL_DestroyTexture(activityTexture);
     SDL_FreeSurface(activitySurface);
 
     if (!speedrunMode)
     {
         SDL_Delay(100);
-        // on ouvre le menu suivant
+        // we open the level menu
         SDL_Surface *levelSurface = IMG_Load("assets/textures/level.png");
         SDL_Texture *levelTexture = SDL_CreateTextureFromSurface(mainRenderer, levelSurface);
         SDL_RenderCopy(mainRenderer, levelTexture, NULL, &mainRect);
         SDL_RenderPresent(mainRenderer);
-        // on demande le niveau
+        // we ask for the level
         level = getUserInput();
 
         if (level == -2)
@@ -747,7 +747,7 @@ int Menu::menu()
     SDL_RenderCopy(mainRenderer, inputTexture, NULL, &mainRect);
     SDL_RenderPresent(mainRenderer);
     input = 0;
-    // si l'input est clavier; on ferme la fenêtre
+    // we ask for the input
     do
     {
         input = getUserInput();
