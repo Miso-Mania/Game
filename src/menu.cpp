@@ -496,7 +496,7 @@ int Menu::menu()
 
             SDL_Rect objRect2 = {200, 50, 200, 200}; // standard
             SDL_RenderCopy(mainRenderer, objTexture2, NULL, &objRect2);
-            for (int e = 1; e < 9; e++)
+            for (int e = 1; e < 10; e++)
             {
                 FILE *objFile = NULL;
                 objFile = fopen(("user/icons/" + to_string(e) + ".txt").c_str(), "r");
@@ -617,6 +617,7 @@ int Menu::menu()
             FILE *iconFile5 = NULL;
             FILE *iconFile6 = NULL;
             FILE *iconFile7 = NULL;
+            FILE *iconFile8 = NULL;
             switch (chooseIcon)
             {
             // we need to have a look 1 ahead because the first item is the standard one
@@ -669,6 +670,11 @@ int Menu::menu()
                 fclose(iconFile7);
                 break;
             case 9:
+                cout << "Vous avez choisi l'item 8" << endl;
+                iconFile8 = fopen("user/icon.txt", "w");
+                fputs("8", iconFile8);
+                fclose(iconFile8);
+                break;
 
             default:
                 cout << "Cet item n'est pas disponible" << endl;
