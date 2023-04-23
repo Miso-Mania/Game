@@ -496,7 +496,7 @@ int Menu::menu()
 
             SDL_Rect objRect2 = {200, 50, 200, 200}; // standard
             SDL_RenderCopy(mainRenderer, objTexture2, NULL, &objRect2);
-            for (int e = 1; e < 10; e++)
+            for (int e = 1; e < 9; e++)
             {
                 FILE *objFile = NULL;
                 objFile = fopen(("user/icons/" + to_string(e) + ".txt").c_str(), "r");
