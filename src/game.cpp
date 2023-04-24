@@ -134,7 +134,7 @@ Game::Game(int inputtypeparam, int levelnumber, bool editMode, string userName, 
         else{ 
             char iconPath[20] = "assets/icons/";
             strcat(iconPath, icon);
-            strcat(iconPath, ".png"); //
+            strcat(iconPath, ".png"); 
             m_surface_player = IMG_Load(iconPath);
             iconNb = atoi(icon);
         }
