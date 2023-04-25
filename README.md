@@ -57,9 +57,9 @@ Si  les versions de **g++** et **SDL2** s'affichent, c'est que tout est bien ins
 1. Télécharger le projet sur GitHub.
    Ouvrir un terminal depuis le dossier où vous souhaitez télécharger le projet, puis taper la commande suivante : 
    ```git clone https://github.com/Claquettes/S4.git```
-2. Sous Linux/Wsl, Ouvrir un terminal depuis le dossier où vous avez téléchargé le projet, puis taper la commande suivante afin de compiler le projet, et créer les exécutables: 
+2. **Sous Linux/Wsl**, Ouvrir un terminal depuis le dossier où vous avez téléchargé le projet, puis taper la commande suivante afin de compiler le projet, et créer les exécutables: 
    ```make```
-2. bis) Sous MacOS, Ouvrir un terminal depuis le dossier où vous avez téléchargé le projet, puis taper la commande suivante afin de compiler le projet, et créer les exécutables: 
+Sous **MacOS**, Ouvrir un terminal depuis le dossier où vous avez téléchargé le projet, puis taper la commande suivante afin de compiler le projet, et créer les exécutables: 
    ```make -f makefile.mac ```
 
 ## III)Utilisation
@@ -82,7 +82,7 @@ Si  les versions de **g++** et **SDL2** s'affichent, c'est que tout est bien ins
     - **0**: Ressort.
 3. La sauvegarde du niveau se fait automatiquement à chaque modification. Pour revenir au menu principal, il suffit d'appuyer sur la touche **Echap**. Le niveau sera alors sauvegardé dans le dossier **levels**, dans le fichier **level0.json**.
 
-## V)Documentation //pas encore disponible
+## V)Documentation 
 1.  La Documentation du projet à été générée à l'aide de Doxygen. Afin de pouvoir la consulter, il faut d'abbord l'installer. Pour l'installer : 
     ```sudo apt-get install doxygen```
 2. Pour générer la documentation, il suffit de taper la commande suivante depuis le terminal : 
