@@ -53,8 +53,9 @@ Si  les versions de **g++** et **SDL2** s'affichent, c'est que tout est bien ins
     - **6**: Orbe de double saut.
     - **7**: Box de fin de niveau.
     - **8**: Arbre (sans collision).
-    - **9**: Pic.
-    - **0**: Box de changement de gravité (WIP).
+    - **9**: Pic.(tue le joueur au contact)
+    - **0**: Ressort.
+3. La sauvegarde du niveau se fait automatiquement à chaque modification. Pour revenir au menu principal, il suffit d'appuyer sur la touche **Echap**. Le niveau sera alors sauvegardé dans le dossier **levels**, dans le fichier **level0.json**.
 
 ## V)Documentation //pas encore disponible
 1.  La Documentation du projet à été générée à l'aide de Doxygen. Afin de pouvoir la consulter, il faut d'abbord l'installer. Pour l'installer : 
@@ -64,4 +65,3 @@ Si  les versions de **g++** et **SDL2** s'affichent, c'est que tout est bien ins
 3. Pour consulter la documentation, il suffit de taper la commande suivante depuis le terminal : 
     ```[Your_WebBrowser] doc/html/index.html```
     En remplaçant **Your_WebBrowser** par le navigateur de votre choix.
-
