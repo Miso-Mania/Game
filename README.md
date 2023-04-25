@@ -1,5 +1,4 @@
-//on importe des badges shield.io
-[https://img.shields.io/badge/Compatible-linuxX64%20macOSX64-success]
+![Languages](https://img.shields.io/badge/Compatible-linuxX64%20macOSX64-success)
 
 Miso Mania Par Romain Rochebloine, Jules Ginhac et Mathieu Ponton.
 -------
