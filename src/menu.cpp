@@ -22,8 +22,7 @@ Menu::Menu()
     mainRenderer = SDL_CreateRenderer(menuWindow, -1, SDL_RENDERER_ACCELERATED);
     
     TTF_Init();
-    const char *fontPath = "font/Kemco Pixel Bold.ttf";
-    font = TTF_OpenFont(fontPath, 30);
+    font = TTF_OpenFont("font/Kemco Pixel Bold.ttf", 30);
     if (font == NULL)
     {
         cout << "Erreur lors du chargement de la police menu" << endl;
