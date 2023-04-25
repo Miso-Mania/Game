@@ -244,7 +244,6 @@ Game::~Game()
     Mix_Quit();
 
     TTF_CloseFont(m_font);
-    TTF_Quit();
 
     SDL_Quit();
 }
