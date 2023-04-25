@@ -18,7 +18,7 @@ chercheurs à LIRIS, un laboratoire du CNRS.
 </font>
 
 -------
-## I)Prérequis
+## I)Prérequis Sous Linux/WSL
 1. Un système d'exploitation **Linux** (*Ubuntu, Debian, Fedora, Arch, etc...*), ou **WSL** (*Windows Subsystem for Linux*) sous Windows 10 ou supérieur.
 2. Le compilateur **g++**. 
     Pour l'installer sous Debian ou Ubuntu: 
@@ -44,12 +44,23 @@ Pour vérifier que le compilateur et SDL sont bien installés il suffit de taper
 
 Si  les versions de **g++** et **SDL2** s'affichent, c'est que tout est bien installé.
 
+## I-bis)Prérequis Sous macOS
+1. Un système d'exploitation **macOS** (*Catalina, Mojave, High Sierra, etc...*).
+2. Le compilateur **g++**. 
+    Pour l'installer sous macOS: 
+    ```xcode-select --install```
+3. Les bibliothèques graphiques **SDL2**, **SDL2_image**, **SDL2_ttf**, **SDL2_mixer**.
+   Pour les installer sous macOS: 
+   ```brew install sdl2 sdl2_image sdl2_ttf sdl2_mixer```
+
 ## II)Téléchargement et Compilation 
 1. Télécharger le projet sur GitHub.
    Ouvrir un terminal depuis le dossier où vous souhaitez télécharger le projet, puis taper la commande suivante : 
-   ```git clone https://github.com/Claquettes/Module_Image.git```
-2. Ouvrir un terminal depuis le dossier où vous avez téléchargé le projet, puis taper la commande suivante afin de compiler le projet, et créer les exécutables: 
+   ```git clone https://github.com/Claquettes/S4.git```
+2. Sous Linux/Wsl, Ouvrir un terminal depuis le dossier où vous avez téléchargé le projet, puis taper la commande suivante afin de compiler le projet, et créer les exécutables: 
    ```make```
+2. bis) Sous MacOS, Ouvrir un terminal depuis le dossier où vous avez téléchargé le projet, puis taper la commande suivante afin de compiler le projet, et créer les exécutables: 
+   ```make -f makefile.mac ```
 
 ## III)Utilisation
 1. Pour lancer le jeu, il suffit de taper la commande suivante depuis le terminal : 
