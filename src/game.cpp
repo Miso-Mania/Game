@@ -37,7 +37,6 @@ Game::Game(int inputtypeparam, int levelnumber, bool editMode, string userName, 
     // on initialise la SDL
     SDL_Init(SDL_INIT_VIDEO);
     IMG_Init(IMG_INIT_PNG);
-    TTF_Init();
     m_font = TTF_OpenFont("font/Kemco Pixel Bold.ttf", 50);
     if (m_font == NULL) {
         std::cerr << "Failed to load font: " << TTF_GetError() << std::endl;
