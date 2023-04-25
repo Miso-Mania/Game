@@ -20,12 +20,22 @@ Menu::Menu()
 
     menuWindow = SDL_CreateWindow("Menu", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 720, 0);
     mainRenderer = SDL_CreateRenderer(menuWindow, -1, SDL_RENDERER_ACCELERATED);
+    
+    TTF_Init();
+    const char *fontPath = "font/Kemco Pixel Bold.ttf";
+    font = TTF_OpenFont(fontPath, 30);
+    if (font == NULL)
+    {
+        cout << "Erreur lors du chargement de la police menu" << endl;
+    }
 }
 
 Menu::~Menu()
 {
     SDL_DestroyWindow(menuWindow);
     SDL_DestroyRenderer(mainRenderer);
+    TTF_CloseFont(font);
+    TTF_Quit();
 }
 
 string Menu::auth()
@@ -290,14 +300,6 @@ int Menu::menu()
             cout << "Vous avez " << money << " coins" << endl;
             fclose(moneyFile);
             // we print the balance of the player
-            TTF_Init();
-            const char *fontPath = "font/Kemco Pixel Bold.ttf";
-
-            TTF_Font *font = TTF_OpenFont(fontPath, 30);
-            if (font == NULL)
-            {
-                cout << "Erreur lors du chargement de la police" << endl;
-            }
 
             SDL_Color color = {245, 173, 100};
             SDL_Surface *textSurface = TTF_RenderText_Solid(font, ("Vous avez " + to_string(money) + " coins").c_str(), color);

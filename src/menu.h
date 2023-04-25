@@ -30,6 +30,7 @@ public:
     int chooseIcon;
     string username;
     bool skipIntro;
+    TTF_Font *font;
 };
 
 
