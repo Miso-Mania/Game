@@ -19,7 +19,7 @@ chercheurs à LIRIS, un laboratoire du CNRS.
 
 -------
 ## I)Prérequis Sous Linux/WSL
-1. Un système d'exploitation **Linux** (*Ubuntu, Debian, Fedora, Arch, etc...*), ou **WSL** (*Windows Subsystem for Linux*) sous Windows 10 ou supérieur.
+1. Un système d'exploitation **Linux** (*Ubuntu, Debian, Arch, etc...*), ou **WSL** (*Windows Subsystem for Linux*) sous Windows 10 ou supérieur.
 2. Le compilateur **g++**. 
     Pour l'installer sous Debian ou Ubuntu: 
     ```sudo apt update && sudo apt upgrade``` 
@@ -44,16 +44,19 @@ Pour vérifier que le compilateur et SDL sont bien installés il suffit de taper
 
 Si  les versions de **g++** et **SDL2** s'affichent, c'est que tout est bien installé.
 
-## I-bis)Prérequis Sous macOS
+## I-bis) Prérequis Sous macOS
 1. Un système d'exploitation **macOS** (*Catalina, Mojave, High Sierra, etc...*).
 2. Le compilateur **g++**. 
     Pour l'installer sous macOS: 
     ```xcode-select --install```
-3. Les bibliothèques graphiques **SDL2**, **SDL2_image**, **SDL2_ttf**, **SDL2_mixer**.
+3. Le gestionnaire de paquets **Homebrew**.
+   Pour l'installer sous macOS: 
+   ```/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"```
+4. Les bibliothèques graphiques **SDL2**, **SDL2_image**, **SDL2_ttf**, **SDL2_mixer**.
    Pour les installer sous macOS: 
    ```brew install sdl2 sdl2_image sdl2_ttf sdl2_mixer```
 
-## II)Téléchargement et Compilation 
+## II) Téléchargement et Compilation 
 1. Télécharger le projet sur GitHub.
    Ouvrir un terminal depuis le dossier où vous souhaitez télécharger le projet, puis taper la commande suivante : 
    ```git clone https://github.com/Claquettes/S4.git```
@@ -63,12 +66,12 @@ Si  les versions de **g++** et **SDL2** s'affichent, c'est que tout est bien ins
 Sous **MacOS**, Ouvrir un terminal depuis le dossier où vous avez téléchargé le projet, puis taper la commande suivante afin de compiler le projet, et créer les exécutables: 
    ```make -f makefile.mac ```
 
-## III)Utilisation
+## III) Utilisation
 1. Pour lancer le jeu, il suffit de taper la commande suivante depuis le terminal : 
    ```bin/jeu```
 2. Une fenêtre s'ouvre, et le jeu se lance. Un menu s'affiche, et vous pouvez choisir de jouer, créer un niveau, ou consulter le leaderboard.
 
-## IV)Création de niveau:
+## IV) Création de niveau:
 1. Une fois le mode création de niveau lancé, il suffit de cliquer sur les cases pour les remplir du bloc selectionné. Pour changer de bloc, il suffit d'appuyer sur la toucne avec le numéro du bloc.
 2. Liste des blocs: 
     - **1**: Caisse de base, de taille 1x1.
@@ -83,7 +86,7 @@ Sous **MacOS**, Ouvrir un terminal depuis le dossier où vous avez téléchargé
     - **0**: Ressort.
 3. La sauvegarde du niveau se fait automatiquement à chaque modification. Pour revenir au menu principal, il suffit d'appuyer sur la touche **Echap**. Le niveau sera alors sauvegardé dans le dossier **levels**, dans le fichier **level0.json**.
 
-## V)Documentation 
+## V) Documentation 
 1.  La Documentation du projet à été générée à l'aide de Doxygen. Afin de pouvoir la consulter, il faut d'abbord l'installer. Pour l'installer : 
     ```sudo apt-get install doxygen```
 2. Pour générer la documentation, il suffit de taper la commande suivante depuis le terminal : 
