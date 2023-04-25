@@ -20,7 +20,7 @@ chercheurs à LIRIS, un laboratoire du CNRS.
     ```sudo apt-get install libsdl2-image-dev```
 
 Pour installer réaliser les étapes **1 à 3** il est possible de taper la commande suivante depuis le *terminal d'une distribution Debian ou Ubuntu*:   
-    ```sudo apt update && sudo apt upgrade && sudo apt-get install g++ libsdl2-dev libsdl2-image-dev libsdl2-mixel-dev libsdl2-ttf-dev -y```
+    ```sudo apt update && sudo apt upgrade && sudo apt-get install g++ libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev -y```
 
 Ou depuis Arch Linux : 
     ```sudo pacman -Syu && sudo pacman -S gcc sdl2 sdl2_image sdl2_ttf sdl2_mixer```
