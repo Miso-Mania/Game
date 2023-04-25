@@ -58,7 +58,8 @@ Si  les versions de **g++** et **SDL2** s'affichent, c'est que tout est bien ins
    Ouvrir un terminal depuis le dossier où vous souhaitez télécharger le projet, puis taper la commande suivante : 
    ```git clone https://github.com/Claquettes/S4.git```
 2. **Sous Linux/Wsl**, Ouvrir un terminal depuis le dossier où vous avez téléchargé le projet, puis taper la commande suivante afin de compiler le projet, et créer les exécutables: 
-   ```make```
+   ```make```   
+     
 Sous **MacOS**, Ouvrir un terminal depuis le dossier où vous avez téléchargé le projet, puis taper la commande suivante afin de compiler le projet, et créer les exécutables: 
    ```make -f makefile.mac ```
 
