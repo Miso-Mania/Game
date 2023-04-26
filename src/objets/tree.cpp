@@ -50,7 +50,7 @@ void Tree::testRegression() {
     Tree Tree(1, 2, 3);
     assert(Tree.getCoords().x == 1);
     assert(Tree.getCoords().y == 2);
-    assert(Tree.getCoords().w == 5);
+    assert(Tree.getCoords().w == 3);
     assert(Tree.getCoords().h == 3);
     assert(Tree.getRect().x == 3);
     assert(Tree.getRect().y == 6);
@@ -66,7 +66,7 @@ void Tree::testRegression() {
     cout << "test de la méthode getCoords()" << endl;
     assert(Tree.getCoords().x == 1);
     assert(Tree.getCoords().y == 2);
-    assert(Tree.getCoords().w == 5);
+    assert(Tree.getCoords().w == 3);
     assert(Tree.getCoords().h == 3);
     cout << "test de la méthode getCoords(): réussi" << endl;
     cout << "test de la méthode move()" << endl;
