@@ -116,6 +116,9 @@ Game::Game(int inputtypeparam, int levelnumber, bool editMode, string userName, 
     m_surface_BoxFinish = IMG_Load("assets/textures/porte_fin.png");
     m_texture_BoxFinish = SDL_CreateTextureFromSurface(m_renderer, m_surface_BoxFinish);
 
+    m_surface_Enemy = IMG_Load("assets/textures/samurai.png");
+    m_texture_Enemy = SDL_CreateTextureFromSurface(m_renderer, m_surface_Enemy);
+
     std::cout << "textures loaded" << endl;
     std::cout << "Now loading player icon" << endl;
     FILE *iconFile = NULL;
@@ -238,6 +241,9 @@ Game::~Game()
 
     SDL_FreeSurface(m_surface_Timer);
     SDL_DestroyTexture(m_texture_Timer);
+
+    SDL_FreeSurface(m_surface_Enemy);
+    SDL_DestroyTexture(m_texture_Enemy);
 
     Mix_FreeMusic(music);
     Mix_CloseAudio();
@@ -400,7 +406,7 @@ void Game::handleEvents(SDL_Event &event)
             showBar = !showBar;
             break;
         }
-    }
+    }    
 }
 
 void Game::update()
@@ -649,7 +655,9 @@ void Game::update()
     {
         boxCmgtGrav->move(delta);
     }
+    
     // we check if the player is on a spike, if it is, we reset the level and the timer
+
     for (Pic *pic : m_levels[m_currentLevel]->getPics())
     {
         if (m_player.collidesWith(pic))
@@ -658,6 +666,16 @@ void Game::update()
             if(!speedrun) timer = 0;
         }
     }
+    
+    for (Enemy *enemy : m_levels[m_currentLevel]->getEnemy())
+    {
+        if (m_player.collidesWith(enemy))
+        {
+            m_player.moveOutOf(enemy);
+            m_player.move(1);
+        }
+    }
+    
     // we check if the player is on a doublejumpport, if it is, we give him a double jump
     for (DoubleJumpPort *doublejumpport : m_levels[m_currentLevel]->getDoubleJumpPort())
     {
@@ -1104,6 +1122,13 @@ void Game::render()
         }
     }
 
+
+    //render enemy
+    for (Enemy *enemy : m_levels[m_currentLevel]->getEnemy()) {
+        SDL_Rect enemyRect = enemy->getRect();
+        SDL_RenderCopy(m_renderer, m_texture_Enemy, NULL, &enemyRect);
+    }
+    
     //render the particle system
     m_particuleSystem.render(m_renderer, window_X_size, window_Y_size);
 

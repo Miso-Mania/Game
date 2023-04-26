@@ -92,14 +92,15 @@ private:
     SDL_Texture *m_texture_BoxCmgtGrav; // texture de la boite de gestion de la gravité
     SDL_Surface *m_surface_BoxCmgtGrav; // surface de la boite de gestion de la gravité
 
-    SDL_Texture *m_texture_Enemy;
-    SDL_Surface *m_surface_Enemy;
+    SDL_Texture *m_texture_Enemy; // texture de l'ennemi
+    SDL_Surface *m_surface_Enemy; // surface de l'ennemi
 
     TTF_Font *m_font; // police d'écriture
     SDL_Texture *m_texture_Timer; // texture du texte du timer
     SDL_Surface *m_surface_Timer; // surface du texte du timer
 
     Player m_player; // joueur du jeu
+    Enemy m_enemy; // ennemi du jeu
 
     vector<Level*> m_levels; // vecteur de niveaux
 

@@ -14,6 +14,7 @@
 #include "objets/Case.h"
 #include "objets/D_Case.h"
 #include "objets/BoxCmgtGrav.h"
+#include "enemy.h" 
 
 
 class Player {
@@ -73,6 +74,12 @@ public:
     @return bool
     */
     bool collidesWith(Pic *pic);
+/**
+    @brief fonction qui permet de savoir si le joueur est en collision avec un enemy
+    @param Enemy *Enemy
+    @return bool
+    */
+    bool collidesWith(Enemy *Enemy);
 /**
     @brief fonction qui permet de savoir si le joeur est en collision avec le doublejumpport
     @param DoubleJumpPort *doubleJumpPort
@@ -138,6 +145,11 @@ public:
     @param BoxCmgtGrav *BoxCmgtGrav
     */
     void moveOutOf(BoxCmgtGrav *BoxCmgtGrav);
+/**
+     @brief fonction qui permet de repousser le joueur si il est en collision un ennemy
+     @param Enemy *Enemy
+     */
+    void moveOutOf(Enemy *Enemy);
 /**
     @brief fonction qui permet de repousser le joueur selon les coordonnées
     @param Coords coords

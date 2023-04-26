@@ -70,6 +70,10 @@ bool Player::collidesWith(BoxCmgtGrav *BoxCmgtGrav) {
     return m_coords.isColliding(BoxCmgtGrav->getCoords());
 }
 
+bool Player::collidesWith(Enemy *Enemy) {
+    return m_coords.isColliding(Enemy->getCoords());
+}
+
 void Player::moveOutOfCoords(Coords coords){
     double intoTop = m_coords.y + m_coords.h - coords.y;
     double intoBottom = coords.y + coords.h - m_coords.y;
@@ -122,6 +126,10 @@ void Player::moveOutOf(D_Case *D_Case){
 
 void Player::moveOutOf(BoxCmgtGrav *BoxCmgtGrav){
     moveOutOfCoords(BoxCmgtGrav->getCoords());
+}
+
+void Player::moveOutOf(Enemy *Enemy){
+    moveOutOfCoords(Enemy->getCoords());
 }
 
 void Player::incTimeSinceTouchGround(double delta) {
