@@ -3,11 +3,13 @@
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include <SDL2/SDL_ttf.h>
 #include <vector>
 #include "level.h"
 #include "player.h"
 #include "enemy.h"
 #include "particule.h"
+#include "playerdirection.h"
 
 using namespace std;
 
@@ -17,7 +19,7 @@ public:
     @brief constructeur de la classe Game
     @param int input, int level
     */
-    Game(int input, int level, bool editorMode);
+    Game(int input, int level, bool editorMode, string username, bool speedrunMode);
 /**
     @brief destructeur de la classe Game
     @param aucun
@@ -43,6 +45,8 @@ public:
     @param aucun
     */
     void render();
+
+    void renderTimer(int y, double time);
 
 private:
     SDL_Window *m_window; // fenêtre du jeu
@@ -91,6 +95,10 @@ private:
     SDL_Texture *m_texture_Enemy; // texture de l'ennemi
     SDL_Surface *m_surface_Enemy; // surface de l'ennemi
 
+    TTF_Font *m_font; // police d'écriture
+    SDL_Texture *m_texture_Timer; // texture du texte du timer
+    SDL_Surface *m_surface_Timer; // surface du texte du timer
+
     Player m_player; // joueur du jeu
     Enemy m_enemy; // ennemi du jeu
 
@@ -108,6 +116,14 @@ private:
     int timeLastFrame;
 
     ParticuleSystem m_particuleSystem; // système de particules
+
+    float bestTime; // meilleur temps
+
+    int iconNb; // index de l'icon actuel
+
+    double delta; // delta
+
+    Coords PlayerCoordsLastFrame; // coordonnées du joueur à la dernière frame
 };
 #endif // GAME_H
 

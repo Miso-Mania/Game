@@ -19,6 +19,10 @@ Coords::Coords(double x, double y, double w, double h) {
 }
 
 Coords::~Coords() {
+    x = 0;
+    y = 0;
+    w = 0;
+    h = 0;
 }
 
 bool Coords::isColliding(Coords other) {

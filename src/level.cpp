@@ -16,6 +16,39 @@ Level::~Level() {
     for ( Obstacle* obstacle : m_obstacles ) {
         delete obstacle;
     }
+    for ( Pic* pic : m_pics ) {
+        delete pic;
+    }
+    for ( BoxFinish* box : m_BoxFinish ) {
+        delete box;
+    }
+    for ( Tree* tree : m_trees ) {
+        delete tree;
+    }
+    for ( D_Case* d_case : m_D_Case ) {
+        delete d_case;
+    }
+    for ( Case* case_ : m_Case ) {
+        delete case_;
+    }
+    for ( S_Plateform* s_plateform : m_S_Plateform ) {
+        delete s_plateform;
+    }
+    for ( M_Plateform* m_plateform : m_M_Plateform ) {
+        delete m_plateform;
+    }
+    for ( L_Plateform* l_plateform : m_L_Plateform ) {
+        delete l_plateform;
+    }
+    for ( DoubleJumpPort* doublejumpport : m_DoubleJumpPort ) {
+        delete doublejumpport;
+    }
+    for ( BoxCmgtGrav* boxcmgtgrav : m_BoxCmgtGrav ) {
+        delete boxcmgtgrav;
+    }
+    for ( Enemy* enemy : m_Enemy ) {
+        delete enemy;
+    }
 }
 
 void Level::addObstacle(int x, int y, int width, int height) {
@@ -417,8 +450,6 @@ void Level::click(double x, double y, int TILE_SIZE){
 }
 void Level::testRegression() {
     cout << "Test de regression de la Classe Level:" << endl;
-    cout<< "Test du constructeur de la classe Level:" << endl;
-    cout<< "Test du constructeur de la classe Level réussi" << endl;
     cout<< "Test du destructeur de la classe Level:" << endl;
     assert(m_obstacles.size() == 0);
     cout<< "Test du destructeur de la classe Level réussi" << endl;

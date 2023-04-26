@@ -5,20 +5,6 @@ const  int size = 100;
 bool running = true;
 
 
-void afficherTitre() {
-  //on ouvre le fichier texte qui contient le titre
-  FILE* fichier = NULL;
-  fichier = fopen("niveaux/texte/1/title.txt" , "r");
-  //on affiche le titre, ligne par ligne
-  char ligne[100];
-  int i = 0;
-  while (fgets(ligne, size,  fichier) != NULL) {
-    mvprintw(i + 20, COLS / 2 - 90, ligne); //TODO warning a la compilation, car la ligne 13 veut un const char* et non un char*, mais la ligne 12 ne veut pas de const char* et non un char*
-    i++;
-  }
-  
-}
-
 int main() {
   // Initialize ncurses
   initscr();
@@ -44,14 +30,12 @@ int main() {
   while (running) {
     // Clear the screen and print the player character
     clear();
-    //we print the title
-    afficherTitre();
 
     mvhline(LINES - 1, 0, '=', COLS);
     mvprintw(player_y, player_x, "I");
  
     FILE* fichierobstacle = NULL;
-    // en fonction du niveau on défini  une chaine de caractères qui représente le fichier texte qui contient les obstacles
+    // we open the file corresponding to the level
     if (level == 1) {
       fichierobstacle = fopen("niveaux/texte/1/1.txt", "r");
     }
@@ -188,12 +172,6 @@ int main() {
     lastlastInput = lastInput;
     refresh();
   }
-  // on lance le niveau suivant
-  //on vérifie que le niveau est valide
-  //on clear la fenêtre
-  
-
-
   main();
 
   return 0;

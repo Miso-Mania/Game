@@ -1,6 +1,25 @@
 #include "particule.h"
+#include <iostream>
+#include <assert.h>
+using namespace std;
 
-Particule::Particule(double x, double y, double vx, double vy, double ax, double ay, double life, double size, int r, int g, int b, int a) {
+Particule::Particule() {
+    x = 0;
+    y = 0;
+    vx = 0;
+    vy = 0;
+    ax = 0;
+    ay = 0;
+    life = 0;
+    size = 0;
+    r = 0;
+    g = 0;
+    b = 0;
+    a = 0;
+    blendMode = SDL_BLENDMODE_NONE;
+}
+
+Particule::Particule(double x, double y, double vx, double vy, double ax, double ay, double life, double size, int r, int g, int b, int a, SDL_BlendMode blendMode) {
     this->x = x;
     this->y = y;
     this->vx = vx;
@@ -13,6 +32,7 @@ Particule::Particule(double x, double y, double vx, double vy, double ax, double
     this->g = g;
     this->b = b;
     this->a = a;
+    this->blendMode = blendMode;
 }
 
 Particule::~Particule() {
@@ -56,7 +76,7 @@ void ParticuleSystem::render(SDL_Renderer *m_renderer, int windowWidth, int wind
         rect.y = p->y * 40;
         rect.w = p->size * 40;
         rect.h = p->size * 40;
-        SDL_SetRenderDrawBlendMode(m_renderer, SDL_BLENDMODE_BLEND);
+        SDL_SetRenderDrawBlendMode(m_renderer, p->blendMode);
         SDL_SetRenderDrawColor(m_renderer, p->r, p->g, p->b, p->a);
         SDL_RenderFillRect(m_renderer, &rect);
     }
@@ -65,4 +85,3 @@ void ParticuleSystem::render(SDL_Renderer *m_renderer, int windowWidth, int wind
 void ParticuleSystem::addParticule(Particule *p) {
     m_particules.push_back(p);
 }
-
