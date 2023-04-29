@@ -14,6 +14,7 @@
 #include "objets/pic.h"
 #include "objets/tree.h"
 #include "particule.h"
+#include "enemy.h"
 
 using namespace std;
 
@@ -85,6 +86,12 @@ int main () {
     cout<<endl;
     Tree tree;
     tree.testRegression();
+    cout<<endl;
+    cout<<"Changement de Classe"<<endl;
+    cout<<endl;
+    Enemy enemy;
+    enemy.testRegression();
+    cout<<endl;
     return 0;
 }
 

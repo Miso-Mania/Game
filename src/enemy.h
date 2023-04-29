@@ -41,6 +41,11 @@ class Enemy {
     @return Coords
     */
     Coords getCoords();
+/**
+    @brief procédure de regression de la classe Enemy
+    @param aucun
+ */
+    void testRegression();
 
 private:
     Coords m_coords; // coordonnées de l'enemy
