@@ -18,9 +18,6 @@ Menu::Menu()
     this->username = "";
     this->skipIntro = false;
 
-    menuWindow = SDL_CreateWindow("Menu", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 720, 0);
-    mainRenderer = SDL_CreateRenderer(menuWindow, -1, SDL_RENDERER_ACCELERATED);
-    
     TTF_Init();
     font = TTF_OpenFont("font/Kemco Pixel Bold.ttf", 30);
     if (font == NULL)
