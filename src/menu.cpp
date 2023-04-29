@@ -471,30 +471,40 @@ int Menu::menu()
             SDL_Texture *collectionTexture = SDL_CreateTextureFromSurface(mainRenderer, collectionSurface);
             SDL_Rect mainRect = {0, 0, 1280, 720};
             SDL_RenderCopy(mainRenderer, collectionTexture, NULL, &mainRect);
+            SDL_Surface *objSurface0 = IMG_Load("assets/icons/0.png");
+            SDL_Texture *objTexture0 = SDL_CreateTextureFromSurface(mainRenderer, objSurface0);
+            //ON AFFICHE TOUJOURS LE PREMIER OBJET
+            SDL_Rect objRect0 = {200, 50, 200, 200};
+            SDL_RenderCopy(mainRenderer, objTexture0, NULL, &objRect0);
+
             SDL_Surface *objSurface1 = IMG_Load("assets/icons/1.png");
             SDL_Texture *objTexture1 = SDL_CreateTextureFromSurface(mainRenderer, objSurface1);
-            SDL_Surface *objSurface3 = IMG_Load("assets/icons/2.png");
-            SDL_Texture *objTexture3 = SDL_CreateTextureFromSurface(mainRenderer, objSurface3);
-            SDL_Surface *objSurface4 = IMG_Load("assets/icons/3.png");
-            SDL_Texture *objTexture4 = SDL_CreateTextureFromSurface(mainRenderer, objSurface4);
-            SDL_Surface *objSurface2 = IMG_Load("assets/icons/0.png");
+
+            SDL_Surface *objSurface2 = IMG_Load("assets/icons/2.png");
             SDL_Texture *objTexture2 = SDL_CreateTextureFromSurface(mainRenderer, objSurface2);
-            SDL_Surface *objSurface5 = IMG_Load("assets/icons/4.png");
+
+            SDL_Surface *objSurface3 = IMG_Load("assets/icons/3.png");
+            SDL_Texture *objTexture3 = SDL_CreateTextureFromSurface(mainRenderer, objSurface3);
+
+            SDL_Surface *objSurface4 = IMG_Load("assets/icons/4.png");
+            SDL_Texture *objTexture4 = SDL_CreateTextureFromSurface(mainRenderer, objSurface4);
+
+            SDL_Surface *objSurface5 = IMG_Load("assets/icons/5.png");
             SDL_Texture *objTexture5 = SDL_CreateTextureFromSurface(mainRenderer, objSurface5);
-            SDL_Surface *objSurface6 = IMG_Load("assets/icons/5.png");
+
+            SDL_Surface *objSurface6 = IMG_Load("assets/icons/6.png");
             SDL_Texture *objTexture6 = SDL_CreateTextureFromSurface(mainRenderer, objSurface6);
-            SDL_Surface *objSurface7 = IMG_Load("assets/icons/6.png");
+
+            SDL_Surface *objSurface7 = IMG_Load("assets/icons/7.png");
             SDL_Texture *objTexture7 = SDL_CreateTextureFromSurface(mainRenderer, objSurface7);
-            SDL_Surface *objSurface8 = IMG_Load("assets/icons/7.png");
+
+            SDL_Surface *objSurface8 = IMG_Load("assets/icons/8.png");
             SDL_Texture *objTexture8 = SDL_CreateTextureFromSurface(mainRenderer, objSurface8);
-            SDL_Surface *objSurface9 = IMG_Load("assets/icons/8.png");
-            SDL_Texture *objTexture9 = SDL_CreateTextureFromSurface(mainRenderer, objSurface9);
+            
             SDL_Surface *objSurfaceLock = IMG_Load("assets/textures/padlock.png");
             SDL_Texture *objTextureLock = SDL_CreateTextureFromSurface(mainRenderer, objSurfaceLock);
 
-            SDL_Rect objRect2 = {200, 50, 200, 200}; // standard
-            SDL_RenderCopy(mainRenderer, objTexture2, NULL, &objRect2);
-            for (int e = 1; e < 9; e++)
+            for (int e = 0; e < 9; e++)
             {
                 FILE *objFile = NULL;
                 objFile = fopen(("user/icons/" + to_string(e) + ".txt").c_str(), "r");
@@ -517,7 +527,19 @@ int Menu::menu()
                     }
                     if (e == 2)
                     {
-                        SDL_Rect objRect3 = {420 + (e - 1) * 210, 50, 200, 200};
+                        SDL_Rect objRect2 = {420 + (e - 1) * 210, 50, 200, 200};
+                        if (obj != 1)
+                        {
+                            SDL_RenderCopy(mainRenderer, objTextureLock, NULL, &objRect2);
+                        }
+                        else{
+                            SDL_RenderCopy(mainRenderer, objTexture2, NULL, &objRect2);
+                        }
+                    }
+                    if (e == 3)
+                    {
+
+                        SDL_Rect objRect3 = {430 + (e - 1) * 210, 50, 200, 200};
                         if (obj != 1)
                         {
                             SDL_RenderCopy(mainRenderer, objTextureLock, NULL, &objRect3);
@@ -526,10 +548,10 @@ int Menu::menu()
                             SDL_RenderCopy(mainRenderer, objTexture3, NULL, &objRect3);
                         }
                     }
-                    if (e == 3)
-                    {
 
-                        SDL_Rect objRect4 = {430 + (e - 1) * 210, 50, 200, 200};
+                    if (e == 4)
+                    {
+                        SDL_Rect objRect4= {410 + (e - 5) * 210, 275, 200, 200};
                         if (obj != 1)
                         {
                             SDL_RenderCopy(mainRenderer, objTextureLock, NULL, &objRect4);
@@ -539,9 +561,9 @@ int Menu::menu()
                         }
                     }
 
-                    if (e == 4)
+                    if (e == 5)
                     {
-                        SDL_Rect objRect5 = {410 + (e - 5) * 210, 275, 200, 200};
+                        SDL_Rect objRect5 = {420 + (e - 5) * 210, 275, 200, 200};
                         if (obj != 1)
                         {
                             SDL_RenderCopy(mainRenderer, objTextureLock, NULL, &objRect5);
@@ -551,9 +573,9 @@ int Menu::menu()
                         }
                     }
 
-                    if (e == 5)
+                    if (e == 6)
                     {
-                        SDL_Rect objRect6 = {420 + (e - 5) * 210, 275, 200, 200};
+                        SDL_Rect objRect6 = {430 + (e - 5) * 210, 275, 200, 200};
                         if (obj != 1)
                         {
                             SDL_RenderCopy(mainRenderer, objTextureLock, NULL, &objRect6);
@@ -563,9 +585,9 @@ int Menu::menu()
                         }
                     }
 
-                    if (e == 6)
+                    if (e == 7)
                     {
-                        SDL_Rect objRect7 = {430 + (e - 5) * 210, 275, 200, 200};
+                        SDL_Rect objRect7 = {410 + (e - 8) * 210, 500, 200, 200};
                         if (obj != 1)
                         {
                             SDL_RenderCopy(mainRenderer, objTextureLock, NULL, &objRect7);
@@ -575,27 +597,15 @@ int Menu::menu()
                         }
                     }
 
-                    if (e == 7)
+                    if (e == 8)
                     {
-                        SDL_Rect objRect8 = {410 + (e - 8) * 210, 500, 200, 200};
+                        SDL_Rect objRect8 = {420 + (e - 8) * 210, 500, 200, 200};
                         if (obj != 1)
                         {
                             SDL_RenderCopy(mainRenderer, objTextureLock, NULL, &objRect8);
                         }
                         else{
                             SDL_RenderCopy(mainRenderer, objTexture8, NULL, &objRect8);
-                        }
-                    }
-
-                    if (e == 8)
-                    {
-                        SDL_Rect objRect9 = {420 + (e - 8) * 210, 500, 200, 200};
-                        if (obj != 1)
-                        {
-                            SDL_RenderCopy(mainRenderer, objTextureLock, NULL, &objRect9);
-                        }
-                        else{
-                            SDL_RenderCopy(mainRenderer, objTexture9, NULL, &objRect9);
                         }
                     }
 
@@ -619,55 +629,55 @@ int Menu::menu()
             switch (chooseIcon)
             {
             // we need to have a look 1 ahead because the first item is the standard one
-            case 1:
+            case 0:
                 cout << "Vous avez choisi l'item 0" << endl;
                 iconFile0 = fopen("user/icon.txt", "w");
                 fputs("0", iconFile0);
                 fclose(iconFile0);
                 break;
-            case 2:
+            case 1:
                 cout << "Vous avez choisi l'item 1" << endl;
                 iconFile = fopen("user/icon.txt", "w");
                 fputs("1", iconFile);
                 fclose(iconFile);
                 break;
-            case 3:
+            case 2:
                 cout << "Vous avez choisi l'item 2" << endl;
                 iconFile2 = fopen("user/icon.txt", "w");
                 fputs("2", iconFile2);
                 fclose(iconFile2);
                 break;
-            case 4:
+            case 3:
                 cout << "Vous avez choisi l'item 3" << endl;
                 iconFile3 = fopen("user/icon.txt", "w");
                 fputs("3", iconFile3);
                 fclose(iconFile3);
                 break;
-            case 5:
+            case 4:
                 cout << "Vous avez choisi l'item 4" << endl;
                 iconFile4 = fopen("user/icon.txt", "w");
                 fputs("4", iconFile4);
                 fclose(iconFile4);
                 break;
-            case 6:
+            case 5:
                 cout << "Vous avez choisi l'item 5" << endl;
                 iconFile5 = fopen("user/icon.txt", "w");
                 fputs("5", iconFile5);
                 fclose(iconFile5);
                 break;
-            case 7:
+            case 6:
                 cout << "Vous avez choisi l'item 6" << endl;
                 iconFile6 = fopen("user/icon.txt", "w");
                 fputs("6", iconFile6);
                 fclose(iconFile6);
                 break;
-            case 8:
+            case 7:
                 cout << "Vous avez choisi l'item 7" << endl;
                 iconFile7 = fopen("user/icon.txt", "w");
                 fputs("7", iconFile7);
                 fclose(iconFile7);
                 break;
-            case 9:
+            case 8:
                 cout << "Vous avez choisi l'item 8" << endl;
                 iconFile8 = fopen("user/icon.txt", "w");
                 fputs("8", iconFile8);
@@ -702,8 +712,6 @@ int Menu::menu()
             SDL_FreeSurface(objSurface7);
             SDL_DestroyTexture(objTexture8);
             SDL_FreeSurface(objSurface8);
-            SDL_DestroyTexture(objTexture9);
-            SDL_FreeSurface(objSurface9);
         }
         if (activity == -2)
         {
