@@ -105,7 +105,7 @@ Sous **MacOS**, Ouvrir un terminal depuis le dossier où vous avez téléchargé
 5. **obj**: Contient les fichiers objets du projet, le dossier et son contenu sont générés lors de la compilation.
 6. **niveaux**: Contient les niveaux du projet, ainsi que ceux créés ou importés par l'utilisateur.
 7. **times**: Contient les fichiers de sauvegarde des temps des joueurs.
-8. **user** : Contient les fichiers propres à l'utilisateur, comme les icones ou les coins.
+8. **user** : Contient les fichiers propres à l'utilisateur, comme les icones ou les coins le dossier et son contenu sont générés lors de la compilation.
 9. **makefile**: Fichier permettant de compiler le projet sous Linux/WSL.
 10. **makefile.mac**: Fichier permettant de compiler le projet sous macOS.
 11. **README.md**: Fichier contenant les informations relatives au projet.
