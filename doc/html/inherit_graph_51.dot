@@ -1,0 +1,8 @@
+digraph "Graphical Class Hierarchy"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node0 [label="detail::is_constructible\l_object_type_impl\< BasicJsonType,\l ConstructibleObjectType, enable\l_if_t\< is_detected\< mapped_type\l_t, ConstructibleObjectType \>::value\l &&is_detected\< key_type_t, ConstructibleObject\lType \>::value \> \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structdetail_1_1is__constructible__object__type__impl_3_01BasicJsonType_00_01ConstructibleObject435b838380c31b9738383402f7bb5943.html",tooltip=" "];
+}

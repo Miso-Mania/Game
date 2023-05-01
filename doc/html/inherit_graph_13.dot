@@ -1,0 +1,50 @@
+digraph "Graphical Class Hierarchy"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node17 [label="true_type",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node17 -> Node0 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node0 [label="detail::conjunction\l\< is_constructible\<\l T1, Args \>... \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structdetail_1_1conjunction.html",tooltip=" "];
+  Node0 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 [label="detail::is_constructible\l_tuple\< T1, std::tuple\l\< Args... \> \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structdetail_1_1is__constructible__tuple_3_01T1_00_01std_1_1tuple_3_01Args_8_8_8_01_4_01_4.html",tooltip=" "];
+  Node17 -> Node20 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node20 [label="detail::conjunction\l\< is_default_constructible\l\< T1 \>, is_default_constructible\l\< T2 \> \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structdetail_1_1conjunction.html",tooltip=" "];
+  Node20 -> Node21 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node21 [label="detail::is_default\l_constructible\< const\l std::pair\< T1, T2 \> \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structdetail_1_1is__default__constructible_3_01const_01std_1_1pair_3_01T1_00_01T2_01_4_01_4.html",tooltip=" "];
+  Node21 -> Node22 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node22 [label="detail::is_constructible\l\< const std::pair\< T1, T2 \> \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structdetail_1_1is__constructible_3_01const_01std_1_1pair_3_01T1_00_01T2_01_4_01_4.html",tooltip=" "];
+  Node20 -> Node23 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node23 [label="detail::is_default\l_constructible\< std\l::pair\< T1, T2 \> \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structdetail_1_1is__default__constructible_3_01std_1_1pair_3_01T1_00_01T2_01_4_01_4.html",tooltip=" "];
+  Node23 -> Node24 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node24 [label="detail::is_constructible\l\< std::pair\< T1, T2 \> \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structdetail_1_1is__constructible_3_01std_1_1pair_3_01T1_00_01T2_01_4_01_4.html",tooltip=" "];
+  Node17 -> Node25 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node25 [label="detail::conjunction\l\< is_default_constructible\l\< Ts \>... \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structdetail_1_1conjunction.html",tooltip=" "];
+  Node25 -> Node26 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node26 [label="detail::is_default\l_constructible\< const\l std::tuple\< Ts... \> \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structdetail_1_1is__default__constructible_3_01const_01std_1_1tuple_3_01Ts_8_8_8_01_4_01_4.html",tooltip=" "];
+  Node26 -> Node27 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node27 [label="detail::is_constructible\l\< const std::tuple\< Ts... \> \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structdetail_1_1is__constructible_3_01const_01std_1_1tuple_3_01Ts_8_8_8_01_4_01_4.html",tooltip=" "];
+  Node25 -> Node28 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node28 [label="detail::is_default\l_constructible\< std\l::tuple\< Ts... \> \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structdetail_1_1is__default__constructible_3_01std_1_1tuple_3_01Ts_8_8_8_01_4_01_4.html",tooltip=" "];
+  Node28 -> Node29 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node29 [label="detail::is_constructible\l\< std::tuple\< Ts... \> \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structdetail_1_1is__constructible_3_01std_1_1tuple_3_01Ts_8_8_8_01_4_01_4.html",tooltip=" "];
+  Node17 -> Node30 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node30 [label="detail::conjunction\l\<... \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structdetail_1_1conjunction.html",tooltip=" "];
+  Node17 -> Node31 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node31 [label="detail::is_basic_json\l\< NLOHMANN_BASIC_JSON_TPL \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structdetail_1_1is__basic__json_3_01NLOHMANN__BASIC__JSON__TPL_01_4.html",tooltip=" "];
+  Node17 -> Node32 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node32 [label="detail::is_comparable\l\< Compare, A, B, void\l_t\< decltype(std::declval\l\< Compare \>()(std::declval\l\< A \>(), std::declval\< B \>\l())), decltype(std::declval\l\< Compare \>()(std::declval\< B\l \>(), std::declval\< A \>()))\> \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structdetail_1_1is__comparable_3_01Compare_00_01A_00_01B_00_01void__t_3_01decltype_07std_1_1decle5e3400d312093eca0a7154409c6a227.html",tooltip=" "];
+  Node17 -> Node33 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node33 [label="detail::is_complete\l_type\< T, decltype(void\l(sizeof(T)))\>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structdetail_1_1is__complete__type_3_01T_00_01decltype_07void_07sizeof_07T_08_08_08_4.html",tooltip=" "];
+  Node17 -> Node34 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node34 [label="detail::is_constructible\l_array_type_impl\< BasicJsonType,\l ConstructibleArrayType, enable\l_if_t\< std::is_same\< ConstructibleArrayType,\l typename BasicJsonType::value_type \>::value \> \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structdetail_1_1is__constructible__array__type__impl_3_01BasicJsonType_00_01ConstructibleArrayTyff4af2af9684a1cc8580410ec8c319a4.html",tooltip=" "];
+  Node17 -> Node35 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node35 [label="detail::is_json_iterator\l_of\< BasicJsonType, typename\l BasicJsonType::const_iterator \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structdetail_1_1is__json__iterator__of_3_01BasicJsonType_00_01typename_01BasicJsonType_1_1const__iterator_01_4.html",tooltip=" "];
+  Node17 -> Node36 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node36 [label="detail::is_json_iterator\l_of\< BasicJsonType, typename\l BasicJsonType::iterator \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structdetail_1_1is__json__iterator__of_3_01BasicJsonType_00_01typename_01BasicJsonType_1_1iterator_01_4.html",tooltip=" "];
+  Node17 -> Node37 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node37 [label="detail::is_json_ref\l\< json_ref\< T \> \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structdetail_1_1is__json__ref_3_01json__ref_3_01T_01_4_01_4.html",tooltip=" "];
+  Node17 -> Node38 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node38 [label="detail::is_specialization\l_of\< Primary, Primary\<\l Args... \> \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structdetail_1_1is__specialization__of_3_01Primary_00_01Primary_3_01Args_8_8_8_01_4_01_4.html",tooltip=" "];
+}

@@ -1,0 +1,8 @@
+digraph "Graphical Class Hierarchy"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node0 [label="detail::has_to_json\l\< BasicJsonType, T,\l enable_if_t\< !is_basic\l_json\< T \>::value \> \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structdetail_1_1has__to__json_3_01BasicJsonType_00_01T_00_01enable__if__t_3_01_9is__basic__json_3_01T_01_4_1_1value_01_4_01_4.html",tooltip=" "];
+}

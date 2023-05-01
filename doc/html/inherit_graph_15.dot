@@ -1,0 +1,8 @@
+digraph "Graphical Class Hierarchy"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node0 [label="detail::container_input\l_adapter_factory_impl\l::container_input_adapter\l_factory\< ContainerType,\l void_t\< decltype(begin(std\l::declval\< ContainerType \>()\l), end(std::declval\< ContainerType \>()))\> \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structdetail_1_1container__input__adapter__factory__impl_1_1container__input__adapter__factory_3983614ac0e8828aa386ca24b1ddc2bd1.html",tooltip=" "];
+}

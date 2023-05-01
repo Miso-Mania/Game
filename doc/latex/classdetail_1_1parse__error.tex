@@ -1,0 +1,90 @@
+\hypertarget{classdetail_1_1parse__error}{}\doxysection{detail\+::parse\+\_\+error Class Reference}
+\label{classdetail_1_1parse__error}\index{detail::parse\_error@{detail::parse\_error}}
+
+
+exception indicating a parse error  
+
+
+
+
+{\ttfamily \#include $<$json.\+hpp$>$}
+
+
+
+Inheritance diagram for detail\+::parse\+\_\+error\+:
+% FIG 0
+
+
+Collaboration diagram for detail\+::parse\+\_\+error\+:
+% FIG 1
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename Basic\+Json\+Context , enable\+\_\+if\+\_\+t$<$ is\+\_\+basic\+\_\+json\+\_\+context$<$ Basic\+Json\+Context $>$\+::value, int $>$  = 0$>$ }\\static \mbox{\hyperlink{classdetail_1_1parse__error}{parse\+\_\+error}} \mbox{\hyperlink{classdetail_1_1parse__error_a07046ea9f33d28f120af188ed674d6df}{create}} (int id\+\_\+, const \mbox{\hyperlink{structdetail_1_1position__t}{position\+\_\+t}} \&pos, const std\+::string \&what\+\_\+arg, Basic\+Json\+Context context)
+\begin{DoxyCompactList}\small\item\em create a parse error exception \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classdetail_1_1parse__error_a55b7ac869c65efd530fbf3dee18c5e9c}\label{classdetail_1_1parse__error_a55b7ac869c65efd530fbf3dee18c5e9c}} 
+{\footnotesize template$<$typename Basic\+Json\+Context , enable\+\_\+if\+\_\+t$<$ is\+\_\+basic\+\_\+json\+\_\+context$<$ Basic\+Json\+Context $>$\+::value, int $>$  = 0$>$ }\\static \mbox{\hyperlink{classdetail_1_1parse__error}{parse\+\_\+error}} {\bfseries create} (int id\+\_\+, std\+::size\+\_\+t byte\+\_\+, const std\+::string \&what\+\_\+arg, Basic\+Json\+Context context)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+const std\+::size\+\_\+t \mbox{\hyperlink{classdetail_1_1parse__error_a5bce7d135aa3a38d1d3f4ed7bf8615e1}{byte}}
+\begin{DoxyCompactList}\small\item\em byte index of the parse error \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+exception indicating a parse error 
+
+\begin{DoxySeeAlso}{See also}
+\href{https://json.nlohmann.me/api/basic_json/parse_error/}{\texttt{ https\+://json.\+nlohmann.\+me/api/basic\+\_\+json/parse\+\_\+error/}} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classdetail_1_1parse__error_a07046ea9f33d28f120af188ed674d6df}\label{classdetail_1_1parse__error_a07046ea9f33d28f120af188ed674d6df}} 
+\index{detail::parse\_error@{detail::parse\_error}!create@{create}}
+\index{create@{create}!detail::parse\_error@{detail::parse\_error}}
+\doxysubsubsection{\texorpdfstring{create()}{create()}}
+{\footnotesize\ttfamily template$<$typename Basic\+Json\+Context , enable\+\_\+if\+\_\+t$<$ is\+\_\+basic\+\_\+json\+\_\+context$<$ Basic\+Json\+Context $>$\+::value, int $>$  = 0$>$ \\
+static \mbox{\hyperlink{classdetail_1_1parse__error}{parse\+\_\+error}} detail\+::parse\+\_\+error\+::create (\begin{DoxyParamCaption}\item[{int}]{id\+\_\+,  }\item[{const \mbox{\hyperlink{structdetail_1_1position__t}{position\+\_\+t}} \&}]{pos,  }\item[{const std\+::string \&}]{what\+\_\+arg,  }\item[{Basic\+Json\+Context}]{context }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+create a parse error exception 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em id\+\_\+} & the id of the exception \\
+\hline
+\mbox{\texttt{ in}}  & {\em pos} & the position where the error occurred (or with chars\+\_\+read\+\_\+total=0 if the position cannot be determined) \\
+\hline
+\mbox{\texttt{ in}}  & {\em what\+\_\+arg} & the explanatory string \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{classdetail_1_1parse__error}{parse\+\_\+error}} object 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classdetail_1_1parse__error_a5bce7d135aa3a38d1d3f4ed7bf8615e1}\label{classdetail_1_1parse__error_a5bce7d135aa3a38d1d3f4ed7bf8615e1}} 
+\index{detail::parse\_error@{detail::parse\_error}!byte@{byte}}
+\index{byte@{byte}!detail::parse\_error@{detail::parse\_error}}
+\doxysubsubsection{\texorpdfstring{byte}{byte}}
+{\footnotesize\ttfamily const std\+::size\+\_\+t detail\+::parse\+\_\+error\+::byte}
+
+
+
+byte index of the parse error 
+
+The byte index of the last read character in the input file.
+
+\begin{DoxyNote}{Note}
+For an input with n bytes, 1 is the index of the first character and n+1 is the index of the terminating null byte or the end of file. This also holds true when reading a byte vector (C\+B\+OR or Message\+Pack). 
+\end{DoxyNote}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/json.\+hpp\end{DoxyCompactItemize}

@@ -1,0 +1,8 @@
+digraph "Graphical Class Hierarchy"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node0 [label="detail::is_compatible\l_object_type_impl\< BasicJson\lType, CompatibleObjectType,\l enable_if_t\< is_detected\<\l mapped_type_t, CompatibleObjectType\l \>::value &&is_detected\< key_type\l_t, CompatibleObjectType \>::value \> \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structdetail_1_1is__compatible__object__type__impl_3_01BasicJsonType_00_01CompatibleObjectType_01530c59509aa77cdb5f1e95cf109944f.html",tooltip=" "];
+}

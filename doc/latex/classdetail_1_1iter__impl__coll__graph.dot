@@ -1,0 +1,11 @@
+digraph "detail::iter_impl&lt; BasicJsonType &gt;"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="detail::iter_impl\<\l BasicJsonType \>",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="a template for a bidirectional iterator for the basic_json class This class implements a both iterato..."];
+  Node2 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" m_it" ];
+  Node2 [label="detail::internal_iterator\l\< typename std::remove\l_const\< BasicJsonType \>\l::type \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structdetail_1_1internal__iterator.html",tooltip=" "];
+  Node3 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" primitive_iterator" ];
+  Node3 [label="detail::primitive_iterator_t",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classdetail_1_1primitive__iterator__t.html",tooltip=" "];
+}
