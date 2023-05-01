@@ -100,7 +100,7 @@ Sous **MacOS**, Ouvrir un terminal depuis le dossier où vous avez téléchargé
 2. **data**: Contient les assets et les polices du projet.
     - **assets**: Contient les images du projet.
     - **font**: Contient les polices du projet.   
-3. **doc**: Contient la documentation du projet.
+3. **doc**: Contient la documentation du projet, le diagramme des classes, notre présantation orale, ainsi que le diagramme de Gantt.
 4. **bin**: Contient les exécutables du projet, le dossier et son contenu sont générés lors de la compilation.
 5. **obj**: Contient les fichiers objets du projet, le dossier et son contenu sont générés lors de la compilation.
 6. **niveaux**: Contient les niveaux du projet, ainsi que ceux créés ou importés par l'utilisateur.
