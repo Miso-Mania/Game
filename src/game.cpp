@@ -37,7 +37,7 @@ Game::Game(int inputtypeparam, int levelnumber, bool editMode, string userName, 
     // on initialise la SDL
     SDL_Init(SDL_INIT_VIDEO);
     IMG_Init(IMG_INIT_PNG);
-    m_font = TTF_OpenFont("font/Kemco Pixel Bold.ttf", 50);
+    m_font = TTF_OpenFont("data/font/Kemco Pixel Bold.ttf", 50);
     if (m_font == NULL) {
         std::cerr << "Failed to load font: " << TTF_GetError() << std::endl;
     }
@@ -62,8 +62,8 @@ Game::Game(int inputtypeparam, int levelnumber, bool editMode, string userName, 
     {
         std::cerr << "Failed to open audio device: " << Mix_GetError() << std::endl;
     }
-    Mix_Music *music = Mix_LoadMUS("assets/music/lofi.mp3");
-    Mix_Music *on_the_level = Mix_LoadMUS("assets/music/lofi.mp3");
+    Mix_Music *music = Mix_LoadMUS("data/assets/music/lofi.mp3");
+    Mix_Music *on_the_level = Mix_LoadMUS("data/assets/music/lofi.mp3");
     if (!music)
     {
         std::cerr << "Failed to load music file: " << Mix_GetError() << std::endl;
@@ -80,43 +80,43 @@ Game::Game(int inputtypeparam, int levelnumber, bool editMode, string userName, 
     const int TILE_SIZE = width / NUM_TILES_X;
     cout << "TILE_SIZE: " << TILE_SIZE << endl;
     
-    m_surface_pic = IMG_Load("assets/textures/spikes.png");
+    m_surface_pic = IMG_Load("data/assets/textures/spikes.png");
     m_texture_pic = SDL_CreateTextureFromSurface(m_renderer, m_surface_pic);
 
-    m_surface_obstacle = IMG_Load("assets/textures/ground.png");
+    m_surface_obstacle = IMG_Load("data/assets/textures/ground.png");
     m_texture_obstacle = SDL_CreateTextureFromSurface(m_renderer, m_surface_obstacle);
 
-    m_surface_background = IMG_Load("assets/textures/back2.png");
+    m_surface_background = IMG_Load("data/assets/textures/back2.png");
     m_texture_background = SDL_CreateTextureFromSurface(m_renderer, m_surface_background);
 
-    m_surface_Trees = IMG_Load("assets/textures/tree.png");
+    m_surface_Trees = IMG_Load("data/assets/textures/tree.png");
     m_texture_Trees = SDL_CreateTextureFromSurface(m_renderer, m_surface_Trees);
 
-    m_surface_S_Plateform = IMG_Load("assets/textures/S_Plateform.png");
+    m_surface_S_Plateform = IMG_Load("data/assets/textures/S_Plateform.png");
     m_texture_S_Plateform = SDL_CreateTextureFromSurface(m_renderer, m_surface_S_Plateform);
 
-    m_surface_M_Plateform = IMG_Load("assets/textures/M_Plateform.png");
+    m_surface_M_Plateform = IMG_Load("data/assets/textures/M_Plateform.png");
     m_texture_M_Plateform = SDL_CreateTextureFromSurface(m_renderer, m_surface_M_Plateform);
 
-    m_surface_L_Plateform = IMG_Load("assets/textures/L_Plateform.png");
+    m_surface_L_Plateform = IMG_Load("data/assets/textures/L_Plateform.png");
     m_texture_L_Plateform = SDL_CreateTextureFromSurface(m_renderer, m_surface_L_Plateform);
 
-    m_surface_Case = IMG_Load("assets/textures/block-big.png");
+    m_surface_Case = IMG_Load("data/assets/textures/block-big.png");
     m_texture_Case = SDL_CreateTextureFromSurface(m_renderer, m_surface_Case);
 
-    m_surface_D_Case = IMG_Load("assets/textures/big-crate.png");
+    m_surface_D_Case = IMG_Load("data/assets/textures/big-crate.png");
     m_texture_D_Case = SDL_CreateTextureFromSurface(m_renderer, m_surface_D_Case);
 
-    m_surface_DoubleJumpPort = IMG_Load("assets/textures/orb.png");
+    m_surface_DoubleJumpPort = IMG_Load("data/assets/textures/orb.png");
     m_texture_DoubleJumpPort = SDL_CreateTextureFromSurface(m_renderer, m_surface_DoubleJumpPort);
 
-    m_surface_BoxCmgtGrav = IMG_Load("assets/textures/bounce.png");
+    m_surface_BoxCmgtGrav = IMG_Load("data/assets/textures/bounce.png");
     m_texture_BoxCmgtGrav = SDL_CreateTextureFromSurface(m_renderer, m_surface_BoxCmgtGrav);
 
-    m_surface_BoxFinish = IMG_Load("assets/textures/porte_fin.png");
+    m_surface_BoxFinish = IMG_Load("data/assets/textures/porte_fin.png");
     m_texture_BoxFinish = SDL_CreateTextureFromSurface(m_renderer, m_surface_BoxFinish);
 
-    m_surface_Enemy = IMG_Load("assets/textures/samurai.png");
+    m_surface_Enemy = IMG_Load("data/assets/textures/samurai.png");
     m_texture_Enemy = SDL_CreateTextureFromSurface(m_renderer, m_surface_Enemy);
 
     std::cout << "textures loaded" << endl;
@@ -131,10 +131,10 @@ Game::Game(int inputtypeparam, int levelnumber, bool editMode, string userName, 
         //if null, we load the default icon
         if (icon[0] == '\0') 
         {
-            m_surface_player = IMG_Load("assets/icons/0.png");
+            m_surface_player = IMG_Load("data/assets/icons/0.png");
         }
         else{ 
-            char iconPath[20] = "assets/icons/";
+            char iconPath[20] = "data/assets/icons/";
             strcat(iconPath, icon);
             strcat(iconPath, ".png"); 
             m_surface_player = IMG_Load(iconPath);
@@ -144,7 +144,7 @@ Game::Game(int inputtypeparam, int levelnumber, bool editMode, string userName, 
     else 
     {
         cout << "icon.txt not found" << endl;
-        m_surface_player = IMG_Load("assets/icons/0.png");
+        m_surface_player = IMG_Load("data/assets/icons/0.png");
     }
 
     m_texture_player = SDL_CreateTextureFromSurface(m_renderer, m_surface_player);

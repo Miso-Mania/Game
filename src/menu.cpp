@@ -19,7 +19,7 @@ Menu::Menu()
     this->skipIntro = false;
 
     TTF_Init();
-    font = TTF_OpenFont("font/Kemco Pixel Bold.ttf", 30);
+    font = TTF_OpenFont("data/font/Kemco Pixel Bold.ttf", 30);
     if (font == NULL)
     {
         cout << "Erreur lors du chargement de la police menu" << endl;
@@ -158,7 +158,7 @@ int Menu::menu()
         SDL_Window *window = SDL_CreateWindow("SDL2 Window", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 400, 400, 0);
         SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 
-        SDL_Surface *imageSurface = IMG_Load("assets/textures/splash.png");
+        SDL_Surface *imageSurface = IMG_Load("data/assets/textures/splash.png");
         SDL_Texture *texture = SDL_CreateTextureFromSurface(renderer, imageSurface);
         SDL_Rect dstRect = {0, 0, 400, 400};
         // initialisation of SDL2 Mixer
@@ -172,7 +172,7 @@ int Menu::menu()
             std::cerr << "Failed to open audio device: " << Mix_GetError() << std::endl;
         }
 
-        Mix_Music *intro = Mix_LoadMUS("assets/music/intro.mp3");
+        Mix_Music *intro = Mix_LoadMUS("data/assets/music/intro.mp3");
         if (!intro)
         {
             std::cerr << "Failed to load intro file: " << Mix_GetError() << std::endl;
@@ -196,7 +196,7 @@ int Menu::menu()
     SDL_Window *menuWindow = SDL_CreateWindow("Menu", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 720, 0);
     SDL_Rect mainRect = {0, 0, 1280, 720};
     SDL_Renderer *mainRenderer = SDL_CreateRenderer(menuWindow, -1, SDL_RENDERER_ACCELERATED);
-    SDL_Surface *activitySurface = IMG_Load("assets/textures/activity.png");
+    SDL_Surface *activitySurface = IMG_Load("data/assets/textures/activity.png");
     SDL_Texture *activityTexture = SDL_CreateTextureFromSurface(mainRenderer, activitySurface);
     bool goToNextMenu = true;
     do
@@ -242,47 +242,47 @@ int Menu::menu()
         {
             goToNextMenu = false;
 
-            SDL_Surface *shopSurface = IMG_Load("assets/textures/shop.png");
+            SDL_Surface *shopSurface = IMG_Load("data/assets/textures/shop.png");
             SDL_Texture *shopTexture = SDL_CreateTextureFromSurface(mainRenderer, shopSurface);
             SDL_Rect mainRect = {0, 0, 1280, 720};
             SDL_RenderCopy(mainRenderer, shopTexture, NULL, &mainRect);
             // we render all of the     items
-            SDL_Surface *item1Surface = IMG_Load("assets/icons/1.png");
+            SDL_Surface *item1Surface = IMG_Load("data/assets/icons/1.png");
             SDL_Texture *item1Texture = SDL_CreateTextureFromSurface(mainRenderer, item1Surface);
             SDL_Rect item1Rect = {100, 132, 100, 100};
             SDL_RenderCopy(mainRenderer, item1Texture, NULL, &item1Rect);
 
-            SDL_Surface *item2Surface = IMG_Load("assets/icons/2.png");
+            SDL_Surface *item2Surface = IMG_Load("data/assets/icons/2.png");
             SDL_Texture *item2Texture = SDL_CreateTextureFromSurface(mainRenderer, item2Surface);
             SDL_Rect item2Rect = {300, 132, 100, 100};
             SDL_RenderCopy(mainRenderer, item2Texture, NULL, &item2Rect);
 
-            SDL_Surface *item3Surface = IMG_Load("assets/icons/3.png");
+            SDL_Surface *item3Surface = IMG_Load("data/assets/icons/3.png");
             SDL_Texture *item3Texture = SDL_CreateTextureFromSurface(mainRenderer, item3Surface);
             SDL_Rect item3Rect = {500, 132, 100, 100};
             SDL_RenderCopy(mainRenderer, item3Texture, NULL, &item3Rect);
 
-            SDL_Surface *item4Surface = IMG_Load("assets/icons/4.png");
+            SDL_Surface *item4Surface = IMG_Load("data/assets/icons/4.png");
             SDL_Texture *item4Texture = SDL_CreateTextureFromSurface(mainRenderer, item4Surface);
             SDL_Rect item4Rect = {100, 362, 100, 100};
             SDL_RenderCopy(mainRenderer, item4Texture, NULL, &item4Rect);
 
-            SDL_Surface *item5Surface = IMG_Load("assets/icons/5.png");
+            SDL_Surface *item5Surface = IMG_Load("data/assets/icons/5.png");
             SDL_Texture *item5Texture = SDL_CreateTextureFromSurface(mainRenderer, item5Surface);
             SDL_Rect item5Rect = {300, 362, 100, 100};
             SDL_RenderCopy(mainRenderer, item5Texture, NULL, &item5Rect);
 
-            SDL_Surface *item6Surface = IMG_Load("assets/icons/6.png");
+            SDL_Surface *item6Surface = IMG_Load("data/assets/icons/6.png");
             SDL_Texture *item6Texture = SDL_CreateTextureFromSurface(mainRenderer, item6Surface);
             SDL_Rect item6Rect = {500, 362, 100, 100};
             SDL_RenderCopy(mainRenderer, item6Texture, NULL, &item6Rect);
 
-            SDL_Surface *item7Surface = IMG_Load("assets/icons/7.png");
+            SDL_Surface *item7Surface = IMG_Load("data/assets/icons/7.png");
             SDL_Texture *item7Texture = SDL_CreateTextureFromSurface(mainRenderer, item7Surface);
             SDL_Rect item7Rect = {100, 592, 100, 100};
             SDL_RenderCopy(mainRenderer, item7Texture, NULL, &item7Rect);
 
-            SDL_Surface *item8Surface = IMG_Load("assets/icons/8.png");
+            SDL_Surface *item8Surface = IMG_Load("data/assets/icons/8.png");
             SDL_Texture *item8Texture = SDL_CreateTextureFromSurface(mainRenderer, item8Surface);
             SDL_Rect item8Rect = {300, 592, 100, 100};
             SDL_RenderCopy(mainRenderer, item8Texture, NULL, &item8Rect);
@@ -467,41 +467,41 @@ int Menu::menu()
         {
             goToNextMenu = false;
 
-            SDL_Surface *collectionSurface = IMG_Load("assets/textures/bg.png"); // temporaire
+            SDL_Surface *collectionSurface = IMG_Load("data/assets/textures/bg.png"); // temporaire
             SDL_Texture *collectionTexture = SDL_CreateTextureFromSurface(mainRenderer, collectionSurface);
             SDL_Rect mainRect = {0, 0, 1280, 720};
             SDL_RenderCopy(mainRenderer, collectionTexture, NULL, &mainRect);
-            SDL_Surface *objSurface0 = IMG_Load("assets/icons/0.png");
+            SDL_Surface *objSurface0 = IMG_Load("data/assets/icons/0.png");
             SDL_Texture *objTexture0 = SDL_CreateTextureFromSurface(mainRenderer, objSurface0);
             //ON AFFICHE TOUJOURS LE PREMIER OBJET
             SDL_Rect objRect0 = {200, 50, 200, 200};
             SDL_RenderCopy(mainRenderer, objTexture0, NULL, &objRect0);
 
-            SDL_Surface *objSurface1 = IMG_Load("assets/icons/1.png");
+            SDL_Surface *objSurface1 = IMG_Load("data/assets/icons/1.png");
             SDL_Texture *objTexture1 = SDL_CreateTextureFromSurface(mainRenderer, objSurface1);
 
-            SDL_Surface *objSurface2 = IMG_Load("assets/icons/2.png");
+            SDL_Surface *objSurface2 = IMG_Load("data/assets/icons/2.png");
             SDL_Texture *objTexture2 = SDL_CreateTextureFromSurface(mainRenderer, objSurface2);
 
-            SDL_Surface *objSurface3 = IMG_Load("assets/icons/3.png");
+            SDL_Surface *objSurface3 = IMG_Load("data/assets/icons/3.png");
             SDL_Texture *objTexture3 = SDL_CreateTextureFromSurface(mainRenderer, objSurface3);
 
-            SDL_Surface *objSurface4 = IMG_Load("assets/icons/4.png");
+            SDL_Surface *objSurface4 = IMG_Load("data/assets/icons/4.png");
             SDL_Texture *objTexture4 = SDL_CreateTextureFromSurface(mainRenderer, objSurface4);
 
-            SDL_Surface *objSurface5 = IMG_Load("assets/icons/5.png");
+            SDL_Surface *objSurface5 = IMG_Load("data/assets/icons/5.png");
             SDL_Texture *objTexture5 = SDL_CreateTextureFromSurface(mainRenderer, objSurface5);
 
-            SDL_Surface *objSurface6 = IMG_Load("assets/icons/6.png");
+            SDL_Surface *objSurface6 = IMG_Load("data/assets/icons/6.png");
             SDL_Texture *objTexture6 = SDL_CreateTextureFromSurface(mainRenderer, objSurface6);
 
-            SDL_Surface *objSurface7 = IMG_Load("assets/icons/7.png");
+            SDL_Surface *objSurface7 = IMG_Load("data/assets/icons/7.png");
             SDL_Texture *objTexture7 = SDL_CreateTextureFromSurface(mainRenderer, objSurface7);
 
-            SDL_Surface *objSurface8 = IMG_Load("assets/icons/8.png");
+            SDL_Surface *objSurface8 = IMG_Load("data/assets/icons/8.png");
             SDL_Texture *objTexture8 = SDL_CreateTextureFromSurface(mainRenderer, objSurface8);
             
-            SDL_Surface *objSurfaceLock = IMG_Load("assets/textures/padlock.png");
+            SDL_Surface *objSurfaceLock = IMG_Load("data/assets/textures/padlock.png");
             SDL_Texture *objTextureLock = SDL_CreateTextureFromSurface(mainRenderer, objSurfaceLock);
 
             for (int e = 0; e < 9; e++)
@@ -728,7 +728,7 @@ int Menu::menu()
     {
         SDL_Delay(100);
         // we open the level menu
-        SDL_Surface *levelSurface = IMG_Load("assets/textures/level.png");
+        SDL_Surface *levelSurface = IMG_Load("data/assets/textures/level.png");
         SDL_Texture *levelTexture = SDL_CreateTextureFromSurface(mainRenderer, levelSurface);
         SDL_RenderCopy(mainRenderer, levelTexture, NULL, &mainRect);
         SDL_RenderPresent(mainRenderer);
@@ -754,7 +754,7 @@ int Menu::menu()
         }
     }
 
-    SDL_Surface *inputSurface = IMG_Load("assets/textures/input.png");
+    SDL_Surface *inputSurface = IMG_Load("data/assets/textures/input.png");
     SDL_Texture *inputTexture = SDL_CreateTextureFromSurface(mainRenderer, inputSurface);
     SDL_RenderCopy(mainRenderer, inputTexture, NULL, &mainRect);
     SDL_RenderPresent(mainRenderer);

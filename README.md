@@ -94,3 +94,19 @@ Sous **MacOS**, Ouvrir un terminal depuis le dossier où vous avez téléchargé
 3. Pour consulter la documentation, il suffit de taper la commande suivante depuis le terminal : 
     ```[Your_WebBrowser] doc/html/index.html```
     En remplaçant **Your_WebBrowser** par le navigateur de votre choix.
+
+## VI) Organisation de l'archive
+1. **src**: Contient les fichiers sources du projet.
+2. **data**: Contient les assets et les polices du projet.
+    - **assets**: Contient les images du projet.
+    - **font**: Contient les polices du projet.   
+3. **doc**: Contient la documentation du projet.
+4. **bin**: Contient les exécutables du projet, le dossier et son contenu sont générés lors de la compilation.
+5. **obj**: Contient les fichiers objets du projet, le dossier et son contenu sont générés lors de la compilation.
+6. **niveaux**: Contient les niveaux du projet, ainsi que ceux créés ou importés par l'utilisateur.
+7. **times**: Contient les fichiers de sauvegarde des temps des joueurs.
+8. **user** : Contient les fichiers propres à l'utilisateur, comme les icones ou les coins.
+9. **makefile**: Fichier permettant de compiler le projet sous Linux/WSL.
+10. **makefile.mac**: Fichier permettant de compiler le projet sous macOS.
+11. **README.md**: Fichier contenant les informations relatives au projet.
+12. **LICENSE**: Fichier contenant la licence du projet.
