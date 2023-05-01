@@ -1,0 +1,109 @@
+\hypertarget{classdetail_1_1lexer}{}\doxysection{detail\+::lexer$<$ Basic\+Json\+Type, Input\+Adapter\+Type $>$ Class Template Reference}
+\label{classdetail_1_1lexer}\index{detail::lexer$<$ BasicJsonType, InputAdapterType $>$@{detail::lexer$<$ BasicJsonType, InputAdapterType $>$}}
+
+
+lexical analysis  
+
+
+
+
+{\ttfamily \#include $<$json.\+hpp$>$}
+
+
+
+Inheritance diagram for detail\+::lexer$<$ Basic\+Json\+Type, Input\+Adapter\+Type $>$\+:
+% FIG 0
+
+
+Collaboration diagram for detail\+::lexer$<$ Basic\+Json\+Type, Input\+Adapter\+Type $>$\+:
+% FIG 1
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classdetail_1_1lexer_a74052693c02be1a1e245295b62e5fcb6}\label{classdetail_1_1lexer_a74052693c02be1a1e245295b62e5fcb6}} 
+using {\bfseries token\+\_\+type} = typename \mbox{\hyperlink{classdetail_1_1lexer__base}{lexer\+\_\+base}}$<$ Basic\+Json\+Type $>$\+::\mbox{\hyperlink{classdetail_1_1lexer__base_add65fa7a85aa15052963809fbcc04540}{token\+\_\+type}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classdetail_1_1lexer_a384af885c37d58c963b902008c279fd6}\label{classdetail_1_1lexer_a384af885c37d58c963b902008c279fd6}} 
+{\bfseries lexer} (Input\+Adapter\+Type \&\&adapter, bool ignore\+\_\+comments\+\_\+=false) noexcept
+\item 
+\mbox{\Hypertarget{classdetail_1_1lexer_a963dce44c9d66c9a7c9d3206e1cff2ed}\label{classdetail_1_1lexer_a963dce44c9d66c9a7c9d3206e1cff2ed}} 
+{\bfseries lexer} (const \mbox{\hyperlink{classdetail_1_1lexer}{lexer}} \&)=delete
+\item 
+\mbox{\Hypertarget{classdetail_1_1lexer_a79ce2eb7f127977f1d2499a1f10aa262}\label{classdetail_1_1lexer_a79ce2eb7f127977f1d2499a1f10aa262}} 
+{\bfseries lexer} (\mbox{\hyperlink{classdetail_1_1lexer}{lexer}} \&\&)=default
+\item 
+\mbox{\Hypertarget{classdetail_1_1lexer_a882616b9ed02035e01870af139ee8030}\label{classdetail_1_1lexer_a882616b9ed02035e01870af139ee8030}} 
+\mbox{\hyperlink{classdetail_1_1lexer}{lexer}} \& {\bfseries operator=} (\mbox{\hyperlink{classdetail_1_1lexer}{lexer}} \&)=delete
+\item 
+\mbox{\Hypertarget{classdetail_1_1lexer_a24ab89fc73e9571861440271643ab0c7}\label{classdetail_1_1lexer_a24ab89fc73e9571861440271643ab0c7}} 
+\mbox{\hyperlink{classdetail_1_1lexer}{lexer}} \& {\bfseries operator=} (\mbox{\hyperlink{classdetail_1_1lexer}{lexer}} \&\&)=default
+\item 
+\mbox{\Hypertarget{classdetail_1_1lexer_a4227de7d0382fb4d3e18b119f0cc87d7}\label{classdetail_1_1lexer_a4227de7d0382fb4d3e18b119f0cc87d7}} 
+constexpr number\+\_\+integer\+\_\+t \mbox{\hyperlink{classdetail_1_1lexer_a4227de7d0382fb4d3e18b119f0cc87d7}{get\+\_\+number\+\_\+integer}} () const noexcept
+\begin{DoxyCompactList}\small\item\em return integer value \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classdetail_1_1lexer_a65495d5d60a279adb009efa728708441}\label{classdetail_1_1lexer_a65495d5d60a279adb009efa728708441}} 
+constexpr number\+\_\+unsigned\+\_\+t \mbox{\hyperlink{classdetail_1_1lexer_a65495d5d60a279adb009efa728708441}{get\+\_\+number\+\_\+unsigned}} () const noexcept
+\begin{DoxyCompactList}\small\item\em return unsigned integer value \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classdetail_1_1lexer_af2e903d32a7e3705c66539ea1e30ce59}\label{classdetail_1_1lexer_af2e903d32a7e3705c66539ea1e30ce59}} 
+constexpr number\+\_\+float\+\_\+t \mbox{\hyperlink{classdetail_1_1lexer_af2e903d32a7e3705c66539ea1e30ce59}{get\+\_\+number\+\_\+float}} () const noexcept
+\begin{DoxyCompactList}\small\item\em return floating-\/point value \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classdetail_1_1lexer_a86ecfb03aba202680e5ab48f70baac07}\label{classdetail_1_1lexer_a86ecfb03aba202680e5ab48f70baac07}} 
+string\+\_\+t \& \mbox{\hyperlink{classdetail_1_1lexer_a86ecfb03aba202680e5ab48f70baac07}{get\+\_\+string}} ()
+\begin{DoxyCompactList}\small\item\em return current string value (implicitly resets the token; useful only once) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classdetail_1_1lexer_a569266654a88a2dc6f0e9a587067fc9d}\label{classdetail_1_1lexer_a569266654a88a2dc6f0e9a587067fc9d}} 
+constexpr \mbox{\hyperlink{structdetail_1_1position__t}{position\+\_\+t}} \mbox{\hyperlink{classdetail_1_1lexer_a569266654a88a2dc6f0e9a587067fc9d}{get\+\_\+position}} () const noexcept
+\begin{DoxyCompactList}\small\item\em return position of last read token \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classdetail_1_1lexer_a41481d87dc1bcaaf532f529fbc0e690b}{get\+\_\+token\+\_\+string}} () const
+\item 
+\mbox{\Hypertarget{classdetail_1_1lexer_aebc99bc8563c932004c50cb3ac0f8d9e}\label{classdetail_1_1lexer_aebc99bc8563c932004c50cb3ac0f8d9e}} 
+constexpr const J\+S\+O\+N\+\_\+\+H\+E\+D\+L\+E\+Y\+\_\+\+R\+E\+T\+U\+R\+N\+S\+\_\+\+N\+O\+N\+\_\+\+N\+U\+LL char $\ast$ \mbox{\hyperlink{classdetail_1_1lexer_aebc99bc8563c932004c50cb3ac0f8d9e}{get\+\_\+error\+\_\+message}} () const noexcept
+\begin{DoxyCompactList}\small\item\em return syntax error message \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classdetail_1_1lexer_a04ae0c7807a761f4162ff42290be5490}{skip\+\_\+bom}} ()
+\begin{DoxyCompactList}\small\item\em skip the U\+T\+F-\/8 byte order mark \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classdetail_1_1lexer_a230468eb9130a7173e0636fc1fc5606b}\label{classdetail_1_1lexer_a230468eb9130a7173e0636fc1fc5606b}} 
+void {\bfseries skip\+\_\+whitespace} ()
+\item 
+\mbox{\Hypertarget{classdetail_1_1lexer_a6497d12a0c35b355b3e22da69d6819f9}\label{classdetail_1_1lexer_a6497d12a0c35b355b3e22da69d6819f9}} 
+\mbox{\hyperlink{classdetail_1_1lexer__base_add65fa7a85aa15052963809fbcc04540}{token\+\_\+type}} {\bfseries scan} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Basic\+Json\+Type, typename Input\+Adapter\+Type$>$\newline
+class detail\+::lexer$<$ Basic\+Json\+Type, Input\+Adapter\+Type $>$}
+
+lexical analysis 
+
+This class organizes the lexical analysis during J\+S\+ON deserialization. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classdetail_1_1lexer_a41481d87dc1bcaaf532f529fbc0e690b}\label{classdetail_1_1lexer_a41481d87dc1bcaaf532f529fbc0e690b}} 
+\index{detail::lexer$<$ BasicJsonType, InputAdapterType $>$@{detail::lexer$<$ BasicJsonType, InputAdapterType $>$}!get\_token\_string@{get\_token\_string}}
+\index{get\_token\_string@{get\_token\_string}!detail::lexer$<$ BasicJsonType, InputAdapterType $>$@{detail::lexer$<$ BasicJsonType, InputAdapterType $>$}}
+\doxysubsubsection{\texorpdfstring{get\_token\_string()}{get\_token\_string()}}
+{\footnotesize\ttfamily template$<$typename Basic\+Json\+Type , typename Input\+Adapter\+Type $>$ \\
+std\+::string \mbox{\hyperlink{classdetail_1_1lexer}{detail\+::lexer}}$<$ Basic\+Json\+Type, Input\+Adapter\+Type $>$\+::get\+\_\+token\+\_\+string (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+return the last read token (for errors only). Will never contain E\+OF (an arbitrary value that is not a valid char value, often -\/1), because 255 may legitimately occur. May contain N\+UL, which should be escaped. \mbox{\Hypertarget{classdetail_1_1lexer_a04ae0c7807a761f4162ff42290be5490}\label{classdetail_1_1lexer_a04ae0c7807a761f4162ff42290be5490}} 
+\index{detail::lexer$<$ BasicJsonType, InputAdapterType $>$@{detail::lexer$<$ BasicJsonType, InputAdapterType $>$}!skip\_bom@{skip\_bom}}
+\index{skip\_bom@{skip\_bom}!detail::lexer$<$ BasicJsonType, InputAdapterType $>$@{detail::lexer$<$ BasicJsonType, InputAdapterType $>$}}
+\doxysubsubsection{\texorpdfstring{skip\_bom()}{skip\_bom()}}
+{\footnotesize\ttfamily template$<$typename Basic\+Json\+Type , typename Input\+Adapter\+Type $>$ \\
+bool \mbox{\hyperlink{classdetail_1_1lexer}{detail\+::lexer}}$<$ Basic\+Json\+Type, Input\+Adapter\+Type $>$\+::skip\+\_\+bom (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+skip the U\+T\+F-\/8 byte order mark 
+
+\begin{DoxyReturn}{Returns}
+true iff there is no B\+OM or the correct B\+OM has been skipped 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/json.\+hpp\end{DoxyCompactItemize}

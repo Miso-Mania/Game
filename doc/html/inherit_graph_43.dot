@@ -1,0 +1,12 @@
+digraph "Graphical Class Hierarchy"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node194 [label="bool_constant",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node194 -> Node0 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node0 [label="detail::is_c_string\< T \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structdetail_1_1is__c__string.html",tooltip=" "];
+  Node194 -> Node196 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node196 [label="detail::is_transparent\< T \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structdetail_1_1is__transparent.html",tooltip=" "];
+}

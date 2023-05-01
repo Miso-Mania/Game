@@ -1,0 +1,22 @@
+var searchData=
+[
+  ['game_23',['Game',['../classGame.html',1,'Game'],['../classGame.html#a30ec5cbb9ffb6cbffbf47f3f7673d441',1,'Game::Game()']]],
+  ['getboxcmgtgrav_24',['getBoxCmgtGrav',['../classLevel.html#a1f15a2456faba6660194e027818ce98b',1,'Level']]],
+  ['getboxfinish_25',['getBoxFinish',['../classLevel.html#afc246c6265e3a3e10fc6c97f883e3a23',1,'Level']]],
+  ['getcase_26',['getCase',['../classLevel.html#ab865b524f7e8bd1f016735e8c4354039',1,'Level']]],
+  ['getcoords_27',['getCoords',['../classEnemy.html#abd5a03616603b8ecfcb26fb86838c673',1,'Enemy::getCoords()'],['../classPlayer.html#aa2cf1f30965b5fa24b4db5e55b189b67',1,'Player::getCoords()'],['../classBoxCmgtGrav.html#a406f81bb8c612519fa420d484460e3f9',1,'BoxCmgtGrav::getCoords()'],['../classBoxFinish.html#a757c29f55cb7c90f8bf11f5051de5fa7',1,'BoxFinish::getCoords()'],['../classCase.html#a8ab2a0fd89276a1bb0c0f799edff9a96',1,'Case::getCoords()'],['../classD__Case.html#ad688742b928771b97d81a8c30cf6ae1c',1,'D_Case::getCoords()'],['../classDoubleJumpPort.html#a00e20cf6ddf3b22ade3911081bee9d23',1,'DoubleJumpPort::getCoords()'],['../classL__Plateform.html#a04f17602b8603f64b987786beec1c0cb',1,'L_Plateform::getCoords()'],['../classM__Plateform.html#a524eb4b462d618670f9ef3051bdcdf59',1,'M_Plateform::getCoords()'],['../classObstacle.html#a20875bc822229613bcfb64240a8f99d5',1,'Obstacle::getCoords()'],['../classPic.html#abbfe4ffc7dda8f7d0efa9761367a0f4e',1,'Pic::getCoords()'],['../classS__Plateform.html#ae24db7a3e29d88f9b2b48a7ed2ae1f7d',1,'S_Plateform::getCoords()'],['../classTree.html#acd4334062cd81f21cecb54d497b93f29',1,'Tree::getCoords()']]],
+  ['getd_5fcase_28',['getD_Case',['../classLevel.html#a3b4501e170d96713b35a7de08ffb9be1',1,'Level']]],
+  ['getdirection_29',['getDirection',['../classPlayer.html#a9ef92b634512eb63a70c3883d009bd5d',1,'Player']]],
+  ['getdoublejumpport_30',['getDoubleJumpPort',['../classLevel.html#acbeec764b387dea8ef321949916b39fc',1,'Level']]],
+  ['getenemy_31',['getEnemy',['../classLevel.html#a6bcad465ab1a4efabc2f71cd067f7176',1,'Level']]],
+  ['getgravity_32',['getGravity',['../classPlayer.html#ab722ce91bc33c3ac1d14145b43d420dc',1,'Player']]],
+  ['getisonground_33',['getIsOnGround',['../classPlayer.html#a30631bea320f359be4c969fbcee2dcb1',1,'Player']]],
+  ['getl_5fplateform_34',['getL_Plateform',['../classLevel.html#a3a4a1ad20883e307a51483516cbc782e',1,'Level']]],
+  ['getm_5fplateform_35',['getM_Plateform',['../classLevel.html#ab38f1863b212d74b34332e264c029c45',1,'Level']]],
+  ['getobstacles_36',['getObstacles',['../classLevel.html#a3df13a40a09b28a9c291e3cb82620aa6',1,'Level']]],
+  ['getpics_37',['getPics',['../classLevel.html#a1ee8c5ff2669c7293c5149a0a39933f0',1,'Level']]],
+  ['getrect_38',['getRect',['../classEnemy.html#a015d510db1853d9dcf59813e415776bc',1,'Enemy::getRect()'],['../classPlayer.html#aea583a95886e2456fc0a28e3b35f3421',1,'Player::getRect()'],['../classBoxCmgtGrav.html#afdbf876d0fed20853d3e4f0a24dafcb3',1,'BoxCmgtGrav::getRect()'],['../classBoxFinish.html#a9ff0b4e6ce229847dcf3816822b7b739',1,'BoxFinish::getRect()'],['../classCase.html#a80bd869fdd3026011594353698ce00f9',1,'Case::getRect()'],['../classD__Case.html#a5f222ffb789709076fda173b468ebfa6',1,'D_Case::getRect()'],['../classDoubleJumpPort.html#ad08898fe84efd33950683c55dd86a345',1,'DoubleJumpPort::getRect()'],['../classL__Plateform.html#a2b1bc078b16a87617ceb97ea7eecf959',1,'L_Plateform::getRect()'],['../classM__Plateform.html#aba6ec0113b68eb0f834512173998b794',1,'M_Plateform::getRect()'],['../classObstacle.html#abe3e7823b0868bdb6ba75dd1236d308f',1,'Obstacle::getRect()'],['../classPic.html#ad15be3d36849ed93b86b668be913823a',1,'Pic::getRect()'],['../classS__Plateform.html#a00037408568b23883f8d8e24a7766870',1,'S_Plateform::getRect()'],['../classTree.html#a9398384f91f6c7b64bbeea18a0a93606',1,'Tree::getRect()']]],
+  ['gets_5fplateform_39',['getS_Plateform',['../classLevel.html#ad2de391eb1eb4011417e39f819a67c66',1,'Level']]],
+  ['gettrees_40',['getTrees',['../classLevel.html#aef673a223fb1879ccdc236877426d26a',1,'Level']]],
+  ['gravity_41',['gravity',['../classPlayer.html#a505e1e3b610bd9bd3729b7e32a620f47',1,'Player']]]
+];
