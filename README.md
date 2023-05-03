@@ -3,9 +3,9 @@
 ![License](https://img.shields.io/badge/Licence-CC%20BY--NC--SA%204.0-brightgreen)
 
 
-Miso Mania Par Romain Rochebloine, Jules Ginhac et Mathieu Ponton.
+Miso Mania Par Rrrooo, JulesUSG15, and Mathieu Ponton Claquettes
 -------
-
+Leaderboard: https://docs.google.com/spreadsheets/d/1K5VX12GjT2p_RNIs5Emuoi02b59skUqxQHbU0iykdL8/edit?usp=sharing
 
 
 
