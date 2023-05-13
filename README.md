@@ -1,4 +1,5 @@
 ![Compatible](https://img.shields.io/badge/Compatible-linuxX64%20macOSX64-success)
+![bw](https://img.shields.io/badge/Build%20with-Selenium-yellow)
 ![Language](https://img.shields.io/badge/Language-c%2B%2B-blue)
 ![License](https://img.shields.io/badge/Licence-CC%20BY--NC--SA%204.0-brightgreen)
 
