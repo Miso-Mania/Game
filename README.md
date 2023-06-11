@@ -28,6 +28,9 @@ chercheurs à LIRIS, un laboratoire du CNRS.
 3. La bibliothèque graphique SDL2.
     Pour l'installer sous Debian ou Ubuntu: 
     ```sudo apt-get install libsdl2-dev```
+3.bis La bibliothèque Ncurses.
+    Pour l'installer sous Debian ou Ubuntu:
+    `` sudo apt-get install libncurses5-dev libncursesw5-dev```
 
 4. La bibliothèque graphique SDL2_image.
     Pour l'installer sous Debian ou Ubuntu : 
